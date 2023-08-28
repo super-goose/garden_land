@@ -1,0 +1,21 @@
+[gd_scene load_steps=4 format=3 uid="uid://c8jts7bt4i7p"]
+
+[ext_resource type="Script" path="res://garden_plot.gd" id="1_81omm"]
+[ext_resource type="Texture2D" uid="uid://bo8ftdxn1g1lb" path="res://Sprout Lands - Sprites - premium pack/Objects/Farming Plants.png" id="2_qybk5"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_iitex"]
+
+[node name="GardenPlot" type="Area2D"]
+collision_layer = 2
+collision_mask = 0
+script = ExtResource("1_81omm")
+type = 5
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_iitex")
+
+[node name="FarmingPlants" type="Sprite2D" parent="."]
+texture = ExtResource("2_qybk5")
+hframes = 5
+vframes = 15
+frame = 13
