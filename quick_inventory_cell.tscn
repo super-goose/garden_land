@@ -1,0 +1,47 @@
+[gd_scene load_steps=5 format=3 uid="uid://3av7tgbc8rhv"]
+
+[ext_resource type="Texture2D" uid="uid://cnctn5c02xqaa" path="res://Sprout Lands - Sprites - premium pack/Objects/Items/farm-plant-items-4.png" id="1_utpqp"]
+[ext_resource type="Script" path="res://quick_inventory_cell.gd" id="1_yp1vs"]
+[ext_resource type="FontFile" uid="uid://bhvrl7wppixn1" path="res://PressStart2P-Regular-L.ttf" id="2_djrdd"]
+
+[sub_resource type="Theme" id="Theme_3thh7"]
+default_font = ExtResource("2_djrdd")
+default_font_size = 32
+
+[node name="QuickInventoryCell" type="Control"]
+layout_mode = 3
+anchors_preset = 0
+offset_left = 8.0
+offset_top = 9.0
+offset_right = 232.0
+offset_bottom = 95.0
+script = ExtResource("1_yp1vs")
+
+[node name="TextureRect" type="TextureRect" parent="."]
+clip_contents = true
+layout_mode = 2
+offset_left = 8.0
+offset_top = 7.0
+offset_right = 88.0
+offset_bottom = 87.0
+texture = ExtResource("1_utpqp")
+expand_mode = 5
+
+[node name="Label" type="Label" parent="."]
+layout_mode = 0
+offset_left = 96.0
+offset_right = 214.0
+offset_bottom = 86.0
+theme = SubResource("Theme_3thh7")
+text = "x2"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Button" type="Button" parent="."]
+modulate = Color(1, 1, 1, 0)
+layout_mode = 0
+offset_left = 3.0
+offset_right = 227.0
+offset_bottom = 86.0
+
+[connection signal="pressed" from="Button" to="." method="_on_button_pressed"]

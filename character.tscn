@@ -1,4 +1,4 @@
-[gd_scene load_steps=222 format=3 uid="uid://brcxg1cwk4en0"]
+[gd_scene load_steps=233 format=3 uid="uid://brcxg1cwk4en0"]
 
 [ext_resource type="Script" path="res://character.gd" id="1_gyc1p"]
 [ext_resource type="Texture2D" uid="uid://cu33230oi5u8b" path="res://Sprout Lands - Sprites - premium pack/Characters/animations-0.png" id="3_mvq0b"]
@@ -25,6 +25,7 @@
 [ext_resource type="Texture2D" uid="uid://dggpxcok5vut0" path="res://Sprout Lands - Sprites - premium pack/Characters/animations-22.png" id="24_3s3ad"]
 [ext_resource type="Texture2D" uid="uid://rl2my07rmhcb" path="res://Sprout Lands - Sprites - premium pack/Characters/animations-23.png" id="25_w2lj2"]
 [ext_resource type="Texture2D" uid="uid://b56iu2xbx7fvv" path="res://Sprout Lands - Sprites - premium pack/Characters/animations-21.png" id="26_esv8p"]
+[ext_resource type="Texture2D" uid="uid://c3muj86asyla7" path="res://Sprout Lands - Sprites - premium pack/Characters/water from wateringcan frames.png" id="26_xqqi4"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_sltv8"]
 size = Vector2(16, 16)
@@ -829,7 +830,7 @@ animations = [{
 }],
 "loop": true,
 "name": &"chop_down",
-"speed": 8.0
+"speed": 12.0
 }, {
 "frames": [{
 "duration": 1.0,
@@ -858,7 +859,7 @@ animations = [{
 }],
 "loop": true,
 "name": &"chop_left",
-"speed": 8.0
+"speed": 12.0
 }, {
 "frames": [{
 "duration": 1.0,
@@ -887,7 +888,7 @@ animations = [{
 }],
 "loop": true,
 "name": &"chop_right",
-"speed": 8.0
+"speed": 12.0
 }, {
 "frames": [{
 "duration": 1.0,
@@ -916,7 +917,7 @@ animations = [{
 }],
 "loop": true,
 "name": &"chop_up",
-"speed": 8.0
+"speed": 12.0
 }, {
 "frames": [{
 "duration": 1.0,
@@ -945,7 +946,7 @@ animations = [{
 }],
 "loop": true,
 "name": &"hoe_down",
-"speed": 8.0
+"speed": 12.0
 }, {
 "frames": [{
 "duration": 1.0,
@@ -974,7 +975,7 @@ animations = [{
 }],
 "loop": true,
 "name": &"hoe_left",
-"speed": 8.0
+"speed": 12.0
 }, {
 "frames": [{
 "duration": 1.0,
@@ -1003,7 +1004,7 @@ animations = [{
 }],
 "loop": true,
 "name": &"hoe_right",
-"speed": 5.0
+"speed": 12.0
 }, {
 "frames": [{
 "duration": 1.0,
@@ -1032,7 +1033,7 @@ animations = [{
 }],
 "loop": true,
 "name": &"hoe_up",
-"speed": 8.0
+"speed": 12.0
 }, {
 "frames": [{
 "duration": 1.0,
@@ -1407,7 +1408,7 @@ animations = [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_tuqw2")
 }],
-"loop": true,
+"loop": false,
 "name": &"water_down",
 "speed": 8.0
 }, {
@@ -1436,7 +1437,7 @@ animations = [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_3tsrm")
 }],
-"loop": true,
+"loop": false,
 "name": &"water_left",
 "speed": 8.0
 }, {
@@ -1465,7 +1466,7 @@ animations = [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_qgrvg")
 }],
-"loop": true,
+"loop": false,
 "name": &"water_right",
 "speed": 8.0
 }, {
@@ -1494,9 +1495,80 @@ animations = [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_8lppx")
 }],
-"loop": true,
+"loop": false,
 "name": &"water_up",
 "speed": 8.0
+}]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_xfxft"]
+atlas = ExtResource("26_xqqi4")
+region = Rect2(0, 0, 48, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ee5t1"]
+atlas = ExtResource("26_xqqi4")
+region = Rect2(48, 0, 48, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_28ewu"]
+atlas = ExtResource("26_xqqi4")
+region = Rect2(96, 0, 48, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_cvft6"]
+atlas = ExtResource("26_xqqi4")
+region = Rect2(144, 0, 48, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_gmmio"]
+atlas = ExtResource("26_xqqi4")
+region = Rect2(192, 0, 48, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_s00ly"]
+atlas = ExtResource("26_xqqi4")
+region = Rect2(240, 0, 48, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ps077"]
+atlas = ExtResource("26_xqqi4")
+region = Rect2(288, 0, 48, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_parfh"]
+atlas = ExtResource("26_xqqi4")
+region = Rect2(336, 0, 48, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ykafi"]
+atlas = ExtResource("26_xqqi4")
+region = Rect2(384, 0, 48, 48)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_gk8x3"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_xfxft")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ee5t1")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_28ewu")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_cvft6")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_gmmio")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_s00ly")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ps077")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_parfh")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ykafi")
+}],
+"loop": false,
+"name": &"water_down",
+"speed": 9.0
 }]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_ib6gc"]
@@ -1519,7 +1591,13 @@ zoom = Vector2(6, 6)
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_aeqdb")
-animation = &"idle_down"
+animation = &"water_right"
+
+[node name="AnimatedWater" type="AnimatedSprite2D" parent="."]
+visible = false
+position = Vector2(0, 10)
+sprite_frames = SubResource("SpriteFrames_gk8x3")
+animation = &"water_down"
 
 [node name="AoI" type="Area2D" parent="."]
 collision_layer = 0
@@ -1529,4 +1607,8 @@ collision_mask = 2
 position = Vector2(0, -4)
 shape = SubResource("CapsuleShape2D_ib6gc")
 
+[node name="Timer" type="Timer" parent="."]
+
+[connection signal="animation_finished" from="AnimatedWater" to="." method="_on_animated_water_animation_finished"]
 [connection signal="area_entered" from="AoI" to="." method="_on_ao_i_area_entered"]
+[connection signal="area_exited" from="AoI" to="." method="_on_ao_i_area_exited"]

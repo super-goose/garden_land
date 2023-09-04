@@ -1,9 +1,11 @@
 extends CharacterBody2D
 
-const SPEED = 30
+const SPEED = 40
 
 var state = 'idle'
 var direction = 'down'
+var current_plant: GardenPlot
+var watering_happened = false
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -12,10 +14,31 @@ func _ready():
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
-	handle_movement(delta)
+	handle_input(delta)
 	play_state_animation()
+	process_state_action()
 
-func handle_movement(delta):
+func process_state_action():
+	if not current_plant:
+		return
+	if state == 'water':
+		if watering_happened == true:
+			return
+		current_plant.increase_stage()
+		watering_happened = true
+
+func handle_input(delta):
+	if Input.is_action_pressed("water"):
+		state = "water"
+		return
+
+	watering_happened = false
+	$AnimatedWater.visible = false
+
+	if Input.is_action_pressed("hoe"):
+		state = "hoe"
+		return
+
 	var movement_direction = Vector2.ZERO
 	if Input.is_action_pressed("go_up"):
 		movement_direction += Vector2.UP
@@ -51,9 +74,19 @@ func handle_movement(delta):
 func play_state_animation():
 	var animation_name = "%s_%s" % [state, direction]
 	$AnimatedSprite2D.play(animation_name)
+	if state == 'water' and direction != 'up':
+		$AnimatedWater.visible = true
+		$AnimatedWater.play('water_%s' % direction)
+
 
 
 func _on_ao_i_area_entered(area: GardenPlot):
-	print(area.type)
-	print(area.stage)
-	
+	current_plant = area
+
+func _on_ao_i_area_exited(area):
+	if current_plant == area:
+		current_plant = null
+
+
+func _on_animated_water_animation_finished():
+	$AnimatedWater.visible = false
