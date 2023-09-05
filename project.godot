@@ -15,6 +15,10 @@ run/main_scene="res://maps.tscn"
 config/features=PackedStringArray("4.1", "Mobile")
 config/icon="res://icon.svg"
 
+[autoload]
+
+Dice="*res://globals/dice.gd"
+
 [display]
 
 window/size/viewport_width=1800

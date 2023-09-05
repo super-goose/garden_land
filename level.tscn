@@ -1,8 +1,12 @@
-[gd_scene load_steps=2 format=3 uid="uid://b8722pdwk2exe"]
+[gd_scene load_steps=3 format=3 uid="uid://b8722pdwk2exe"]
 
 [ext_resource type="TileSet" uid="uid://bkls48mu0bftu" path="res://tiles.tres" id="1_62b2k"]
+[ext_resource type="Script" path="res://level.gd" id="2_mgqfi"]
 
-[node name="TileMap2" type="TileMap"]
+[node name="Level" type="Node2D"]
+script = ExtResource("2_mgqfi")
+
+[node name="TileMap2" type="TileMap" parent="."]
 tile_set = ExtResource("1_62b2k")
 format = 2
 layer_0/name = "water"
