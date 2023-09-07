@@ -1,0 +1,173 @@
+<!-- <img src="tony-sart-04-4.j.json" style="max-width: 90%;" /> -->
+
+<canvas id="c" width="800" height="600" style="border: 1px solid black" />
+
+<script>
+  const ITERATION_DURATION = 100;
+  const CELL_SIZE = 25;
+  const RAW_WIDTH = 800;
+  const RAW_HEIGHT = 600;
+  const MAP_WIDTH = RAW_WIDTH / CELL_SIZE;
+  const MAP_HEIGHT = RAW_HEIGHT / CELL_SIZE;
+
+  const canvas = document.getElementById('c').getContext('2d');
+  const baseMap = (() => {
+    const m = [];
+    for (let w = 0; w < MAP_WIDTH; w++) {
+      const col = [];
+      for (let h = 0; h < MAP_HEIGHT; h++) {
+        col.push(Math.random() > .5);
+      }
+      m.push(col);
+    }
+    return m;
+  })();
+
+  const fillDot = (x, y) => {
+    canvas.fillRect(x * CELL_SIZE, y * CELL_SIZE, CELL_SIZE, CELL_SIZE)
+  }
+
+  const drawMap = (mapToDraw) => {
+    canvas.clearRect(0, 0, RAW_WIDTH, RAW_HEIGHT)
+    for (let x = 0, w = mapToDraw.length; x < w; x++) {
+      for (let y = 0, h = mapToDraw[0].length; y < h; y++) {
+        if (mapToDraw[x][y]) {
+          fillDot(x, y)
+        }
+      }
+    }
+  }
+
+  const removePuddles = (mapToModify) => {
+    const w = mapToModify.length;
+    const h = mapToModify[0].length;
+
+    const isPuddle = (x, y) => {
+      const m = mapToModify;
+      const isPuddleHorizontally = (m[x - 1][y] && !m[x][y] && !m[x + 1][y] && m[x + 2][y]) || (m[x - 2][y] && !m[x - 1][y] && !m[x][y] && m[x + 1][y])
+      const isPuddleVertically = (m[x][y - 1] && !m[x][y] && !m[x][y + 1] && m[x][y + 2]) || (m[x][y - 2] && !m[x][y - 1] && !m[x][y] && m[x][y + 1])
+      return isPuddleHorizontally && isPuddleVertically;
+    }
+
+    return mapToModify.map((column, x) => {
+      return column.map((cell, y) => {
+        if (x < 2 || y < 2 || x > w - 3 || y > h - 3) {
+          return cell;
+        }
+        if (!cell && isPuddle(x, y)) {
+          return true;
+        }
+        return cell;
+      });
+    })
+  }
+
+  const congealMap = (mapToCongeal) => {
+    const w = mapToCongeal.length;
+    const h = mapToCongeal[0].length;
+    return mapToCongeal.map((column, x) => {
+      return column.map((cell, y) => {
+        if (x === 0 || y === 0 || x === w - 1 || y === h - 1) {
+          return false;
+        }
+        if (!cell) {
+          if (mapToCongeal[x + 1][y] && mapToCongeal[x - 1][y] && mapToCongeal[x][y + 1] && mapToCongeal[x][y - 1]) {
+            return true;
+          }
+        }
+        if (cell) {
+          if (!mapToCongeal[x + 1][y] && !mapToCongeal[x - 1][y] && !mapToCongeal[x][y + 1] && !mapToCongeal[x][y - 1]) {
+            return false;
+          }
+        }
+        return cell;
+      });
+    })
+  };
+
+  const sparsifyMap = (mapToCongeal) => {
+    const w = mapToCongeal.length;
+    const h = mapToCongeal[0].length;
+    return mapToCongeal.map((column, x) => {
+      return column.map((cell, y) => {
+        if (x === 0 || y === 0 || x === w - 1 || y === h - 1) {
+          return false;
+        }
+        if (cell) {
+          if ((!mapToCongeal[x + 1][y] && !mapToCongeal[x - 1][y]) || (!mapToCongeal[x][y + 1] && !mapToCongeal[x][y - 1])) {
+            return false;
+          }
+        }
+        return cell;
+      });
+    })
+  };
+
+  const fillifyMap = (mapToCongeal) => {
+    const w = mapToCongeal.length;
+    const h = mapToCongeal[0].length;
+    return mapToCongeal.map((column, x) => {
+      return column.map((cell, y) => {
+        if (x === 0 || y === 0 || x === w - 1 || y === h - 1) {
+          return false;
+        }
+        if (!cell) {
+          if ((mapToCongeal[x + 1][y] && mapToCongeal[x - 1][y]) || (mapToCongeal[x][y + 1] && mapToCongeal[x][y - 1])) {
+            return true;
+          }
+        }
+
+        return cell;
+      });
+    })
+  };
+
+  drawMap(baseMap);
+
+  const sleep = (duration) => new Promise((resolve) => setTimeout(resolve, duration))
+
+  const modifyMap = (order) => new Promise(async (resolve, reject) => {
+    const logicalOrder = order.reverse();
+    let operation;
+    let currentMap = baseMap;
+    drawMap(currentMap);
+    await sleep(ITERATION_DURATION);
+    while (operation = logicalOrder.pop()) {
+      currentMap = operation(currentMap);
+      drawMap(currentMap);
+      await sleep(ITERATION_DURATION);
+    }
+    return resolve(currentMap);
+  });
+
+
+  modifyMap(
+    [
+      congealMap,
+      fillifyMap,
+      fillifyMap,
+      sparsifyMap,
+      sparsifyMap,
+      fillifyMap,
+      sparsifyMap,
+      removePuddles,
+    ]
+  ).then(console.log);
+  // setTimeout(() => {
+  //   const congealedMap = congealMap(baseMap);
+  //   drawMap(congealedMap)
+  //   setTimeout(() => {
+  //     const fillifiedMap = fillifyMap(congealedMap)
+  //     drawMap(fillifiedMap)
+  //     setTimeout(() => {
+  //       const sparsifiedMap = sparsifyMap(fillifiedMap)
+  //       drawMap(sparsifiedMap)
+  //       setTimeout(() => {
+  //         const secondSparsifiedMap = sparsifyMap(sparsifiedMap)
+  //         drawMap(secondSparsifiedMap)
+  //       }, 2000)
+  //     }, 2000)
+  //   }, 2000)
+  // }, 2000)
+
+</script>
