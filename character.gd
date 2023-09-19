@@ -6,10 +6,11 @@ var state = 'idle'
 var direction = 'down'
 var current_plant: GardenPlot
 var watering_happened = false
+@export var start_position : Vector2i
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	pass # Replace with function body.
+	position = start_position * 16
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
