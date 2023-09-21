@@ -23,16 +23,17 @@
     return m;
   })();
 
-  const fillDot = (x, y) => {
+  const fillDot = (x, y, color = 'black') => {
+    canvas.fillStyle = color;
     canvas.fillRect(x * CELL_SIZE, y * CELL_SIZE, CELL_SIZE, CELL_SIZE)
   }
 
-  const drawMap = (mapToDraw) => {
+  const drawMap = (mapToDraw, color = 'black') => {
     canvas.clearRect(0, 0, RAW_WIDTH, RAW_HEIGHT)
     for (let x = 0, w = mapToDraw.length; x < w; x++) {
       for (let y = 0, h = mapToDraw[0].length; y < h; y++) {
         if (mapToDraw[x][y]) {
-          fillDot(x, y)
+          fillDot(x, y, color)
         }
       }
     }
@@ -140,6 +141,29 @@
     return resolve(currentMap);
   });
 
+  ////////////////////////////////////////////////////////////////////////////////////////////////
+
+  const clone = (matrix) => {
+    return matrix.map((column) => column.map((cell) => cell));
+  }
+
+  const addBushes = (map) => {
+    const mapToBush = clone(map);
+    // select a few spots to add bushes
+    return mapToCongeal.map((column, x) => {
+      return column.map((cell, y) => {
+        if (cell) {
+          if ((mapToCongeal[x + 1][y] && mapToCongeal[x - 1][y]) || (mapToCongeal[x][y + 1] && mapToCongeal[x][y - 1])) {
+            return true;
+          }
+        }
+
+        return cell;
+      });
+    })
+  }
+
+  ////////////////////////////////////////////////////////////////////////////////////////////////
 
   modifyMap(
     [
