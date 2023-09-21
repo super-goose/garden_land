@@ -2,6 +2,7 @@ extends Node
 
 var temp_width : int
 var temp_height : int
+const PERCENT_WATER = 45
 
 """ randomly generate a map, defined by true (land) and false (not land) values """
 func generate_map_matrix(world_width: int, world_height: int) -> Array:
@@ -37,7 +38,13 @@ func generate_base_random_matrix():
 	for x in range(0, temp_width):
 		var column = []
 		for y in range(0, temp_height):
-			column.push_front(Dice.rng.randi_range(0, 1) == 1)
+			var is_in_the_middle = (
+				Common.between((temp_height / 2) - (temp_height / 20), (temp_height / 2) + (temp_height / 20), y)
+				if temp_height > temp_width else
+				Common.between((temp_width / 2) - (temp_width / 20), (temp_width / 2) + (temp_width / 20), x)
+			)
+			var should_be_land = Dice.rng.randi_range(1, 100) > (85 if is_in_the_middle else PERCENT_WATER)
+			column.push_front(should_be_land)
 		matrix.push_front(column)
 	return matrix
 
@@ -114,3 +121,52 @@ func _iterate_through_matrix(matrix, operation):
 		for y in range(0, matrix[x].size()):
 			matrix[x][y] = operation.call(matrix[x][y], x, y)
 	return matrix
+
+func generate_hills(matrix):
+	pass
+"""
+  const addHills = (map) => {
+	const mapToHill = clone(map);
+	// select a few spots to add hills
+	const hillCells = [];
+	const hills = mapToHill.map((column, x) => {
+	  return column.map((cell, y) => {
+		if (cell) {
+		  if (!mapToHill[x + 1][y] || !mapToHill[x - 1][y] || !mapToHill[x][y + 1] || !mapToHill[x][y - 1]) {
+			hillCells.push({ x, y })
+			return true;
+		  }
+		  hillCells.push({ x, y })
+		  return Math.random() > .7;
+		}
+
+		return false;
+	  });
+	});
+
+	const targetNumberOfHillCells = hillCells.length * .7;
+	const hillCellsToRemove = [];
+	while (hillCells.length > targetNumberOfHillCells) {
+	  hillCellsToRemove.push(hillCells.splice(Math.floor(Math.random() * hillCells.length), 1)[0]);
+	}
+
+	hillCellsToRemove.forEach(({ x, y }) => {
+	  hills[x][y] = false;
+	})
+
+	const paredDownHills = hills.map((column, x) => {
+	  return column.map((cell, y) => {
+		if (cell) {
+		  if (hills[x + 1][y] || hills[x - 1][y] || hills[x][y + 1] || hills[x][y - 1]) {
+			return true;
+		  }
+		}
+
+		return false;
+	  });
+	});
+
+	return paredDownHills
+  }
+
+"""

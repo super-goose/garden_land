@@ -3,12 +3,15 @@
 <canvas id="c" width="800" height="600" style="border: 1px solid black" />
 
 <script>
-  const ITERATION_DURATION = 100;
+  const ITERATION_DURATION = 500;
   const CELL_SIZE = 25;
   const RAW_WIDTH = 800;
   const RAW_HEIGHT = 600;
   const MAP_WIDTH = RAW_WIDTH / CELL_SIZE;
   const MAP_HEIGHT = RAW_HEIGHT / CELL_SIZE;
+  const STARTING_PERCENT_WATER = .45;
+
+  const between = (min, max, num) => min <= num && max >= num;
 
   const canvas = document.getElementById('c').getContext('2d');
   const baseMap = (() => {
@@ -16,7 +19,10 @@
     for (let w = 0; w < MAP_WIDTH; w++) {
       const col = [];
       for (let h = 0; h < MAP_HEIGHT; h++) {
-        col.push(Math.random() > .5);
+        const isInTheMiddle = MAP_HEIGHT > MAP_WIDTH
+          ? between((MAP_HEIGHT / 2) - (MAP_HEIGHT / 20), (MAP_HEIGHT / 2) + (MAP_HEIGHT / 20), h)
+          : between((MAP_WIDTH / 2) - (MAP_WIDTH / 20), (MAP_WIDTH / 2) + (MAP_WIDTH / 20), w)
+        col.push(Math.random() > (isInTheMiddle ? .85 : STARTING_PERCENT_WATER));
       }
       m.push(col);
     }
@@ -135,7 +141,7 @@
     await sleep(ITERATION_DURATION);
     while (operation = logicalOrder.pop()) {
       currentMap = operation(currentMap);
-      drawMap(currentMap);
+      drawMap(currentMap, '#9d9');
       await sleep(ITERATION_DURATION);
     }
     return resolve(currentMap);
@@ -147,20 +153,48 @@
     return matrix.map((column) => column.map((cell) => cell));
   }
 
-  const addBushes = (map) => {
-    const mapToBush = clone(map);
-    // select a few spots to add bushes
-    return mapToCongeal.map((column, x) => {
+  const addHills = (map) => {
+    const mapToHill = clone(map);
+    // select a few spots to add hills
+    const hillCells = [];
+    const hills = mapToHill.map((column, x) => {
       return column.map((cell, y) => {
         if (cell) {
-          if ((mapToCongeal[x + 1][y] && mapToCongeal[x - 1][y]) || (mapToCongeal[x][y + 1] && mapToCongeal[x][y - 1])) {
+          if (!mapToHill[x + 1][y] || !mapToHill[x - 1][y] || !mapToHill[x][y + 1] || !mapToHill[x][y - 1]) {
+            hillCells.push({ x, y })
+            return true;
+          }
+          hillCells.push({ x, y })
+          return Math.random() > .7;
+        }
+
+        return false;
+      });
+    });
+
+    const targetNumberOfHillCells = hillCells.length * .7;
+    const hillCellsToRemove = [];
+    while (hillCells.length > targetNumberOfHillCells) {
+      hillCellsToRemove.push(hillCells.splice(Math.floor(Math.random() * hillCells.length), 1)[0]);
+    }
+
+    hillCellsToRemove.forEach(({ x, y }) => {
+      hills[x][y] = false;
+    })
+
+    const paredDownHills = hills.map((column, x) => {
+      return column.map((cell, y) => {
+        if (cell) {
+          if (hills[x + 1][y] || hills[x - 1][y] || hills[x][y + 1] || hills[x][y - 1]) {
             return true;
           }
         }
 
-        return cell;
+        return false;
       });
-    })
+    });
+
+    return paredDownHills
   }
 
   ////////////////////////////////////////////////////////////////////////////////////////////////
@@ -176,7 +210,17 @@
       sparsifyMap,
       removePuddles,
     ]
-  ).then(console.log);
+  ).then((mapOfGrass) => {
+    const shores = addHills(mapOfGrass);
+
+    for (let x = 0, w = shores.length; x < w; x++) {
+      for (let y = 0, h = shores[0].length; y < h; y++) {
+        if (shores[x][y]) {
+          fillDot(x, y, '#494')
+        }
+      }
+    }
+  });
   // setTimeout(() => {
   //   const congealedMap = congealMap(baseMap);
   //   drawMap(congealedMap)
