@@ -12,6 +12,9 @@ var watering_happened = false
 func _ready():
 	position = start_position * 16
 
+func set_start_position(v: Vector2i):
+	start_position = v
+	position = start_position * 16
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):

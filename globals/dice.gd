@@ -17,6 +17,7 @@ func roll_d100(tag = ""):
 		print("'%s': %s" % [tag, r]) 
 	return r
 
+"""return random number between 1 and n (inclusive)"""
 func roll_dn(n):
 	return rng.randi_range(1, n)
 

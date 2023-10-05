@@ -3,6 +3,7 @@ extends Node2D
 @export var generate_random_map = true
 @export var world_width = 60
 @export var world_height = 100
+@export var hill_coefficient = 70
 
 const LAYER_WATER = 0
 const LAYER_GRASS = 1
@@ -28,3 +29,10 @@ func generate_said_random_map():
 			if map_matrix[x][y]:
 				grass_terrain_array.push_front(Vector2i(x, y))
 	$TileMap2.set_cells_terrain_connect(LAYER_GRASS, grass_terrain_array, 0, 0)
+	
+	print(world_width)
+	print(world_height)
+	var hill_terrain_array = $Util.hills
+	print(hill_terrain_array)
+	$TileMap2.set_cells_terrain_connect(LAYER_HILL, hill_terrain_array, 0, 3)
+#	$TileMap2.set_cells_terrain_connect(LAYER_HILL_BUSHES, hill_terrain_array, 0, 2)

@@ -15,7 +15,7 @@ script = ExtResource("1_h42x6")
 [node name="Level" parent="." instance=ExtResource("6_yxtm0")]
 
 [node name="Character" parent="." instance=ExtResource("2_p2yxq")]
-start_position = Vector2i(20, 20)
+start_position = Vector2i(10, 10)
 
 [node name="GardenPlot" parent="." instance=ExtResource("4_byn2d")]
 position = Vector2(34, 12)

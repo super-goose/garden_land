@@ -3,6 +3,7 @@ extends Node
 var temp_width : int
 var temp_height : int
 const PERCENT_WATER = 45
+var hills = []
 
 """ randomly generate a map, defined by true (land) and false (not land) values """
 func generate_map_matrix(world_width: int, world_height: int) -> Array:
@@ -18,6 +19,17 @@ func generate_map_matrix(world_width: int, world_height: int) -> Array:
 	map_matrix = fillify_map(map_matrix)
 	map_matrix = sparsify_map(map_matrix)
 	map_matrix = remove_puddles(map_matrix)
+
+	var half_hills = generate_hills(map_matrix, 70)
+	for v in half_hills:
+		var new_x = v.x * 2
+		var new_y = v.y * 2
+		
+		hills.push_front(Vector2i(new_x, new_y))
+		hills.push_front(Vector2i(new_x + 1, new_y))
+		hills.push_front(Vector2i(new_x, new_y + 1))
+		hills.push_front(Vector2i(new_x + 1, new_y + 1))
+
 	return expand_map_matrix(map_matrix)
 
 """ take the halved matrix and restore its size to the original map size """
@@ -117,56 +129,47 @@ func fillify_map(matrix):
 
 """ for each item in the provided matrix, perform the provided operation """
 func _iterate_through_matrix(matrix, operation):
+	var new_matrix = []
 	for x in range(0, matrix.size()):
+		var column = []
 		for y in range(0, matrix[x].size()):
-			matrix[x][y] = operation.call(matrix[x][y], x, y)
-	return matrix
+			column.push_front(operation.call(matrix[x][y], x, y))
+		new_matrix.push_front(column)
+	return new_matrix
 
-func generate_hills(matrix):
-	pass
-"""
-  const addHills = (map) => {
-	const mapToHill = clone(map);
-	// select a few spots to add hills
-	const hillCells = [];
-	const hills = mapToHill.map((column, x) => {
-	  return column.map((cell, y) => {
-		if (cell) {
-		  if (!mapToHill[x + 1][y] || !mapToHill[x - 1][y] || !mapToHill[x][y + 1] || !mapToHill[x][y - 1]) {
-			hillCells.push({ x, y })
-			return true;
-		  }
-		  hillCells.push({ x, y })
-		  return Math.random() > .7;
-		}
+""" hills around the shores and X% inland pared down to X% and then single hill pieces removed """
+func generate_hills(matrix: Array, hill_coefficient: int):
+	var hill_coords = []
+	var final_hill_array = []
 
-		return false;
-	  });
-	});
+	var new_matrix = _iterate_through_matrix(
+		matrix,
+		func(cell, x, y):
+			if cell:
+				if !matrix[x + 1][y] || !matrix[x - 1][y] || !matrix[x][y + 1] || !matrix[x][y - 1]:
+					hill_coords.push_front(Vector2i(x, y))
+					return true
+				elif Dice.roll_d100() > hill_coefficient:
+					hill_coords.push_front(Vector2i(x, y))
+					return true
+			return false
+	)
+	var hill_cells_to_remove = [];
+	var target_number_of_cells = int(hill_coords.size() * hill_coefficient / 100)
+	while hill_coords.size() > target_number_of_cells:
+		var index = Dice.roll_dn(hill_coords.size()) - 1
+		hill_cells_to_remove.push_front(hill_coords[index])
+		hill_coords.remove_at(index)
+#
+	for v in hill_cells_to_remove:
+		new_matrix[v.x][v.y] = false
+#
+	var final_matrix = _iterate_through_matrix(
+		new_matrix,
+		func(cell, x, y):
+			if cell and (new_matrix[x + 1][y] or new_matrix[x - 1][y] or new_matrix[x][y + 1] or new_matrix[x][y - 1]):
+				final_hill_array.push_front(Vector2i(x, y))
+			return cell
+	)
 
-	const targetNumberOfHillCells = hillCells.length * .7;
-	const hillCellsToRemove = [];
-	while (hillCells.length > targetNumberOfHillCells) {
-	  hillCellsToRemove.push(hillCells.splice(Math.floor(Math.random() * hillCells.length), 1)[0]);
-	}
-
-	hillCellsToRemove.forEach(({ x, y }) => {
-	  hills[x][y] = false;
-	})
-
-	const paredDownHills = hills.map((column, x) => {
-	  return column.map((cell, y) => {
-		if (cell) {
-		  if (hills[x + 1][y] || hills[x - 1][y] || hills[x][y + 1] || hills[x][y - 1]) {
-			return true;
-		  }
-		}
-
-		return false;
-	  });
-	});
-
-	return paredDownHills
-  }
-
-"""
+	return final_hill_array
