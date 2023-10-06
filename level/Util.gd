@@ -3,10 +3,12 @@ extends Node
 var temp_width : int
 var temp_height : int
 const PERCENT_WATER = 45
-var hills = []
+var hill_terrain_array = []
+var grass_terrain_array = []
+var walkable_tiles = []
 
 """ randomly generate a map, defined by true (land) and false (not land) values """
-func generate_map_matrix(world_width: int, world_height: int) -> Array:
+func generate_map_matrix(world_width: int, world_height: int) -> void:
 	temp_width = int(world_width / 2)
 	temp_height = int(world_height / 2)
 	
@@ -25,12 +27,22 @@ func generate_map_matrix(world_width: int, world_height: int) -> Array:
 		var new_x = v.x * 2
 		var new_y = v.y * 2
 		
-		hills.push_front(Vector2i(new_x, new_y))
-		hills.push_front(Vector2i(new_x + 1, new_y))
-		hills.push_front(Vector2i(new_x, new_y + 1))
-		hills.push_front(Vector2i(new_x + 1, new_y + 1))
+		hill_terrain_array.push_front(Vector2i(new_x, new_y))
+		hill_terrain_array.push_front(Vector2i(new_x + 1, new_y))
+		hill_terrain_array.push_front(Vector2i(new_x, new_y + 1))
+		hill_terrain_array.push_front(Vector2i(new_x + 1, new_y + 1))
 
-	return expand_map_matrix(map_matrix)
+	var expanded_matrix = expand_map_matrix(map_matrix)
+	_iterate_through_matrix(
+		expanded_matrix,
+		func (cell, x, y):
+			if cell:
+				var v = Vector2i(x, y)
+				grass_terrain_array.push_front(v)
+				if hill_terrain_array.find(v) == -1:
+					walkable_tiles.push_front(v)
+	)
+	
 
 """ take the halved matrix and restore its size to the original map size """
 func expand_map_matrix(matrix):
