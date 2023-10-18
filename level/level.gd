@@ -30,18 +30,20 @@ func generate_said_random_map():
 				$TileMap2.set_cell(LAYER_WATER, Vector2i(x, y), 2, Vector2i(3 , 0))
 			else:
 				$TileMap2.set_cell(LAYER_WATER, Vector2i(x, y), 2, Vector2i(Dice.rng.randi_range(0, 2) , 0))
+
+	# fills the tilemap grass and hill layers with grass and hill-bushes
 	$TileMap2.set_cells_terrain_connect(LAYER_GRASS, $Util.grass_terrain_array, 0, 0)
-	
-	print(world_width)
-	print(world_height)
-#	print(hill_terrain_array)
-#	$TileMap2.set_cells_terrain_connect(LAYER_HILL, hill_terrain_array, 0, 3)
 	$TileMap2.set_cells_terrain_connect(LAYER_HILL_BUSHES, $Util.hill_terrain_array, 0, 2)
+
+	print($Util.tree_locations)
+	for tree_location in $Util.tree_locations:
+		$TileMap2.set_cell(LAYER_DIRT, tree_location, 11, Vector2i.ZERO, 1)
 	map_generated = true
 
 
 func get_start_position() -> Vector2i:
-#	if not map_generated:
+	if not map_generated:
+		return Vector2i(3, -2)
 #		generate_said_random_map()
 	return $Util.walkable_tiles[Dice.roll_dn($Util.walkable_tiles.size()) - 1]
 #	return Vector2i.ZERO

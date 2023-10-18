@@ -1,0 +1,71 @@
+[gd_scene load_steps=10 format=3 uid="uid://brefn2rc6esy6"]
+
+[ext_resource type="Texture2D" uid="uid://dueskurjavkfv" path="res://Sprout Lands - Sprites - premium pack/Objects/Tree animations/tree apple sprites.png" id="1_3vkxs"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_l55gl"]
+atlas = ExtResource("1_3vkxs")
+region = Rect2(0, 96, 48, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_xtvxh"]
+atlas = ExtResource("1_3vkxs")
+region = Rect2(48, 96, 48, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_kys1r"]
+atlas = ExtResource("1_3vkxs")
+region = Rect2(96, 96, 48, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_453e1"]
+atlas = ExtResource("1_3vkxs")
+region = Rect2(144, 96, 48, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_f8dym"]
+atlas = ExtResource("1_3vkxs")
+region = Rect2(192, 96, 48, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ojj0h"]
+atlas = ExtResource("1_3vkxs")
+region = Rect2(240, 96, 48, 48)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_gvloj"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_l55gl")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_xtvxh")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_kys1r")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_453e1")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_f8dym")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ojj0h")
+}],
+"loop": false,
+"name": &"wind",
+"speed": 5.0
+}]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_atu5w"]
+radius = 11.0
+
+[node name="Tree" type="Node2D"]
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+position = Vector2(0, -16)
+sprite_frames = SubResource("SpriteFrames_gvloj")
+animation = &"wind"
+frame = 5
+frame_progress = 1.0
+
+[node name="StaticBody2D" type="StaticBody2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D"]
+position = Vector2(0, -12)
+shape = SubResource("CapsuleShape2D_atu5w")

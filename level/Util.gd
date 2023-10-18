@@ -1,3 +1,4 @@
+class_name LevelGenerationUtility
 extends Node
 
 var temp_width : int
@@ -6,12 +7,15 @@ const PERCENT_WATER = 45
 var hill_terrain_array = []
 var grass_terrain_array = []
 var walkable_tiles = []
+var tree_locations = []
 
 """ randomly generate a map, defined by true (land) and false (not land) values """
 func generate_map_matrix(world_width: int, world_height: int) -> void:
+	# half the original map size to get the working map size
 	temp_width = int(world_width / 2)
 	temp_height = int(world_height / 2)
-	
+
+	# refine and reshape a set of randomly assigned cells (true = land, false = water)
 	var map_matrix = generate_base_random_matrix()
 	map_matrix = congeal_map(map_matrix)
 	map_matrix = fillify_map(map_matrix)
@@ -22,7 +26,8 @@ func generate_map_matrix(world_width: int, world_height: int) -> void:
 	map_matrix = sparsify_map(map_matrix)
 	map_matrix = remove_puddles(map_matrix)
 
-	var half_hills = generate_hills(map_matrix, 70)
+	# add hills to the shores and to (100 - 70) percent of the middle, then remove 30 percent of those
+	var half_hills = generate_hills(map_matrix, 70, 30)
 	for v in half_hills:
 		var new_x = v.x * 2
 		var new_y = v.y * 2
@@ -32,6 +37,7 @@ func generate_map_matrix(world_width: int, world_height: int) -> void:
 		hill_terrain_array.push_front(Vector2i(new_x, new_y + 1))
 		hill_terrain_array.push_front(Vector2i(new_x + 1, new_y + 1))
 
+	# double the working map size to fit the original map
 	var expanded_matrix = expand_map_matrix(map_matrix)
 	_iterate_through_matrix(
 		expanded_matrix,
@@ -43,6 +49,19 @@ func generate_map_matrix(world_width: int, world_height: int) -> void:
 					walkable_tiles.push_front(v)
 	)
 	
+	# generate and place trees here
+	tree_locations = generate_tree_locations(30)
+
+func generate_tree_locations(tree_coefficient: int):
+	var tiles = []
+	for cell in walkable_tiles:
+		var near_edge = walkable_tiles.find(Vector2i(cell.x, cell.y + 1)) == -1 or walkable_tiles.find(Vector2i(cell.x, cell.y - 1)) == -1 or walkable_tiles.find(Vector2i(cell.x + 1, cell.y)) == -1 or walkable_tiles.find(Vector2i(cell.x - 1, cell.y)) == -1
+		var near_other_tree = tiles.find(Vector2i(cell.x, cell.y + 1)) > -1 or tiles.find(Vector2i(cell.x, cell.y - 1)) > -1 or tiles.find(Vector2i(cell.x + 1, cell.y)) > -1 or tiles.find(Vector2i(cell.x - 1, cell.y)) > -1
+		print(cell, near_other_tree)
+		if not near_edge and not near_other_tree:
+			if Dice.roll_d100() < tree_coefficient:
+				tiles.push_front(cell)
+	return tiles
 
 """ take the halved matrix and restore its size to the original map size """
 func expand_map_matrix(matrix):
@@ -150,7 +169,7 @@ func _iterate_through_matrix(matrix, operation):
 	return new_matrix
 
 """ hills around the shores and X% inland pared down to X% and then single hill pieces removed """
-func generate_hills(matrix: Array, hill_coefficient: int):
+func generate_hills(matrix: Array, hill_probability_coefficient: int, hill_amount_coefficient: int):
 	var hill_coords = []
 	var final_hill_array = []
 
@@ -161,13 +180,13 @@ func generate_hills(matrix: Array, hill_coefficient: int):
 				if !matrix[x + 1][y] || !matrix[x - 1][y] || !matrix[x][y + 1] || !matrix[x][y - 1]:
 					hill_coords.push_front(Vector2i(x, y))
 					return true
-				elif Dice.roll_d100() > hill_coefficient:
+				elif Dice.roll_d100() < hill_probability_coefficient:
 					hill_coords.push_front(Vector2i(x, y))
 					return true
 			return false
 	)
 	var hill_cells_to_remove = [];
-	var target_number_of_cells = int(hill_coords.size() * hill_coefficient / 100)
+	var target_number_of_cells = int(hill_coords.size() * hill_amount_coefficient / 100)
 	while hill_coords.size() > target_number_of_cells:
 		var index = Dice.roll_dn(hill_coords.size()) - 1
 		hill_cells_to_remove.push_front(hill_coords[index])
