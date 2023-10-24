@@ -1,6 +1,11 @@
-[gd_scene load_steps=10 format=3 uid="uid://brefn2rc6esy6"]
+[gd_scene load_steps=12 format=3 uid="uid://brefn2rc6esy6"]
 
 [ext_resource type="Texture2D" uid="uid://dueskurjavkfv" path="res://Sprout Lands - Sprites - premium pack/Objects/Tree animations/tree apple sprites.png" id="1_3vkxs"]
+[ext_resource type="Script" path="res://tree.gd" id="1_d88j1"]
+[ext_resource type="Texture2D" uid="uid://chfx0v6w4qmvj" path="res://Sprout Lands - Sprites - premium pack/Objects/stump.png" id="1_dkhqe"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_atu5w"]
+radius = 11.0
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_l55gl"]
 atlas = ExtResource("1_3vkxs")
@@ -52,20 +57,31 @@ animations = [{
 "speed": 5.0
 }]
 
-[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_atu5w"]
-radius = 11.0
+[node name="Tree" type="Area2D"]
+collision_layer = 2
+collision_mask = 0
+script = ExtResource("1_d88j1")
 
-[node name="Tree" type="Node2D"]
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="."]
+position = Vector2(0, -12)
+shape = SubResource("CapsuleShape2D_atu5w")
 
-[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+[node name="Stump" type="Sprite2D" parent="."]
+position = Vector2(0, -2)
+texture = ExtResource("1_dkhqe")
+
+[node name="FullTree" type="AnimatedSprite2D" parent="."]
 position = Vector2(0, -16)
 sprite_frames = SubResource("SpriteFrames_gvloj")
 animation = &"wind"
 frame = 5
 frame_progress = 1.0
 
-[node name="StaticBody2D" type="StaticBody2D" parent="."]
+[node name="StaticBody2D" type="StaticBody2D" parent="FullTree"]
+position = Vector2(0, 16)
+collision_layer = 4
+collision_mask = 0
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="FullTree/StaticBody2D"]
 position = Vector2(0, -12)
 shape = SubResource("CapsuleShape2D_atu5w")

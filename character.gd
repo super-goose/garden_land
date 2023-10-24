@@ -5,6 +5,7 @@ const SPEED = 40
 var state = 'idle'
 var direction = 'down'
 var current_plant: GardenPlot
+var current_tree: FruitTree
 var watering_happened = false
 @export var start_position : Vector2i
 
@@ -23,13 +24,12 @@ func _process(delta):
 	process_state_action()
 
 func process_state_action():
-	if not current_plant:
-		return
-	if state == 'water':
-		if watering_happened == true:
-			return
-		current_plant.increase_stage()
-		watering_happened = true
+	if current_plant:
+		if state == 'water':
+			if watering_happened == true:
+				return
+			current_plant.increase_stage()
+			watering_happened = true
 
 func handle_input(delta):
 	if Input.is_action_pressed("water"):
@@ -41,6 +41,10 @@ func handle_input(delta):
 
 	if Input.is_action_pressed("hoe"):
 		state = "hoe"
+		return
+	
+	if Input.is_action_pressed("chop"):
+		state = "chop"
 		return
 
 	var movement_direction = Vector2.ZERO
@@ -84,13 +88,26 @@ func play_state_animation():
 
 
 
-func _on_ao_i_area_entered(area: GardenPlot):
-	current_plant = area
+func _on_ao_i_area_entered(area):
+	if area is GardenPlot:
+		current_plant = area
+	elif area is FruitTree:
+		current_tree = area
 
 func _on_ao_i_area_exited(area):
 	if current_plant == area:
 		current_plant = null
+	if current_tree == area:
+		current_tree = null
 
 
 func _on_animated_water_animation_finished():
 	$AnimatedWater.visible = false
+
+
+func _on_animated_sprite_2d_animation_looped():
+	
+	if state == 'chop' and current_tree:
+		current_tree.get_chopped()
+#	if $AnimatedSprite2D.animation:
+#		pass

@@ -28,10 +28,10 @@
 [ext_resource type="Texture2D" uid="uid://c3muj86asyla7" path="res://Sprout Lands - Sprites - premium pack/Characters/water from wateringcan frames.png" id="26_xqqi4"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_sltv8"]
-size = Vector2(16, 16)
+size = Vector2(12, 14)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_lfmq0"]
-size = Vector2(16, 16)
+size = Vector2(12, 14)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_emqrn"]
 atlas = ExtResource("3_oexkl")
@@ -1572,7 +1572,7 @@ animations = [{
 }]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_ib6gc"]
-radius = 8.0
+radius = 7.0
 height = 22.0
 
 [node name="Character" type="CharacterBody2D"]
@@ -1592,7 +1592,7 @@ zoom = Vector2(2, 2)
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_aeqdb")
-animation = &"water_right"
+animation = &"chop_up"
 
 [node name="AnimatedWater" type="AnimatedSprite2D" parent="."]
 visible = false
@@ -1608,8 +1608,12 @@ collision_mask = 2
 position = Vector2(0, -4)
 shape = SubResource("CapsuleShape2D_ib6gc")
 
+[node name="FocusCursor" type="Node2D" parent="AoI"]
+position = Vector2(0, -15)
+
 [node name="Timer" type="Timer" parent="."]
 
+[connection signal="animation_looped" from="AnimatedSprite2D" to="." method="_on_animated_sprite_2d_animation_looped"]
 [connection signal="animation_finished" from="AnimatedWater" to="." method="_on_animated_water_animation_finished"]
 [connection signal="area_entered" from="AoI" to="." method="_on_ao_i_area_entered"]
 [connection signal="area_exited" from="AoI" to="." method="_on_ao_i_area_exited"]

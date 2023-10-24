@@ -50,14 +50,23 @@ func generate_map_matrix(world_width: int, world_height: int) -> void:
 	)
 	
 	# generate and place trees here
-	tree_locations = generate_tree_locations(30)
+	tree_locations = generate_tree_locations(20)
 
 func generate_tree_locations(tree_coefficient: int):
 	var tiles = []
 	for cell in walkable_tiles:
 		var near_edge = walkable_tiles.find(Vector2i(cell.x, cell.y + 1)) == -1 or walkable_tiles.find(Vector2i(cell.x, cell.y - 1)) == -1 or walkable_tiles.find(Vector2i(cell.x + 1, cell.y)) == -1 or walkable_tiles.find(Vector2i(cell.x - 1, cell.y)) == -1
-		var near_other_tree = tiles.find(Vector2i(cell.x, cell.y + 1)) > -1 or tiles.find(Vector2i(cell.x, cell.y - 1)) > -1 or tiles.find(Vector2i(cell.x + 1, cell.y)) > -1 or tiles.find(Vector2i(cell.x - 1, cell.y)) > -1
-		print(cell, near_other_tree)
+		var near_other_tree = (
+			tiles.find(Vector2i(cell.x, cell.y + 1)) > -1 or
+			tiles.find(Vector2i(cell.x, cell.y - 1)) > -1 or
+			tiles.find(Vector2i(cell.x + 1, cell.y)) > -1 or
+			tiles.find(Vector2i(cell.x - 1, cell.y)) > -1 or
+
+			tiles.find(Vector2i(cell.x + 1, cell.y + 1)) > -1 or
+			tiles.find(Vector2i(cell.x - 1, cell.y - 1)) > -1 or
+			tiles.find(Vector2i(cell.x + 1, cell.y - 1)) > -1 or
+			tiles.find(Vector2i(cell.x - 1, cell.y + 1)) > -1
+		)
 		if not near_edge and not near_other_tree:
 			if Dice.roll_d100() < tree_coefficient:
 				tiles.push_front(cell)
