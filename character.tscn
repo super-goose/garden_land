@@ -1588,7 +1588,7 @@ shape = SubResource("RectangleShape2D_sltv8")
 shape = SubResource("RectangleShape2D_lfmq0")
 
 [node name="Camera2D" type="Camera2D" parent="."]
-zoom = Vector2(2, 2)
+zoom = Vector2(4, 4)
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_aeqdb")
