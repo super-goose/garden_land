@@ -35,9 +35,9 @@ func generate_said_random_map():
 	$TileMap2.set_cells_terrain_connect(LAYER_GRASS, $Util.grass_terrain_array, 0, 0)
 	$TileMap2.set_cells_terrain_connect(LAYER_HILL_BUSHES, $Util.hill_terrain_array, 0, 2)
 
-	print($Util.tree_locations)
 	for tree_location in $Util.tree_locations:
 		$TileMap2.set_cell(LAYER_DIRT, tree_location, 11, Vector2i.ZERO, 1)
+
 	map_generated = true
 
 

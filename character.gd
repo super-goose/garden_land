@@ -40,7 +40,8 @@ func handle_input(delta):
 	$AnimatedWater.visible = false
 
 	if Input.is_action_pressed("hoe"):
-		state = "hoe"
+		if not current_tree:
+			state = "hoe"
 		return
 	
 	if Input.is_action_pressed("chop"):
