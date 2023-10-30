@@ -1,8 +1,7 @@
-[gd_scene load_steps=4 format=3 uid="uid://b8722pdwk2exe"]
+[gd_scene load_steps=3 format=3 uid="uid://b8722pdwk2exe"]
 
 [ext_resource type="Script" path="res://level/level.gd" id="1_ld2mp"]
 [ext_resource type="TileSet" uid="uid://bkls48mu0bftu" path="res://tiles.tres" id="2_oud21"]
-[ext_resource type="Script" path="res://level/Util.gd" id="3_kb4c8"]
 
 [node name="Level" type="Node2D"]
 script = ExtResource("1_ld2mp")
@@ -56,6 +55,3 @@ layer_6/y_sort_enabled = false
 layer_6/y_sort_origin = 0
 layer_6/z_index = 0
 layer_6/tile_data = PackedInt32Array()
-
-[node name="Util" type="Node" parent="."]
-script = ExtResource("3_kb4c8")

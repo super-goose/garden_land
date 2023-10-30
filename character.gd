@@ -11,11 +11,11 @@ var watering_happened = false
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	position = start_position * 16
+	position = start_position * LevelGenerationUtil.TILE_SIZE
 
 func set_start_position(v: Vector2i):
 	start_position = v
-	position = start_position * 16
+	position = start_position * LevelGenerationUtil.TILE_SIZE
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
@@ -110,5 +110,8 @@ func _on_animated_sprite_2d_animation_looped():
 	
 	if state == 'chop' and current_tree:
 		current_tree.get_chopped()
+	elif state == 'hoe' and not current_tree:
+		var coordinates = LevelGenerationUtil.convert_to_grid_coordinates($AoI/FocusCursor.global_position)
+		print('hoeing at ', coordinates)
 #	if $AnimatedSprite2D.animation:
 #		pass

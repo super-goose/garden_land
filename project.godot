@@ -19,6 +19,7 @@ config/icon="res://icon.svg"
 
 Dice="*res://globals/dice.gd"
 Common="*res://globals/common.gd"
+LevelGenerationUtil="*res://globals/level_generation_util.gd"
 
 [display]
 
