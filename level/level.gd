@@ -17,6 +17,10 @@ var map_generated = false
 func _ready():
 	if generate_random_map:
 		generate_said_random_map()
+	LevelGenerationUtil.plantable_tiles_modified.connect(on_plantable_tiles_modified)
+
+func on_plantable_tiles_modified():
+	$TileMap2.set_cells_terrain_connect(LAYER_DIRT, LevelGenerationUtil.plantable_tiles, 0, 1)
 
 func generate_said_random_map():
 	# clears the tilemap

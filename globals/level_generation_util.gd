@@ -2,6 +2,8 @@ extends Node
 
 const TILE_SIZE = 16
 
+signal plantable_tiles_modified
+
 var temp_width : int
 var temp_height : int
 const PERCENT_WATER = 45
@@ -9,6 +11,12 @@ var hill_terrain_array = []
 var grass_terrain_array = []
 var walkable_tiles = []
 var tree_locations = []
+var plantable_tiles = []
+
+func add_plantable_tile(c: Vector2i):
+	if plantable_tiles.find(c) == -1:
+		plantable_tiles.push_front(c)
+		emit_signal('plantable_tiles_modified')
 
 func convert_to_grid_coordinates(p : Vector2) -> Vector2i:
 	var x = (int(p.x) - (int(p.x) % TILE_SIZE)) / TILE_SIZE

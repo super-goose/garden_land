@@ -1,7 +1,9 @@
 extends CharacterBody2D
 
 const SPEED = 40
+const HOE_LIMIT = 2
 
+var times_hoed = 0
 var state = 'idle'
 var direction = 'down'
 var current_plant: GardenPlot
@@ -43,6 +45,8 @@ func handle_input(delta):
 		if not current_tree:
 			state = "hoe"
 		return
+	else:
+		times_hoed = 0
 	
 	if Input.is_action_pressed("chop"):
 		state = "chop"
@@ -111,7 +115,10 @@ func _on_animated_sprite_2d_animation_looped():
 	if state == 'chop' and current_tree:
 		current_tree.get_chopped()
 	elif state == 'hoe' and not current_tree:
-		var coordinates = LevelGenerationUtil.convert_to_grid_coordinates($AoI/FocusCursor.global_position)
-		print('hoeing at ', coordinates)
+		times_hoed += 1
+		if times_hoed == HOE_LIMIT:
+			var coordinates = LevelGenerationUtil.convert_to_grid_coordinates($AoI/FocusCursor.global_position)
+			LevelGenerationUtil.add_plantable_tile(coordinates)
+			print('hoeing at ', coordinates)
 #	if $AnimatedSprite2D.animation:
 #		pass
