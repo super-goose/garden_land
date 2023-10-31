@@ -24,6 +24,7 @@ func _process(delta):
 	handle_input(delta)
 	play_state_animation()
 	process_state_action()
+	position_focus_indicator()
 
 func process_state_action():
 	if current_plant:
@@ -91,7 +92,10 @@ func play_state_animation():
 		$AnimatedWater.visible = true
 		$AnimatedWater.play('water_%s' % direction)
 
-
+func position_focus_indicator():
+	var focus_coords = LevelGenerationUtil.convert_to_grid_coordinates($AoI/FocusCursor.global_position)
+	print(focus_coords)
+	$Focus.global_position = focus_coords * LevelGenerationUtil.TILE_SIZE
 
 func _on_ao_i_area_entered(area):
 	if area is GardenPlot:
