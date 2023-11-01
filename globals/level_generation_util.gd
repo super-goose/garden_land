@@ -13,10 +13,28 @@ var walkable_tiles = []
 var tree_locations = []
 var plantable_tiles = []
 
+func __is_surrounded_by_walkable_tiles(c: Vector2i) -> bool:
+	return Common.is_subset(walkable_tiles, [
+		c + Vector2i.UP,
+		c + Vector2i.DOWN,
+		c + Vector2i.LEFT,
+		c + Vector2i.RIGHT,
+		c + Vector2i.UP + Vector2i.LEFT,
+		c + Vector2i.DOWN + Vector2i.RIGHT,
+		c + Vector2i.DOWN + Vector2i.LEFT,
+		c + Vector2i.UP + Vector2i.RIGHT,
+	])
+
 func add_plantable_tile(c: Vector2i):
-	if plantable_tiles.find(c) == -1:
-		plantable_tiles.push_front(c)
-		emit_signal('plantable_tiles_modified')
+	if plantable_tiles.find(c) > -1:
+		print('this is already tilled land')
+		return
+	if not __is_surrounded_by_walkable_tiles(c):
+		print("you can't do this too close to the edge of walkable space")
+		return
+
+	plantable_tiles.push_front(c)
+	emit_signal('plantable_tiles_modified')
 
 func convert_to_grid_coordinates(p : Vector2) -> Vector2i:
 	var x = (int(p.x) - (int(p.x) % TILE_SIZE)) / TILE_SIZE
