@@ -20,7 +20,6 @@ start_position = Vector2i(10, 10)
 [node name="GardenPlot" parent="." instance=ExtResource("4_byn2d")]
 position = Vector2(34, 12)
 type = 2
-stage = 0
 
 [node name="FarmingPlantsItems" type="Sprite2D" parent="."]
 visible = false

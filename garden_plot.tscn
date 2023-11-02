@@ -12,9 +12,11 @@ script = ExtResource("1_81omm")
 type = 5
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, -2)
 shape = SubResource("RectangleShape2D_iitex")
 
 [node name="FarmingPlants" type="Sprite2D" parent="."]
+position = Vector2(0, -5)
 texture = ExtResource("2_qybk5")
 hframes = 5
 vframes = 15

@@ -6,10 +6,10 @@ enum TYPE {
 	eggplant, _blue_flower, lettuce, wheat, pumpkin,
 	parsnip, _rose, beet, _star_fruit, cucumber
 }
-@export var type : TYPE = TYPE._still_corn
+@export var type : TYPE
 
 enum STAGE { empty, sprout, growing, showing, ready, corn }
-@export var stage : STAGE = STAGE.showing
+@export var stage : STAGE = STAGE.empty
 
 @export var debug_name : String = ''
 
@@ -32,7 +32,7 @@ func set_stage(s: STAGE):
 
 func increase_stage():
 	print('increasing stage for %s' % debug_name)
-	if stage == STAGE.ready:
+	if not type or stage == STAGE.ready:
 		return
 	var new_stage = {
 		STAGE.empty: STAGE.sprout,
@@ -41,7 +41,7 @@ func increase_stage():
 		STAGE.showing: STAGE.ready,
 	}[stage]
 	set_stage(new_stage)
-	
+
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
