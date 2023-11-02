@@ -10,7 +10,8 @@ const LAYER_GRASS = 1
 const LAYER_DIRT = 2
 const LAYER_ROCKS_AND_STUFF = 3
 const LAYER_HILL = 4
-const LAYER_HILL_BUSHES = 5
+const LAYER_PLOT = 5
+const LAYER_HILL_BUSHES = 6
 
 var map_generated = false
 
@@ -21,6 +22,9 @@ func _ready():
 
 func on_plantable_tiles_modified():
 	$TileMap2.set_cells_terrain_connect(LAYER_DIRT, LevelGenerationUtil.plantable_tiles, 0, 1)
+	for tile_coord in LevelGenerationUtil.plantable_tiles:
+		if not $TileMap2.get_cell_tile_data(LAYER_PLOT, tile_coord):
+			$TileMap2.set_cell(LAYER_PLOT, tile_coord, 10, Vector2i.ZERO, 2)
 
 func generate_said_random_map():
 	# clears the tilemap

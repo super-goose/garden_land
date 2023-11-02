@@ -1592,7 +1592,7 @@ zoom = Vector2(4, 4)
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_aeqdb")
-animation = &"chop_up"
+animation = &"water_up"
 
 [node name="AnimatedWater" type="AnimatedSprite2D" parent="."]
 visible = false
@@ -1618,6 +1618,7 @@ color = Color(0.262745, 0.572549, 1, 0.411765)
 offset = Vector2(8, 8)
 polygon = PackedVector2Array(-8, -8, -8, 8, 8, 8, 8, -8)
 
+[connection signal="animation_finished" from="AnimatedSprite2D" to="." method="_on_animated_sprite_2d_animation_finished"]
 [connection signal="animation_looped" from="AnimatedSprite2D" to="." method="_on_animated_sprite_2d_animation_looped"]
 [connection signal="animation_finished" from="AnimatedWater" to="." method="_on_animated_water_animation_finished"]
 [connection signal="area_entered" from="AoI" to="." method="_on_ao_i_area_entered"]

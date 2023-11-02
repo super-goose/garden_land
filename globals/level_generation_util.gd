@@ -2,6 +2,9 @@ extends Node
 
 const TILE_SIZE = 16
 
+const HILL_PROBABILITY_COEFFICIENT = 50 # 70 was original value
+const HILL_AMOUNT_COEFFICIENT = 20 # 30 was original value
+
 signal plantable_tiles_modified
 
 var temp_width : int
@@ -58,8 +61,8 @@ func generate_map_matrix(world_width: int, world_height: int) -> void:
 	map_matrix = sparsify_map(map_matrix)
 	map_matrix = remove_puddles(map_matrix)
 
-	# add hills to the shores and to (100 - 70) percent of the middle, then remove 30 percent of those
-	var half_hills = generate_hills(map_matrix, 70, 30)
+	# add hills to the shores and to (100 - HPC) percent of the middle, then remove HAC percent of those
+	var half_hills = generate_hills(map_matrix, HILL_PROBABILITY_COEFFICIENT, HILL_AMOUNT_COEFFICIENT)
 	for v in half_hills:
 		var new_x = v.x * 2
 		var new_y = v.y * 2

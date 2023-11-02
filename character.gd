@@ -27,12 +27,7 @@ func _process(delta):
 #	position_focus_indicator()
 
 func process_state_action():
-	if current_plant:
-		if state == 'water':
-			if watering_happened == true:
-				return
-			current_plant.increase_stage()
-			watering_happened = true
+	pass
 
 func handle_input(delta):
 	if Input.is_action_pressed("water"):
@@ -116,7 +111,6 @@ func _on_animated_water_animation_finished():
 
 
 func _on_animated_sprite_2d_animation_looped():
-	
 	if state == 'chop' and current_tree:
 		current_tree.get_chopped()
 	elif state == 'hoe' and not current_tree:
@@ -125,5 +119,10 @@ func _on_animated_sprite_2d_animation_looped():
 			var coordinates = LevelGenerationUtil.convert_to_grid_coordinates($AoI/FocusCursor.global_position)
 			LevelGenerationUtil.add_plantable_tile(coordinates)
 			print('hoeing at ', coordinates)
-#	if $AnimatedSprite2D.animation:
-#		pass
+
+
+func _on_animated_sprite_2d_animation_finished():
+	if state == 'water' and current_plant:
+		if not watering_happened:
+			current_plant.increase_stage()
+			watering_happened = true

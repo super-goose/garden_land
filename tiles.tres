@@ -1,7 +1,8 @@
-[gd_resource type="TileSet" load_steps=21 format=3 uid="uid://bkls48mu0bftu"]
+[gd_resource type="TileSet" load_steps=23 format=3 uid="uid://bkls48mu0bftu"]
 
 [ext_resource type="Texture2D" uid="uid://dkpdtdixk0yt2" path="res://Sprout Lands - Sprites - premium pack/Tilesets/ground tiles/New tiles/Grass_tiles_v2.png" id="1_yo6l4"]
 [ext_resource type="Texture2D" uid="uid://jfmlp05w4ajt" path="res://Sprout Lands - Sprites - premium pack/Tilesets/ground tiles/New tiles/Soil_Ground_Tiles.png" id="2_upxf0"]
+[ext_resource type="PackedScene" uid="uid://c8jts7bt4i7p" path="res://garden_plot.tscn" id="3_jmrr8"]
 [ext_resource type="PackedScene" uid="uid://brefn2rc6esy6" path="res://tree.tscn" id="3_n7h2y"]
 [ext_resource type="Texture2D" uid="uid://bfdgyebcopm5v" path="res://Sprout Lands - Sprites - premium pack/Tilesets/ground tiles/Water.png" id="3_quw8f"]
 [ext_resource type="Texture2D" uid="uid://ccln6tcv8u3fh" path="res://Sprout Lands - Sprites - premium pack/Tilesets/Building parts/STONE PATH.png" id="4_56onc"]
@@ -1148,6 +1149,10 @@ texture = ExtResource("2_upxf0")
 4:6/0/terrains_peering_bit/top_left_corner = 1
 4:6/0/terrains_peering_bit/top_side = 1
 4:6/0/terrains_peering_bit/top_right_corner = 1
+
+[sub_resource type="TileSetScenesCollectionSource" id="TileSetScenesCollectionSource_83o6w"]
+resource_name = "garden_plot"
+scenes/2/scene = ExtResource("3_jmrr8")
 
 [sub_resource type="TileSetScenesCollectionSource" id="TileSetScenesCollectionSource_dgads"]
 resource_name = "trees"
@@ -2791,3 +2796,4 @@ sources/6 = SubResource("TileSetAtlasSource_vnmv1")
 sources/8 = SubResource("TileSetAtlasSource_t3s5l")
 sources/7 = SubResource("TileSetAtlasSource_u07ds")
 sources/11 = SubResource("TileSetScenesCollectionSource_dgads")
+sources/10 = SubResource("TileSetScenesCollectionSource_83o6w")
