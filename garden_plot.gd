@@ -72,3 +72,7 @@ stages:
 4 - corn (don't use)
 """
 
+
+
+func _on_button_pressed():
+	Events.select_garden_plot.emit(self)

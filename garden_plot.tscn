@@ -21,3 +21,12 @@ texture = ExtResource("2_qybk5")
 hframes = 5
 vframes = 15
 frame = 13
+
+[node name="Button" type="Button" parent="."]
+modulate = Color(1, 1, 1, 0)
+offset_left = -8.0
+offset_top = -10.0
+offset_right = 8.0
+offset_bottom = 6.0
+
+[connection signal="pressed" from="Button" to="." method="_on_button_pressed"]

@@ -14,6 +14,7 @@ var watering_happened = false
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	position = start_position * LevelGenerationUtil.TILE_SIZE
+	Events.select_garden_plot.connect(_handle_event_select_garden_plot)
 
 func set_start_position(v: Vector2i):
 	start_position = v
@@ -126,3 +127,6 @@ func _on_animated_sprite_2d_animation_finished():
 		if not watering_happened:
 			current_plant.increase_stage()
 			watering_happened = true
+
+func _handle_event_select_garden_plot(garden_plot: GardenPlot):
+	print(garden_plot)

@@ -4,6 +4,7 @@ const TILE_SIZE = 16
 
 const HILL_PROBABILITY_COEFFICIENT = 50 # 70 was original value
 const HILL_AMOUNT_COEFFICIENT = 20 # 30 was original value
+const TREE_COEFFICIENT = 10 # 20 was original value
 
 signal plantable_tiles_modified
 
@@ -85,7 +86,7 @@ func generate_map_matrix(world_width: int, world_height: int) -> void:
 	)
 	
 	# generate and place trees here
-	tree_locations = generate_tree_locations(20)
+	tree_locations = generate_tree_locations(TREE_COEFFICIENT)
 
 func generate_tree_locations(tree_coefficient: int):
 	var tiles = []
