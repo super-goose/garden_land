@@ -1,3 +1,4 @@
+@icon("res://meta/assets/map.png")
 extends Node2D
 
 @export var generate_random_map = true

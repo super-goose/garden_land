@@ -1,3 +1,4 @@
+@icon("res://meta/assets/character.png")
 extends CharacterBody2D
 
 const SPEED = 40
@@ -9,16 +10,17 @@ var direction = 'down'
 var current_plant: GardenPlot
 var current_tree: FruitTree
 var watering_happened = false
+
 @export var start_position : Vector2i
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	position = start_position * LevelGenerationUtil.TILE_SIZE
+	position = (start_position * LevelGenerationUtil.TILE_SIZE) + LevelGenerationUtil.HALF_TILE_CELL
 	Events.select_garden_plot.connect(_handle_event_select_garden_plot)
 
 func set_start_position(v: Vector2i):
 	start_position = v
-	position = start_position * LevelGenerationUtil.TILE_SIZE
+	position = (start_position * LevelGenerationUtil.TILE_SIZE) + LevelGenerationUtil.HALF_TILE_CELL 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
@@ -81,7 +83,7 @@ func handle_input(delta):
 #	print(r)
 	$AoI.rotation = r
 	move_and_slide()
-	position_focus_indicator()
+#	position_focus_indicator()
 
 func play_state_animation():
 	var animation_name = "%s_%s" % [state, direction]
@@ -90,9 +92,13 @@ func play_state_animation():
 		$AnimatedWater.visible = true
 		$AnimatedWater.play('water_%s' % direction)
 
-func position_focus_indicator():
-	var focus_coords = LevelGenerationUtil.convert_to_grid_coordinates($AoI/FocusCursor.global_position)
-	$Focus.global_position = focus_coords * LevelGenerationUtil.TILE_SIZE
+#func position_focus_indicator():
+#	var focus_coords = LevelGenerationUtil.convert_to_grid_coordinates($AoI/FocusCursor.global_position)
+#	$Focus.global_position = focus_coords * LevelGenerationUtil.TILE_SIZE
+
+func go_to_position(destination: Vector2i):
+#	LevelGenerationUtil.find_path()
+	print('Character should go to %s' % destination)
 
 func _on_ao_i_area_entered(area):
 	if area is GardenPlot:

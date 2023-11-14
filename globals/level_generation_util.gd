@@ -2,6 +2,10 @@ extends Node
 
 const TILE_SIZE = 16
 
+const WHOLE_TILE_CELL = Vector2i(LevelGenerationUtil.TILE_SIZE, LevelGenerationUtil.TILE_SIZE)
+const HALF_TILE_CELL = Vector2i(LevelGenerationUtil.TILE_SIZE / 2, LevelGenerationUtil.TILE_SIZE / 2)
+
+
 const HILL_PROBABILITY_COEFFICIENT = 50 # 70 was original value
 const HILL_AMOUNT_COEFFICIENT = 20 # 30 was original value
 const TREE_COEFFICIENT = 10 # 20 was original value
@@ -16,6 +20,10 @@ var grass_terrain_array = []
 var walkable_tiles = []
 var tree_locations = []
 var plantable_tiles = []
+
+###
+### Level Generation
+###
 
 func __is_surrounded_by_walkable_tiles(c: Vector2i) -> bool:
 	return Common.is_subset(walkable_tiles, [
@@ -249,3 +257,128 @@ func generate_hills(matrix: Array, hill_probability_coefficient: int, hill_amoun
 	)
 
 	return final_hill_array
+
+###
+### Pathfinding
+###
+
+var level = []
+var max_x : int
+var max_y : int
+
+func load_level(level_name, level_navigation_grid):
+	level = level_navigation_grid
+	max_x = level[0].size() - 1
+	max_y = level.size() - 1
+
+func find_first_step(here, there):
+	var path = find_path(here, there)
+	if path.size() == 0:
+		return there if can_go_to(there) else here
+	return path[0]
+
+func find_path(here, there):
+	var path = a_star(here, there)
+	path.pop_front()
+	return path
+
+func can_go_to(p : Vector2):
+	if p.x < 0 or p.y < 0 or p.x > max_x or p.y > max_y:
+		return false
+	return level[p.y][p.x]
+
+func vec_to_str(v : Vector2) -> String:
+	return "%s,%s" % [v.x, v.y]
+
+func str_to_vec(s : String) -> Vector2:
+	var c = s.split(',')
+	return Vector2(int(c[0]), int(c[1]))
+
+func construct_path(current : String, cameFrom : Dictionary):
+	var path = [str_to_vec(current)]
+	while cameFrom.has(current):
+		path.push_front(str_to_vec(cameFrom[current]))
+		current = cameFrom[current]
+	return path
+
+func lowest_in_set(s : Dictionary):
+	var points = s.keys()
+	if points.size() == 1:
+		return points[0]
+
+	var current = null
+	var length = INF
+	for p in points:
+		if s[p] < length:
+			current = p
+			length = s[p]
+
+	return current
+
+func get_neighbors(p : Vector2):
+	var can_go_up = can_go_to(p + Vector2.UP)
+	var can_go_down = can_go_to(p + Vector2.DOWN)
+	var can_go_left = can_go_to(p + Vector2.LEFT)
+	var can_go_right = can_go_to(p + Vector2.RIGHT)
+	var can_go_up_left = can_go_to(p + Vector2.UP + Vector2.LEFT) and can_go_up and can_go_left
+	var can_go_up_right = can_go_to(p + Vector2.UP + Vector2.RIGHT) and can_go_up and can_go_right
+	var can_go_down_left = can_go_to(p + Vector2.DOWN + Vector2.LEFT) and can_go_down and can_go_left
+	var can_go_down_right = can_go_to(p + Vector2.DOWN + Vector2.RIGHT) and can_go_down and can_go_right
+
+	var neighbors = []
+
+	if can_go_up_left:
+		neighbors.push_back(p + Vector2.UP + Vector2.LEFT)
+	if can_go_up:
+		neighbors.push_back(p + Vector2.UP)
+	if can_go_up_right:
+		neighbors.push_back(p + Vector2.UP + Vector2.RIGHT)
+	if can_go_right:
+		neighbors.push_back(p + Vector2.RIGHT)
+	if can_go_down_right:
+		neighbors.push_back(p + Vector2.DOWN + Vector2.RIGHT)
+	if can_go_down:
+		neighbors.push_back(p + Vector2.DOWN)
+	if can_go_down_left:
+		neighbors.push_back(p + Vector2.DOWN + Vector2.LEFT)
+	if can_go_left:
+		neighbors.push_back(p + Vector2.LEFT)
+
+	return neighbors
+
+func a_star(here: Vector2, there: Vector2):	
+	if not can_go_to(there):
+		return []
+
+	var closedSet = {}
+	var cameFrom = {}
+	var openSet = {}
+	var gScore = {}
+	var start = vec_to_str(here)
+	openSet[start] = here.distance_to(there)
+	gScore[start] = 0
+
+	while not openSet.is_empty():
+		var current = lowest_in_set(openSet)
+		var currentVector = str_to_vec(current)
+		
+		if currentVector.x == there.x and currentVector.y == there.y:
+			return construct_path(current, cameFrom)
+		
+		openSet.erase(current)
+		closedSet[current] = true
+
+		if not can_go_to(currentVector):
+			continue
+
+		for neighbor in get_neighbors(currentVector):
+			var nStr = vec_to_str(neighbor)
+			if not closedSet.has(nStr):
+				var tempGScore = gScore[current] + 1
+				
+				if not gScore.has(nStr) or not tempGScore >= gScore[nStr]:
+					cameFrom[nStr] = current
+					gScore[nStr] = tempGScore
+					openSet[nStr] = tempGScore + neighbor.distance_to(there)
+	breakpoint
+	return []
