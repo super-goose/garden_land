@@ -262,14 +262,14 @@ func generate_hills(matrix: Array, hill_probability_coefficient: int, hill_amoun
 ### Pathfinding
 ###
 
-var level = []
-var max_x : int
-var max_y : int
-
-func load_level(level_name, level_navigation_grid):
-	level = level_navigation_grid
-	max_x = level[0].size() - 1
-	max_y = level.size() - 1
+#var level = []
+#var max_x : int
+#var max_y : int
+#
+#func load_level(level_name, level_navigation_grid):
+#	level = level_navigation_grid
+#	max_x = level[0].size() - 1
+#	max_y = level.size() - 1
 
 func find_first_step(here, there):
 	var path = find_path(here, there)
@@ -283,9 +283,8 @@ func find_path(here, there):
 	return path
 
 func can_go_to(p : Vector2):
-	if p.x < 0 or p.y < 0 or p.x > max_x or p.y > max_y:
-		return false
-	return level[p.y][p.x]
+	var p_i = Vector2i(p)
+	return walkable_tiles.has(p_i) and not tree_locations.has(p_i)
 
 func vec_to_str(v : Vector2) -> String:
 	return "%s,%s" % [v.x, v.y]

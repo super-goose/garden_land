@@ -96,9 +96,35 @@ func play_state_animation():
 #	var focus_coords = LevelGenerationUtil.convert_to_grid_coordinates($AoI/FocusCursor.global_position)
 #	$Focus.global_position = focus_coords * LevelGenerationUtil.TILE_SIZE
 
+func position_to_coords(p: Vector2) -> Vector2i:
+	return Vector2i((p - Vector2(LevelGenerationUtil.HALF_TILE_CELL)) / LevelGenerationUtil.TILE_SIZE)
+
+func coords_to_position(p: Vector2i) -> Vector2:
+	return (p * LevelGenerationUtil.TILE_SIZE) + LevelGenerationUtil.HALF_TILE_CELL
+
+var path = []
+
 func go_to_position(destination: Vector2i):
-#	LevelGenerationUtil.find_path()
-	print('Character should go to %s' % destination)
+	var here = position_to_coords(position)
+	path = LevelGenerationUtil.find_path(here, destination)
+	print('Character should go to: %s' % destination)
+	go_to_next_position()
+
+func go_to_next_position():
+	state = 'walk'
+	var coord = path.pop_front()
+	if not coord:
+		state = 'idle'
+		return
+	state = 'walk'
+	move_to(coord)
+
+func move_to(p: Vector2i):
+	var new_position = coords_to_position(p)
+	var t = get_tree().create_tween()
+	print('HEY JAY: make this duration depend on the distance')
+	t.tween_property(self, 'position', new_position, .5)
+	t.tween_callback(go_to_next_position)
 
 func _on_ao_i_area_entered(area):
 	if area is GardenPlot:
