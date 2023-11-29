@@ -51,38 +51,38 @@ func handle_input(delta):
 		state = "chop"
 		return
 
-	var movement_direction = Vector2.ZERO
-	if Input.is_action_pressed("go_up"):
-		movement_direction += Vector2.UP
-	if Input.is_action_pressed("go_down"):
-		movement_direction += Vector2.DOWN
-	if Input.is_action_pressed("go_left"):
-		movement_direction += Vector2.LEFT
-	if Input.is_action_pressed("go_right"):
-		movement_direction += Vector2.RIGHT
-	
-	if movement_direction.length():
-		state = "walk"
-		
-		if abs(movement_direction.x) > abs(movement_direction.y):
-			direction = "left" if movement_direction.x < 0 else "right"
-		else: #if abs(movement_direction.y) > abs(movement_direction.x):
-			direction = "up" if movement_direction.y < 0 else "down"
-	else:
-#		direction = "down"
-		state = "idle"
-		return
-
-	velocity = movement_direction.normalized() * SPEED
-	var r = {
-		"up": 0,
-		"down": PI,
-		"right": PI / 2,
-		"left": PI * 1.5,
-	}[direction]
-#	print(r)
-	$AoI.rotation = r
-	move_and_slide()
+#	var movement_direction = Vector2.ZERO
+#	if Input.is_action_pressed("go_up"):
+#		movement_direction += Vector2.UP
+#	if Input.is_action_pressed("go_down"):
+#		movement_direction += Vector2.DOWN
+#	if Input.is_action_pressed("go_left"):
+#		movement_direction += Vector2.LEFT
+#	if Input.is_action_pressed("go_right"):
+#		movement_direction += Vector2.RIGHT
+#
+#	if movement_direction.length():
+#		state = "walk"
+#
+#		if abs(movement_direction.x) > abs(movement_direction.y):
+#			direction = "left" if movement_direction.x < 0 else "right"
+#		else: #if abs(movement_direction.y) > abs(movement_direction.x):
+#			direction = "up" if movement_direction.y < 0 else "down"
+#	else:
+##		direction = "down"
+	state = "idle"
+	return
+#
+#	velocity = movement_direction.normalized() * SPEED
+#	var r = {
+#		"up": 0,
+#		"down": PI,
+#		"right": PI / 2,
+#		"left": PI * 1.5,
+#	}[direction]
+##	print(r)
+#	$AoI.rotation = r
+#	move_and_slide()
 #	position_focus_indicator()
 
 func play_state_animation():
@@ -103,10 +103,13 @@ func coords_to_position(p: Vector2i) -> Vector2:
 	return (p * LevelGenerationUtil.TILE_SIZE) + LevelGenerationUtil.HALF_TILE_CELL
 
 var path = []
+var final_direction
 
 func go_to_position(destination: Vector2i):
 	var here = position_to_coords(position)
-	path = LevelGenerationUtil.find_path(here, destination)
+	var path_data = LevelGenerationUtil.find_path(here, destination)
+	path = path_data['path']
+	final_direction = path_data['direction']
 	print('Character should go to: %s' % destination)
 	go_to_next_position()
 
@@ -114,17 +117,47 @@ func go_to_next_position():
 	state = 'walk'
 	var coord = path.pop_front()
 	if not coord:
+		set_direction(final_direction)
 		state = 'idle'
 		return
 	state = 'walk'
 	move_to(coord)
 
 func move_to(p: Vector2i):
+	# TODO: move until the focus is here, not the character
 	var new_position = coords_to_position(p)
 	var t = get_tree().create_tween()
-	print('HEY JAY: make this duration depend on the distance')
-	t.tween_property(self, 'position', new_position, .5)
+	var duration = .5 * (Vector2(new_position).distance_to(position) / LevelGenerationUtil.TILE_SIZE)
+	state = 'walk'
+	_set_direction_from_vectors(position, new_position)
+	t.tween_property(self, 'position', new_position, duration)
 	t.tween_callback(go_to_next_position)
+
+func _set_direction_from_vectors(from: Vector2, to: Vector2):
+	if from.y > to.y:
+		set_direction('up')
+
+	if from.x > to.x:
+		set_direction('left')
+
+	if from.x < to.x:
+		set_direction('right')
+
+	if from.y < to.y:
+		set_direction('down')
+	
+
+func set_direction(d):
+	direction = d
+
+	var r = {
+		"up": 0,
+		"down": PI,
+		"right": PI / 2,
+		"left": PI * 1.5,
+	}[direction]
+	$AoI.rotation = r
+
 
 func _on_ao_i_area_entered(area):
 	if area is GardenPlot:
@@ -161,4 +194,11 @@ func _on_animated_sprite_2d_animation_finished():
 			watering_happened = true
 
 func _handle_event_select_garden_plot(garden_plot: GardenPlot):
-	print(garden_plot)
+	var here = position_to_coords(position)
+	var garden_plot_coordinates = LevelGenerationUtil.convert_to_grid_coordinates(garden_plot.position)
+	print(here)
+	print(garden_plot_coordinates)
+	print(Vector2(here).distance_to(garden_plot_coordinates))
+	if Vector2(here).distance_to(garden_plot_coordinates) == 1:
+		print('open the garden plot menu')
+	go_to_position(garden_plot_coordinates)

@@ -277,10 +277,37 @@ func find_first_step(here, there):
 		return there if can_go_to(there) else here
 	return path[0]
 
-func find_path(here, there):
-	var path = a_star(here, there)
+func calculate_dominant_direction(here: Vector2, there: Vector2):
+	if abs(here.x - there.x) > abs(here.y - there.y): # l or r
+		if here.x < there.x:
+			return 'right'
+		else:
+			return 'left'
+	elif abs(here.x - there.x) < abs(here.y - there.y): # u or d
+		if here.y < there.y:
+			return 'down'
+		else:
+			return 'up'
+	else: # diagonally
+		if here.y < there.y:
+			return 'down'
+		else:
+			return 'up'
+
+func find_path(here: Vector2, there: Vector2):
+	var dominant_direction = calculate_dominant_direction(here, there)
+	var next_to_there = there + {
+		'up': Vector2.DOWN,
+		'down': Vector2.UP,
+		'left': Vector2.RIGHT,
+		'right': Vector2.LEFT,
+	}[dominant_direction]
+	var path = a_star(here, next_to_there)
 	path.pop_front()
-	return path
+	return {
+		'path': path,
+		'direction': dominant_direction,
+	}
 
 func can_go_to(p : Vector2):
 	var p_i = Vector2i(p)
@@ -345,7 +372,7 @@ func get_neighbors(p : Vector2):
 
 	return neighbors
 
-func a_star(here: Vector2, there: Vector2):	
+func a_star(here: Vector2, there: Vector2):
 	if not can_go_to(there):
 		return []
 
@@ -361,6 +388,7 @@ func a_star(here: Vector2, there: Vector2):
 		var current = lowest_in_set(openSet)
 		var currentVector = str_to_vec(current)
 		
+		# we made it!
 		if currentVector.x == there.x and currentVector.y == there.y:
 			return construct_path(current, cameFrom)
 		
@@ -379,5 +407,4 @@ func a_star(here: Vector2, there: Vector2):
 					cameFrom[nStr] = current
 					gScore[nStr] = tempGScore
 					openSet[nStr] = tempGScore + neighbor.distance_to(there)
-	breakpoint
 	return []
