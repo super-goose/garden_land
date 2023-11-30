@@ -1,6 +1,6 @@
 [gd_scene load_steps=7 format=3 uid="uid://c8jts7bt4i7p"]
 
-[ext_resource type="Script" path="res://garden_plot.gd" id="1_81omm"]
+[ext_resource type="Script" path="res://scenes/garden_plot.gd" id="1_81omm"]
 [ext_resource type="Texture2D" uid="uid://bo8ftdxn1g1lb" path="res://Sprout Lands - Sprites - premium pack/Objects/Farming Plants.png" id="2_qybk5"]
 [ext_resource type="Texture2D" uid="uid://cuv7qljq2n2wv" path="res://Sprout Lands - Sprites - premium pack/Objects/Items/farm-plant-items-0.png" id="3_3yfyd"]
 [ext_resource type="Texture2D" uid="uid://b03qkt27stdrw" path="res://Sprout Lands - Sprites - premium pack/Objects/Items/tools-water-can.png" id="4_mbr2d"]

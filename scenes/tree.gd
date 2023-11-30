@@ -26,4 +26,5 @@ func get_chopped():
 
 
 func _on_button_pressed():
+	print('tree button pressed')
 	Events.select_fruit_tree.emit(self)

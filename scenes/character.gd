@@ -111,6 +111,8 @@ func go_to_position(destination: Vector2i, options: Dictionary = {}):
 	path = path_data['path']
 	final_direction = path_data['direction']
 	print('Character should go to: %s' % destination)
+	print(path)
+	print(direction)
 	go_to_next_position()
 
 func go_to_next_position():

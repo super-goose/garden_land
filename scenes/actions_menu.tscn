@@ -1,0 +1,39 @@
+[gd_scene load_steps=5 format=3 uid="uid://04nkxwmuynso"]
+
+[ext_resource type="Texture2D" uid="uid://hsyunfkfd3vn" path="res://Sprout Lands - UI Pack - Premium pack/UI Sprites/buttons/square/square-grey-normal.png" id="1_jlq6m"]
+[ext_resource type="Texture2D" uid="uid://c7vw51dsmw3rt" path="res://Sprout Lands - UI Pack - Premium pack/UI Sprites/buttons/square/square-grey-pressed.png" id="2_jhib2"]
+[ext_resource type="Texture2D" uid="uid://b03qkt27stdrw" path="res://Sprout Lands - Sprites - premium pack/Objects/Items/tools-water-can.png" id="3_l7077"]
+[ext_resource type="Texture2D" uid="uid://hqwollvw20ye" path="res://Sprout Lands - Sprites - premium pack/Objects/Items/tools-hoe.png" id="4_43v3q"]
+
+[node name="Control" type="Control"]
+layout_mode = 3
+anchors_preset = 0
+offset_left = -10.0
+offset_top = -12.0
+offset_right = 10.0
+offset_bottom = 8.0
+
+[node name="TextureButton" type="TextureButton" parent="."]
+layout_mode = 0
+offset_left = -31.0
+offset_top = -24.0
+offset_right = -5.0
+offset_bottom = 4.0
+texture_normal = ExtResource("1_jlq6m")
+texture_pressed = ExtResource("2_jhib2")
+
+[node name="TextureButton2" type="TextureButton" parent="."]
+layout_mode = 0
+offset_left = -28.0
+offset_top = 4.0
+offset_right = -12.0
+offset_bottom = 20.0
+texture_normal = ExtResource("3_l7077")
+
+[node name="TextureButton3" type="TextureButton" parent="."]
+layout_mode = 0
+offset_left = -20.0
+offset_top = 28.0
+offset_right = -4.0
+offset_bottom = 44.0
+texture_normal = ExtResource("4_43v3q")

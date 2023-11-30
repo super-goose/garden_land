@@ -1,0 +1,24 @@
+[gd_scene load_steps=5 format=3 uid="uid://cdbj207ey8npw"]
+
+[ext_resource type="Texture2D" uid="uid://hsyunfkfd3vn" path="res://Sprout Lands - UI Pack - Premium pack/UI Sprites/buttons/square/square-grey-normal.png" id="1_202ey"]
+[ext_resource type="Texture2D" uid="uid://c7vw51dsmw3rt" path="res://Sprout Lands - UI Pack - Premium pack/UI Sprites/buttons/square/square-grey-pressed.png" id="2_s7146"]
+[ext_resource type="Script" path="res://scenes/actions_menu_button.gd" id="3_32318"]
+[ext_resource type="Texture2D" uid="uid://hqwollvw20ye" path="res://Sprout Lands - Sprites - premium pack/Objects/Items/tools-hoe.png" id="4_3i2lk"]
+
+[node name="ActionsMenuButton" type="TextureButton"]
+offset_left = -13.0
+offset_top = -14.0
+offset_right = 13.0
+offset_bottom = 14.0
+texture_normal = ExtResource("1_202ey")
+texture_pressed = ExtResource("2_s7146")
+script = ExtResource("3_32318")
+
+[node name="TextureRect" type="TextureRect" parent="."]
+layout_mode = 0
+offset_left = 2.0
+offset_top = 2.0
+offset_right = 24.0
+offset_bottom = 24.0
+texture = ExtResource("4_3i2lk")
+stretch_mode = 4
