@@ -207,5 +207,5 @@ func _handle_event_select_fruit_tree(fruit_tree: FruitTree):
 	var here = position_to_coords(position)
 	var fruit_tree_coordinates = LevelGenerationUtil.convert_to_grid_coordinates(fruit_tree.position)
 	if Vector2(here).distance_to(fruit_tree_coordinates) == 1:
-		print('open the garden plot menu')
+		print('open the fruit tree menu')
 	go_to_position(fruit_tree_coordinates, { 'avoid': 'down' })
