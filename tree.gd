@@ -23,3 +23,7 @@ func get_chopped():
 	else:
 		if hp == -2:
 			queue_free()
+
+
+func _on_button_pressed():
+	Events.select_fruit_tree.emit(self)

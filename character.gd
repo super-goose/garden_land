@@ -17,7 +17,7 @@ var watering_happened = false
 func _ready():
 	position = (start_position * LevelGenerationUtil.TILE_SIZE) + LevelGenerationUtil.HALF_TILE_CELL
 	Events.select_garden_plot.connect(_handle_event_select_garden_plot)
-
+	Events.select_fruit_tree.connect(_handle_event_select_fruit_tree)
 func set_start_position(v: Vector2i):
 	start_position = v
 	position = (start_position * LevelGenerationUtil.TILE_SIZE) + LevelGenerationUtil.HALF_TILE_CELL 
@@ -105,9 +105,9 @@ func coords_to_position(p: Vector2i) -> Vector2:
 var path = []
 var final_direction
 
-func go_to_position(destination: Vector2i):
+func go_to_position(destination: Vector2i, options: Dictionary = {}):
 	var here = position_to_coords(position)
-	var path_data = LevelGenerationUtil.find_path(here, destination)
+	var path_data = LevelGenerationUtil.find_path(here, destination, options)
 	path = path_data['path']
 	final_direction = path_data['direction']
 	print('Character should go to: %s' % destination)
@@ -202,3 +202,10 @@ func _handle_event_select_garden_plot(garden_plot: GardenPlot):
 	if Vector2(here).distance_to(garden_plot_coordinates) == 1:
 		print('open the garden plot menu')
 	go_to_position(garden_plot_coordinates)
+
+func _handle_event_select_fruit_tree(fruit_tree: FruitTree):
+	var here = position_to_coords(position)
+	var fruit_tree_coordinates = LevelGenerationUtil.convert_to_grid_coordinates(fruit_tree.position)
+	if Vector2(here).distance_to(fruit_tree_coordinates) == 1:
+		print('open the garden plot menu')
+	go_to_position(fruit_tree_coordinates, { 'avoid': 'down' })

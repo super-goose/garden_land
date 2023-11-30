@@ -1578,6 +1578,7 @@ height = 22.0
 [node name="Character" type="CharacterBody2D"]
 collision_mask = 4
 script = ExtResource("1_gyc1p")
+start_position = null
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("RectangleShape2D_sltv8")

@@ -272,13 +272,17 @@ func generate_hills(matrix: Array, hill_probability_coefficient: int, hill_amoun
 #	max_y = level.size() - 1
 
 func find_first_step(here, there):
-	var path = find_path(here, there)
+	var path = find_path(here, there, {})
 	if path.size() == 0:
 		return there if can_go_to(there) else here
 	return path[0]
 
-func calculate_dominant_direction(here: Vector2, there: Vector2):
-	if abs(here.x - there.x) > abs(here.y - there.y): # l or r
+func calculate_dominant_direction(here: Vector2, there: Vector2, options: Dictionary):
+	var direction_to_avoid = null
+	if options.has('avoid'):
+		direction_to_avoid = options['avoid']
+
+	if abs(here.x - there.x) > abs(here.y - there.y) or direction_to_avoid in ['up', 'down']: # l or r
 		if here.x < there.x:
 			return 'right'
 		else:
@@ -294,8 +298,8 @@ func calculate_dominant_direction(here: Vector2, there: Vector2):
 		else:
 			return 'up'
 
-func find_path(here: Vector2, there: Vector2):
-	var dominant_direction = calculate_dominant_direction(here, there)
+func find_path(here: Vector2, there: Vector2, options: Dictionary):
+	var dominant_direction = calculate_dominant_direction(here, there, options)
 	var next_to_there = there + {
 		'up': Vector2.DOWN,
 		'down': Vector2.UP,
