@@ -18,6 +18,7 @@ func _ready():
 	position = (start_position * LevelGenerationUtil.TILE_SIZE) + LevelGenerationUtil.HALF_TILE_CELL
 	Events.select_garden_plot.connect(_handle_event_select_garden_plot)
 	Events.select_fruit_tree.connect(_handle_event_select_fruit_tree)
+	Events.perform_action.connect(_handle_event_perform_action)
 func set_start_position(v: Vector2i):
 	start_position = v
 	position = (start_position * LevelGenerationUtil.TILE_SIZE) + LevelGenerationUtil.HALF_TILE_CELL 
@@ -40,53 +41,22 @@ func handle_input(delta):
 	watering_happened = false
 	$AnimatedWater.visible = false
 
-	if Input.is_action_pressed("hoe"):
-		if not current_tree:
-			state = "hoe"
-		return
-	else:
-		times_hoed = 0
+	if Input.is_action_just_pressed("hoe"):
+		handle_hoeing()
 	
 	if Input.is_action_pressed("chop"):
 		state = "chop"
 		return
 
-#	var movement_direction = Vector2.ZERO
-#	if Input.is_action_pressed("go_up"):
-#		movement_direction += Vector2.UP
-#	if Input.is_action_pressed("go_down"):
-#		movement_direction += Vector2.DOWN
-#	if Input.is_action_pressed("go_left"):
-#		movement_direction += Vector2.LEFT
-#	if Input.is_action_pressed("go_right"):
-#		movement_direction += Vector2.RIGHT
-#
-#	if movement_direction.length():
-#		state = "walk"
-#
-#		if abs(movement_direction.x) > abs(movement_direction.y):
-#			direction = "left" if movement_direction.x < 0 else "right"
-#		else: #if abs(movement_direction.y) > abs(movement_direction.x):
-#			direction = "up" if movement_direction.y < 0 else "down"
-#	else:
-##		direction = "down"
-	state = "idle"
-	return
-#
-#	velocity = movement_direction.normalized() * SPEED
-#	var r = {
-#		"up": 0,
-#		"down": PI,
-#		"right": PI / 2,
-#		"left": PI * 1.5,
-#	}[direction]
-##	print(r)
-#	$AoI.rotation = r
-#	move_and_slide()
-#	position_focus_indicator()
+func handle_hoeing():
+	if not current_tree:
+		state = "hoe"
+
+
 
 func play_state_animation():
 	var animation_name = "%s_%s" % [state, direction]
+#	print('play_state_animation %s' % animation_name)
 	$AnimatedSprite2D.play(animation_name)
 	if state == 'water' and direction != 'up':
 		$AnimatedWater.visible = true
@@ -106,6 +76,9 @@ var path = []
 var final_direction
 
 func go_to_position(destination: Vector2i, options: Dictionary = {}):
+	if current_plant:
+		current_plant.hide_actions()
+	state = 'walk'
 	var here = position_to_coords(position)
 	var path_data = LevelGenerationUtil.find_path(here, destination, options)
 	path = path_data['path']
@@ -116,13 +89,11 @@ func go_to_position(destination: Vector2i, options: Dictionary = {}):
 	go_to_next_position()
 
 func go_to_next_position():
-	state = 'walk'
 	var coord = path.pop_front()
 	if not coord:
 		set_direction(final_direction)
 		state = 'idle'
 		return
-	state = 'walk'
 	move_to(coord)
 
 func move_to(p: Vector2i):
@@ -184,9 +155,10 @@ func _on_animated_sprite_2d_animation_looped():
 	elif state == 'hoe' and not current_tree:
 		times_hoed += 1
 		if times_hoed == HOE_LIMIT:
+			times_hoed = 0
 			var coordinates = LevelGenerationUtil.convert_to_grid_coordinates($AoI/FocusCursor.global_position)
 			LevelGenerationUtil.add_plantable_tile(coordinates)
-			print('hoeing at ', coordinates)
+			state = 'idle'
 
 
 func _on_animated_sprite_2d_animation_finished():
@@ -211,3 +183,19 @@ func _handle_event_select_fruit_tree(fruit_tree: FruitTree):
 	if Vector2(here).distance_to(fruit_tree_coordinates) == 1:
 		print('open the fruit tree menu')
 	go_to_position(fruit_tree_coordinates, { 'avoid': 'down' })
+
+func _handle_event_perform_action(action: Constants.ACTIONS):
+	if action == Constants.ACTIONS.Chop:
+		print('chop')
+	if action == Constants.ACTIONS.Water:
+		print('water')
+	if action == Constants.ACTIONS.Hoe:
+		print('hoe')
+	if action == Constants.ACTIONS.Sow:
+		print('sow')
+	print(current_plant)
+
+func _on_button_pressed():
+	if current_plant:
+		current_plant.display_actions()
+		

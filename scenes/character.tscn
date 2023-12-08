@@ -1578,7 +1578,6 @@ height = 22.0
 [node name="Character" type="CharacterBody2D"]
 collision_mask = 4
 script = ExtResource("1_gyc1p")
-start_position = null
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("RectangleShape2D_sltv8")
@@ -1602,6 +1601,7 @@ sprite_frames = SubResource("SpriteFrames_gk8x3")
 animation = &"water_down"
 
 [node name="AoI" type="Area2D" parent="."]
+rotation = 3.14159
 collision_layer = 0
 collision_mask = 2
 
@@ -1614,9 +1614,16 @@ position = Vector2(0, -15)
 
 [node name="Focus" type="Polygon2D" parent="AoI/FocusCursor"]
 position = Vector2(-8, -9)
-color = Color(0.262745, 0.572549, 1, 0.411765)
+color = Color(0.262745, 0.572549, 1, 0.337255)
 offset = Vector2(8, 8)
 polygon = PackedVector2Array(-8, -8, -8, 8, 8, 8, 8, -8)
+
+[node name="Button" type="Button" parent="AoI/FocusCursor"]
+modulate = Color(1, 1, 1, 0)
+offset_left = -8.0
+offset_top = -9.0
+offset_right = 8.0
+offset_bottom = 8.0
 
 [node name="Timer" type="Timer" parent="."]
 
@@ -1625,3 +1632,4 @@ polygon = PackedVector2Array(-8, -8, -8, 8, 8, 8, 8, -8)
 [connection signal="animation_finished" from="AnimatedWater" to="." method="_on_animated_water_animation_finished"]
 [connection signal="area_entered" from="AoI" to="." method="_on_ao_i_area_entered"]
 [connection signal="area_exited" from="AoI" to="." method="_on_ao_i_area_exited"]
+[connection signal="pressed" from="AoI/FocusCursor/Button" to="." method="_on_button_pressed"]

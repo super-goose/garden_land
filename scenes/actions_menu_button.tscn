@@ -3,7 +3,7 @@
 [ext_resource type="Texture2D" uid="uid://hsyunfkfd3vn" path="res://Sprout Lands - UI Pack - Premium pack/UI Sprites/buttons/square/square-grey-normal.png" id="1_202ey"]
 [ext_resource type="Texture2D" uid="uid://c7vw51dsmw3rt" path="res://Sprout Lands - UI Pack - Premium pack/UI Sprites/buttons/square/square-grey-pressed.png" id="2_s7146"]
 [ext_resource type="Script" path="res://scenes/actions_menu_button.gd" id="3_32318"]
-[ext_resource type="Texture2D" uid="uid://hqwollvw20ye" path="res://Sprout Lands - Sprites - premium pack/Objects/Items/tools-hoe.png" id="4_3i2lk"]
+[ext_resource type="Texture2D" uid="uid://hqwollvw20ye" path="res://modified-assets/tools/tools-hoe.png" id="4_ahri8"]
 
 [node name="ActionsMenuButton" type="TextureButton"]
 offset_left = -13.0
@@ -15,10 +15,13 @@ texture_pressed = ExtResource("2_s7146")
 script = ExtResource("3_32318")
 
 [node name="TextureRect" type="TextureRect" parent="."]
+z_index = 1000
 layout_mode = 0
 offset_left = 2.0
 offset_top = 2.0
 offset_right = 24.0
 offset_bottom = 24.0
-texture = ExtResource("4_3i2lk")
+texture = ExtResource("4_ahri8")
 stretch_mode = 4
+
+[connection signal="pressed" from="." to="." method="_on_pressed"]

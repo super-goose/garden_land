@@ -1,6 +1,6 @@
 [gd_scene load_steps=5 format=3 uid="uid://3av7tgbc8rhv"]
 
-[ext_resource type="Texture2D" uid="uid://cnctn5c02xqaa" path="res://Sprout Lands - Sprites - premium pack/Objects/Items/farm-plant-items-4.png" id="1_utpqp"]
+[ext_resource type="Texture2D" uid="uid://cnctn5c02xqaa" path="res://modified-assets/tools/farm-plant-items-4.png" id="1_utpqp"]
 [ext_resource type="Script" path="res://quick_inventory_cell.gd" id="1_yp1vs"]
 [ext_resource type="FontFile" uid="uid://bhvrl7wppixn1" path="res://PressStart2P-Regular-L.ttf" id="2_djrdd"]
 

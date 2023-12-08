@@ -6,7 +6,9 @@ enum TYPE {
 	eggplant, _blue_flower, lettuce, wheat, pumpkin,
 	parsnip, _rose, beet, _star_fruit, cucumber
 }
-@export var type : TYPE
+@export var type : Constants.TYPE #TYPE
+
+var action_types: Array[Constants.ACTIONS] = [Constants.ACTIONS.Hoe, Constants.ACTIONS.Water, Constants.ACTIONS.Sow]
 
 enum STAGE { empty, sprout, growing, showing, ready, corn }
 @export var stage : STAGE = STAGE.empty
@@ -19,8 +21,7 @@ func _ready():
 	print(int(stage))
 	$FarmingPlants.visible = stage != STAGE.empty
 	$FarmingPlants.frame = (int(type) * 5) + int(stage)
-	
-	pass # Replace with function body.
+	$ActionsMenu.add_actions(action_types)
 
 func calculate_frame():
 	return (int(type) * 5) + int(stage)
@@ -42,6 +43,11 @@ func increase_stage():
 	}[stage]
 	set_stage(new_stage)
 
+func display_actions():
+	$ActionsMenu.display_actions()
+
+func hide_actions():
+	$ActionsMenu.hide_actions()
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):

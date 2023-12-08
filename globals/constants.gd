@@ -5,3 +5,7 @@ enum TYPE {
 	Eggplant, BlueFlower, Lettuce, Wheat, Pumpkin,
 	Parsnip, Rose, Beet, StarFruit, Cucumber
 }
+
+enum ACTIONS {
+	Chop, Water, Hoe, Sow
+}

@@ -1,27 +1,20 @@
+class_name ActionsMenuButton
 extends TextureButton
 
-enum Actions {
-	HOE,
-	WATER,
-	AXE,
-	SOW,
-}
-
-var action: Actions
+var action: Constants.ACTIONS
 var action_image
 
 func set_action(new_action):
 	action = new_action
 	action_image = {
-		[Actions.HOE]: load("res://Sprout Lands - Sprites - premium pack/Objects/Items/tools-axe.png")
+		Constants.ACTIONS.Hoe: load("res://modified-assets/tools/tools-hoe.png"),
+		Constants.ACTIONS.Water: load("res://modified-assets/tools/tools-water-can.png"),
+		Constants.ACTIONS.Chop: load("res://modified-assets/tools/tools-axe.png"),
+		Constants.ACTIONS.Sow: load("res://modified-assets/tools/farm-plant-items-0.png"),
 	}
+	$TextureRect.texture = action_image[action]
 
 
-# Called when the node enters the scene tree for the first time.
-func _ready():
-	pass # Replace with function body.
 
-
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta):
-	pass
+func _on_pressed():
+	Events.perform_action.emit(action)

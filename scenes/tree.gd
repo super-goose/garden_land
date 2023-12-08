@@ -6,9 +6,12 @@ var hp = 2
 var is_intact = true
 var type : String
 
+var action_types : Array[Constants.ACTIONS] = [Constants.ACTIONS.Chop]
+
 func _ready():
 	type = TYPES[Dice.roll_dn(5) - 1]
 	$FullTree.play("%s-init" % type)
+	$ActionsMenu.add_actions(action_types)
 
 func get_chopped():
 	print('tree is getting chopped')
