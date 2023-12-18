@@ -23,6 +23,7 @@ func _process(delta):
 
 func _unhandled_input(event: InputEvent) -> void:
 	if event is InputEventMouseButton: # mouse click
+		print('main.gd -> _unhandled_input')
 		if (event.is_pressed() and event.button_index == MOUSE_BUTTON_LEFT): # left
 			var destination = get_global_mouse_position()
 			destination = convert_to_grid_coordinates(destination)

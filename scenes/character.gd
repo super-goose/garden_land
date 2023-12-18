@@ -1,7 +1,7 @@
 @icon("res://meta/assets/character.png")
 extends CharacterBody2D
 
-const SPEED = 40
+const SPEED = 60
 const HOE_LIMIT = 2
 
 var times_hoed = 0
