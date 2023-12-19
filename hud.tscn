@@ -5,9 +5,16 @@
 [node name="HUD" type="CanvasLayer"]
 
 [node name="MarginContainer" type="MarginContainer" parent="."]
-offset_top = 1048.0
-offset_right = 1800.0
-offset_bottom = 1199.0
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -358.0
+offset_top = -110.0
+offset_right = 359.0
+grow_horizontal = 2
+grow_vertical = 0
 
 [node name="ColorRect" type="ColorRect" parent="MarginContainer"]
 layout_mode = 2
@@ -15,10 +22,9 @@ color = Color(0.117647, 0.117647, 0.117647, 0.152941)
 
 [node name="ColorRect" type="ColorRect" parent="MarginContainer/ColorRect"]
 layout_mode = 0
-offset_left = 24.0
-offset_top = 25.0
-offset_right = 1773.0
-offset_bottom = 129.0
+offset_top = 2.0
+offset_right = 719.0
+offset_bottom = 109.0
 color = Color(0.113725, 0.113725, 0.113725, 0.509804)
 
 [node name="QuickInventoryCell" parent="MarginContainer/ColorRect/ColorRect" instance=ExtResource("1_gpqfl")]

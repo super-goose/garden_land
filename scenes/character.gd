@@ -178,11 +178,12 @@ func _handle_event_select_garden_plot(garden_plot: GardenPlot):
 	go_to_position(garden_plot_coordinates)
 
 func _handle_event_select_fruit_tree(fruit_tree: FruitTree):
-	var here = position_to_coords(position)
-	var fruit_tree_coordinates = LevelGenerationUtil.convert_to_grid_coordinates(fruit_tree.position)
-	if Vector2(here).distance_to(fruit_tree_coordinates) == 1:
-		print('open the fruit tree menu')
-	go_to_position(fruit_tree_coordinates, { 'avoid': 'down' })
+	if fruit_tree == current_tree:
+		fruit_tree.display_actions()
+	else:
+		var here = position_to_coords(position)
+		var fruit_tree_coordinates = LevelGenerationUtil.convert_to_grid_coordinates(fruit_tree.position)
+		go_to_position(fruit_tree_coordinates, { 'avoid': 'down' })
 
 func _handle_event_perform_action(action: Constants.ACTIONS):
 	if action == Constants.ACTIONS.Chop:

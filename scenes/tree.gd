@@ -27,6 +27,11 @@ func get_chopped():
 		if hp == -2:
 			queue_free()
 
+func display_actions():
+	$ActionsMenu.display_actions()
+
+func hide_actions():
+	$ActionsMenu.hide_actions()
 
 func _on_button_pressed():
 	print('tree button pressed')
