@@ -1,0 +1,50 @@
+[gd_scene load_steps=3 format=3 uid="uid://cualt3fdfjppy"]
+
+[ext_resource type="Script" path="res://scenes/hud.gd" id="1_vkfkb"]
+[ext_resource type="PackedScene" uid="uid://cdbj207ey8npw" path="res://scenes/actions_menu_button.tscn" id="1_wa8wc"]
+
+[node name="HUD" type="CanvasLayer"]
+script = ExtResource("1_vkfkb")
+
+[node name="MarginContainer" type="MarginContainer" parent="."]
+anchors_preset = 12
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = -32.0
+grow_horizontal = 2
+grow_vertical = 0
+
+[node name="ColorRect" type="ColorRect" parent="MarginContainer"]
+layout_mode = 2
+color = Color(0.117647, 0.117647, 0.117647, 0.152941)
+
+[node name="ColorRect" type="ColorRect" parent="MarginContainer/ColorRect"]
+layout_mode = 0
+offset_left = 2.0
+offset_top = 2.0
+offset_right = 178.0
+offset_bottom = 30.0
+color = Color(0.113725, 0.113725, 0.113725, 0.509804)
+
+[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer/ColorRect/ColorRect"]
+layout_mode = 0
+offset_left = 3.0
+offset_right = 173.0
+offset_bottom = 28.0
+theme_override_constants/separation = 6
+
+[node name="ActionsMenuButton" parent="MarginContainer/ColorRect/ColorRect/HBoxContainer" instance=ExtResource("1_wa8wc")]
+layout_mode = 2
+
+[node name="ActionsMenuButton2" parent="MarginContainer/ColorRect/ColorRect/HBoxContainer" instance=ExtResource("1_wa8wc")]
+layout_mode = 2
+action = 1
+
+[node name="ActionsMenuButton3" parent="MarginContainer/ColorRect/ColorRect/HBoxContainer" instance=ExtResource("1_wa8wc")]
+layout_mode = 2
+action = 2
+
+[node name="ActionsMenuButton4" parent="MarginContainer/ColorRect/ColorRect/HBoxContainer" instance=ExtResource("1_wa8wc")]
+layout_mode = 2
+action = 3

@@ -6,20 +6,22 @@
 [ext_resource type="Texture2D" uid="uid://hqwollvw20ye" path="res://modified-assets/tools/tools-hoe.png" id="4_ahri8"]
 
 [node name="ActionsMenuButton" type="TextureButton"]
-offset_left = -13.0
-offset_top = -14.0
-offset_right = 13.0
-offset_bottom = 14.0
+custom_minimum_size = Vector2(24, 28)
+offset_left = 3.0
+offset_top = 1.0
+offset_right = 27.0
+offset_bottom = 29.0
 texture_normal = ExtResource("1_202ey")
 texture_pressed = ExtResource("2_s7146")
+ignore_texture_size = true
+stretch_mode = 3
 script = ExtResource("3_32318")
 
 [node name="TextureRect" type="TextureRect" parent="."]
-z_index = 1000
 layout_mode = 0
-offset_left = 2.0
+offset_left = 1.0
 offset_top = 2.0
-offset_right = 24.0
+offset_right = 23.0
 offset_bottom = 24.0
 texture = ExtResource("4_ahri8")
 stretch_mode = 4

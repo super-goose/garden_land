@@ -21,7 +21,6 @@ func _ready():
 	print(int(stage))
 	$FarmingPlants.visible = stage != STAGE.empty
 	$FarmingPlants.frame = (int(type) * 5) + int(stage)
-	$ActionsMenu.add_actions(action_types)
 
 func calculate_frame():
 	return (int(type) * 5) + int(stage)
@@ -42,12 +41,6 @@ func increase_stage():
 		STAGE.showing: STAGE.ready,
 	}[stage]
 	set_stage(new_stage)
-
-func display_actions():
-	$ActionsMenu.display_actions()
-
-func hide_actions():
-	$ActionsMenu.hide_actions()
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):

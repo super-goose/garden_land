@@ -5,7 +5,7 @@ const SPEED = 60
 const HOE_LIMIT = 2
 
 var times_hoed = 0
-var state = 'idle'
+var state
 var direction = 'down'
 var current_plant: GardenPlot
 var current_tree: FruitTree
@@ -19,6 +19,8 @@ func _ready():
 	Events.select_garden_plot.connect(_handle_event_select_garden_plot)
 	Events.select_fruit_tree.connect(_handle_event_select_fruit_tree)
 	Events.perform_action.connect(_handle_event_perform_action)
+	set_state('idle')
+
 func set_start_position(v: Vector2i):
 	start_position = v
 	position = (start_position * LevelGenerationUtil.TILE_SIZE) + LevelGenerationUtil.HALF_TILE_CELL 
@@ -35,7 +37,7 @@ func process_state_action():
 
 func handle_input(delta):
 	if Input.is_action_pressed("water"):
-		state = "water"
+		set_state('water')
 		return
 
 	watering_happened = false
@@ -45,12 +47,12 @@ func handle_input(delta):
 		handle_hoeing()
 	
 	if Input.is_action_pressed("chop"):
-		state = "chop"
+		set_state('chop')
 		return
 
 func handle_hoeing():
 	if not current_tree:
-		state = "hoe"
+		set_state('hoe')
 
 
 
@@ -78,7 +80,7 @@ var final_direction
 func go_to_position(destination: Vector2i, options: Dictionary = {}):
 	if current_plant:
 		current_plant.hide_actions()
-	state = 'walk'
+	set_state('walk')
 	var here = position_to_coords(position)
 	var path_data = LevelGenerationUtil.find_path(here, destination, options)
 	path = path_data['path']
@@ -92,7 +94,7 @@ func go_to_next_position():
 	var coord = path.pop_front()
 	if not coord:
 		set_direction(final_direction)
-		state = 'idle'
+		set_state('idle')
 		return
 	move_to(coord)
 
@@ -101,7 +103,7 @@ func move_to(p: Vector2i):
 	var new_position = coords_to_position(p)
 	var t = get_tree().create_tween()
 	var duration = .5 * (Vector2(new_position).distance_to(position) / LevelGenerationUtil.TILE_SIZE)
-	state = 'walk'
+	set_state('walk')
 	_set_direction_from_vectors(position, new_position)
 	t.tween_property(self, 'position', new_position, duration)
 	t.tween_callback(go_to_next_position)
@@ -119,17 +121,6 @@ func _set_direction_from_vectors(from: Vector2, to: Vector2):
 	if from.y < to.y:
 		set_direction('down')
 	
-
-func set_direction(d):
-	direction = d
-
-	var r = {
-		"up": 0,
-		"down": PI,
-		"right": PI / 2,
-		"left": PI * 1.5,
-	}[direction]
-	$AoI.rotation = r
 
 
 func _on_ao_i_area_entered(area):
@@ -158,7 +149,7 @@ func _on_animated_sprite_2d_animation_looped():
 			times_hoed = 0
 			var coordinates = LevelGenerationUtil.convert_to_grid_coordinates($AoI/FocusCursor.global_position)
 			LevelGenerationUtil.add_plantable_tile(coordinates)
-			state = 'idle'
+			set_state('idle')
 
 
 func _on_animated_sprite_2d_animation_finished():
@@ -168,22 +159,16 @@ func _on_animated_sprite_2d_animation_finished():
 			watering_happened = true
 
 func _handle_event_select_garden_plot(garden_plot: GardenPlot):
+	print('a garden plot was selected... do something with it? display a context menu??')
+	print(garden_plot)
 	var here = position_to_coords(position)
 	var garden_plot_coordinates = LevelGenerationUtil.convert_to_grid_coordinates(garden_plot.position)
-	print(here)
-	print(garden_plot_coordinates)
-	print(Vector2(here).distance_to(garden_plot_coordinates))
-	if Vector2(here).distance_to(garden_plot_coordinates) == 1:
-		print('open the garden plot menu')
 	go_to_position(garden_plot_coordinates)
 
 func _handle_event_select_fruit_tree(fruit_tree: FruitTree):
-	if fruit_tree == current_tree:
-		fruit_tree.display_actions()
-	else:
-		var here = position_to_coords(position)
-		var fruit_tree_coordinates = LevelGenerationUtil.convert_to_grid_coordinates(fruit_tree.position)
-		go_to_position(fruit_tree_coordinates, { 'avoid': 'down' })
+	var here = position_to_coords(position)
+	var fruit_tree_coordinates = LevelGenerationUtil.convert_to_grid_coordinates(fruit_tree.position)
+	go_to_position(fruit_tree_coordinates, { 'avoid': 'down' })
 
 func _handle_event_perform_action(action: Constants.ACTIONS):
 	if action == Constants.ACTIONS.Chop:
@@ -194,7 +179,35 @@ func _handle_event_perform_action(action: Constants.ACTIONS):
 		print('hoe')
 	if action == Constants.ACTIONS.Sow:
 		print('sow')
-	print(current_plant)
+
+func set_direction(new_direction):
+	if direction == new_direction:
+		return
+	direction = new_direction
+	var r = {
+		"up": 0,
+		"down": PI,
+		"right": PI / 2,
+		"left": PI * 1.5,
+	}[direction]
+	$AoI.rotation = r
+
+func set_state(new_state: String):
+	print('setting state: %s' % new_state)
+	if state == new_state:
+		return
+	state = new_state
+	var actions = []
+	if state == 'idle':
+		if current_plant:
+			actions.push_back(Constants.ACTIONS.Sow)
+			actions.push_back(Constants.ACTIONS.Water)
+		elif current_tree:
+			actions.push_back(Constants.ACTIONS.Chop)
+		else:
+			actions.push_back(Constants.ACTIONS.Hoe)
+	print(actions)
+	Events.set_actions.emit(actions)
 
 func _on_button_pressed():
 	if current_plant:

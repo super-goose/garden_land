@@ -1,7 +1,7 @@
 [gd_scene load_steps=7 format=3 uid="uid://38xtew55py1l"]
 
 [ext_resource type="Script" path="res://main.gd" id="1_b3ke2"]
-[ext_resource type="PackedScene" uid="uid://cualt3fdfjppy" path="res://hud.tscn" id="2_tdtfc"]
+[ext_resource type="PackedScene" uid="uid://cualt3fdfjppy" path="res://scenes/hud.tscn" id="2_tdtfc"]
 [ext_resource type="PackedScene" uid="uid://b8722pdwk2exe" path="res://level/level.tscn" id="3_t3uwm"]
 [ext_resource type="PackedScene" uid="uid://brcxg1cwk4en0" path="res://scenes/character.tscn" id="4_38ofq"]
 [ext_resource type="PackedScene" uid="uid://c8jts7bt4i7p" path="res://scenes/garden_plot.tscn" id="5_lbnnx"]

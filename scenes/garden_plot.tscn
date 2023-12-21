@@ -1,8 +1,7 @@
-[gd_scene load_steps=5 format=3 uid="uid://c8jts7bt4i7p"]
+[gd_scene load_steps=4 format=3 uid="uid://c8jts7bt4i7p"]
 
 [ext_resource type="Script" path="res://scenes/garden_plot.gd" id="1_81omm"]
 [ext_resource type="Texture2D" uid="uid://bo8ftdxn1g1lb" path="res://Sprout Lands - Sprites - premium pack/Objects/Farming Plants.png" id="2_qybk5"]
-[ext_resource type="PackedScene" uid="uid://04nkxwmuynso" path="res://scenes/actions_menu.tscn" id="3_dy5tj"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_iitex"]
 
@@ -29,7 +28,5 @@ offset_left = -8.0
 offset_top = -10.0
 offset_right = 8.0
 offset_bottom = 6.0
-
-[node name="ActionsMenu" parent="." instance=ExtResource("3_dy5tj")]
 
 [connection signal="pressed" from="Button" to="." method="_on_button_pressed"]

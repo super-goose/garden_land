@@ -11,7 +11,6 @@ var action_types : Array[Constants.ACTIONS] = [Constants.ACTIONS.Chop]
 func _ready():
 	type = TYPES[Dice.roll_dn(5) - 1]
 	$FullTree.play("%s-init" % type)
-	$ActionsMenu.add_actions(action_types)
 
 func get_chopped():
 	print('tree is getting chopped')
@@ -26,12 +25,6 @@ func get_chopped():
 	else:
 		if hp == -2:
 			queue_free()
-
-func display_actions():
-	$ActionsMenu.display_actions()
-
-func hide_actions():
-	$ActionsMenu.hide_actions()
 
 func _on_button_pressed():
 	print('tree button pressed')
