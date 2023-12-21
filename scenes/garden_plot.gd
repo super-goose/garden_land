@@ -17,8 +17,8 @@ enum STAGE { empty, sprout, growing, showing, ready, corn }
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	print(int(type))
-	print(int(stage))
+#	print(int(type))
+#	print(int(stage))
 	$FarmingPlants.visible = stage != STAGE.empty
 	$FarmingPlants.frame = (int(type) * 5) + int(stage)
 
@@ -31,7 +31,7 @@ func set_stage(s: STAGE):
 	$FarmingPlants.frame = (int(type) * 5) + int(stage) - 1
 
 func increase_stage():
-	print('increasing stage for %s' % debug_name)
+#	print('increasing stage for %s' % debug_name)
 	if not type or stage == STAGE.ready:
 		return
 	var new_stage = {

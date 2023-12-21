@@ -34,7 +34,7 @@ func display_actions(direction = 'up'):
 		
 #	ActionsMenuButton
 	var angles = []
-	print('add calculations here to display actions menu')
+#	print('add calculations here to display actions menu')
 	
 func hide_actions():
 	pass

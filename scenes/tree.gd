@@ -13,7 +13,7 @@ func _ready():
 	$FullTree.play("%s-init" % type)
 
 func get_chopped():
-	print('tree is getting chopped')
+#	print('tree is getting chopped')
 	hp -= 1
 	if is_intact:
 		$FullTree.play("%s-wind" % type)
@@ -27,5 +27,5 @@ func get_chopped():
 			queue_free()
 
 func _on_button_pressed():
-	print('tree button pressed')
+#	print('tree button pressed')
 	Events.select_fruit_tree.emit(self)

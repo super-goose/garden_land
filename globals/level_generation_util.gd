@@ -39,10 +39,10 @@ func __is_surrounded_by_walkable_tiles(c: Vector2i) -> bool:
 
 func add_plantable_tile(c: Vector2i):
 	if plantable_tiles.find(c) > -1:
-		print('this is already tilled land')
+#		print('this is already tilled land')
 		return
 	if not __is_surrounded_by_walkable_tiles(c):
-		print("you can't do this too close to the edge of walkable space")
+#		print("you can't do this too close to the edge of walkable space")
 		return
 
 	plantable_tiles.push_front(c)

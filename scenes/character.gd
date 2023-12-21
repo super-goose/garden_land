@@ -44,17 +44,11 @@ func handle_input(delta):
 	$AnimatedWater.visible = false
 
 	if Input.is_action_just_pressed("hoe"):
-		handle_hoeing()
+		set_state('hoe')
 	
 	if Input.is_action_pressed("chop"):
 		set_state('chop')
 		return
-
-func handle_hoeing():
-	if not current_tree:
-		set_state('hoe')
-
-
 
 func play_state_animation():
 	var animation_name = "%s_%s" % [state, direction]
@@ -78,16 +72,11 @@ var path = []
 var final_direction
 
 func go_to_position(destination: Vector2i, options: Dictionary = {}):
-	if current_plant:
-		current_plant.hide_actions()
 	set_state('walk')
 	var here = position_to_coords(position)
 	var path_data = LevelGenerationUtil.find_path(here, destination, options)
 	path = path_data['path']
 	final_direction = path_data['direction']
-	print('Character should go to: %s' % destination)
-	print(path)
-	print(direction)
 	go_to_next_position()
 
 func go_to_next_position():
@@ -99,7 +88,6 @@ func go_to_next_position():
 	move_to(coord)
 
 func move_to(p: Vector2i):
-	# TODO: move until the focus is here, not the character
 	var new_position = coords_to_position(p)
 	var t = get_tree().create_tween()
 	var duration = .5 * (Vector2(new_position).distance_to(position) / LevelGenerationUtil.TILE_SIZE)
@@ -111,17 +99,12 @@ func move_to(p: Vector2i):
 func _set_direction_from_vectors(from: Vector2, to: Vector2):
 	if from.y > to.y:
 		set_direction('up')
-
 	if from.x > to.x:
 		set_direction('left')
-
 	if from.x < to.x:
 		set_direction('right')
-
 	if from.y < to.y:
 		set_direction('down')
-	
-
 
 func _on_ao_i_area_entered(area):
 	if area is GardenPlot:
@@ -141,14 +124,19 @@ func _on_animated_water_animation_finished():
 
 
 func _on_animated_sprite_2d_animation_looped():
-	if state == 'chop' and current_tree:
-		current_tree.get_chopped()
+	if state == 'chop':
+		if current_tree:
+			current_tree.get_chopped()
+		else:
+			await get_tree().create_timer(.5).timeout
+			set_state('idle')
 	elif state == 'hoe' and not current_tree:
 		times_hoed += 1
 		if times_hoed == HOE_LIMIT:
 			times_hoed = 0
 			var coordinates = LevelGenerationUtil.convert_to_grid_coordinates($AoI/FocusCursor.global_position)
 			LevelGenerationUtil.add_plantable_tile(coordinates)
+			await get_tree().create_timer(.5).timeout
 			set_state('idle')
 
 
@@ -172,13 +160,14 @@ func _handle_event_select_fruit_tree(fruit_tree: FruitTree):
 
 func _handle_event_perform_action(action: Constants.ACTIONS):
 	if action == Constants.ACTIONS.Chop:
-		print('chop')
+		set_state('chop')
 	if action == Constants.ACTIONS.Water:
-		print('water')
+		set_state('water')
 	if action == Constants.ACTIONS.Hoe:
-		print('hoe')
+		print(current_tree)
+		set_state('hoe')
 	if action == Constants.ACTIONS.Sow:
-		print('sow')
+		set_state('sow')
 
 func set_direction(new_direction):
 	if direction == new_direction:
@@ -193,7 +182,6 @@ func set_direction(new_direction):
 	$AoI.rotation = r
 
 func set_state(new_state: String):
-	print('setting state: %s' % new_state)
 	if state == new_state:
 		return
 	state = new_state
@@ -206,10 +194,4 @@ func set_state(new_state: String):
 			actions.push_back(Constants.ACTIONS.Chop)
 		else:
 			actions.push_back(Constants.ACTIONS.Hoe)
-	print(actions)
 	Events.set_actions.emit(actions)
-
-func _on_button_pressed():
-	if current_plant:
-		current_plant.display_actions()
-		
