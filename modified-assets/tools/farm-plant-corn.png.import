@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://b1l8seebke7sj"
-path="res://.godot/imported/farm-plant-items-19.png-368ae554d464af0770512042ccebdaf0.ctex"
+uid="uid://ca7cifrj16ucx"
+path="res://.godot/imported/farm-plant-corn.png-6ba30e9abb3e758a086e17da14dd4715.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://modified-assets/tools/farm-plant-items-19.png"
-dest_files=["res://.godot/imported/farm-plant-items-19.png-368ae554d464af0770512042ccebdaf0.ctex"]
+source_file="res://modified-assets/tools/farm-plant-corn.png"
+dest_files=["res://.godot/imported/farm-plant-corn.png-6ba30e9abb3e758a086e17da14dd4715.ctex"]
 
 [params]
 

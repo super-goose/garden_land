@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://cndmruscrcwqe"
-path="res://.godot/imported/farm-plant-items-29.png-05f112b2877dc1a21007c04997cfb1c4.ctex"
+uid="uid://cnctn5c02xqaa"
+path="res://.godot/imported/farm-plant-seed-carrot.png-3cd78daf2ba754c75dc93370508a59b1.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://modified-assets/tools/farm-plant-items-29.png"
-dest_files=["res://.godot/imported/farm-plant-items-29.png-05f112b2877dc1a21007c04997cfb1c4.ctex"]
+source_file="res://modified-assets/tools/farm-plant-seed-carrot.png"
+dest_files=["res://.godot/imported/farm-plant-seed-carrot.png-3cd78daf2ba754c75dc93370508a59b1.ctex"]
 
 [params]
 

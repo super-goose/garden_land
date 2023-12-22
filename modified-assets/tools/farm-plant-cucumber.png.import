@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://bgx2m38hucek5"
-path="res://.godot/imported/farm-plant-items-21.png-75220312e322d61ca138aff7ad542560.ctex"
+uid="uid://cndmruscrcwqe"
+path="res://.godot/imported/farm-plant-cucumber.png-d7a1b0fa7abd7c4512d00e24aaf18704.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://modified-assets/tools/farm-plant-items-21.png"
-dest_files=["res://.godot/imported/farm-plant-items-21.png-75220312e322d61ca138aff7ad542560.ctex"]
+source_file="res://modified-assets/tools/farm-plant-cucumber.png"
+dest_files=["res://.godot/imported/farm-plant-cucumber.png-d7a1b0fa7abd7c4512d00e24aaf18704.ctex"]
 
 [params]
 

@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://cuv7qljq2n2wv"
-path="res://.godot/imported/farm-plant-items-0.png-3f26853666bb8ba975685789300e74e7.ctex"
+uid="uid://vxwoc8afbml4"
+path="res://.godot/imported/farm-plant-wheat.png-a5a88270555d33cf5a548c1c075325f6.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://modified-assets/tools/farm-plant-items-0.png"
-dest_files=["res://.godot/imported/farm-plant-items-0.png-3f26853666bb8ba975685789300e74e7.ctex"]
+source_file="res://modified-assets/tools/farm-plant-wheat.png"
+dest_files=["res://.godot/imported/farm-plant-wheat.png-a5a88270555d33cf5a548c1c075325f6.ctex"]
 
 [params]
 

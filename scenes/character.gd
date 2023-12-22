@@ -164,7 +164,6 @@ func _handle_event_perform_action(action: Constants.ACTIONS):
 	if action == Constants.ACTIONS.Water:
 		set_state('water')
 	if action == Constants.ACTIONS.Hoe:
-		print(current_tree)
 		set_state('hoe')
 	if action == Constants.ACTIONS.Sow:
 		set_state('sow')
@@ -181,8 +180,8 @@ func set_direction(new_direction):
 	}[direction]
 	$AoI.rotation = r
 
-func set_state(new_state: String):
-	if state == new_state:
+func set_state(new_state: String, force_update = false):
+	if state == new_state and not force_update:
 		return
 	state = new_state
 	var actions = []

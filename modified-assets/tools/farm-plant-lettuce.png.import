@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://cnctn5c02xqaa"
-path="res://.godot/imported/farm-plant-items-4.png-7505e9ac16049414223024940941aff6.ctex"
+uid="uid://cngic5cj44r30"
+path="res://.godot/imported/farm-plant-lettuce.png-08fc5c18df4201fbf2b8e4c46e71c931.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://modified-assets/tools/farm-plant-items-4.png"
-dest_files=["res://.godot/imported/farm-plant-items-4.png-7505e9ac16049414223024940941aff6.ctex"]
+source_file="res://modified-assets/tools/farm-plant-lettuce.png"
+dest_files=["res://.godot/imported/farm-plant-lettuce.png-08fc5c18df4201fbf2b8e4c46e71c931.ctex"]
 
 [params]
 

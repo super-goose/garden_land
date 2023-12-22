@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://dhu1378b0tm8h"
-path="res://.godot/imported/farm-plant-items-22.png-f58b34b9f33dd9d460647f23f890360d.ctex"
+uid="uid://c34a1dys7627w"
+path="res://.godot/imported/farm-plant-seed-tomato.png-ec2a6c6e41d1028f9d350f0b94334935.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://modified-assets/tools/farm-plant-items-22.png"
-dest_files=["res://.godot/imported/farm-plant-items-22.png-f58b34b9f33dd9d460647f23f890360d.ctex"]
+source_file="res://modified-assets/tools/farm-plant-seed-tomato.png"
+dest_files=["res://.godot/imported/farm-plant-seed-tomato.png-ec2a6c6e41d1028f9d350f0b94334935.ctex"]
 
 [params]
 

@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://dnjcgbqkvqgps"
-path="res://.godot/imported/farm-plant-items-24.png-92aa7f12c6390475799f201ca1ef0b81.ctex"
+uid="uid://cluwwb8mod15k"
+path="res://.godot/imported/farm-plant-eggplant.png-9eabe367b479493740e612668e168eee.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://modified-assets/tools/farm-plant-items-24.png"
-dest_files=["res://.godot/imported/farm-plant-items-24.png-92aa7f12c6390475799f201ca1ef0b81.ctex"]
+source_file="res://modified-assets/tools/farm-plant-eggplant.png"
+dest_files=["res://.godot/imported/farm-plant-eggplant.png-9eabe367b479493740e612668e168eee.ctex"]
 
 [params]
 

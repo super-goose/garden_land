@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://c852j74niod2i"
-path="res://.godot/imported/farm-plant-items-18.png-630bc0c4e57a2370f4564aa97eeeec09.ctex"
+uid="uid://b1l8seebke7sj"
+path="res://.godot/imported/farm-plant-pumpkin.png-fe558226e96616b8a7b90de74139eb21.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://modified-assets/tools/farm-plant-items-18.png"
-dest_files=["res://.godot/imported/farm-plant-items-18.png-630bc0c4e57a2370f4564aa97eeeec09.ctex"]
+source_file="res://modified-assets/tools/farm-plant-pumpkin.png"
+dest_files=["res://.godot/imported/farm-plant-pumpkin.png-fe558226e96616b8a7b90de74139eb21.ctex"]
 
 [params]
 
