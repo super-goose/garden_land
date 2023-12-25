@@ -166,7 +166,12 @@ func _handle_event_perform_action(action: Constants.ACTIONS):
 	if action == Constants.ACTIONS.Hoe:
 		set_state('hoe')
 	if action == Constants.ACTIONS.Sow:
-		set_state('sow')
+		facilitate_sowing()
+
+func facilitate_sowing():
+	Events.display_seed_options.emit([Constants.TYPE.Corn, Constants.TYPE.Eggplant, Constants.TYPE.Carrot])
+	print('await seed selection or dismissal')
+	print('decrement seed count if applicable')
 
 func set_direction(new_direction):
 	if direction == new_direction:
@@ -187,8 +192,10 @@ func set_state(new_state: String, force_update = false):
 	var actions = []
 	if state == 'idle':
 		if current_plant:
-			actions.push_back(Constants.ACTIONS.Sow)
-			actions.push_back(Constants.ACTIONS.Water)
+			if current_plant.type == Constants.TYPE.None:
+				actions.push_back(Constants.ACTIONS.Sow)
+			else:
+				actions.push_back(Constants.ACTIONS.Water)
 		elif current_tree:
 			actions.push_back(Constants.ACTIONS.Chop)
 		else:

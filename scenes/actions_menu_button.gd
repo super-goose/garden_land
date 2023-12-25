@@ -9,7 +9,7 @@ func _ready():
 		Constants.ACTIONS.Hoe: load("res://modified-assets/tools/tools-hoe.png"),
 		Constants.ACTIONS.Water: load("res://modified-assets/tools/tools-water-can.png"),
 		Constants.ACTIONS.Chop: load("res://modified-assets/tools/tools-axe.png"),
-		Constants.ACTIONS.Sow: load("res://modified-assets/tools/farm-plant-items-0.png"),
+		Constants.ACTIONS.Sow: load("res://modified-assets/tools/farm-plant-seed-blank.png"),
 	}
 	$TextureRect.texture = action_image[action]
 

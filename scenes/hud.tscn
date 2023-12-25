@@ -1,13 +1,12 @@
-[gd_scene load_steps=4 format=3 uid="uid://cualt3fdfjppy"]
+[gd_scene load_steps=3 format=3 uid="uid://cualt3fdfjppy"]
 
 [ext_resource type="Script" path="res://scenes/hud.gd" id="1_vkfkb"]
 [ext_resource type="PackedScene" uid="uid://cdbj207ey8npw" path="res://scenes/actions_menu_button.tscn" id="1_wa8wc"]
-[ext_resource type="PackedScene" uid="uid://dnroisdn74j7y" path="res://scenes/seed_button.tscn" id="3_c7t5n"]
 
 [node name="HUD" type="CanvasLayer"]
 script = ExtResource("1_vkfkb")
 
-[node name="MarginContainer" type="MarginContainer" parent="."]
+[node name="Actions" type="MarginContainer" parent="."]
 anchors_preset = 12
 anchor_top = 1.0
 anchor_right = 1.0
@@ -16,11 +15,11 @@ offset_top = -32.0
 grow_horizontal = 2
 grow_vertical = 0
 
-[node name="ColorRect" type="ColorRect" parent="MarginContainer"]
+[node name="ColorRect" type="ColorRect" parent="Actions"]
 layout_mode = 2
 color = Color(0.117647, 0.117647, 0.117647, 0.152941)
 
-[node name="ColorRect" type="ColorRect" parent="MarginContainer/ColorRect"]
+[node name="ColorRect" type="ColorRect" parent="Actions/ColorRect"]
 layout_mode = 0
 offset_left = 2.0
 offset_top = 2.0
@@ -28,29 +27,29 @@ offset_right = 178.0
 offset_bottom = 30.0
 color = Color(0.113725, 0.113725, 0.113725, 0.509804)
 
-[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer/ColorRect/ColorRect"]
+[node name="HBoxContainer" type="HBoxContainer" parent="Actions/ColorRect/ColorRect"]
 layout_mode = 0
 offset_left = 3.0
 offset_right = 173.0
 offset_bottom = 28.0
 theme_override_constants/separation = 6
 
-[node name="ActionsMenuButton" parent="MarginContainer/ColorRect/ColorRect/HBoxContainer" instance=ExtResource("1_wa8wc")]
+[node name="ActionsMenuButton" parent="Actions/ColorRect/ColorRect/HBoxContainer" instance=ExtResource("1_wa8wc")]
 layout_mode = 2
 
-[node name="ActionsMenuButton2" parent="MarginContainer/ColorRect/ColorRect/HBoxContainer" instance=ExtResource("1_wa8wc")]
+[node name="ActionsMenuButton2" parent="Actions/ColorRect/ColorRect/HBoxContainer" instance=ExtResource("1_wa8wc")]
 layout_mode = 2
 action = 1
 
-[node name="ActionsMenuButton3" parent="MarginContainer/ColorRect/ColorRect/HBoxContainer" instance=ExtResource("1_wa8wc")]
+[node name="ActionsMenuButton3" parent="Actions/ColorRect/ColorRect/HBoxContainer" instance=ExtResource("1_wa8wc")]
 layout_mode = 2
 action = 2
 
-[node name="ActionsMenuButton4" parent="MarginContainer/ColorRect/ColorRect/HBoxContainer" instance=ExtResource("1_wa8wc")]
+[node name="ActionsMenuButton4" parent="Actions/ColorRect/ColorRect/HBoxContainer" instance=ExtResource("1_wa8wc")]
 layout_mode = 2
 action = 3
 
-[node name="MarginContainer2" type="MarginContainer" parent="."]
+[node name="Seeds" type="MarginContainer" parent="."]
 anchors_preset = 12
 anchor_top = 1.0
 anchor_right = 1.0
@@ -59,11 +58,11 @@ offset_top = -51.0
 grow_horizontal = 2
 grow_vertical = 0
 
-[node name="ColorRect" type="ColorRect" parent="MarginContainer2"]
+[node name="ColorRect" type="ColorRect" parent="Seeds"]
 layout_mode = 2
 color = Color(0.184314, 0.184314, 0.184314, 0.447059)
 
-[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer2/ColorRect"]
+[node name="HBoxContainer" type="HBoxContainer" parent="Seeds/ColorRect"]
 layout_mode = 1
 anchors_preset = 10
 anchor_right = 1.0
@@ -73,6 +72,3 @@ offset_right = -2.0
 offset_bottom = 20.0
 grow_horizontal = 2
 theme_override_constants/separation = 2
-
-[node name="SeedButton" parent="MarginContainer2/ColorRect/HBoxContainer" instance=ExtResource("3_c7t5n")]
-layout_mode = 2

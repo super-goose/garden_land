@@ -1,12 +1,12 @@
 class_name GardenPlot
 extends Area2D
 
-enum TYPE {
-	_corn, _still_corn, carrot, cauliflower, tomato,
-	eggplant, _blue_flower, lettuce, wheat, pumpkin,
-	parsnip, _rose, beet, _star_fruit, cucumber
-}
-@export var type : Constants.TYPE #TYPE
+#enum TYPE {
+#	_corn, _still_corn, carrot, cauliflower, tomato,
+#	eggplant, _blue_flower, lettuce, wheat, pumpkin,
+#	parsnip, _rose, beet, _star_fruit, cucumber
+#}
+@export var type : Constants.TYPE = Constants.TYPE.None #TYPE
 
 var action_types: Array[Constants.ACTIONS] = [Constants.ACTIONS.Hoe, Constants.ACTIONS.Water, Constants.ACTIONS.Sow]
 

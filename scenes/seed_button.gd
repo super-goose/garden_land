@@ -1,9 +1,13 @@
 class_name SeedButton
 extends TextureButton
 
-@export var type: Constants.TYPE
+var type: Constants.TYPE
 
 func _ready():
+	pass
+
+func set_button_type(_type: Constants.TYPE):
+	type = _type
 	var button_image = {
 		Constants.TYPE.Corn: load("res://modified-assets/tools/farm-plant-seed-corn.png"),
 		Constants.TYPE.Carrot: load("res://modified-assets/tools/farm-plant-seed-carrot.png"),
@@ -20,7 +24,9 @@ func _ready():
 		Constants.TYPE.StarFruit: load("res://modified-assets/tools/farm-plant-seed-starfruit.png"),
 		Constants.TYPE.Cucumber: load("res://modified-assets/tools/farm-plant-seed-cucumber.png"),
 	}
-	texture_normal = button_image[type]
+	texture_normal = button_image[_type]
+	
 
 func _on_pressed():
+	breakpoint
 	Events.select_seed_type.emit(type)

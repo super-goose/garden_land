@@ -9,7 +9,6 @@
 collision_layer = 2
 collision_mask = 0
 script = ExtResource("1_81omm")
-type = 5
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(0, -2)
