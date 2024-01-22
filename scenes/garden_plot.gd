@@ -42,6 +42,9 @@ func increase_stage():
 	}[stage]
 	set_stage(new_stage)
 
+func set_type(t: Constants.TYPE):
+	type = t
+
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
 	pass

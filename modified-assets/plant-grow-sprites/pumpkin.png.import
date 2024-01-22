@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://cipwv30lu56nv"
-path="res://.godot/imported/corn.png-a32758e2e8f08c1a675bb5b64af823e3.ctex"
+uid="uid://vwj7m1c0reck"
+path="res://.godot/imported/pumpkin.png-33424a25e10d9fe22ea72b0523f38399.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://modified-assets/corn.png"
-dest_files=["res://.godot/imported/corn.png-a32758e2e8f08c1a675bb5b64af823e3.ctex"]
+source_file="res://modified-assets/plant-grow-sprites/pumpkin.png"
+dest_files=["res://.godot/imported/pumpkin.png-33424a25e10d9fe22ea72b0523f38399.ctex"]
 
 [params]
 

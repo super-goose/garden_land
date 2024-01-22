@@ -28,5 +28,5 @@ func set_button_type(_type: Constants.TYPE):
 	
 
 func _on_pressed():
-	breakpoint
 	Events.select_seed_type.emit(type)
+	Events.hide_seed_options.emit()

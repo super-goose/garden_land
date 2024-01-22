@@ -19,6 +19,7 @@ func _ready():
 	Events.select_garden_plot.connect(_handle_event_select_garden_plot)
 	Events.select_fruit_tree.connect(_handle_event_select_fruit_tree)
 	Events.perform_action.connect(_handle_event_perform_action)
+	Events.select_seed_type.connect(_handle_event_select_seed_type)
 	set_state('idle')
 
 func set_start_position(v: Vector2i):
@@ -145,10 +146,10 @@ func _on_animated_sprite_2d_animation_finished():
 		if not watering_happened:
 			current_plant.increase_stage()
 			watering_happened = true
+		set_state('idle')
 
 func _handle_event_select_garden_plot(garden_plot: GardenPlot):
 	print('a garden plot was selected... do something with it? display a context menu??')
-	print(garden_plot)
 	var here = position_to_coords(position)
 	var garden_plot_coordinates = LevelGenerationUtil.convert_to_grid_coordinates(garden_plot.position)
 	go_to_position(garden_plot_coordinates)
@@ -167,6 +168,11 @@ func _handle_event_perform_action(action: Constants.ACTIONS):
 		set_state('hoe')
 	if action == Constants.ACTIONS.Sow:
 		facilitate_sowing()
+
+func _handle_event_select_seed_type(seed_type: Constants.TYPE):
+	current_plant.set_type(seed_type)
+	set_state('idle', true)
+	breakpoint # type is not getting set, or at least, the plant sprite is wrong
 
 func facilitate_sowing():
 	Events.display_seed_options.emit([Constants.TYPE.Corn, Constants.TYPE.Eggplant, Constants.TYPE.Carrot])
