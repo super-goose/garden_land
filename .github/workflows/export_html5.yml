@@ -1,0 +1,29 @@
+name: Export projects to HTML5 and deploy to GitHub Pages
+on:
+  push:
+    branches:
+      - master
+
+env:
+  GODOT_VERSION: 4.1.1
+
+jobs:
+  export-html5:
+    name: Export projects to HTML5 and deploy to S3
+    runs-on: ubuntu-20.04
+    container:
+      image: barichello/godot-ci
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3
+
+      - name: Setup
+        run: |
+          mkdir -p ~/.local/share/godot/templates/
+          mv /root/.local/share/godot/templates/$GODOT_VERSION.stable ~/.local/share/godot/templates/$GO$
+
+      - name: Export projects to HTML5
+        run: |
+          apt-get update -qq && apt-get install -qqq imagemagick
+
+          BASEDIR="$PWD"
