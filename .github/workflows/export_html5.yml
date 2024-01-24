@@ -12,22 +12,28 @@ jobs:
     name: Export projects to HTML5 and deploy to S3
     runs-on: ubuntu-20.04
     container:
-      image: barichello/godot-ci
+      image: barichello/godot-ci:4.1.1
     steps:
       - name: Checkout
-        uses: actions/checkout@v3
-
+        uses: actions/checkout@v2
+        with:
+          lfs: true
       - name: Setup
         run: |
-          mkdir -p ~/.local/share/godot/templates/
+          mkdir -v -p ~/.local/share/godot/templates
           mv /root/.local/share/godot/templates/${GODOT_VERSION}.stable ~/.local/share/godot/templates/${GODOT_VERSION}.stable
-          mkdir -v -p build/web
-
-      - name: Export projects to HTML5
+      - name: Web Build
         run: |
-          godot -v --export "HTML5" build/web/index.html
-
-      - name: Configure AWS Credentials
+          mkdir -v -p build/web
+          godot --headless --verbose --export-release "HTML5" ../build/web/index.html
+      - name: Upload Artifact
+        uses: actions/upload-artifact@v1
+        with:
+          name: web
+          path: build/web
+      - name: Install rsync 📚
+        run: |
+          apt-get update && apt-get install -y rsync      - name: Configure AWS Credentials
         uses: aws-actions/configure-aws-credentials@v1
         with:
           aws-access-key-id: ${{ secrets.AWS_KEY_ID }}
