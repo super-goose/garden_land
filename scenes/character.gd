@@ -172,7 +172,7 @@ func _handle_event_perform_action(action: Constants.ACTIONS):
 func _handle_event_select_seed_type(seed_type: Constants.TYPE):
 	current_plant.set_type(seed_type)
 	set_state('idle', true)
-	breakpoint # type is not getting set, or at least, the plant sprite is wrong
+#	breakpoint # type is not getting set, or at least, the plant sprite is wrong
 
 func facilitate_sowing():
 	Events.display_seed_options.emit([Constants.TYPE.Corn, Constants.TYPE.Eggplant, Constants.TYPE.Carrot])

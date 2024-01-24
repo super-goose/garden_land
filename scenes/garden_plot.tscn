@@ -4,6 +4,7 @@
 [ext_resource type="Texture2D" uid="uid://bo8ftdxn1g1lb" path="res://Sprout Lands - Sprites - premium pack/Objects/Farming Plants.png" id="2_qybk5"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_iitex"]
+size = Vector2(18, 18)
 
 [node name="GardenPlot" type="Area2D"]
 collision_layer = 2
@@ -11,7 +12,6 @@ collision_mask = 0
 script = ExtResource("1_81omm")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(0, -2)
 shape = SubResource("RectangleShape2D_iitex")
 
 [node name="FarmingPlants" type="Sprite2D" parent="."]
@@ -24,8 +24,8 @@ frame = 13
 [node name="Button" type="Button" parent="."]
 modulate = Color(1, 1, 1, 0)
 offset_left = -8.0
-offset_top = -10.0
+offset_top = -8.0
 offset_right = 8.0
-offset_bottom = 6.0
+offset_bottom = 8.0
 
 [connection signal="pressed" from="Button" to="." method="_on_button_pressed"]

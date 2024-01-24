@@ -20,15 +20,12 @@ func _ready():
 #	print(int(type))
 #	print(int(stage))
 	$FarmingPlants.visible = stage != STAGE.empty
-	$FarmingPlants.frame = (int(type) * 5) + int(stage)
-
-func calculate_frame():
-	return (int(type) * 5) + int(stage)
+	$FarmingPlants.frame = int(stage)
 
 func set_stage(s: STAGE):
 	stage = s
 	$FarmingPlants.visible = stage != STAGE.empty
-	$FarmingPlants.frame = (int(type) * 5) + int(stage) - 1
+	$FarmingPlants.frame = int(stage) - 1
 
 func increase_stage():
 #	print('increasing stage for %s' % debug_name)
@@ -44,10 +41,29 @@ func increase_stage():
 
 func set_type(t: Constants.TYPE):
 	type = t
+	if type != Constants.TYPE.None:
+		var textures = {
+			Constants.TYPE.Corn: load("res://modified-assets/plant-grow-sprites/corn.png"),
+			Constants.TYPE.Carrot: load("res://modified-assets/plant-grow-sprites/carrot.png"),
+			Constants.TYPE.Cauliflower: load("res://modified-assets/plant-grow-sprites/cauliflower.png"),
+			Constants.TYPE.Tomato: load("res://modified-assets/plant-grow-sprites/tomato.png"),
+			Constants.TYPE.Eggplant: load("res://modified-assets/plant-grow-sprites/eggplant.png"),
+			Constants.TYPE.BlueFlower: load("res://modified-assets/plant-grow-sprites/flower.png"),
+			Constants.TYPE.Lettuce: load("res://modified-assets/plant-grow-sprites/lettuce.png"),
+			Constants.TYPE.Wheat: load("res://modified-assets/plant-grow-sprites/wheat.png"),
+			Constants.TYPE.Pumpkin: load("res://modified-assets/plant-grow-sprites/pumpkin.png"),
+			Constants.TYPE.Parsnip: load("res://modified-assets/plant-grow-sprites/parsnip.png"),
+			Constants.TYPE.Rose: load("res://modified-assets/plant-grow-sprites/rose.png"),
+			Constants.TYPE.Beet: load("res://modified-assets/plant-grow-sprites/beet.png"),
+			Constants.TYPE.StarFruit: load("res://modified-assets/plant-grow-sprites/star-fruit.png"),
+			Constants.TYPE.Cucumber: load("res://modified-assets/plant-grow-sprites/cucumber.png"),
+		}
+		$FarmingPlants.texture = textures[type]
+		$FarmingPlants.hframes = 5 if type == Constants.TYPE.Corn else 4
+		$FarmingPlants.vframes = 1
+		$FarmingPlants.frame = 0
+		
 
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta):
-	pass
 """
 plants:
 0 - corn
