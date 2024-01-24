@@ -1,0 +1,39 @@
+name: Export projects to HTML5 and deploy to GitHub Pages
+on:
+  push:
+    branches:
+      - master
+
+env:
+  GODOT_VERSION: 4.1.1
+
+jobs:
+  export-html5:
+    name: Export projects to HTML5 and deploy to S3
+    runs-on: ubuntu-20.04
+    container:
+      image: barichello/godot-ci
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3
+
+      - name: Setup
+        run: |
+          mkdir -p ~/.local/share/godot/templates/
+          mv /root/.local/share/godot/templates/$GODOT_VERSION.stable ~/.local/share/godot/templates/$GO$
+
+      - name: Export projects to HTML5
+        run: |
+          apt-get update -qq && apt-get install -qqq imagemagick
+
+          BASEDIR="$PWD"
+
+      - name: Configure AWS Credentials
+        uses: aws-actions/configure-aws-credentials@v1
+        with:
+          aws-access-key-id: ${{ secrets.AWS_KEY_ID }}
+          aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+          aws-region: us-east-1
+
+      - name: Deploy static site to S3 bucket
+        run: aws s3 sync ./public/ s3://${{secrets.AWS_BUCKET_NAME}}/sprouts --delete
