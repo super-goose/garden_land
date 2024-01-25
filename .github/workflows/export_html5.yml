@@ -31,7 +31,7 @@ jobs:
       - name: Web Build
         run: |
           mkdir -v -p build/web
-          godot --headless --verbose --export-release "Web" ./build/web/index.html
+          godot --headless --verbose --export "Web" ./build/web/index.html
 
       - name: Configure AWS Credentials
         uses: aws-actions/configure-aws-credentials@v1
