@@ -23,7 +23,7 @@ jobs:
         run: |
           mkdir -v -p ~/.local/share/godot/templates
           mv /root/.local/share/godot/templates/${GODOT_VERSION}.stable ~/.local/share/godot/templates/${GODOT_VERSION}.stable
-          apt-get update && apt-get install -y unzip curl
+          apt-get update && apt-get install -y unzip curl python3
           curl "https://s3.amazonaws.com/aws-cli/awscli-bundle.zip" -o "awscli-bundle.zip"
           unzip awscli-bundle.zip
           ./awscli-bundle/install -i /usr/local/aws -b /usr/local/bin/aws
