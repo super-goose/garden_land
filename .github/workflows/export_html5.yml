@@ -32,6 +32,12 @@ jobs:
         run: |
           mkdir -v -p build/web
           pwd && ls
+          echo " vvv vvv vvv vvv in root vvv vvv vvv vvv "
+          ls /root/.local/share/godot/templates/${GODOT_VERSION}.stable
+          echo " ^^^ ^^^ ^^^ ^^^ in root ^^^ ^^^ ^^^ ^^^ "
+          echo " vvv vvv vvv vvv in home vvv vvv vvv vvv "
+          ls ~/.local/share/godot/templates/${GODOT_VERSION}.stable
+          echo " ^^^ ^^^ ^^^ ^^^ in home ^^^ ^^^ ^^^ ^^^ "
           godot --headless --verbose --export-release "Web" ../build/web/index.html
 
       - name: Configure AWS Credentials
