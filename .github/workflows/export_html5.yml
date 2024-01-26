@@ -38,7 +38,7 @@ jobs:
           echo " vvv vvv vvv vvv in home vvv vvv vvv vvv "
           ls ~/.local/share/godot/templates/
           echo " ^^^ ^^^ ^^^ ^^^ in home ^^^ ^^^ ^^^ ^^^ "
-          godot --headless --verbose --export-release "Web" ../build/web/index.html
+          godot --headless --verbose --export-release ./web_debug.zip ../build/web/index.html
 
       - name: Configure AWS Credentials
         uses: aws-actions/configure-aws-credentials@v1
