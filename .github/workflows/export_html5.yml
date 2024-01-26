@@ -36,6 +36,7 @@ jobs:
           ls ~/.local/share/godot/export_templates/${GODOT_VERSION}.stable/
           echo " ^^^ ^^^ ^^^ ^^^ in home ^^^ ^^^ ^^^ ^^^ "
           godot --headless --verbose --export-debug "Web" ./build/web/index.html
+          cp .htaccess ./build/web/.htaccess
 
       - name: Configure AWS Credentials
         uses: aws-actions/configure-aws-credentials@v1
