@@ -84,6 +84,7 @@ func go_to_next_position():
 	var coord = path.pop_front()
 	if not coord:
 		set_direction(final_direction)
+		await get_tree().create_timer(.5).timeout
 		set_state('idle')
 		return
 	move_to(coord)
@@ -108,12 +109,14 @@ func _set_direction_from_vectors(from: Vector2, to: Vector2):
 		set_direction('down')
 
 func _on_ao_i_area_entered(area):
+	print('an area entered AoI')
 	if area is GardenPlot:
 		current_plant = area
 	elif area is FruitTree:
 		current_tree = area
 
 func _on_ao_i_area_exited(area):
+	print('an area exited AoI')
 	if current_plant == area:
 		current_plant = null
 	if current_tree == area:
@@ -136,6 +139,8 @@ func _on_animated_sprite_2d_animation_looped():
 		if times_hoed == HOE_LIMIT:
 			times_hoed = 0
 			var coordinates = LevelGenerationUtil.convert_to_grid_coordinates($AoI/FocusCursor.global_position)
+			print('character coords: %s' % position_to_coords(position))
+			print('hoe coordinates: %s' % coordinates)
 			LevelGenerationUtil.add_plantable_tile(coordinates)
 			await get_tree().create_timer(.5).timeout
 			set_state('idle')
@@ -197,6 +202,7 @@ func set_state(new_state: String, force_update = false):
 	state = new_state
 	var actions = []
 	if state == 'idle':
+#		breakpoint
 		if current_plant:
 			if current_plant.type == Constants.TYPE.None:
 				actions.push_back(Constants.ACTIONS.Sow)
