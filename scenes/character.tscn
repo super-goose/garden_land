@@ -1613,7 +1613,7 @@ position = Vector2(0, -15)
 
 [node name="Focus" type="Polygon2D" parent="AoI/FocusCursor"]
 position = Vector2(-8, -9)
-color = Color(0.262745, 0.572549, 1, 0.337255)
+color = Color(0.262745, 0.572549, 1, 0.152941)
 offset = Vector2(8, 8)
 polygon = PackedVector2Array(-8, -8, -8, 8, 8, 8, 8, -8)
 
