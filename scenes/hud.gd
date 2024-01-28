@@ -5,7 +5,7 @@ extends CanvasLayer
 
 var seeds_duration = .3
 var pos_y_seeds_in = 269 # get this dynamically
-var pos_y_seeds_out = 269 + 51 # get this dynamically
+var pos_y_seeds_out = 269 + 51 + 200 # get this dynamically (200 is padding for taller screens)
 
 @onready var SeedButton = load("res://scenes/seed_button.tscn")
 
