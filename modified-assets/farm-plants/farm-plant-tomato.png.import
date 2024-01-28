@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://ctcmf5h5s2d66"
-path="res://.godot/imported/farm-plant-blueflower.png-374d264b2a45eb71a0f9a1b0cda9a52f.ctex"
+uid="uid://cm3wxmxvo5krs"
+path="res://.godot/imported/farm-plant-tomato.png-d99ef92b16343ce6fb38fd8a247273d8.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://modified-assets/tools/farm-plant-blueflower.png"
-dest_files=["res://.godot/imported/farm-plant-blueflower.png-374d264b2a45eb71a0f9a1b0cda9a52f.ctex"]
+source_file="res://modified-assets/farm-plants/farm-plant-tomato.png"
+dest_files=["res://.godot/imported/farm-plant-tomato.png-d99ef92b16343ce6fb38fd8a247273d8.ctex"]
 
 [params]
 

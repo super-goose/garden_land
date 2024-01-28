@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://cuv7qljq2n2wv"
-path="res://.godot/imported/farm-plant-seed-blank.png-ebdeaaa9dcdce119f0bad937404ac036.ctex"
+uid="uid://svfmbec0jlcl"
+path="res://.godot/imported/farm-plant-seed-parsnip.png-ce18fe9a45464250c43bf774629e8d65.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://modified-assets/tools/farm-plant-seed-blank.png"
-dest_files=["res://.godot/imported/farm-plant-seed-blank.png-ebdeaaa9dcdce119f0bad937404ac036.ctex"]
+source_file="res://modified-assets/farm-plants/farm-plant-seed-parsnip.png"
+dest_files=["res://.godot/imported/farm-plant-seed-parsnip.png-ce18fe9a45464250c43bf774629e8d65.ctex"]
 
 [params]
 

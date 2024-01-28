@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://svfmbec0jlcl"
-path="res://.godot/imported/farm-plant-seed-parsnip.png-1784fba5962cdc056c045ee7f5935139.ctex"
+uid="uid://bhgayitpm4elh"
+path="res://.godot/imported/farm-plant-seed-cauliflower.png-086fa1ea17b94e1bfc0834fad81c9d97.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://modified-assets/tools/farm-plant-seed-parsnip.png"
-dest_files=["res://.godot/imported/farm-plant-seed-parsnip.png-1784fba5962cdc056c045ee7f5935139.ctex"]
+source_file="res://modified-assets/farm-plants/farm-plant-seed-cauliflower.png"
+dest_files=["res://.godot/imported/farm-plant-seed-cauliflower.png-086fa1ea17b94e1bfc0834fad81c9d97.ctex"]
 
 [params]
 

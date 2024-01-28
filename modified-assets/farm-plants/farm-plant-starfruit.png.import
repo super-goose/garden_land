@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://dnkb2qj1m2kg5"
-path="res://.godot/imported/farm-plant-seed-lettuce.png-e25b10501a28ee51f722396ae1f1cb18.ctex"
+uid="uid://btf8umd6j5o6i"
+path="res://.godot/imported/farm-plant-starfruit.png-f47119ccdd44af49ac3abfcf5e0d1542.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://modified-assets/tools/farm-plant-seed-lettuce.png"
-dest_files=["res://.godot/imported/farm-plant-seed-lettuce.png-e25b10501a28ee51f722396ae1f1cb18.ctex"]
+source_file="res://modified-assets/farm-plants/farm-plant-starfruit.png"
+dest_files=["res://.godot/imported/farm-plant-starfruit.png-f47119ccdd44af49ac3abfcf5e0d1542.ctex"]
 
 [params]
 

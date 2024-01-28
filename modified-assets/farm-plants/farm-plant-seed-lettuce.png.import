@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://ppu5ud8o7jcn"
-path="res://.godot/imported/farm-plant-seed-wheat.png-99bd3a569cac538a84f8cac9eec00f56.ctex"
+uid="uid://dnkb2qj1m2kg5"
+path="res://.godot/imported/farm-plant-seed-lettuce.png-eba29c2d793dd549ce8a9f5c0d13af50.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://modified-assets/tools/farm-plant-seed-wheat.png"
-dest_files=["res://.godot/imported/farm-plant-seed-wheat.png-99bd3a569cac538a84f8cac9eec00f56.ctex"]
+source_file="res://modified-assets/farm-plants/farm-plant-seed-lettuce.png"
+dest_files=["res://.godot/imported/farm-plant-seed-lettuce.png-eba29c2d793dd549ce8a9f5c0d13af50.ctex"]
 
 [params]
 

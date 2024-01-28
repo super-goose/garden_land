@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://lot5ys1edm1d"
-path="res://.godot/imported/farm-plant-beet.png-747b9bcc4ad7d0312853e488993fd751.ctex"
+uid="uid://ctcmf5h5s2d66"
+path="res://.godot/imported/farm-plant-blueflower.png-2fb9606bc2b55e758cdb1d93ce530156.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://modified-assets/tools/farm-plant-beet.png"
-dest_files=["res://.godot/imported/farm-plant-beet.png-747b9bcc4ad7d0312853e488993fd751.ctex"]
+source_file="res://modified-assets/farm-plants/farm-plant-blueflower.png"
+dest_files=["res://.godot/imported/farm-plant-blueflower.png-2fb9606bc2b55e758cdb1d93ce530156.ctex"]
 
 [params]
 

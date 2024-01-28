@@ -25,8 +25,8 @@ var plantable_tiles = []
 ### Level Generation
 ###
 
-func __is_surrounded_by_walkable_tiles(c: Vector2i) -> bool:
-	return Common.is_subset(walkable_tiles, [
+func is_surrounded_by_terrain(c: Vector2i) -> bool:
+	return Common.is_subset(grass_terrain_array, [
 		c + Vector2i.UP,
 		c + Vector2i.DOWN,
 		c + Vector2i.LEFT,
@@ -41,9 +41,9 @@ func add_plantable_tile(c: Vector2i):
 	if plantable_tiles.find(c) > -1:
 #		print('this is already tilled land')
 		return
-#	if not __is_surrounded_by_walkable_tiles(c):
-##		print("you can't do this too close to the edge of walkable space")
-#		return
+	if not is_surrounded_by_terrain(c):
+#		print("you can't do this too close to the edge of walkable space")
+		return
 
 	plantable_tiles.push_front(c)
 	emit_signal('plantable_tiles_modified')

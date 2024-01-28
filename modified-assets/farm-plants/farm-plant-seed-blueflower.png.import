@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://cndmruscrcwqe"
-path="res://.godot/imported/farm-plant-cucumber.png-d7a1b0fa7abd7c4512d00e24aaf18704.ctex"
+uid="uid://3xhf8v0777h6"
+path="res://.godot/imported/farm-plant-seed-blueflower.png-2adc0ee3b06d5b577753cfc55182d497.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://modified-assets/tools/farm-plant-cucumber.png"
-dest_files=["res://.godot/imported/farm-plant-cucumber.png-d7a1b0fa7abd7c4512d00e24aaf18704.ctex"]
+source_file="res://modified-assets/farm-plants/farm-plant-seed-blueflower.png"
+dest_files=["res://.godot/imported/farm-plant-seed-blueflower.png-2adc0ee3b06d5b577753cfc55182d497.ctex"]
 
 [params]
 

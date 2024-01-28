@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://b5rhe4gvqxruw"
-path="res://.godot/imported/farm-plant-seed-corn.png-f49ce59dd78b4fcb96a3b4f16fa76659.ctex"
+uid="uid://cl1o5wy7del2f"
+path="res://.godot/imported/farm-plant-cauliflower.png-71f610bc3ae6ec8ea4fe6e28297b6b02.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://modified-assets/tools/farm-plant-seed-corn.png"
-dest_files=["res://.godot/imported/farm-plant-seed-corn.png-f49ce59dd78b4fcb96a3b4f16fa76659.ctex"]
+source_file="res://modified-assets/farm-plants/farm-plant-cauliflower.png"
+dest_files=["res://.godot/imported/farm-plant-cauliflower.png-71f610bc3ae6ec8ea4fe6e28297b6b02.ctex"]
 
 [params]
 

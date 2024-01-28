@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://3xhf8v0777h6"
-path="res://.godot/imported/farm-plant-seed-blueflower.png-6ed842bf622e5457f56ef3ccba9ec710.ctex"
+uid="uid://vxwoc8afbml4"
+path="res://.godot/imported/farm-plant-wheat.png-dc680ff59965f6f1b0ed57ddbaefcc7e.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://modified-assets/tools/farm-plant-seed-blueflower.png"
-dest_files=["res://.godot/imported/farm-plant-seed-blueflower.png-6ed842bf622e5457f56ef3ccba9ec710.ctex"]
+source_file="res://modified-assets/farm-plants/farm-plant-wheat.png"
+dest_files=["res://.godot/imported/farm-plant-wheat.png-dc680ff59965f6f1b0ed57ddbaefcc7e.ctex"]
 
 [params]
 

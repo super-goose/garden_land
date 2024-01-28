@@ -2,7 +2,7 @@
 extends CharacterBody2D
 
 const SPEED = 60
-const HOE_LIMIT = 2
+const HOE_LIMIT = 1
 
 var times_hoed = 0
 var state
@@ -210,6 +210,6 @@ func set_state(new_state: String, force_update = false):
 				actions.push_back(Constants.ACTIONS.Water)
 		elif current_tree:
 			actions.push_back(Constants.ACTIONS.Chop)
-		else:
+		elif LevelGenerationUtil.is_surrounded_by_terrain(position_to_coords($AoI/FocusCursor.global_position)):
 			actions.push_back(Constants.ACTIONS.Hoe)
 	Events.set_actions.emit(actions)
