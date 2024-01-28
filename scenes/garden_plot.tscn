@@ -1,7 +1,7 @@
 [gd_scene load_steps=4 format=3 uid="uid://c8jts7bt4i7p"]
 
 [ext_resource type="Script" path="res://scenes/garden_plot.gd" id="1_81omm"]
-[ext_resource type="Texture2D" uid="uid://bo8ftdxn1g1lb" path="res://Sprout Lands - Sprites - premium pack/Objects/Farming Plants.png" id="2_qybk5"]
+[ext_resource type="Texture2D" uid="uid://cipwv30lu56nv" path="res://modified-assets/plant-grow-sprites/corn.png" id="2_rpaw6"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_iitex"]
 size = Vector2(18, 18)
@@ -15,11 +15,10 @@ script = ExtResource("1_81omm")
 shape = SubResource("RectangleShape2D_iitex")
 
 [node name="FarmingPlants" type="Sprite2D" parent="."]
-position = Vector2(0, -5)
-texture = ExtResource("2_qybk5")
+position = Vector2(2.08165e-12, -12)
+texture = ExtResource("2_rpaw6")
 hframes = 5
-vframes = 15
-frame = 13
+frame = 3
 
 [node name="Button" type="Button" parent="."]
 modulate = Color(1, 1, 1, 0)
@@ -28,4 +27,8 @@ offset_top = -8.0
 offset_right = 8.0
 offset_bottom = 8.0
 
+[node name="StageTimer" type="Timer" parent="."]
+one_shot = true
+
 [connection signal="pressed" from="Button" to="." method="_on_button_pressed"]
+[connection signal="timeout" from="StageTimer" to="." method="_on_stage_timer_timeout"]

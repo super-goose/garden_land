@@ -149,7 +149,7 @@ func _on_animated_sprite_2d_animation_looped():
 func _on_animated_sprite_2d_animation_finished():
 	if state == 'water' and current_plant:
 		if not watering_happened:
-			current_plant.increase_stage()
+			current_plant.trigger_increase_stage()
 			watering_happened = true
 		set_state('idle')
 

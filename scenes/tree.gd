@@ -6,7 +6,7 @@ var hp = 2
 var is_intact = true
 var type : String
 
-var action_types : Array[Constants.ACTIONS] = [Constants.ACTIONS.Chop]
+#var action_types : Array[Constants.ACTIONS] = [Constants.ACTIONS.Chop]
 
 func _ready():
 	type = TYPES[Dice.roll_dn(5) - 1]
