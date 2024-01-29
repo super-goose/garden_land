@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://c8eg15cglkau"
-path="res://.godot/imported/fruit and berries items.png-7bbae22a1358fb1dc74df87069ca45f1.ctex"
+uid="uid://dueskurjavkfv"
+path="res://.godot/imported/tree apple sprites.png-e445ecc2508ea25766eb51e94b335fc6.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Sprout Lands - Sprites - premium pack/Objects/Items/fruit and berries items.png"
-dest_files=["res://.godot/imported/fruit and berries items.png-7bbae22a1358fb1dc74df87069ca45f1.ctex"]
+source_file="res://modified-assets/fruit-bearers/tree apple sprites.png"
+dest_files=["res://.godot/imported/tree apple sprites.png-e445ecc2508ea25766eb51e94b335fc6.ctex"]
 
 [params]
 

@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://dueskurjavkfv"
-path="res://.godot/imported/tree apple sprites.png-4026b89ffdf076b8e234a3438b306836.ctex"
+uid="uid://dmxm4w2nasj1a"
+path="res://.godot/imported/tree sprites.png-a0afd44218c0f58312fa621e3a06193d.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Sprout Lands - Sprites - premium pack/Objects/Tree animations/tree apple sprites.png"
-dest_files=["res://.godot/imported/tree apple sprites.png-4026b89ffdf076b8e234a3438b306836.ctex"]
+source_file="res://modified-assets/fruit-bearers/tree sprites.png"
+dest_files=["res://.godot/imported/tree sprites.png-a0afd44218c0f58312fa621e3a06193d.ctex"]
 
 [params]
 

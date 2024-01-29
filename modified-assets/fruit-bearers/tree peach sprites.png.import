@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://djgqh36mpe0u8"
-path="res://.godot/imported/tree pear sprites.png-a13fe90cb12b8e9aff9ef63b789f50c2.ctex"
+uid="uid://c7ycv4bpmumcm"
+path="res://.godot/imported/tree peach sprites.png-f8b14ac66a8f3f7fbe73ef21a5820607.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Sprout Lands - Sprites - premium pack/Objects/Tree animations/tree pear sprites.png"
-dest_files=["res://.godot/imported/tree pear sprites.png-a13fe90cb12b8e9aff9ef63b789f50c2.ctex"]
+source_file="res://modified-assets/fruit-bearers/tree peach sprites.png"
+dest_files=["res://.godot/imported/tree peach sprites.png-f8b14ac66a8f3f7fbe73ef21a5820607.ctex"]
 
 [params]
 

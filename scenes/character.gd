@@ -174,13 +174,13 @@ func _handle_event_perform_action(action: Constants.ACTIONS):
 	if action == Constants.ACTIONS.Sow:
 		facilitate_sowing()
 
-func _handle_event_select_seed_type(seed_type: Constants.TYPE):
+func _handle_event_select_seed_type(seed_type: Constants.PLANT_TYPE):
 	current_plant.set_type(seed_type)
 	set_state('idle', true)
 #	breakpoint # type is not getting set, or at least, the plant sprite is wrong
 
 func facilitate_sowing():
-	Events.display_seed_options.emit([Constants.TYPE.Corn, Constants.TYPE.Eggplant, Constants.TYPE.Carrot])
+	Events.display_seed_options.emit([Constants.PLANT_TYPE.Corn, Constants.PLANT_TYPE.Eggplant, Constants.PLANT_TYPE.Carrot])
 	print('await seed selection or dismissal')
 	print('decrement seed count if applicable')
 
@@ -204,7 +204,7 @@ func set_state(new_state: String, force_update = false):
 	if state == 'idle':
 #		breakpoint
 		if current_plant:
-			if current_plant.type == Constants.TYPE.None:
+			if current_plant.type == Constants.PLANT_TYPE.None:
 				actions.push_back(Constants.ACTIONS.Sow)
 			else:
 				actions.push_back(Constants.ACTIONS.Water)

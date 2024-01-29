@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://cre77g3i0hx66"
-path="res://.godot/imported/tree orange sprites.png-017bd79d9a9a1ab81df773dd76487671.ctex"
+uid="uid://c8eg15cglkau"
+path="res://.godot/imported/fruit-and-berries.png-57af6eb829cac187c4132823f782422c.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Sprout Lands - Sprites - premium pack/Objects/Tree animations/tree orange sprites.png"
-dest_files=["res://.godot/imported/tree orange sprites.png-017bd79d9a9a1ab81df773dd76487671.ctex"]
+source_file="res://modified-assets/fruit/fruit-and-berries.png"
+dest_files=["res://.godot/imported/fruit-and-berries.png-57af6eb829cac187c4132823f782422c.ctex"]
 
 [params]
 
