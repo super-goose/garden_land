@@ -15,6 +15,7 @@ script = ExtResource("1_81omm")
 shape = SubResource("RectangleShape2D_iitex")
 
 [node name="FarmingPlants" type="Sprite2D" parent="."]
+z_index = 10
 position = Vector2(2.08165e-12, -12)
 texture = ExtResource("2_rpaw6")
 hframes = 5
@@ -28,7 +29,6 @@ offset_right = 8.0
 offset_bottom = 8.0
 
 [node name="StageTimer" type="Timer" parent="."]
-wait_time = 5.0
 one_shot = true
 
 [connection signal="pressed" from="Button" to="." method="_on_button_pressed"]
