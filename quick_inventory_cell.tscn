@@ -1,8 +1,8 @@
 [gd_scene load_steps=5 format=3 uid="uid://3av7tgbc8rhv"]
 
-[ext_resource type="Texture2D" uid="uid://cnctn5c02xqaa" path="res://modified-assets/tools/farm-plant-seed-carrot.png" id="1_utpqp"]
+[ext_resource type="Texture2D" uid="uid://cnctn5c02xqaa" path="res://modified-assets/farm-plants/farm-plant-seed-carrot.png" id="1_utpqp"]
 [ext_resource type="Script" path="res://quick_inventory_cell.gd" id="1_yp1vs"]
-[ext_resource type="FontFile" uid="uid://bhvrl7wppixn1" path="res://PressStart2P-Regular-L.ttf" id="2_djrdd"]
+[ext_resource type="FontFile" uid="uid://bhvrl7wppixn1" path="res://fonts/PressStart2P-Regular-L.ttf" id="2_djrdd"]
 
 [sub_resource type="Theme" id="Theme_3thh7"]
 default_font = ExtResource("2_djrdd")

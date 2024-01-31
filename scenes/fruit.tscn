@@ -1,0 +1,10 @@
+[gd_scene load_steps=3 format=3 uid="uid://cmfvv6mvxxdbn"]
+
+[ext_resource type="Script" path="res://scenes/fruit.gd" id="1_agjoj"]
+[ext_resource type="Texture2D" uid="uid://c8eg15cglkau" path="res://modified-assets/fruit/fruit-and-berries.png" id="2_luxtl"]
+
+[node name="Fruit" type="Sprite2D"]
+texture = ExtResource("2_luxtl")
+hframes = 4
+vframes = 2
+script = ExtResource("1_agjoj")
