@@ -1,11 +1,13 @@
-[gd_scene load_steps=7 format=3 uid="uid://38xtew55py1l"]
+[gd_scene load_steps=9 format=3 uid="uid://38xtew55py1l"]
 
 [ext_resource type="Script" path="res://main.gd" id="1_b3ke2"]
 [ext_resource type="PackedScene" uid="uid://cualt3fdfjppy" path="res://scenes/hud.tscn" id="2_tdtfc"]
 [ext_resource type="PackedScene" uid="uid://b8722pdwk2exe" path="res://level/level.tscn" id="3_t3uwm"]
 [ext_resource type="PackedScene" uid="uid://brcxg1cwk4en0" path="res://scenes/character.tscn" id="4_38ofq"]
 [ext_resource type="PackedScene" uid="uid://c8jts7bt4i7p" path="res://scenes/garden_plot.tscn" id="5_lbnnx"]
-[ext_resource type="Texture2D" uid="uid://dy7wjg4pbwii6" path="res://Sprout Lands - Sprites - premium pack/Objects/Items/Farming Plants items.png" id="6_l81r5"]
+[ext_resource type="Texture2D" uid="uid://glljuw8qqo0" path="res://Sprout Lands - Sprites - premium pack/Objects/Water well.png" id="6_taxuy"]
+[ext_resource type="Texture2D" uid="uid://cjflo5xnx36yu" path="res://Sprout Lands - Sprites - premium pack/Objects/work station.png" id="7_t41wv"]
+[ext_resource type="Texture2D" uid="uid://dfbbuikr70nxa" path="res://basic-assets-prob-not-need/Sprout Lands - Sprites - Basic pack/Objects/Free_Chicken_House.png" id="8_i2ry5"]
 
 [node name="Main" type="Node2D"]
 script = ExtResource("1_b3ke2")
@@ -21,7 +23,17 @@ start_position = Vector2i(10, 10)
 position = Vector2(34, 12)
 type = 2
 
-[node name="FarmingPlantsItems" type="Sprite2D" parent="."]
+[node name="WaterWell" type="Sprite2D" parent="."]
 visible = false
-position = Vector2(-300, 208)
-texture = ExtResource("6_l81r5")
+position = Vector2(64, -32)
+texture = ExtResource("6_taxuy")
+
+[node name="WorkStation" type="Sprite2D" parent="."]
+visible = false
+position = Vector2(103, -32)
+texture = ExtResource("7_t41wv")
+
+[node name="FreeChickenHouse" type="Sprite2D" parent="."]
+visible = false
+position = Vector2(-26, 7)
+texture = ExtResource("8_i2ry5")

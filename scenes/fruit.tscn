@@ -4,6 +4,7 @@
 [ext_resource type="Texture2D" uid="uid://dw32tori7mdr5" path="res://modified-assets/fruit/fruit.png" id="1_h0vdv"]
 
 [node name="Fruit" type="Sprite2D"]
+z_as_relative = false
 texture = ExtResource("1_h0vdv")
 centered = false
 hframes = 5

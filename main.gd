@@ -1,11 +1,10 @@
 extends Node2D
 
-
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	var start_position = $Level.get_start_position()
 	
-	print("start position should be: (%s)" % start_position)
+#	print("start position should be: %s" % start_position)
 	$Character.set_start_position(start_position)
 
 func _process(delta):
@@ -25,11 +24,7 @@ func _unhandled_input(event: InputEvent) -> void:
 	if event is InputEventMouseButton: # mouse click
 		if (event.is_pressed() and event.button_index == MOUSE_BUTTON_LEFT): # left
 			var destination = get_global_mouse_position()
-			destination = convert_to_grid_coordinates(destination)
-			print('go to: (%s, %s)' % [destination.x, destination.y])
+			destination = Common.convert_to_grid_coordinates(destination)
+#			print('go to: (%s, %s)' % [destination.x, destination.y])
 			$Character.go_to_position(destination)
 
-func convert_to_grid_coordinates(v: Vector2) -> Vector2i:
-	var x = int(v.x / LevelGenerationUtil.TILE_SIZE)
-	var y = int(v.y / LevelGenerationUtil.TILE_SIZE)
-	return Vector2i(x, y)

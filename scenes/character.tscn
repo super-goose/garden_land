@@ -828,7 +828,7 @@ animations = [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_2d483")
 }],
-"loop": true,
+"loop": false,
 "name": &"chop_down",
 "speed": 12.0
 }, {
@@ -857,7 +857,7 @@ animations = [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_rxfx2")
 }],
-"loop": true,
+"loop": false,
 "name": &"chop_left",
 "speed": 12.0
 }, {
@@ -886,7 +886,7 @@ animations = [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_up1pj")
 }],
-"loop": true,
+"loop": false,
 "name": &"chop_right",
 "speed": 12.0
 }, {
@@ -915,7 +915,7 @@ animations = [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_5bv1u")
 }],
-"loop": true,
+"loop": false,
 "name": &"chop_up",
 "speed": 12.0
 }, {
@@ -1590,8 +1590,9 @@ shape = SubResource("RectangleShape2D_lfmq0")
 [node name="Camera2D" type="Camera2D" parent="."]
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+z_index = 5
 sprite_frames = SubResource("SpriteFrames_aeqdb")
-animation = &"water_up"
+animation = &"chop_up"
 
 [node name="AnimatedWater" type="AnimatedSprite2D" parent="."]
 visible = false

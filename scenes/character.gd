@@ -20,6 +20,8 @@ func _ready():
 	Events.select_fruit_tree.connect(_handle_event_select_fruit_tree)
 	Events.perform_action.connect(_handle_event_perform_action)
 	Events.select_seed_type.connect(_handle_event_select_seed_type)
+	Events.harvest_fruit.connect(_handle_event_harvest_fruit)
+	Events.harvest_plant.connect(_handle_event_harvest_plant)
 	set_state('idle')
 
 func set_start_position(v: Vector2i):
@@ -96,6 +98,7 @@ func move_to(p: Vector2i):
 	set_state('walk')
 	_set_direction_from_vectors(position, new_position)
 	t.tween_property(self, 'position', new_position, duration)
+	Common.character_position = p
 	t.tween_callback(go_to_next_position)
 
 func _set_direction_from_vectors(from: Vector2, to: Vector2):
@@ -121,6 +124,7 @@ func _on_ao_i_area_exited(area):
 		current_plant = null
 	if current_tree == area:
 		current_tree = null
+	set_actions()
 
 
 func _on_animated_water_animation_finished():
@@ -128,13 +132,7 @@ func _on_animated_water_animation_finished():
 
 
 func _on_animated_sprite_2d_animation_looped():
-	if state == 'chop':
-		if current_tree:
-			current_tree.get_chopped()
-		else:
-			await get_tree().create_timer(.5).timeout
-			set_state('idle')
-	elif state == 'hoe' and not current_tree:
+	if state == 'hoe' and not current_tree:
 		times_hoed += 1
 		if times_hoed == HOE_LIMIT:
 			times_hoed = 0
@@ -147,6 +145,11 @@ func _on_animated_sprite_2d_animation_looped():
 
 
 func _on_animated_sprite_2d_animation_finished():
+	if state == 'chop':
+		if current_tree:
+			current_tree.get_chopped()
+		set_state('idle')
+
 	if state == 'water' and current_plant:
 		if not watering_happened:
 			current_plant.trigger_increase_stage()
@@ -179,6 +182,12 @@ func _handle_event_select_seed_type(seed_type: Constants.PLANT_TYPE):
 	set_state('idle', true)
 #	breakpoint # type is not getting set, or at least, the plant sprite is wrong
 
+func _handle_event_harvest_fruit(fruit: Constants.FRUIT_TYPE):
+	print('add this fruit to your inventory')
+
+func _handle_event_harvest_plant(plant: Constants.PLANT_TYPE):
+	print('add this plant to your inventory')
+
 func facilitate_sowing():
 	Events.display_seed_options.emit([Constants.PLANT_TYPE.Corn, Constants.PLANT_TYPE.Eggplant, Constants.PLANT_TYPE.Carrot])
 	print('await seed selection or dismissal')
@@ -200,6 +209,9 @@ func set_state(new_state: String, force_update = false):
 	if state == new_state and not force_update:
 		return
 	state = new_state
+	set_actions()
+
+func set_actions():
 	var actions = []
 	if state == 'idle':
 #		breakpoint
