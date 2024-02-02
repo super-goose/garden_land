@@ -18,23 +18,54 @@ func get_chopped():
 	hp -= 1
 	if display_type != 'none':
 		var fruit_type = {
-			'apple': Constants.FRUIT_TYPE.Apple,
-			'orange': Constants.FRUIT_TYPE.Orange,
-			'pear': Constants.FRUIT_TYPE.Pear,
-			'peach': Constants.FRUIT_TYPE.Peach,
+			'apple': {
+				'type': Constants.FRUIT_TYPE.Apple,
+				'position': [
+					Vector2(-23, -7),
+					Vector2(16, -11),
+					Vector2(13, -3),
+				],
+			},
+			'orange': {
+				'type': Constants.FRUIT_TYPE.Orange,
+				'position': [
+					Vector2(-22, -9),
+					Vector2(-19, 0),
+					Vector2(14, -4),
+				],
+			},
+			'pear': {
+				'type': Constants.FRUIT_TYPE.Pear,
+				'position': [
+					Vector2(-23, -11),
+					Vector2(-21, -1),
+					Vector2(13, -4),
+				],
+			},
+			'peach': {
+				'type': Constants.FRUIT_TYPE.Peach,
+				'position': [
+					Vector2(-22, -9),
+					Vector2(-19, 0),
+					Vector2(13, -4),
+				],
+			},
 		}[display_type]
+
+		$FullTree.play("%s-shed" % display_type)
+
 		display_type = 'none'
 
 		var f1 = Fruit.instantiate()
-		f1.set_fruit_data(fruit_type, PI / 3)
+		f1.set_fruit_data(fruit_type)
 		add_child(f1)
 
 		var f2 = Fruit.instantiate()
-		f2.set_fruit_data(fruit_type, 2 * PI / 3)
+		f2.set_fruit_data(fruit_type)
 		add_child(f2)
 
 		var f3 = Fruit.instantiate()
-		f3.set_fruit_data(fruit_type, 4 * PI / 3)
+		f3.set_fruit_data(fruit_type)
 		add_child(f3)
 		
 	if is_intact:

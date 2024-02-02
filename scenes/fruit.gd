@@ -5,7 +5,8 @@ var direction: float
 var type: Constants.FRUIT_TYPE
 
 func _ready():
-	do_animation()
+#	do_animation()
+	pass
 
 func do_animation():
 	var new_position = LevelGenerationUtil.TILE_SIZE * 1.5 * Vector2.RIGHT.rotated(direction)
@@ -17,16 +18,13 @@ func do_animation():
 
 	t.tween_property(self, 'position', new_position * .5, duration)
 
-func set_fruit_data(fruit_type: Constants.FRUIT_TYPE, initial_direction: float):
-	direction = initial_direction
-	type = fruit_type
+func set_fruit_data(fruit_data: Dictionary, index: int):
+	position = fruit_data['position'][index]
+	type = fruit_data['type']
 	frame = {
 		Constants.FRUIT_TYPE.Apple: 0,
 		Constants.FRUIT_TYPE.Orange: 1,
-		Constants.FRUIT_TYPE.Pear: 2,
-		Constants.FRUIT_TYPE.Peach: 3,
-		Constants.FRUIT_TYPE.Strawberry: 4,
-		Constants.FRUIT_TYPE.Blackberry: 5,
-		Constants.FRUIT_TYPE.Blueberry: 6,
-		Constants.FRUIT_TYPE.None: 7,
-	}[fruit_type]
+		Constants.FRUIT_TYPE.Peach: 2,
+		Constants.FRUIT_TYPE.Pear: 3,
+		Constants.FRUIT_TYPE.None: 4,
+	}[type]

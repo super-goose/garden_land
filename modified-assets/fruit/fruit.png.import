@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://djgqh36mpe0u8"
-path="res://.godot/imported/tree pear sprites.png-02bf205ed5690e891ece13fcb1ce4de6.ctex"
+uid="uid://dw32tori7mdr5"
+path="res://.godot/imported/fruit.png-b1218db2e4b381d03c68a4ea28802b03.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://modified-assets/fruit-bearers/tree pear sprites.png"
-dest_files=["res://.godot/imported/tree pear sprites.png-02bf205ed5690e891ece13fcb1ce4de6.ctex"]
+source_file="res://modified-assets/fruit/fruit.png"
+dest_files=["res://.godot/imported/fruit.png-b1218db2e4b381d03c68a4ea28802b03.ctex"]
 
 [params]
 
