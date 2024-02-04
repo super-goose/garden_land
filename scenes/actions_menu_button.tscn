@@ -16,6 +16,7 @@ texture_pressed = ExtResource("2_s7146")
 ignore_texture_size = true
 stretch_mode = 3
 script = ExtResource("3_32318")
+action = null
 
 [node name="TextureRect" type="TextureRect" parent="."]
 layout_mode = 0

@@ -1,5 +1,5 @@
 class_name Fruit
-extends Sprite2D
+extends "res://scenes/script_base/collectible.gd"
 
 var direction: float
 var type: Constants.FRUIT_TYPE
@@ -39,22 +39,11 @@ var fruit_data = {
 		},
 	}
 func _ready():
-	do_animation()
-
-func do_animation():
-	await get_tree().create_timer(1).timeout
-#	breakpoint
-	var character_global_position = Common.convert_from_grid_coordinates(Common.character_position) #- Vector2(LevelGenerationUtil.HALF_TILE_CELL)
-#	var current_position = position
-	var new_position = position + to_local(character_global_position) + Vector2(LevelGenerationUtil.HALF_TILE_CELL)
-	print('Common.character_position: %s' % Common.convert_from_grid_coordinates(Common.character_position))
-	print('fruit position: %s' % position)
-	print('fruit new_position: %s' % new_position)
-	var t = get_tree().create_tween()
-	var duration = .2
-	t.tween_property(self, 'position', new_position, duration)
-	Events.harvest_fruit.emit(type)
-	t.tween_callback(queue_free)
+	do_animation(
+		func fruit_tween_callback():
+			Events.harvest_fruit.emit(type)
+			queue_free()
+	)
 
 func set_fruit_data(fruit_type, index: int):
 	position = fruit_data[fruit_type]['position'][index]

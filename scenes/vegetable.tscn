@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://b2iocyy7k23ik"]
+
+[ext_resource type="Script" path="res://scenes/vegetable.gd" id="1_af0fw"]
+
+[node name="Vegetable" type="Sprite2D"]
+script = ExtResource("1_af0fw")

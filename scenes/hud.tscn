@@ -1,7 +1,6 @@
-[gd_scene load_steps=3 format=3 uid="uid://cualt3fdfjppy"]
+[gd_scene load_steps=2 format=3 uid="uid://cualt3fdfjppy"]
 
 [ext_resource type="Script" path="res://scenes/hud.gd" id="1_vkfkb"]
-[ext_resource type="PackedScene" uid="uid://cdbj207ey8npw" path="res://scenes/actions_menu_button.tscn" id="1_wa8wc"]
 
 [node name="HUD" type="CanvasLayer"]
 script = ExtResource("1_vkfkb")
@@ -33,21 +32,6 @@ offset_left = 3.0
 offset_right = 173.0
 offset_bottom = 28.0
 theme_override_constants/separation = 6
-
-[node name="ActionsMenuButton" parent="Actions/ColorRect/ColorRect/HBoxContainer" instance=ExtResource("1_wa8wc")]
-layout_mode = 2
-
-[node name="ActionsMenuButton2" parent="Actions/ColorRect/ColorRect/HBoxContainer" instance=ExtResource("1_wa8wc")]
-layout_mode = 2
-action = 1
-
-[node name="ActionsMenuButton3" parent="Actions/ColorRect/ColorRect/HBoxContainer" instance=ExtResource("1_wa8wc")]
-layout_mode = 2
-action = 2
-
-[node name="ActionsMenuButton4" parent="Actions/ColorRect/ColorRect/HBoxContainer" instance=ExtResource("1_wa8wc")]
-layout_mode = 2
-action = 3
 
 [node name="Seeds" type="MarginContainer" parent="."]
 anchors_preset = 12

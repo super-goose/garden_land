@@ -1,0 +1,6 @@
+[gd_resource type="Resource" load_steps=2 format=3 uid="uid://cmf02rdvtxiav"]
+
+[ext_resource type="Script" path="res://resources/character_stats_and_inventory.gd" id="1_21c28"]
+
+[resource]
+script = ExtResource("1_21c28")

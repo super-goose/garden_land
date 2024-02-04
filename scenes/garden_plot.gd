@@ -6,6 +6,8 @@ extends Area2D
 enum STAGE { empty, sprout, growing, showing, ready, corn }
 @export var stage : STAGE = STAGE.empty
 
+var Vegetable = load("res://scenes/vegetable.tscn")
+
 func _ready():
 	$FarmingPlants.visible = stage != STAGE.empty
 	$FarmingPlants.frame = 0
@@ -42,28 +44,15 @@ func increase_stage():
 		STAGE.corn: STAGE.ready,
 	}[stage]
 	set_stage(new_stage)
+	await get_tree().create_timer(.3).timeout
+	Events.update_actions.emit()
 
 func set_type(t: Constants.PLANT_TYPE):
 	type = t
 	if type == Constants.PLANT_TYPE.None:
 		return
-	var textures = {
-		Constants.PLANT_TYPE.Corn: load("res://modified-assets/plant-grow-sprites/corn.png"),
-		Constants.PLANT_TYPE.Carrot: load("res://modified-assets/plant-grow-sprites/carrot.png"),
-		Constants.PLANT_TYPE.Cauliflower: load("res://modified-assets/plant-grow-sprites/cauliflower.png"),
-		Constants.PLANT_TYPE.Tomato: load("res://modified-assets/plant-grow-sprites/tomato.png"),
-		Constants.PLANT_TYPE.Eggplant: load("res://modified-assets/plant-grow-sprites/eggplant.png"),
-		Constants.PLANT_TYPE.BlueFlower: load("res://modified-assets/plant-grow-sprites/flower.png"),
-		Constants.PLANT_TYPE.Lettuce: load("res://modified-assets/plant-grow-sprites/lettuce.png"),
-		Constants.PLANT_TYPE.Wheat: load("res://modified-assets/plant-grow-sprites/wheat.png"),
-		Constants.PLANT_TYPE.Pumpkin: load("res://modified-assets/plant-grow-sprites/pumpkin.png"),
-		Constants.PLANT_TYPE.Parsnip: load("res://modified-assets/plant-grow-sprites/parsnip.png"),
-		Constants.PLANT_TYPE.Rose: load("res://modified-assets/plant-grow-sprites/rose.png"),
-		Constants.PLANT_TYPE.Beet: load("res://modified-assets/plant-grow-sprites/beet.png"),
-		Constants.PLANT_TYPE.StarFruit: load("res://modified-assets/plant-grow-sprites/star-fruit.png"),
-		Constants.PLANT_TYPE.Cucumber: load("res://modified-assets/plant-grow-sprites/cucumber.png"),
-	}
-	$FarmingPlants.texture = textures[type]
+
+	$FarmingPlants.texture = Constants.GROW_SPRITES[type]
 	$FarmingPlants.hframes = 5 if type == Constants.PLANT_TYPE.Corn else 4
 	$FarmingPlants.position = Vector2(0, -12 if type == Constants.PLANT_TYPE.Corn else -5)
 	$FarmingPlants.vframes = 1
@@ -71,3 +60,17 @@ func set_type(t: Constants.PLANT_TYPE):
 
 func _on_button_pressed():
 	Events.select_garden_plot.emit(self)
+
+func is_ready():
+	return stage == STAGE.ready
+
+func harvest():
+	if type == Constants.PLANT_TYPE.None:
+		return
+	for i in range(Dice.roll_dn(3) + 1):
+		var v = Vegetable.instantiate()
+		v.set_vegetable_data(type, i)
+		add_child(v)
+
+func get_harvest_action():
+	return Constants.HARVEST_ACTIONS_BY_PLANT_TYPE[type]

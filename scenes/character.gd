@@ -4,8 +4,9 @@ extends CharacterBody2D
 const SPEED = 60
 const HOE_LIMIT = 1
 
+#var inventory_and_stats
 var times_hoed = 0
-var state
+var state: String # gets set to 'idle' in `_ready`
 var direction = 'down'
 var current_plant: GardenPlot
 var current_tree: FruitTree
@@ -22,6 +23,7 @@ func _ready():
 	Events.select_seed_type.connect(_handle_event_select_seed_type)
 	Events.harvest_fruit.connect(_handle_event_harvest_fruit)
 	Events.harvest_plant.connect(_handle_event_harvest_plant)
+	Events.update_actions.connect(_handle_event_update_actions)
 	set_state('idle')
 
 func set_start_position(v: Vector2i):
@@ -170,12 +172,14 @@ func _handle_event_select_fruit_tree(fruit_tree: FruitTree):
 func _handle_event_perform_action(action: Constants.ACTIONS):
 	if action == Constants.ACTIONS.Chop:
 		set_state('chop')
-	if action == Constants.ACTIONS.Water:
+	elif action == Constants.ACTIONS.Water:
 		set_state('water')
-	if action == Constants.ACTIONS.Hoe:
+	elif action == Constants.ACTIONS.Hoe:
 		set_state('hoe')
-	if action == Constants.ACTIONS.Sow:
+	elif action == Constants.ACTIONS.Sow:
 		facilitate_sowing()
+	else: # probably harvest; future actions (like a quest letter) should be handled before here
+		harvest_plant(action)
 
 func _handle_event_select_seed_type(seed_type: Constants.PLANT_TYPE):
 	current_plant.set_type(seed_type)
@@ -183,10 +187,17 @@ func _handle_event_select_seed_type(seed_type: Constants.PLANT_TYPE):
 #	breakpoint # type is not getting set, or at least, the plant sprite is wrong
 
 func _handle_event_harvest_fruit(fruit: Constants.FRUIT_TYPE):
-	print('add this fruit to your inventory')
+	print('add this fruit to your inventory: %s' % fruit)
 
 func _handle_event_harvest_plant(plant: Constants.PLANT_TYPE):
-	print('add this plant to your inventory')
+	print('add this plant to your inventory: %s' % plant)
+
+func harvest_plant(action_type: Constants.ACTIONS):
+	if current_plant and current_plant.get_harvest_action() == action_type:
+		current_plant.harvest()
+
+func _handle_event_update_actions():
+	set_actions()
 
 func facilitate_sowing():
 	Events.display_seed_options.emit([Constants.PLANT_TYPE.Corn, Constants.PLANT_TYPE.Eggplant, Constants.PLANT_TYPE.Carrot])
@@ -214,10 +225,11 @@ func set_state(new_state: String, force_update = false):
 func set_actions():
 	var actions = []
 	if state == 'idle':
-#		breakpoint
 		if current_plant:
 			if current_plant.type == Constants.PLANT_TYPE.None:
 				actions.push_back(Constants.ACTIONS.Sow)
+			elif current_plant.is_ready():
+				actions.push_back(current_plant.get_harvest_action())
 			else:
 				actions.push_back(Constants.ACTIONS.Water)
 		elif current_tree:
