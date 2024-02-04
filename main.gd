@@ -22,6 +22,6 @@ func _unhandled_input(event: InputEvent) -> void:
 		if (event.is_pressed() and event.button_index == MOUSE_BUTTON_LEFT): # left
 			var destination = get_global_mouse_position()
 			destination = Common.convert_to_grid_coordinates(destination)
-#			print('go to: (%s, %s)' % [destination.x, destination.y])
+			print('go to: %s' % destination)
 			$Character.go_to_position(destination)
 

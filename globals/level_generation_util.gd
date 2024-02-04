@@ -6,9 +6,9 @@ const WHOLE_TILE_CELL = Vector2i(LevelGenerationUtil.TILE_SIZE, LevelGenerationU
 const HALF_TILE_CELL = Vector2i(LevelGenerationUtil.TILE_SIZE / 2, LevelGenerationUtil.TILE_SIZE / 2)
 
 
-const HILL_PROBABILITY_COEFFICIENT = 50 # 70 was original value
-const HILL_AMOUNT_COEFFICIENT = 20 # 30 was original value
-const TREE_COEFFICIENT = 10 # 20 was original value
+const HILL_PROBABILITY_COEFFICIENT = 40 # 70 was original value
+const HILL_AMOUNT_COEFFICIENT = 10 # 30 was original value
+const TREE_COEFFICIENT = 5 # 20 was original value
 
 signal plantable_tiles_modified
 

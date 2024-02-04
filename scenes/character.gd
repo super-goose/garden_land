@@ -79,7 +79,7 @@ var final_direction
 func go_to_position(destination: Vector2i, options: Dictionary = {}):
 	set_state('walk')
 	var here = position_to_coords(position)
-	var path_data = LevelGenerationUtil.find_path(here, destination, options)
+	var path_data = LevelUtil.find_path(here, destination, options)
 	path = path_data['path']
 	final_direction = path_data['direction']
 	go_to_next_position()
