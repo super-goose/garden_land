@@ -15,7 +15,8 @@ script = ExtResource("1_81omm")
 shape = SubResource("RectangleShape2D_iitex")
 
 [node name="FarmingPlants" type="Sprite2D" parent="."]
-z_index = 10
+z_index = 5
+y_sort_enabled = true
 position = Vector2(2.08165e-12, -12)
 texture = ExtResource("2_rpaw6")
 hframes = 5

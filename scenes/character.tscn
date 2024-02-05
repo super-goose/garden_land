@@ -1576,7 +1576,9 @@ radius = 4.00001
 height = 10.0
 
 [node name="Character" type="CharacterBody2D"]
-z_index = 4
+z_index = 5
+z_as_relative = false
+y_sort_enabled = true
 collision_mask = 4
 script = ExtResource("1_gyc1p")
 
@@ -1591,7 +1593,8 @@ shape = SubResource("RectangleShape2D_lfmq0")
 [node name="Camera2D" type="Camera2D" parent="."]
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
-z_index = 5
+z_index = 3
+y_sort_enabled = true
 sprite_frames = SubResource("SpriteFrames_aeqdb")
 animation = &"chop_up"
 

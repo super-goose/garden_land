@@ -140,7 +140,6 @@ func _on_animated_sprite_2d_animation_looped():
 			times_hoed = 0
 			var coordinates = Common.convert_to_grid_coordinates($AoI/FocusCursor.global_position)
 			LevelUtil.add_plantable_tile(coordinates) # TODO: very long running...
-			await get_tree().create_timer(.1).timeout
 			set_state('idle')
 
 

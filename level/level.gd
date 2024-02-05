@@ -55,9 +55,10 @@ func on_plantable_tiles_modified(dirt_cell = null):
 	if dirt_cell:
 		LevelUtil.plantable_tiles.push_back(dirt_cell)
 		$TileMap2.set_cells_terrain_connect(LAYER_DIRT, LevelUtil.plantable_tiles, 0, 1)
+
+	$TileMap2.set_cells_terrain_connect(LAYER_DIRT, LevelUtil.plantable_tiles, 0, 1)
 	for tile_coord in LevelUtil.plantable_tiles:
 		if not $TileMap2.get_cell_tile_data(LAYER_PLOT, tile_coord):
-			$TileMap2.set_cells_terrain_connect(LAYER_DIRT, LevelUtil.plantable_tiles, 0, 1)
 			$TileMap2.set_cell(LAYER_PLOT, tile_coord, 10, Vector2i.ZERO, 2)
 
 	set_up_a_star_data()
