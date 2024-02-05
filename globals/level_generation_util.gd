@@ -10,7 +10,6 @@ const HILL_PROBABILITY_COEFFICIENT = 40 # 70 was original value
 const HILL_AMOUNT_COEFFICIENT = 10 # 30 was original value
 const TREE_COEFFICIENT = 5 # 20 was original value
 
-signal plantable_tiles_modified
 
 var temp_width : int
 var temp_height : int
@@ -25,28 +24,7 @@ var plantable_tiles = []
 ### Level Generation
 ###
 
-func is_surrounded_by_terrain(c: Vector2i) -> bool:
-	return Common.is_subset(grass_terrain_array, [
-		c + Vector2i.UP,
-		c + Vector2i.DOWN,
-		c + Vector2i.LEFT,
-		c + Vector2i.RIGHT,
-		c + Vector2i.UP + Vector2i.LEFT,
-		c + Vector2i.DOWN + Vector2i.RIGHT,
-		c + Vector2i.DOWN + Vector2i.LEFT,
-		c + Vector2i.UP + Vector2i.RIGHT,
-	])
 
-func add_plantable_tile(c: Vector2i):
-	if plantable_tiles.find(c) > -1:
-#		print('this is already tilled land')
-		return
-	if not is_surrounded_by_terrain(c):
-#		print("you can't do this too close to the edge of walkable space")
-		return
-
-	plantable_tiles.push_front(c)
-	emit_signal('plantable_tiles_modified')
 
 func convert_to_grid_coordinates(p : Vector2) -> Vector2i:
 	var x = (int(p.x) - (int(p.x) % TILE_SIZE)) / TILE_SIZE

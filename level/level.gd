@@ -23,7 +23,8 @@ func _ready():
 		generate_said_random_map()
 	else:
 		set_up_a_star_data()
-	LevelGenerationUtil.plantable_tiles_modified.connect(on_plantable_tiles_modified)
+		on_plantable_tiles_modified()
+	LevelUtil.plantable_tiles_modified.connect(on_plantable_tiles_modified)
 
 func set_up_a_star_data():
 	LevelUtil.set_up_a_star($TileMap2, [
@@ -52,9 +53,12 @@ func set_up_a_star_data():
 #		$TileMap2.set_cell(LAYER_DIRT, tree_location, 11, Vector2i.ZERO, 1)
 
 
-func on_plantable_tiles_modified():
-	$TileMap2.set_cells_terrain_connect(LAYER_DIRT, LevelGenerationUtil.plantable_tiles, 0, 1)
-	for tile_coord in LevelGenerationUtil.plantable_tiles:
+func on_plantable_tiles_modified(dirt_cell = null):
+	LevelUtil.plantable_tiles = $TileMap2.get_used_cells(LAYER_DIRT)
+	if dirt_cell:
+		LevelUtil.plantable_tiles.push_back(dirt_cell)
+		$TileMap2.set_cells_terrain_connect(LAYER_DIRT, LevelUtil.plantable_tiles, 0, 1)
+	for tile_coord in LevelUtil.plantable_tiles:
 		if not $TileMap2.get_cell_tile_data(LAYER_PLOT, tile_coord):
 			$TileMap2.set_cell(LAYER_PLOT, tile_coord, 10, Vector2i.ZERO, 2)
 

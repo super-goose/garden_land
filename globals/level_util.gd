@@ -11,11 +11,28 @@ var directions = [
 	Vector2i.DOWN + Vector2i.LEFT,
 	Vector2i.DOWN + Vector2i.RIGHT,
 ]
+signal plantable_tiles_modified(dirt_cell)
+
+var grass_terrain_array = []
+var dirt_terrain_array = []
+var plantable_tiles = []
 
 @onready var a_star = AStar2D.new()
 # LIMITATION: if the map extends to the left or above of -1000, -1000,
 # that might throw off the reliability of this function
 # CONCEPT: id = xxxxxyyyyy
+
+func add_plantable_tile(c: Vector2i):
+	if plantable_tiles.find(c) > -1:
+#		print('this is already tilled land')
+		return
+	if not is_surrounded_by_terrain(c):
+#		print("you can't do this too close to the edge of walkable space")
+		return
+
+	plantable_tiles.push_front(c)
+	emit_signal('plantable_tiles_modified')
+
 func vector_to_a_star_id(v: Vector2i):
 	var _x = v.x + 1000
 	var _y = v.y + 1000
@@ -26,7 +43,17 @@ func a_star_id_to_vector(id: int):
 	var _y = id % 10000
 	return Vector2i(_x - 1000, _y - 1000)
 
-
+func is_surrounded_by_terrain(c: Vector2i) -> bool:
+	return Common.is_subset(grass_terrain_array, [
+		c + Vector2i.UP,
+		c + Vector2i.DOWN,
+		c + Vector2i.LEFT,
+		c + Vector2i.RIGHT,
+		c + Vector2i.UP + Vector2i.LEFT,
+		c + Vector2i.DOWN + Vector2i.RIGHT,
+		c + Vector2i.DOWN + Vector2i.LEFT,
+		c + Vector2i.UP + Vector2i.RIGHT,
+	])
 
 func set_up_a_star(tilemap: TileMap, included_layers: Array[int], excluded_layers: Array[int]):
 	a_star.clear()

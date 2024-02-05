@@ -234,6 +234,6 @@ func set_actions():
 				actions.push_back(Constants.ACTIONS.Water)
 		elif current_tree:
 			actions.push_back(Constants.ACTIONS.Chop)
-		elif LevelGenerationUtil.is_surrounded_by_terrain(position_to_coords($AoI/FocusCursor.global_position)):
+		elif LevelUtil.is_surrounded_by_terrain(position_to_coords($AoI/FocusCursor.global_position)):
 			actions.push_back(Constants.ACTIONS.Hoe)
 	Events.set_actions.emit(actions)
