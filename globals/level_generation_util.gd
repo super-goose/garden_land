@@ -24,13 +24,6 @@ var plantable_tiles = []
 ### Level Generation
 ###
 
-
-
-func convert_to_grid_coordinates(p : Vector2) -> Vector2i:
-	var x = (int(p.x) - (int(p.x) % TILE_SIZE)) / TILE_SIZE
-	var y = (int(p.y) - (int(p.y) % TILE_SIZE)) / TILE_SIZE
-	return Vector2i(x, y)
-
 """ randomly generate a map, defined by true (land) and false (not land) values """
 func generate_map_matrix(world_width: int, world_height: int) -> void:
 	# half the original map size to get the working map size

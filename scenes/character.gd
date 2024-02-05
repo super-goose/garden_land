@@ -2,7 +2,7 @@
 extends CharacterBody2D
 
 const SPEED = 60
-const HOE_LIMIT = 1
+const HOE_LIMIT = 2
 
 #var inventory_and_stats
 var times_hoed = 0
@@ -138,11 +138,9 @@ func _on_animated_sprite_2d_animation_looped():
 		times_hoed += 1
 		if times_hoed == HOE_LIMIT:
 			times_hoed = 0
-			var coordinates = LevelGenerationUtil.convert_to_grid_coordinates($AoI/FocusCursor.global_position)
-			print('character coords: %s' % position_to_coords(position))
-			print('hoe coordinates: %s' % coordinates)
-			LevelGenerationUtil.add_plantable_tile(coordinates)
-			await get_tree().create_timer(.5).timeout
+			var coordinates = Common.convert_to_grid_coordinates($AoI/FocusCursor.global_position)
+			LevelUtil.add_plantable_tile(coordinates) # TODO: very long running...
+			await get_tree().create_timer(.1).timeout
 			set_state('idle')
 
 
@@ -161,12 +159,12 @@ func _on_animated_sprite_2d_animation_finished():
 func _handle_event_select_garden_plot(garden_plot: GardenPlot):
 	print('a garden plot was selected... do something with it? display a context menu??')
 	var here = position_to_coords(position)
-	var garden_plot_coordinates = LevelGenerationUtil.convert_to_grid_coordinates(garden_plot.position)
+	var garden_plot_coordinates = Common.convert_to_grid_coordinates(garden_plot.position)
 	go_to_position(garden_plot_coordinates)
 
 func _handle_event_select_fruit_tree(fruit_tree: FruitTree):
 	var here = position_to_coords(position)
-	var fruit_tree_coordinates = LevelGenerationUtil.convert_to_grid_coordinates(fruit_tree.position)
+	var fruit_tree_coordinates = Common.convert_to_grid_coordinates(fruit_tree.position)
 	go_to_position(fruit_tree_coordinates, { 'avoid': 'down' })
 
 func _handle_event_perform_action(action: Constants.ACTIONS):
@@ -220,6 +218,7 @@ func set_state(new_state: String, force_update = false):
 	if state == new_state and not force_update:
 		return
 	state = new_state
+	await get_tree().create_timer(.3).timeout
 	set_actions()
 
 func set_actions():
@@ -234,6 +233,6 @@ func set_actions():
 				actions.push_back(Constants.ACTIONS.Water)
 		elif current_tree:
 			actions.push_back(Constants.ACTIONS.Chop)
-		elif LevelUtil.is_surrounded_by_terrain(position_to_coords($AoI/FocusCursor.global_position)):
+		elif LevelUtil.is_hoeable(position_to_coords($AoI/FocusCursor.global_position)):
 			actions.push_back(Constants.ACTIONS.Hoe)
 	Events.set_actions.emit(actions)

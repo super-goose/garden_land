@@ -1,6 +1,11 @@
 #class_name LevelUtil
 extends Node
 
+const TILE_SIZE = 16
+
+const WHOLE_TILE_CELL = Vector2i(LevelGenerationUtil.TILE_SIZE, LevelGenerationUtil.TILE_SIZE)
+const HALF_TILE_CELL = Vector2i(LevelGenerationUtil.TILE_SIZE / 2, LevelGenerationUtil.TILE_SIZE / 2)
+
 var directions = [
 	Vector2i.UP,
 	Vector2i.DOWN,
@@ -13,26 +18,30 @@ var directions = [
 ]
 signal plantable_tiles_modified(dirt_cell)
 
-var grass_terrain_array = []
 var dirt_terrain_array = []
 var plantable_tiles = []
+var hoeable_tiles = []
 
 @onready var a_star = AStar2D.new()
-# LIMITATION: if the map extends to the left or above of -1000, -1000,
-# that might throw off the reliability of this function
-# CONCEPT: id = xxxxxyyyyy
+
+func convert_to_grid_coordinates(p : Vector2) -> Vector2i:
+	var x = (int(p.x) - (int(p.x) % TILE_SIZE)) / TILE_SIZE
+	var y = (int(p.y) - (int(p.y) % TILE_SIZE)) / TILE_SIZE
+	return Vector2i(x, y)
+
 
 func add_plantable_tile(c: Vector2i):
 	if plantable_tiles.find(c) > -1:
-#		print('this is already tilled land')
 		return
 	if not is_surrounded_by_terrain(c):
-#		print("you can't do this too close to the edge of walkable space")
 		return
 
 	plantable_tiles.push_front(c)
 	emit_signal('plantable_tiles_modified')
 
+# LIMITATION: if the map extends to the left or above of -1000, -1000,
+# that might throw off the reliability of this function
+# CONCEPT: id = xxxxxyyyyy
 func vector_to_a_star_id(v: Vector2i):
 	var _x = v.x + 1000
 	var _y = v.y + 1000
@@ -44,16 +53,20 @@ func a_star_id_to_vector(id: int):
 	return Vector2i(_x - 1000, _y - 1000)
 
 func is_surrounded_by_terrain(c: Vector2i) -> bool:
-	return Common.is_subset(grass_terrain_array, [
-		c + Vector2i.UP,
-		c + Vector2i.DOWN,
-		c + Vector2i.LEFT,
-		c + Vector2i.RIGHT,
-		c + Vector2i.UP + Vector2i.LEFT,
-		c + Vector2i.DOWN + Vector2i.RIGHT,
-		c + Vector2i.DOWN + Vector2i.LEFT,
-		c + Vector2i.UP + Vector2i.RIGHT,
+	var all_point_ids = a_star.get_point_ids()
+	return Common.is_subset(all_point_ids, [
+		vector_to_a_star_id(c + Vector2i.UP),
+		vector_to_a_star_id(c + Vector2i.DOWN),
+		vector_to_a_star_id(c + Vector2i.LEFT),
+		vector_to_a_star_id(c + Vector2i.RIGHT),
+		vector_to_a_star_id(c + Vector2i.UP + Vector2i.LEFT),
+		vector_to_a_star_id(c + Vector2i.DOWN + Vector2i.RIGHT),
+		vector_to_a_star_id(c + Vector2i.DOWN + Vector2i.LEFT),
+		vector_to_a_star_id(c + Vector2i.UP + Vector2i.RIGHT),
 	])
+
+func is_hoeable(tile):
+	return tile in hoeable_tiles
 
 func set_up_a_star(tilemap: TileMap, included_layers: Array[int], excluded_layers: Array[int]):
 	a_star.clear()
