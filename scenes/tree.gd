@@ -49,7 +49,6 @@ func _on_full_tree_animation_finished():
 		z_index = 10
 
 	elif $FullTree.animation == "none-wind":
-		breakpoint
 		if hp == 0:
 			is_intact = false
 			$FullTree.visible = false
