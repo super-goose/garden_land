@@ -15,8 +15,8 @@ const LAYER_HILL = 4
 const LAYER_PLOT = 5
 const LAYER_HILL_BUSHES = 6
 const LAYER_PATH = 7
-const LAYER_STRUCTURE = 8
-const LAYER_STRUCTURE_FLOOR = 9
+const LAYER_STRUCTURE_FLOOR = 8
+const LAYER_STRUCTURE = 9
 
 var map_generated = false
 
