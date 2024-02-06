@@ -29,9 +29,9 @@ func _ready():
 func set_up_a_star_data():
 	LevelUtil.set_up_a_star($TileMap2, [
 		# in preference order, ascending
-		LAYER_DIRT,
-		LAYER_GRASS,
 		LAYER_PATH,
+		LAYER_GRASS,
+		LAYER_DIRT,
 	], [
 		LAYER_ROCKS_AND_STUFF,
 		LAYER_HILL,

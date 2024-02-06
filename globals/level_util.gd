@@ -89,7 +89,7 @@ func set_up_a_star(tilemap: TileMap, included_layers: Array[int], excluded_layer
 #				breakpoint
 			if cell not in excluded_set:
 				var a_s_id = vector_to_a_star_id(cell)
-				a_star.add_point(a_s_id, cell, .1 * i) # TODO: check weight
+				a_star.add_point(a_s_id, cell, (i * i) + .1) # TODO: check weight
 
 	var point_ids = a_star.get_point_ids()
 	for id in point_ids:
