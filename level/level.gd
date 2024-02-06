@@ -15,6 +15,8 @@ const LAYER_HILL = 4
 const LAYER_PLOT = 5
 const LAYER_HILL_BUSHES = 6
 const LAYER_PATH = 7
+const LAYER_STRUCTURE = 8
+const LAYER_STRUCTURE_FLOOR = 9
 
 var map_generated = false
 
@@ -32,10 +34,13 @@ func set_up_a_star_data():
 		LAYER_PATH,
 		LAYER_GRASS,
 		LAYER_DIRT,
+		LAYER_STRUCTURE_FLOOR,
 	], [
 		LAYER_ROCKS_AND_STUFF,
 		LAYER_HILL,
 		LAYER_HILL_BUSHES,
+		LAYER_STRUCTURE,
+
 	])
 
 func set_hoeable_tiles():
