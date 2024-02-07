@@ -11,3 +11,5 @@ signal hide_seed_options
 signal update_actions
 signal harvest_fruit(item: Constants.FRUIT_TYPE, amount: int)
 signal harvest_plant(item: Constants.PLANT_TYPE, amount: int)
+signal vegetable_was_harvested
+

@@ -21,8 +21,9 @@ func roll_d100(tag = ""):
 func roll_dn(n):
 	return rng.randi_range(1, n)
 
-func roll_d_range(from : int, to : int):
-	return rng.randi_range(from, to)
+func roll_d_range(from : int, to : int, inclusive = false):
+	var i = 1 if inclusive else 0
+	return rng.randi_range(from, to + i)
 
 func roll(parameters):
 	var parts = parameters.split('+')

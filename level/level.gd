@@ -49,6 +49,7 @@ func set_hoeable_tiles():
 		$TileMap2.get_used_cells(LAYER_DIRT),
 		$TileMap2.get_used_cells(LAYER_PATH),
 		$TileMap2.get_used_cells(LAYER_ROCKS_AND_STUFF),
+		$TileMap2.get_used_cells(LAYER_STRUCTURE_FLOOR),
 	])
 	var hoeable_grass = $TileMap2.get_used_cells(LAYER_GRASS).filter(
 		func hoeable_grass_filter(cell):

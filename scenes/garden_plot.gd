@@ -6,6 +6,9 @@ extends Area2D
 enum STAGE { empty, sprout, growing, showing, ready, corn }
 @export var stage : STAGE = STAGE.empty
 
+var harvest_yield: int
+var harvested = 0
+
 var Vegetable = load("res://scenes/vegetable.tscn")
 
 func _ready():
@@ -50,6 +53,7 @@ func increase_stage():
 func set_type(t: Constants.PLANT_TYPE):
 	type = t
 	if type == Constants.PLANT_TYPE.None:
+		set_stage(STAGE.empty)
 		return
 
 	$FarmingPlants.texture = Constants.GROW_SPRITES[type]
@@ -57,6 +61,9 @@ func set_type(t: Constants.PLANT_TYPE):
 	$FarmingPlants.position = Vector2(0, -12 if type == Constants.PLANT_TYPE.Corn else -5)
 	$FarmingPlants.vframes = 1
 	$FarmingPlants.frame = 0
+	var harvest_range = Constants.HARVEST_YIELD_RANGES_BY_PLANT_TYPE[type]
+	harvest_yield = Dice.roll_d_range(harvest_range[0], harvest_range[1])
+	harvested = 0
 
 func _on_button_pressed():
 	Events.select_garden_plot.emit(self)
@@ -67,10 +74,18 @@ func is_ready():
 func harvest():
 	if type == Constants.PLANT_TYPE.None:
 		return
-	for i in range(Dice.roll_dn(3) + 1):
+	$FarmingPlants.frame = 2
+	Events.vegetable_was_harvested.connect(_handle_event_vegetable_was_harvested)
+	for i in range(harvest_yield):
 		var v = Vegetable.instantiate()
 		v.set_vegetable_data(type, i)
 		add_child(v)
+
+
+func _handle_event_vegetable_was_harvested():
+	harvested = harvested + 1
+	if harvested == harvest_yield:
+		set_type(Constants.PLANT_TYPE.None)
 
 func get_harvest_action():
 	return Constants.HARVEST_ACTIONS_BY_PLANT_TYPE[type]

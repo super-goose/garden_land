@@ -185,9 +185,14 @@ func _handle_event_select_seed_type(seed_type: Constants.PLANT_TYPE):
 
 func _handle_event_harvest_fruit(fruit: Constants.FRUIT_TYPE):
 	print('add this fruit to your inventory: %s' % fruit)
+	await get_tree().create_timer(.2).timeout
+	set_actions()
+
 
 func _handle_event_harvest_plant(plant: Constants.PLANT_TYPE):
 	print('add this plant to your inventory: %s' % plant)
+	await get_tree().create_timer(.2).timeout
+	set_actions()
 
 func harvest_plant(action_type: Constants.ACTIONS):
 	if current_plant and current_plant.get_harvest_action() == action_type:

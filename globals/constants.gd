@@ -84,6 +84,23 @@ var HARVEST_ACTIONS_BY_PLANT_TYPE = {
 	Constants.PLANT_TYPE.Cucumber: Constants.ACTIONS.Harvest_Cucumber,
 }
 
+var HARVEST_YIELD_RANGES_BY_PLANT_TYPE = {
+	Constants.PLANT_TYPE.StarFruit: [1, 3],
+	Constants.PLANT_TYPE.Tomato: [3, 5],
+	Constants.PLANT_TYPE.Wheat: [5, 10],
+	Constants.PLANT_TYPE.Beet: [2, 3],
+	Constants.PLANT_TYPE.BlueFlower: [3, 5],
+	Constants.PLANT_TYPE.Carrot: [2, 4],
+	Constants.PLANT_TYPE.Cauliflower: [2, 3],
+	Constants.PLANT_TYPE.Corn: [3, 7],
+	Constants.PLANT_TYPE.Cucumber: [3, 6],
+	Constants.PLANT_TYPE.Eggplant: [2, 4],
+	Constants.PLANT_TYPE.Rose: [2, 5],
+	Constants.PLANT_TYPE.Lettuce: [2, 3],
+	Constants.PLANT_TYPE.Parsnip: [2, 4],
+	Constants.PLANT_TYPE.Pumpkin: [1, 3],
+}
+
 var INDIVIDUAL_PLANT_BY_PLANT_TYPE = {
 	Constants.PLANT_TYPE.StarFruit: load("res://modified-assets/farm-plants/farm-plant-starfruit.png"),
 	Constants.PLANT_TYPE.Tomato: load("res://modified-assets/farm-plants/farm-plant-tomato.png"),
