@@ -12,10 +12,12 @@ var current_plant: GardenPlot
 var current_tree: FruitTree
 var watering_happened = false
 
+var stats_and_inventory : StatsAndInventory
 @export var start_position : Vector2i
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
+	stats_and_inventory = StatsAndInventory.new()
 	position = (start_position * LevelGenerationUtil.TILE_SIZE) + LevelGenerationUtil.HALF_TILE_CELL
 	Events.select_garden_plot.connect(_handle_event_select_garden_plot)
 	Events.select_fruit_tree.connect(_handle_event_select_fruit_tree)
@@ -185,13 +187,17 @@ func _handle_event_select_seed_type(seed_type: Constants.PLANT_TYPE):
 
 func _handle_event_harvest_fruit(fruit: Constants.FRUIT_TYPE):
 	print('add this fruit to your inventory: %s' % fruit)
+	stats_and_inventory.fruit_inventory[fruit] += 1
 	await get_tree().create_timer(.2).timeout
+	print(stats_and_inventory.fruit_inventory[fruit])
 	set_actions()
 
 
 func _handle_event_harvest_plant(plant: Constants.PLANT_TYPE):
 	print('add this plant to your inventory: %s' % plant)
+	stats_and_inventory.plant_inventory[plant] += 1
 	await get_tree().create_timer(.2).timeout
+	print(stats_and_inventory.plant_inventory[plant])
 	set_actions()
 
 func harvest_plant(action_type: Constants.ACTIONS):
