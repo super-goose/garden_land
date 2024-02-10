@@ -1,5 +1,5 @@
 class_name Fruit
-extends "res://scenes/script_base/collectible.gd"
+extends "res://scenes/bases/collectible.gd"
 
 var direction: float
 var type: Constants.FRUIT_TYPE

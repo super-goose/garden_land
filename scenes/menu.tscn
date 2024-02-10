@@ -1,0 +1,177 @@
+[gd_scene load_steps=8 format=3 uid="uid://b46obik1lqkq"]
+
+[ext_resource type="FontFile" uid="uid://bhvrl7wppixn1" path="res://fonts/PressStart2P-Regular-L.ttf" id="1_qh630"]
+[ext_resource type="Texture2D" uid="uid://bbbocjo1ubnah" path="res://modified-assets/ui/icon-buttons-sprites.png" id="2_6n6ws"]
+[ext_resource type="PackedScene" uid="uid://7rb7svv3t4g7" path="res://scenes/bases/inventory_cell.tscn" id="3_fqals"]
+
+[sub_resource type="Theme" id="Theme_lfwxg"]
+default_font = ExtResource("1_qh630")
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_2mkwb"]
+atlas = ExtResource("2_6n6ws")
+region = Rect2(2.08165e-12, 320, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_4ihjm"]
+atlas = ExtResource("2_6n6ws")
+region = Rect2(32, 320, 32, 32)
+
+[sub_resource type="Theme" id="Theme_f01n6"]
+default_font = ExtResource("1_qh630")
+default_font_size = 8
+
+[node name="Menu" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="ColorRect" type="ColorRect" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -66.0
+offset_top = -121.0
+offset_right = 67.0
+offset_bottom = 121.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 0.607843)
+
+[node name="MarginContainer" type="MarginContainer" parent="ColorRect"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 8
+theme_override_constants/margin_top = 8
+theme_override_constants/margin_right = 8
+theme_override_constants/margin_bottom = 8
+
+[node name="VBoxContainer" type="VBoxContainer" parent="ColorRect/MarginContainer"]
+layout_mode = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="ColorRect/MarginContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="HBoxContainer" type="HBoxContainer" parent="ColorRect/MarginContainer/VBoxContainer/MarginContainer"]
+layout_mode = 2
+alignment = 2
+
+[node name="Label" type="Label" parent="ColorRect/MarginContainer/VBoxContainer/MarginContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme = SubResource("Theme_lfwxg")
+theme_override_font_sizes/font_size = 16
+text = "Menu"
+
+[node name="TextureButton" type="TextureButton" parent="ColorRect/MarginContainer/VBoxContainer/MarginContainer/HBoxContainer"]
+layout_mode = 2
+texture_normal = SubResource("AtlasTexture_2mkwb")
+texture_pressed = SubResource("AtlasTexture_4ihjm")
+
+[node name="MarginContainer3" type="MarginContainer" parent="ColorRect/MarginContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="ColorRect/MarginContainer/VBoxContainer/MarginContainer3"]
+layout_mode = 2
+theme = SubResource("Theme_f01n6")
+text = "Vegetables"
+
+[node name="GridContainer" type="GridContainer" parent="ColorRect/MarginContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+columns = 4
+
+[node name="InventoryCell" parent="ColorRect/MarginContainer/VBoxContainer/GridContainer" instance=ExtResource("3_fqals")]
+layout_mode = 2
+
+[node name="InventoryCell2" parent="ColorRect/MarginContainer/VBoxContainer/GridContainer" instance=ExtResource("3_fqals")]
+layout_mode = 2
+
+[node name="InventoryCell3" parent="ColorRect/MarginContainer/VBoxContainer/GridContainer" instance=ExtResource("3_fqals")]
+layout_mode = 2
+
+[node name="InventoryCell4" parent="ColorRect/MarginContainer/VBoxContainer/GridContainer" instance=ExtResource("3_fqals")]
+layout_mode = 2
+
+[node name="InventoryCell5" parent="ColorRect/MarginContainer/VBoxContainer/GridContainer" instance=ExtResource("3_fqals")]
+layout_mode = 2
+
+[node name="InventoryCell6" parent="ColorRect/MarginContainer/VBoxContainer/GridContainer" instance=ExtResource("3_fqals")]
+layout_mode = 2
+
+[node name="InventoryCell7" parent="ColorRect/MarginContainer/VBoxContainer/GridContainer" instance=ExtResource("3_fqals")]
+layout_mode = 2
+
+[node name="InventoryCell8" parent="ColorRect/MarginContainer/VBoxContainer/GridContainer" instance=ExtResource("3_fqals")]
+layout_mode = 2
+
+[node name="InventoryCell9" parent="ColorRect/MarginContainer/VBoxContainer/GridContainer" instance=ExtResource("3_fqals")]
+layout_mode = 2
+
+[node name="InventoryCell10" parent="ColorRect/MarginContainer/VBoxContainer/GridContainer" instance=ExtResource("3_fqals")]
+layout_mode = 2
+
+[node name="InventoryCell11" parent="ColorRect/MarginContainer/VBoxContainer/GridContainer" instance=ExtResource("3_fqals")]
+layout_mode = 2
+
+[node name="InventoryCell12" parent="ColorRect/MarginContainer/VBoxContainer/GridContainer" instance=ExtResource("3_fqals")]
+layout_mode = 2
+
+[node name="MarginContainer2" type="MarginContainer" parent="ColorRect/MarginContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="ColorRect/MarginContainer/VBoxContainer/MarginContainer2"]
+layout_mode = 2
+theme = SubResource("Theme_f01n6")
+text = "Fruit"
+
+[node name="GridContainer2" type="GridContainer" parent="ColorRect/MarginContainer/VBoxContainer"]
+custom_minimum_size = Vector2(2.08165e-12, 27)
+layout_mode = 2
+size_flags_vertical = 0
+columns = 4
+
+[node name="InventoryCell4" parent="ColorRect/MarginContainer/VBoxContainer/GridContainer2" instance=ExtResource("3_fqals")]
+layout_mode = 2
+
+[node name="InventoryCell2" parent="ColorRect/MarginContainer/VBoxContainer/GridContainer2" instance=ExtResource("3_fqals")]
+layout_mode = 2
+
+[node name="InventoryCell3" parent="ColorRect/MarginContainer/VBoxContainer/GridContainer2" instance=ExtResource("3_fqals")]
+layout_mode = 2
+
+[node name="InventoryCell5" parent="ColorRect/MarginContainer/VBoxContainer/GridContainer2" instance=ExtResource("3_fqals")]
+layout_mode = 2
+
+[node name="MarginContainer4" type="MarginContainer" parent="ColorRect/MarginContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="ColorRect/MarginContainer/VBoxContainer/MarginContainer4"]
+layout_mode = 2
+theme = SubResource("Theme_f01n6")
+text = "Tools"
+
+[node name="GridContainer3" type="GridContainer" parent="ColorRect/MarginContainer/VBoxContainer"]
+custom_minimum_size = Vector2(2.08165e-12, 27)
+layout_mode = 2
+columns = 4
+
+[node name="InventoryCell5" parent="ColorRect/MarginContainer/VBoxContainer/GridContainer3" instance=ExtResource("3_fqals")]
+layout_mode = 2
+
+[node name="InventoryCell7" parent="ColorRect/MarginContainer/VBoxContainer/GridContainer3" instance=ExtResource("3_fqals")]
+layout_mode = 2
+
+[node name="InventoryCell8" parent="ColorRect/MarginContainer/VBoxContainer/GridContainer3" instance=ExtResource("3_fqals")]
+layout_mode = 2
+
+[node name="InventoryCell6" parent="ColorRect/MarginContainer/VBoxContainer/GridContainer3" instance=ExtResource("3_fqals")]
+layout_mode = 2
