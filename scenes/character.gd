@@ -27,6 +27,7 @@ func _ready():
 	Events.harvest_plant.connect(_handle_event_harvest_plant)
 	Events.update_actions.connect(_handle_event_update_actions)
 	set_state('idle')
+	Events.open_menu.emit(stats_and_inventory)
 
 func set_start_position(v: Vector2i):
 	start_position = v

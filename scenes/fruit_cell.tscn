@@ -1,5 +1,17 @@
-[gd_scene load_steps=2 format=3 uid="uid://dj1b0qrbm3oae"]
+[gd_scene load_steps=5 format=3 uid="uid://dj1b0qrbm3oae"]
 
 [ext_resource type="PackedScene" uid="uid://7rb7svv3t4g7" path="res://scenes/bases/inventory_cell.tscn" id="1_ckobo"]
+[ext_resource type="Script" path="res://scenes/fruit_cell.gd" id="2_lqo71"]
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_kaxjm"]
+load_path = "res://.godot/imported/fruit-and-berries.png-57af6eb829cac187c4132823f782422c.ctex"
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_2dqml"]
+atlas = SubResource("CompressedTexture2D_kaxjm")
+region = Rect2(48, 2.08165e-12, 16, 16)
 
 [node name="FruitCell" instance=ExtResource("1_ckobo")]
+script = ExtResource("2_lqo71")
+
+[node name="TextureRect" parent="TextureRect" index="0"]
+texture = SubResource("AtlasTexture_2dqml")
