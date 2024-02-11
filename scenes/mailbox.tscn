@@ -1,0 +1,203 @@
+[gd_scene load_steps=25 format=3 uid="uid://73teedqgramh"]
+
+[ext_resource type="Texture2D" uid="uid://d25hgmkkplg3y" path="res://modified-assets/tiles/building-parts/mailbox-animation-frames.png" id="1_dktbo"]
+[ext_resource type="Script" path="res://scenes/mailbox.gd" id="1_r05yo"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_p12ai"]
+atlas = ExtResource("1_dktbo")
+region = Rect2(0, 144, 32, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ftdqi"]
+atlas = ExtResource("1_dktbo")
+region = Rect2(32, 144, 32, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_v0l60"]
+atlas = ExtResource("1_dktbo")
+region = Rect2(64, 144, 32, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_052d6"]
+atlas = ExtResource("1_dktbo")
+region = Rect2(96, 144, 32, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_s5r2i"]
+atlas = ExtResource("1_dktbo")
+region = Rect2(128, 144, 32, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_g27jx"]
+atlas = ExtResource("1_dktbo")
+region = Rect2(0, 288, 32, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_m056b"]
+atlas = ExtResource("1_dktbo")
+region = Rect2(32, 288, 32, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ad1n0"]
+atlas = ExtResource("1_dktbo")
+region = Rect2(64, 288, 32, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_fvg1f"]
+atlas = ExtResource("1_dktbo")
+region = Rect2(0, 0, 32, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_3f1bj"]
+atlas = ExtResource("1_dktbo")
+region = Rect2(0, 48, 32, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_w8yi6"]
+atlas = ExtResource("1_dktbo")
+region = Rect2(32, 48, 32, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_vf8p8"]
+atlas = ExtResource("1_dktbo")
+region = Rect2(64, 48, 32, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_e57dp"]
+atlas = ExtResource("1_dktbo")
+region = Rect2(96, 48, 32, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_824yj"]
+atlas = ExtResource("1_dktbo")
+region = Rect2(0, 96, 32, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ytx7r"]
+atlas = ExtResource("1_dktbo")
+region = Rect2(32, 96, 32, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_p0dhp"]
+atlas = ExtResource("1_dktbo")
+region = Rect2(0, 192, 32, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_w7m04"]
+atlas = ExtResource("1_dktbo")
+region = Rect2(32, 192, 32, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_0iupr"]
+atlas = ExtResource("1_dktbo")
+region = Rect2(64, 192, 32, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_pj26e"]
+atlas = ExtResource("1_dktbo")
+region = Rect2(96, 192, 32, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_55ybw"]
+atlas = ExtResource("1_dktbo")
+region = Rect2(128, 192, 32, 48)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_netce"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_p12ai")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ftdqi")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_v0l60")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_052d6")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_s5r2i")
+}],
+"loop": false,
+"name": &"clear-alert",
+"speed": 10.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_g27jx")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_m056b")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ad1n0")
+}],
+"loop": false,
+"name": &"close",
+"speed": 10.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_fvg1f")
+}],
+"loop": false,
+"name": &"idle",
+"speed": 10.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_3f1bj")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_w8yi6")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_vf8p8")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_e57dp")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_824yj")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ytx7r")
+}],
+"loop": false,
+"name": &"mail-alert",
+"speed": 10.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_p0dhp")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_w7m04")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_0iupr")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_pj26e")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_55ybw")
+}],
+"loop": false,
+"name": &"open",
+"speed": 10.0
+}]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_8uf8n"]
+radius = 11.0
+height = 32.0
+
+[node name="Mailbox" type="Node2D"]
+script = ExtResource("1_r05yo")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+position = Vector2(4, -12)
+sprite_frames = SubResource("SpriteFrames_netce")
+animation = &"idle"
+
+[node name="Area2D" type="Area2D" parent="."]
+collision_layer = 0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+position = Vector2(0, 6)
+rotation = 1.5708
+shape = SubResource("CapsuleShape2D_8uf8n")
+
+[node name="Button" type="Button" parent="."]
+modulate = Color(1, 1, 1, 0)
+offset_left = -5.0
+offset_top = -12.0
+offset_right = 5.0
+offset_bottom = 6.0
+
+[connection signal="area_entered" from="Area2D" to="." method="_on_area_2d_area_entered"]
+[connection signal="area_exited" from="Area2D" to="." method="_on_area_2d_area_exited"]
+[connection signal="pressed" from="Button" to="." method="_on_button_pressed"]

@@ -1,12 +1,11 @@
-[gd_scene load_steps=108 format=3 uid="uid://brefn2rc6esy6"]
+[gd_scene load_steps=107 format=3 uid="uid://brefn2rc6esy6"]
 
 [ext_resource type="Script" path="res://scenes/tree.gd" id="1_4avj3"]
-[ext_resource type="Texture2D" uid="uid://chfx0v6w4qmvj" path="res://Sprout Lands - Sprites - premium pack/Objects/stump.png" id="2_aqoqa"]
-[ext_resource type="Texture2D" uid="uid://dueskurjavkfv" path="res://Sprout Lands - Sprites - premium pack/Objects/Tree animations/tree apple sprites.png" id="3_07b3d"]
-[ext_resource type="Texture2D" uid="uid://dmxm4w2nasj1a" path="res://Sprout Lands - Sprites - premium pack/Objects/Tree animations/tree sprites.png" id="4_ig0eu"]
-[ext_resource type="Texture2D" uid="uid://cre77g3i0hx66" path="res://Sprout Lands - Sprites - premium pack/Objects/Tree animations/tree orange sprites.png" id="5_2fbr7"]
-[ext_resource type="Texture2D" uid="uid://c7ycv4bpmumcm" path="res://Sprout Lands - Sprites - premium pack/Objects/Tree animations/tree peach sprites.png" id="6_kh3dt"]
-[ext_resource type="Texture2D" uid="uid://djgqh36mpe0u8" path="res://Sprout Lands - Sprites - premium pack/Objects/Tree animations/tree pear sprites.png" id="7_jott8"]
+[ext_resource type="Texture2D" uid="uid://dueskurjavkfv" path="res://modified-assets/fruit-bearers/tree-apple-sprites.png" id="3_07b3d"]
+[ext_resource type="Texture2D" uid="uid://dmxm4w2nasj1a" path="res://modified-assets/fruit-bearers/tree-sprites.png" id="4_ig0eu"]
+[ext_resource type="Texture2D" uid="uid://cre77g3i0hx66" path="res://modified-assets/fruit-bearers/tree-orange-sprites.png" id="5_2fbr7"]
+[ext_resource type="Texture2D" uid="uid://c7ycv4bpmumcm" path="res://modified-assets/fruit-bearers/tree-peach-sprites.png" id="6_kh3dt"]
+[ext_resource type="Texture2D" uid="uid://djgqh36mpe0u8" path="res://modified-assets/fruit-bearers/tree-pear-sprites.png" id="7_jott8"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_atu5w"]
 radius = 11.0
@@ -782,7 +781,6 @@ shape = SubResource("CapsuleShape2D_atu5w")
 
 [node name="Stump" type="Sprite2D" parent="."]
 position = Vector2(0, -2)
-texture = ExtResource("2_aqoqa")
 
 [node name="FullTree" type="AnimatedSprite2D" parent="."]
 position = Vector2(0, -16)

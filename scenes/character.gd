@@ -21,6 +21,7 @@ func _ready():
 	position = (start_position * LevelGenerationUtil.TILE_SIZE) + LevelGenerationUtil.HALF_TILE_CELL
 	Events.select_garden_plot.connect(_handle_event_select_garden_plot)
 	Events.select_fruit_tree.connect(_handle_event_select_fruit_tree)
+	Events.select_mailbox.connect(_handle_event_select_mailbox)
 	Events.perform_action.connect(_handle_event_perform_action)
 	Events.select_seed_type.connect(_handle_event_select_seed_type)
 	Events.harvest_fruit.connect(_handle_event_harvest_fruit)
@@ -168,6 +169,11 @@ func _handle_event_select_fruit_tree(fruit_tree: FruitTree):
 	var fruit_tree_coordinates = Common.convert_to_grid_coordinates(fruit_tree.position)
 	go_to_position(fruit_tree_coordinates, { 'avoid': 'down' })
 
+func _handle_event_select_mailbox(mailbox: Mailbox):
+	var here = position_to_coords(position)
+	var mailbox_coordinates = Common.convert_to_grid_coordinates(mailbox.position)
+	go_to_position(mailbox_coordinates, { 'avoid': 'down' })
+
 func _handle_event_perform_action(action: Constants.ACTIONS):
 	if action == Constants.ACTIONS.Menu:
 		Events.open_menu.emit(stats_and_inventory)
@@ -210,7 +216,7 @@ func _handle_event_update_actions():
 	set_actions()
 
 func facilitate_sowing():
-	Events.display_seed_options.emit([Constants.PLANT_TYPE.Corn, Constants.PLANT_TYPE.Eggplant, Constants.PLANT_TYPE.Carrot])
+	Events.display_seed_options.emit([Constants.PLANT_TYPE.Tomato, Constants.PLANT_TYPE.Cucumber, Constants.PLANT_TYPE.Pumpkin])
 	print('await seed selection or dismissal')
 	print('decrement seed count if applicable')
 

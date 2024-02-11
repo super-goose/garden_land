@@ -1,4 +1,4 @@
-[gd_resource type="TileSet" load_steps=28 format=3 uid="uid://bkls48mu0bftu"]
+[gd_resource type="TileSet" load_steps=30 format=3 uid="uid://bkls48mu0bftu"]
 
 [ext_resource type="Texture2D" uid="uid://dkpdtdixk0yt2" path="res://modified-assets/tiles/ground-tiles/new-tiles/Grass_tiles_v2.png" id="1_yo6l4"]
 [ext_resource type="Texture2D" uid="uid://jfmlp05w4ajt" path="res://modified-assets/tiles/ground-tiles/new-tiles/Soil_Ground_Tiles.png" id="2_upxf0"]
@@ -13,6 +13,7 @@
 [ext_resource type="Texture2D" uid="uid://cakenagqyyqjo" path="res://modified-assets/tiles/mushrooms-flowers-stones.png" id="7_uky2g"]
 [ext_resource type="Texture2D" uid="uid://diay7teaha456" path="res://modified-assets/tiles/ground-tiles/new-tiles/Grass_Hill_Tiles_v2.png" id="8_57iu8"]
 [ext_resource type="Texture2D" uid="uid://dbihsbxvbamh5" path="res://modified-assets/tiles/building-parts/wooden-house.png" id="8_ti8m6"]
+[ext_resource type="PackedScene" uid="uid://73teedqgramh" path="res://scenes/mailbox.tscn" id="14_h64or"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_1ee2t"]
 texture = ExtResource("1_yo6l4")
@@ -2983,6 +2984,10 @@ texture = ExtResource("8_57iu8")
 5:6/0/terrains_peering_bit/top_side = 3
 5:6/0/terrains_peering_bit/top_right_corner = 3
 
+[sub_resource type="TileSetScenesCollectionSource" id="TileSetScenesCollectionSource_ji3ks"]
+resource_name = "Mailbox"
+scenes/1/scene = ExtResource("14_h64or")
+
 [resource]
 physics_layer_0/collision_layer = 4
 physics_layer_0/collision_mask = 0
@@ -3015,3 +3020,4 @@ sources/10 = SubResource("TileSetScenesCollectionSource_83o6w")
 sources/13 = SubResource("TileSetAtlasSource_bevl0")
 sources/15 = SubResource("TileSetScenesCollectionSource_dyh3t")
 sources/16 = SubResource("TileSetAtlasSource_a5qu7")
+sources/9 = SubResource("TileSetScenesCollectionSource_ji3ks")
