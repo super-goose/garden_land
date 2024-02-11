@@ -26,5 +26,5 @@ var plant_inventory = {
 
 var water_level_max = 8
 var water_level = water_level_max
-var has_axe = false
+var has_axe = true #false
 var has_hoe = false

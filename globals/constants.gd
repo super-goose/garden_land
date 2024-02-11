@@ -29,7 +29,14 @@ enum FRUIT_TYPE {
 	None,
 }
 
+enum TOOL_TYPE {
+	WateringCan,
+	Axe,
+	Hoe,
+}
+
 enum ACTIONS {
+	Menu,
 	Chop,
 	Water,
 	Hoe,
@@ -99,6 +106,19 @@ var HARVEST_YIELD_RANGES_BY_PLANT_TYPE = {
 	Constants.PLANT_TYPE.Lettuce: [2, 3],
 	Constants.PLANT_TYPE.Parsnip: [2, 4],
 	Constants.PLANT_TYPE.Pumpkin: [1, 3],
+}
+
+var INDIVIDUAL_TOOL_BY_TOOL_TYPE = {
+	Constants.TOOL_TYPE.Hoe: load("res://modified-assets/tools/tools-hoe.png"),
+	Constants.TOOL_TYPE.Axe: load("res://modified-assets/tools/tools-axe.png"),
+	Constants.TOOL_TYPE.WateringCan: load("res://modified-assets/tools/tools-water-can.png"),
+}
+
+var INDIVIDUAL_FRUIT_BY_FRUIT_TYPE = {
+	Constants.FRUIT_TYPE.Apple: load("res://modified-assets/fruit/apple.png"),
+	Constants.FRUIT_TYPE.Orange: load("res://modified-assets/fruit/orange.png"),
+	Constants.FRUIT_TYPE.Pear: load("res://modified-assets/fruit/pear.png"),
+	Constants.FRUIT_TYPE.Peach: load("res://modified-assets/fruit/peach.png"),
 }
 
 var INDIVIDUAL_PLANT_BY_PLANT_TYPE = {

@@ -27,7 +27,6 @@ func _ready():
 	Events.harvest_plant.connect(_handle_event_harvest_plant)
 	Events.update_actions.connect(_handle_event_update_actions)
 	set_state('idle')
-	Events.open_menu.emit(stats_and_inventory)
 
 func set_start_position(v: Vector2i):
 	start_position = v
@@ -170,7 +169,9 @@ func _handle_event_select_fruit_tree(fruit_tree: FruitTree):
 	go_to_position(fruit_tree_coordinates, { 'avoid': 'down' })
 
 func _handle_event_perform_action(action: Constants.ACTIONS):
-	if action == Constants.ACTIONS.Chop:
+	if action == Constants.ACTIONS.Menu:
+		Events.open_menu.emit(stats_and_inventory)
+	elif action == Constants.ACTIONS.Chop:
 		set_state('chop')
 	elif action == Constants.ACTIONS.Water:
 		set_state('water')
@@ -233,7 +234,8 @@ func set_state(new_state: String, force_update = false):
 	set_actions()
 
 func set_actions():
-	var actions = []
+	var actions = [Constants.ACTIONS.Menu]
+
 	if state == 'idle':
 		if current_plant:
 			if current_plant.type == Constants.PLANT_TYPE.None:
@@ -242,8 +244,8 @@ func set_actions():
 				actions.push_back(current_plant.get_harvest_action())
 			else:
 				actions.push_back(Constants.ACTIONS.Water)
-		elif current_tree:
+		elif current_tree and stats_and_inventory.has_axe:
 			actions.push_back(Constants.ACTIONS.Chop)
-		elif LevelUtil.is_hoeable(position_to_coords($AoI/FocusCursor.global_position)):
+		elif LevelUtil.is_hoeable(position_to_coords($AoI/FocusCursor.global_position)) and stats_and_inventory.has_hoe:
 			actions.push_back(Constants.ACTIONS.Hoe)
 	Events.set_actions.emit(actions)

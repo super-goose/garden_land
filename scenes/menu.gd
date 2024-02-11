@@ -25,15 +25,35 @@ func clear_inventory_display():
 
 func open_menu(stats: StatsAndInventory):
 	visible = true
+	clear_inventory_display()
+	for plant in stats.plant_inventory:
+		if stats.plant_inventory[plant] == 0:
+			continue
+		var plant_cell = VegetableCell.instantiate()
+		plant_cell.set_data(plant, stats.plant_inventory[plant])
+		plant_grid_container.add_child(plant_cell)
+
 	for fruit in stats.fruit_inventory:
-#		if stats.fruit_inventory[fruit] == 0:
-#			continue
+		if stats.fruit_inventory[fruit] == 0:
+			continue
 		var fruit_cell = FruitCell.instantiate()
-		fruit_cell.set_data(fruit, 2)
+		fruit_cell.set_data(fruit, stats.fruit_inventory[fruit])
 		fruit_grid_container.add_child(fruit_cell)
-		
-			
-		
+
+	var water_can_cell = ToolCell.instantiate()
+	water_can_cell.set_data(Constants.TOOL_TYPE.WateringCan, "%s/%s"%[stats.water_level, stats.water_level_max])
+	tool_grid_container.add_child(water_can_cell)
+
+	if stats.has_axe:
+		var axe_cell = ToolCell.instantiate()
+		axe_cell.set_data(Constants.TOOL_TYPE.Axe, "")
+		tool_grid_container.add_child(axe_cell)
+
+	if stats.has_hoe:
+		var hoe_cell = ToolCell.instantiate()
+		hoe_cell.set_data(Constants.TOOL_TYPE.Hoe, "")
+		tool_grid_container.add_child(hoe_cell)
+
 
 func _on_close_button_pressed():
 	visible = false

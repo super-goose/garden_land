@@ -1,5 +1,7 @@
-[gd_scene load_steps=2 format=3 uid="uid://byvy1uorcn2ip"]
+[gd_scene load_steps=3 format=3 uid="uid://byvy1uorcn2ip"]
 
 [ext_resource type="PackedScene" uid="uid://7rb7svv3t4g7" path="res://scenes/bases/inventory_cell.tscn" id="1_ukgur"]
+[ext_resource type="Script" path="res://scenes/vegetable_cell.gd" id="2_el5hc"]
 
 [node name="VegetableCell" instance=ExtResource("1_ukgur")]
+script = ExtResource("2_el5hc")

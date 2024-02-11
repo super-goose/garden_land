@@ -1,9 +1,8 @@
-[gd_scene load_steps=9 format=3 uid="uid://b46obik1lqkq"]
+[gd_scene load_steps=8 format=3 uid="uid://b46obik1lqkq"]
 
 [ext_resource type="Script" path="res://scenes/menu.gd" id="1_js1in"]
 [ext_resource type="FontFile" uid="uid://bhvrl7wppixn1" path="res://fonts/PressStart2P-Regular-L.ttf" id="1_qh630"]
 [ext_resource type="Texture2D" uid="uid://bbbocjo1ubnah" path="res://modified-assets/ui/icon-buttons-sprites.png" id="2_6n6ws"]
-[ext_resource type="PackedScene" uid="uid://7rb7svv3t4g7" path="res://scenes/bases/inventory_cell.tscn" id="3_fqals"]
 
 [sub_resource type="Theme" id="Theme_lfwxg"]
 default_font = ExtResource("1_qh630")
@@ -36,13 +35,13 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -66.0
-offset_top = -121.0
-offset_right = 67.0
-offset_bottom = 121.0
+offset_left = -66.5
+offset_top = -135.0
+offset_right = 66.5
+offset_bottom = 135.0
 grow_horizontal = 2
 grow_vertical = 2
-color = Color(0, 0, 0, 0.607843)
+color = Color(0, 0, 0, 0.764706)
 
 [node name="MarginContainer" type="MarginContainer" parent="ColorRect"]
 layout_mode = 1
@@ -91,42 +90,6 @@ layout_mode = 2
 size_flags_vertical = 3
 columns = 4
 
-[node name="InventoryCell" parent="ColorRect/MarginContainer/VBoxContainer/PlantGridContainer" instance=ExtResource("3_fqals")]
-layout_mode = 2
-
-[node name="InventoryCell2" parent="ColorRect/MarginContainer/VBoxContainer/PlantGridContainer" instance=ExtResource("3_fqals")]
-layout_mode = 2
-
-[node name="InventoryCell3" parent="ColorRect/MarginContainer/VBoxContainer/PlantGridContainer" instance=ExtResource("3_fqals")]
-layout_mode = 2
-
-[node name="InventoryCell4" parent="ColorRect/MarginContainer/VBoxContainer/PlantGridContainer" instance=ExtResource("3_fqals")]
-layout_mode = 2
-
-[node name="InventoryCell5" parent="ColorRect/MarginContainer/VBoxContainer/PlantGridContainer" instance=ExtResource("3_fqals")]
-layout_mode = 2
-
-[node name="InventoryCell6" parent="ColorRect/MarginContainer/VBoxContainer/PlantGridContainer" instance=ExtResource("3_fqals")]
-layout_mode = 2
-
-[node name="InventoryCell7" parent="ColorRect/MarginContainer/VBoxContainer/PlantGridContainer" instance=ExtResource("3_fqals")]
-layout_mode = 2
-
-[node name="InventoryCell8" parent="ColorRect/MarginContainer/VBoxContainer/PlantGridContainer" instance=ExtResource("3_fqals")]
-layout_mode = 2
-
-[node name="InventoryCell9" parent="ColorRect/MarginContainer/VBoxContainer/PlantGridContainer" instance=ExtResource("3_fqals")]
-layout_mode = 2
-
-[node name="InventoryCell10" parent="ColorRect/MarginContainer/VBoxContainer/PlantGridContainer" instance=ExtResource("3_fqals")]
-layout_mode = 2
-
-[node name="InventoryCell11" parent="ColorRect/MarginContainer/VBoxContainer/PlantGridContainer" instance=ExtResource("3_fqals")]
-layout_mode = 2
-
-[node name="InventoryCell12" parent="ColorRect/MarginContainer/VBoxContainer/PlantGridContainer" instance=ExtResource("3_fqals")]
-layout_mode = 2
-
 [node name="MarginContainer2" type="MarginContainer" parent="ColorRect/MarginContainer/VBoxContainer"]
 layout_mode = 2
 
@@ -141,18 +104,6 @@ layout_mode = 2
 size_flags_vertical = 0
 columns = 4
 
-[node name="InventoryCell4" parent="ColorRect/MarginContainer/VBoxContainer/FruitGridContainer" instance=ExtResource("3_fqals")]
-layout_mode = 2
-
-[node name="InventoryCell2" parent="ColorRect/MarginContainer/VBoxContainer/FruitGridContainer" instance=ExtResource("3_fqals")]
-layout_mode = 2
-
-[node name="InventoryCell3" parent="ColorRect/MarginContainer/VBoxContainer/FruitGridContainer" instance=ExtResource("3_fqals")]
-layout_mode = 2
-
-[node name="InventoryCell5" parent="ColorRect/MarginContainer/VBoxContainer/FruitGridContainer" instance=ExtResource("3_fqals")]
-layout_mode = 2
-
 [node name="MarginContainer4" type="MarginContainer" parent="ColorRect/MarginContainer/VBoxContainer"]
 layout_mode = 2
 
@@ -165,17 +116,5 @@ text = "Tools"
 custom_minimum_size = Vector2(2.08165e-12, 27)
 layout_mode = 2
 columns = 4
-
-[node name="InventoryCell5" parent="ColorRect/MarginContainer/VBoxContainer/ToolGridContainer" instance=ExtResource("3_fqals")]
-layout_mode = 2
-
-[node name="InventoryCell7" parent="ColorRect/MarginContainer/VBoxContainer/ToolGridContainer" instance=ExtResource("3_fqals")]
-layout_mode = 2
-
-[node name="InventoryCell8" parent="ColorRect/MarginContainer/VBoxContainer/ToolGridContainer" instance=ExtResource("3_fqals")]
-layout_mode = 2
-
-[node name="InventoryCell6" parent="ColorRect/MarginContainer/VBoxContainer/ToolGridContainer" instance=ExtResource("3_fqals")]
-layout_mode = 2
 
 [connection signal="pressed" from="ColorRect/MarginContainer/VBoxContainer/MarginContainer/HBoxContainer/CloseButton" to="." method="_on_close_button_pressed"]
