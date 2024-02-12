@@ -1581,7 +1581,6 @@ z_as_relative = false
 y_sort_enabled = true
 collision_mask = 4
 script = ExtResource("1_gyc1p")
-start_position = null
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("RectangleShape2D_sltv8")

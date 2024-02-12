@@ -167,6 +167,7 @@ func _handle_event_select_garden_plot(garden_plot: GardenPlot):
 func _handle_event_select_fruit_tree(fruit_tree: FruitTree):
 	var here = position_to_coords(position)
 	var fruit_tree_coordinates = Common.convert_to_grid_coordinates(fruit_tree.position)
+	# TODO: not avoiding 'down'
 	go_to_position(fruit_tree_coordinates, { 'avoid': 'down' })
 
 func _handle_event_select_mailbox(mailbox: Mailbox):

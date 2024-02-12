@@ -15,4 +15,4 @@ signal harvest_plant(item: Constants.PLANT_TYPE, amount: int)
 signal vegetable_was_harvested
 signal open_menu(stats: StatsAndInventory)
 signal close_menu
-
+signal quest_available
