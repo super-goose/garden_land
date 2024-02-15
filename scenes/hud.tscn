@@ -1,6 +1,7 @@
-[gd_scene load_steps=2 format=3 uid="uid://cualt3fdfjppy"]
+[gd_scene load_steps=3 format=3 uid="uid://cualt3fdfjppy"]
 
 [ext_resource type="Script" path="res://scenes/hud.gd" id="1_vkfkb"]
+[ext_resource type="PackedScene" uid="uid://d1c822vlk8ait" path="res://clock.tscn" id="2_0tdcd"]
 
 [node name="HUD" type="CanvasLayer"]
 script = ExtResource("1_vkfkb")
@@ -13,6 +14,7 @@ anchor_bottom = 1.0
 offset_top = -32.0
 grow_horizontal = 2
 grow_vertical = 0
+mouse_filter = 0
 
 [node name="ColorRect" type="ColorRect" parent="Actions"]
 layout_mode = 2
@@ -56,3 +58,5 @@ offset_right = -2.0
 offset_bottom = 20.0
 grow_horizontal = 2
 theme_override_constants/separation = 2
+
+[node name="Clock" parent="." instance=ExtResource("2_0tdcd")]

@@ -1,5 +1,9 @@
 extends Node
 
+enum TIME {
+	AM, PM
+}
+
 enum PLANT_TYPE {
 	Corn,
 	Carrot,

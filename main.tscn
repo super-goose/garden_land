@@ -12,6 +12,8 @@ script = ExtResource("1_b3ke2")
 
 [node name="WorldOverlay" parent="." instance=ExtResource("4_52oyc")]
 
+[node name="WeatherLayer" type="CanvasLayer" parent="."]
+
 [node name="HUD" parent="." instance=ExtResource("2_tdtfc")]
 
 [node name="Menu" parent="HUD" instance=ExtResource("9_i5nh6")]
