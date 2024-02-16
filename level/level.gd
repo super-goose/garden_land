@@ -27,6 +27,18 @@ func _ready():
 		LevelUtil.plantable_tiles = $TileMap2.get_used_cells(LAYER_DIRT)
 		on_plantable_tiles_modified()
 	LevelUtil.plantable_tiles_modified.connect(on_plantable_tiles_modified)
+	Events.become_day.connect(become_day)
+	Events.become_night.connect(become_night)
+
+func become_day():
+	var t = get_tree().create_tween()
+	t.tween_property($NightLight, 'energy', 0, 2)
+	t.parallel().tween_property($Lamp, 'energy', 0, 2)
+
+func become_night():
+	var t = get_tree().create_tween()
+	t.tween_property($NightLight, 'energy', 0.7, 2)
+	t.parallel().tween_property($Lamp, 'energy', 0.7, 2)
 
 func set_up_a_star_data():
 	LevelUtil.set_up_a_star($TileMap2, [

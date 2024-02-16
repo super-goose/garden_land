@@ -4,13 +4,11 @@
 [ext_resource type="PackedScene" uid="uid://cualt3fdfjppy" path="res://scenes/hud.tscn" id="2_tdtfc"]
 [ext_resource type="PackedScene" uid="uid://b8722pdwk2exe" path="res://level/level.tscn" id="3_t3uwm"]
 [ext_resource type="PackedScene" uid="uid://brcxg1cwk4en0" path="res://scenes/character.tscn" id="4_38ofq"]
-[ext_resource type="PackedScene" uid="uid://cx3rui7gg3ks7" path="res://scenes/world_overlay.tscn" id="4_52oyc"]
+[ext_resource type="PackedScene" uid="uid://cx3rui7gg3ks7" path="res://scenes/day_night_cycle.tscn" id="4_52oyc"]
 [ext_resource type="PackedScene" uid="uid://b46obik1lqkq" path="res://scenes/menu.tscn" id="9_i5nh6"]
 
 [node name="Main" type="Node2D"]
 script = ExtResource("1_b3ke2")
-
-[node name="WorldOverlay" parent="." instance=ExtResource("4_52oyc")]
 
 [node name="WeatherLayer" type="CanvasLayer" parent="."]
 
@@ -23,3 +21,5 @@ visible = false
 
 [node name="Character" parent="." instance=ExtResource("4_38ofq")]
 start_position = Vector2i(10, 10)
+
+[node name="DayNightCycle" parent="." instance=ExtResource("4_52oyc")]

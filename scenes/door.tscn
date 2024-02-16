@@ -1,4 +1,4 @@
-[gd_scene load_steps=18 format=3 uid="uid://d30sewq72y5r5"]
+[gd_scene load_steps=21 format=3 uid="uid://d30sewq72y5r5"]
 
 [ext_resource type="Texture2D" uid="uid://cq27h3fphsob4" path="res://modified-assets/tiles/building-parts/wooden-floor.png" id="1_3sqi7"]
 [ext_resource type="Script" path="res://scenes/door.gd" id="1_v3sj7"]
@@ -105,6 +105,15 @@ animations = [{
 radius = 6.0
 height = 42.0
 
+[sub_resource type="OccluderPolygon2D" id="OccluderPolygon2D_tj5lr"]
+polygon = PackedVector2Array(-8, -8, -8, 8, -5, 8, -5, -8)
+
+[sub_resource type="OccluderPolygon2D" id="OccluderPolygon2D_nxige"]
+polygon = PackedVector2Array(5, -8, 8, -8, 8, 8, 5, 8)
+
+[sub_resource type="OccluderPolygon2D" id="OccluderPolygon2D_tg3q3"]
+polygon = PackedVector2Array(-5, -6, -5, 8, 5, 8, 5, -6)
+
 [node name="Door" type="Node2D"]
 script = ExtResource("1_v3sj7")
 
@@ -122,6 +131,15 @@ collision_layer = 0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
 shape = SubResource("CapsuleShape2D_wgpcu")
+
+[node name="LightOccluderRight" type="LightOccluder2D" parent="."]
+occluder = SubResource("OccluderPolygon2D_tj5lr")
+
+[node name="LightOccluderLeft" type="LightOccluder2D" parent="."]
+occluder = SubResource("OccluderPolygon2D_nxige")
+
+[node name="LightOccluderDoor" type="LightOccluder2D" parent="."]
+occluder = SubResource("OccluderPolygon2D_tg3q3")
 
 [connection signal="area_entered" from="Area2D" to="." method="_on_area_2d_area_entered"]
 [connection signal="area_exited" from="Area2D" to="." method="_on_area_2d_area_exited"]

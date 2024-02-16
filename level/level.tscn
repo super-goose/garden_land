@@ -1,7 +1,8 @@
-[gd_scene load_steps=3 format=3 uid="uid://b8722pdwk2exe"]
+[gd_scene load_steps=4 format=3 uid="uid://b8722pdwk2exe"]
 
 [ext_resource type="Script" path="res://level/level.gd" id="1_ld2mp"]
 [ext_resource type="TileSet" uid="uid://bkls48mu0bftu" path="res://tiles.tres" id="2_oud21"]
+[ext_resource type="Texture2D" uid="uid://dy6nsmbur05d8" path="res://modified-assets/texture-maps/light.png" id="3_msxo7"]
 
 [node name="Level" type="Node2D"]
 script = ExtResource("1_ld2mp")
@@ -69,7 +70,7 @@ layer_8/modulate = Color(1, 1, 1, 1)
 layer_8/y_sort_enabled = false
 layer_8/y_sort_origin = 0
 layer_8/z_index = 0
-layer_8/tile_data = PackedInt32Array(1703964, 65549, 2, 1703963, 65549, 2, 1703962, 65549, 2, 1703961, 65549, 2, 1572889, 65549, 2, 1638425, 65549, 2, 1572890, 65549, 2, 1572891, 65549, 2, 1638427, 65549, 2, 1638428, 65549, 2, 1638429, 65549, 2, 1638430, 65549, 2, 1638431, 65549, 2, 1572895, 65549, 2, 1572894, 65549, 2, 1572893, 65549, 2, 1572892, 65549, 2, 1638426, 65549, 2, 1703967, 65549, 2, 1703966, 65549, 2, 1703965, 65549, 2, 1769500, 15, 65536)
+layer_8/tile_data = PackedInt32Array(1703964, 65549, 2, 1703963, 65549, 2, 1703962, 65549, 2, 1703961, 65549, 2, 1572889, 65549, 2, 1638425, 65549, 2, 1572890, 65549, 2, 1572891, 65549, 2, 1638427, 65549, 2, 1638428, 65549, 2, 1638429, 65549, 2, 1638430, 65549, 2, 1638431, 65549, 2, 1572895, 65549, 2, 1572894, 65549, 2, 1572893, 65549, 2, 1572892, 65549, 2, 1638426, 65549, 2, 1703967, 65549, 2, 1703966, 65549, 2, 1703965, 65549, 2, 1769500, 15, 65536, 1769498, 65549, 2, 1769502, 65549, 2)
 layer_9/name = "structures"
 layer_9/enabled = true
 layer_9/modulate = Color(1, 1, 1, 1)
@@ -77,3 +78,15 @@ layer_9/y_sort_enabled = false
 layer_9/y_sort_origin = 0
 layer_9/z_index = 0
 layer_9/tile_data = PackedInt32Array(1769498, 65549, 0, 1769499, 65549, 3, 1769501, 65549, 3, 1769502, 65549, 0, 1769503, 65549, 3, 1769497, 65549, 3, 1703960, 13, 2, 1769496, 13, 3, 1769504, 131085, 3, 1703968, 131085, 2, 1638432, 131085, 2, 1572896, 131085, 2, 1507360, 131085, 1, 1507352, 13, 1, 1572888, 13, 2, 1638424, 13, 2, 1507354, 65549, 0, 1507358, 65549, 0, 1507356, 65549, 0, 1507353, 65549, 1, 1507355, 65549, 1, 1507357, 65549, 1, 1507359, 65549, 1, 1835035, 196624, 0, 1703963, 65549, 4, 1703961, 16, 4, 1638425, 16, 3, 1638431, 196624, 3, 1572895, 393232, 2, 1703967, 458768, 2, 1572893, 327696, 3, 1835037, 196624, 0, 1572889, 196624, 2, 1703965, 65549, 4, 1703955, 9, 65536)
+
+[node name="Lamp" type="PointLight2D" parent="."]
+position = Vector2(456, 412)
+scale = Vector2(1.03125, 1)
+color = Color(0.972549, 0.890196, 0.458824, 1)
+energy = 0.0
+shadow_enabled = true
+texture = ExtResource("3_msxo7")
+
+[node name="NightLight" type="DirectionalLight2D" parent="."]
+energy = 0.0
+blend_mode = 1
