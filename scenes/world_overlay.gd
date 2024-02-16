@@ -3,6 +3,7 @@ extends CanvasLayer
 var day_color = Color(1, 1, 1, 0)
 var night_color = Color(1, 1, 1, 1)
 
+@onready var dusk_dawn_duration = $HourTimer.wait_time
 var hour = 9
 var am_pm = Constants.TIME.AM
 
@@ -17,12 +18,12 @@ func _on_hour_timer_timeout():
 func night_becomes_day():
 	print('night becomes day')
 	var t = create_tween()
-	t.tween_property($ColorRect/CanvasModulate, 'color', day_color, 1)
+	t.tween_property($ColorRect/CanvasModulate, 'color', day_color, dusk_dawn_duration)
 
 func day_becomes_night():
 	print('day becomes night')
 	var t = create_tween()
-	t.tween_property($ColorRect/CanvasModulate, 'color', night_color, 1)
+	t.tween_property($ColorRect/CanvasModulate, 'color', night_color, dusk_dawn_duration)
 
 func increase_hour():
 	hour += 1
@@ -41,3 +42,4 @@ func increase_hour():
 	if hour == 9 and am_pm == Constants.TIME.PM:
 		day_becomes_night()
 	
+	Events.increase_hour.emit(hour)

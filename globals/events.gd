@@ -16,4 +16,4 @@ signal vegetable_was_harvested
 signal open_menu(stats: StatsAndInventory)
 signal close_menu
 signal quest_available
-signal increase_hour
+signal increase_hour(hour: int)
