@@ -1,0 +1,16 @@
+[gd_scene load_steps=3 format=3 uid="uid://bhth6w0j355mt"]
+
+[ext_resource type="Texture2D" uid="uid://c7625j55qlhl7" path="res://modified-assets/effects/rain.png" id="1_e0klh"]
+[ext_resource type="Script" path="res://scenes/weather_layer.gd" id="1_udjow"]
+
+[node name="WeatherLayer" type="CanvasLayer"]
+layer = 50
+script = ExtResource("1_udjow")
+
+[node name="CPUParticles2D" type="CPUParticles2D" parent="."]
+position = Vector2(93, 0)
+emitting = false
+amount = 27
+texture = ExtResource("1_e0klh")
+emission_shape = 3
+emission_rect_extents = Vector2(100, 1)

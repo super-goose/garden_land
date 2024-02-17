@@ -3,7 +3,6 @@ extends Node
 var day_color = Color(1, 1, 1, 0)
 var night_color = Color(1, 1, 1, 1)
 
-@onready var dusk_dawn_duration = $HourTimer.wait_time
 var hour = 9
 var am_pm = Constants.TIME.AM
 
@@ -14,6 +13,7 @@ func _ready():
 	$HourTimer.start()
 
 func _on_hour_timer_timeout():
+	print($HourTimer.wait_time)
 	increase_hour()
 
 func increase_hour():
@@ -23,6 +23,7 @@ func increase_hour():
 			am_pm = Constants.TIME.PM
 		else:
 			am_pm = Constants.TIME.AM
+			Events.start_new_day.emit()
 
 	if hour == 13:
 		hour = 1

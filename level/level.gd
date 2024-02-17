@@ -1,11 +1,15 @@
 @icon("res://meta/assets/map.png")
 extends Node2D
 
-@export var generate_random_map = true
 @export var starting_position = Vector2i(30, 30)
+@export var dawn_dusk_duration = 10
+
+@export_category('Level generation')
+@export var generate_random_map = true
 @export var world_width = 60
 @export var world_height = 100
 @export var hill_coefficient = 70
+
 
 const LAYER_WATER = 0
 const LAYER_GRASS = 1
@@ -29,15 +33,27 @@ func _ready():
 	LevelUtil.plantable_tiles_modified.connect(on_plantable_tiles_modified)
 	Events.become_day.connect(become_day)
 	Events.become_night.connect(become_night)
+	Events.start_raining.connect(start_raining)
+	Events.stop_raining.connect(stop_raining)
+
+func start_raining():
+	var t = get_tree().create_tween()
+	t.tween_property($RainLight, 'energy', 1.7, 2)
+	t.parallel().tween_property($Lamp, 'energy', 0.7, 2)
+
+func stop_raining():
+	var t = get_tree().create_tween()
+	t.tween_property($RainLight, 'energy', 0, 2)
+	t.parallel().tween_property($Lamp, 'energy', 0, 2)
 
 func become_day():
 	var t = get_tree().create_tween()
-	t.tween_property($NightLight, 'energy', 0, 2)
+	t.tween_property($NightLight, 'energy', 0, dawn_dusk_duration)
 	t.parallel().tween_property($Lamp, 'energy', 0, 2)
 
 func become_night():
 	var t = get_tree().create_tween()
-	t.tween_property($NightLight, 'energy', 0.7, 2)
+	t.tween_property($NightLight, 'energy', 0.7, dawn_dusk_duration)
 	t.parallel().tween_property($Lamp, 'energy', 0.7, 2)
 
 func set_up_a_star_data():

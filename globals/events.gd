@@ -21,6 +21,9 @@ signal vegetable_was_harvested
 signal open_menu(stats: StatsAndInventory)
 signal close_menu
 
-signal increase_hour(hour: int)
+signal increase_hour(hour: int, am_pm: Constants.TIME)
 signal become_day
 signal become_night
+signal start_new_day
+signal start_raining
+signal stop_raining
