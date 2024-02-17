@@ -1,18 +1,25 @@
 extends CanvasLayer
 
-var is_daytime = false
-var rained_already = false
-var chance_of_rain = Dice.roll_d_range(20, 40)
-var chance_of_stopping = Dice.roll_d_range(70, 100)
+var is_daytime = true
+var rained_already
+var chance_of_rain
+var chance_of_stopping
 
 func _ready():
 	Events.increase_hour.connect(increase_hour)
 	Events.start_new_day.connect(start_new_day)
+	start_new_day()
 
 func start_new_day():
 	rained_already = false
-	chance_of_rain = Dice.roll_d_range(20, 40)
-	chance_of_stopping = Dice.roll_d_range(70, 100)
+	chance_of_rain = Dice.roll_d_range(
+		Constants.SETTINGS_CHANCE_OF_RAIN_MIN,
+		Constants.SETTINGS_CHANCE_OF_RAIN_MAX,
+	)
+	chance_of_stopping = Dice.roll_d_range(
+		Constants.SETTINGS_CHANCE_OF_STOPPING_MIN,
+		Constants.SETTINGS_CHANCE_OF_STOPPING_MAX,
+	)
 
 func increase_hour(hour, am_pm):
 	if hour == 7 and am_pm == Constants.TIME.AM:

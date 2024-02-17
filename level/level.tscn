@@ -87,11 +87,7 @@ energy = 0.0
 shadow_enabled = true
 texture = ExtResource("3_msxo7")
 
-[node name="NightLight" type="DirectionalLight2D" parent="."]
-energy = 0.0
-blend_mode = 1
-
-[node name="RainLight" type="DirectionalLight2D" parent="."]
+[node name="DarkLight" type="DirectionalLight2D" parent="."]
 color = Color(0.333333, 0.341176, 0.576471, 1)
 energy = 0.0
 blend_mode = 1

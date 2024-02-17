@@ -37,24 +37,38 @@ func _ready():
 	Events.stop_raining.connect(stop_raining)
 
 func start_raining():
+	var c = Common.get_color(85, 87, 147, 255)
+	var cc = $DarkLight.color
+	$DarkLight.color = c
+	$DarkLight.enabled = true
 	var t = get_tree().create_tween()
-	t.tween_property($RainLight, 'energy', 1.7, 2)
+	t.tween_property($DarkLight, 'energy', 1.7, 2)
 	t.parallel().tween_property($Lamp, 'energy', 0.7, 2)
 
 func stop_raining():
+	var c = Common.get_color(85, 87, 147, 255)
+	$DarkLight.color = c
 	var t = get_tree().create_tween()
-	t.tween_property($RainLight, 'energy', 0, 2)
+	t.tween_property($DarkLight, 'energy', 0, 2).call_deferred('disable_darklight')
 	t.parallel().tween_property($Lamp, 'energy', 0, 2)
+
+func disable_darklight():
+	$DarkLight.enabled = false
 
 func become_day():
+	var c = Common.get_color(255, 255, 255, 255)
+	$DarkLight.color = c
 	var t = get_tree().create_tween()
-	t.tween_property($NightLight, 'energy', 0, dawn_dusk_duration)
-	t.parallel().tween_property($Lamp, 'energy', 0, 2)
+	t.tween_property($DarkLight, 'energy', 0, dawn_dusk_duration).call_deferred('disable_darklight')
+	t.parallel().tween_property($Lamp, 'energy', 0, dawn_dusk_duration)
 
 func become_night():
+	var c = Common.get_color(255, 255, 255, 255)
+	$DarkLight.color = c
+	$DarkLight.enabled = true
 	var t = get_tree().create_tween()
-	t.tween_property($NightLight, 'energy', 0.7, dawn_dusk_duration)
-	t.parallel().tween_property($Lamp, 'energy', 0.7, 2)
+	t.tween_property($DarkLight, 'energy', 0.7, dawn_dusk_duration)
+	t.parallel().tween_property($Lamp, 'energy', 0.7, dawn_dusk_duration)
 
 func set_up_a_star_data():
 	LevelUtil.set_up_a_star($TileMap2, [
