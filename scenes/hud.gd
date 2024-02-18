@@ -16,9 +16,18 @@ func _ready():
 	Events.set_actions.connect(_handle_set_actions)
 	Events.display_seed_options.connect(_handle_display_seed_options)
 	Events.hide_seed_options.connect(_handle_hide_seed_options)
+	Events.set_water_level.connect(set_water_level)
+	Events.set_water_level_max.connect(set_water_level_max)
+
 	__populate_actions()
 	__populate_seed_options()
 	_handle_hide_seed_options()
+
+func set_water_level(value: int):
+	$WaterLevel/TextureProgressBar.value = value
+
+func set_water_level_max(value: int):
+	$WaterLevel/TextureProgressBar.max_value = value
 
 func _handle_set_actions(actions: Array):
 	for child in actions_container.get_children():

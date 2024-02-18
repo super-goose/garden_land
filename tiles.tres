@@ -1,4 +1,4 @@
-[gd_resource type="TileSet" load_steps=39 format=3 uid="uid://bkls48mu0bftu"]
+[gd_resource type="TileSet" load_steps=42 format=3 uid="uid://bkls48mu0bftu"]
 
 [ext_resource type="Texture2D" uid="uid://dkpdtdixk0yt2" path="res://modified-assets/tiles/ground-tiles/new-tiles/Grass_tiles_v2.png" id="1_yo6l4"]
 [ext_resource type="Texture2D" uid="uid://jfmlp05w4ajt" path="res://modified-assets/tiles/ground-tiles/new-tiles/Soil_Ground_Tiles.png" id="2_upxf0"]
@@ -6,7 +6,9 @@
 [ext_resource type="PackedScene" uid="uid://c8jts7bt4i7p" path="res://scenes/garden_plot.tscn" id="3_ug4ff"]
 [ext_resource type="PackedScene" uid="uid://brefn2rc6esy6" path="res://scenes/tree.tscn" id="4_6e152"]
 [ext_resource type="Texture2D" uid="uid://ccln6tcv8u3fh" path="res://modified-assets/tiles/building-parts/stone-path.png" id="4_56onc"]
+[ext_resource type="PackedScene" uid="uid://cd84tjcgl7nxs" path="res://scenes/well.tscn" id="5_bypis"]
 [ext_resource type="Texture2D" uid="uid://dpbdm5phyenx5" path="res://modified-assets/tiles/ground-tiles/new-tiles/Bush_Tiles.png" id="5_lh45u"]
+[ext_resource type="PackedScene" uid="uid://bji307w43bn7y" path="res://scenes/workstation.tscn" id="6_1glii"]
 [ext_resource type="Texture2D" uid="uid://dss1xunyjqk1r" path="res://modified-assets/tiles/trees-stumps-and-bushes.png" id="6_ebdni"]
 [ext_resource type="PackedScene" uid="uid://d30sewq72y5r5" path="res://scenes/door.tscn" id="6_mgr4b"]
 [ext_resource type="Texture2D" uid="uid://b6ge0p35tj1in" path="res://modified-assets/tiles/building-parts/basic-furniture.png" id="7_a3cqp"]
@@ -1160,6 +1162,11 @@ scenes/2/scene = ExtResource("3_ug4ff")
 [sub_resource type="TileSetScenesCollectionSource" id="TileSetScenesCollectionSource_dgads"]
 resource_name = "trees"
 scenes/1/scene = ExtResource("4_6e152")
+
+[sub_resource type="TileSetScenesCollectionSource" id="TileSetScenesCollectionSource_0qbj1"]
+resource_name = "well and workstation"
+scenes/1/scene = ExtResource("5_bypis")
+scenes/2/scene = ExtResource("6_1glii")
 
 [sub_resource type="OccluderPolygon2D" id="OccluderPolygon2D_aprox"]
 polygon = PackedVector2Array(3.0625, -8, 2.9375, 8, 8, 8, 8, -8)
@@ -3058,3 +3065,4 @@ sources/13 = SubResource("TileSetAtlasSource_bevl0")
 sources/15 = SubResource("TileSetScenesCollectionSource_dyh3t")
 sources/16 = SubResource("TileSetAtlasSource_a5qu7")
 sources/9 = SubResource("TileSetScenesCollectionSource_ji3ks")
+sources/12 = SubResource("TileSetScenesCollectionSource_0qbj1")

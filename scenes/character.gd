@@ -22,12 +22,20 @@ func _ready():
 	Events.select_garden_plot.connect(_handle_event_select_garden_plot)
 	Events.select_fruit_tree.connect(_handle_event_select_fruit_tree)
 	Events.select_mailbox.connect(_handle_event_select_mailbox)
+	Events.select_water_well.connect(_handle_event_select_water_well)
+	Events.select_workstation.connect(_handle_event_select_workstation)
+
 	Events.perform_action.connect(_handle_event_perform_action)
 	Events.select_seed_type.connect(_handle_event_select_seed_type)
 	Events.harvest_fruit.connect(_handle_event_harvest_fruit)
 	Events.harvest_plant.connect(_handle_event_harvest_plant)
 	Events.update_actions.connect(_handle_event_update_actions)
+	set_water_stuff()
 	set_state('idle')
+
+func set_water_stuff():
+	Events.set_water_level_max.emit(stats_and_inventory.water_level_max)
+	Events.set_water_level.emit(stats_and_inventory.water_level)
 
 func set_start_position(v: Vector2i):
 	start_position = v
@@ -156,6 +164,8 @@ func _on_animated_sprite_2d_animation_finished():
 		if not watering_happened:
 			current_plant.trigger_increase_stage()
 			watering_happened = true
+			stats_and_inventory.water_level -= 1
+			set_water_stuff()
 		set_state('idle')
 
 func _handle_event_select_garden_plot(garden_plot: GardenPlot):
@@ -174,6 +184,16 @@ func _handle_event_select_mailbox(mailbox: Mailbox):
 	var here = position_to_coords(position)
 	var mailbox_coordinates = Common.convert_to_grid_coordinates(mailbox.position)
 	go_to_position(mailbox_coordinates, { 'avoid': 'down' })
+
+func _handle_event_select_water_well(well: WaterWell):
+	var here = position_to_coords(position)
+	var well_coordinates = Common.convert_to_grid_coordinates(well.position)
+	go_to_position(well_coordinates, { 'only': 'up' })
+
+func _handle_event_select_workstation(workstation: Workstation):
+	var here = position_to_coords(position)
+	var workstation_coordinates = Common.convert_to_grid_coordinates(workstation.position)
+	go_to_position(workstation_coordinates, { 'only': 'up' })
 
 func _handle_event_perform_action(action: Constants.ACTIONS):
 	if action == Constants.ACTIONS.Menu:
@@ -249,7 +269,7 @@ func set_actions():
 				actions.push_back(Constants.ACTIONS.Sow)
 			elif current_plant.is_ready():
 				actions.push_back(current_plant.get_harvest_action())
-			else:
+			elif stats_and_inventory.water_level > 0: # present greyed out water that would take you to the well
 				actions.push_back(Constants.ACTIONS.Water)
 		elif current_tree and stats_and_inventory.has_axe:
 			actions.push_back(Constants.ACTIONS.Chop)

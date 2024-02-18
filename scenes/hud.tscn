@@ -1,7 +1,9 @@
-[gd_scene load_steps=3 format=3 uid="uid://cualt3fdfjppy"]
+[gd_scene load_steps=5 format=3 uid="uid://cualt3fdfjppy"]
 
 [ext_resource type="Script" path="res://scenes/hud.gd" id="1_vkfkb"]
 [ext_resource type="PackedScene" uid="uid://d1c822vlk8ait" path="res://clock.tscn" id="2_0tdcd"]
+[ext_resource type="Texture2D" uid="uid://3lr1g1bnvqfs" path="res://modified-assets/ui/water-level-frame.png" id="3_fwvtq"]
+[ext_resource type="Texture2D" uid="uid://ba12dhrqpfd72" path="res://modified-assets/ui/water-level.png" id="4_1vf81"]
 
 [node name="HUD" type="CanvasLayer"]
 script = ExtResource("1_vkfkb")
@@ -60,3 +62,17 @@ grow_horizontal = 2
 theme_override_constants/separation = 2
 
 [node name="Clock" parent="." instance=ExtResource("2_0tdcd")]
+
+[node name="WaterLevel" type="MarginContainer" parent="."]
+offset_right = 109.0
+offset_bottom = 15.0
+theme_override_constants/margin_left = 4
+theme_override_constants/margin_top = 4
+
+[node name="TextureProgressBar" type="TextureProgressBar" parent="WaterLevel"]
+layout_mode = 2
+max_value = 8.0
+value = 8.0
+texture_under = ExtResource("3_fwvtq")
+texture_progress = ExtResource("4_1vf81")
+texture_progress_offset = Vector2(1, 1)

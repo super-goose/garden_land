@@ -4,6 +4,8 @@ extends Node
 signal select_garden_plot(garden_plot: GardenPlot)
 signal select_fruit_tree(fruit_tree: FruitTree)
 signal select_mailbox(mailbox: Mailbox)
+signal select_workstation(workstation: Workstation)
+signal select_water_well(well: WaterWell)
 
 signal quest_available
 
@@ -17,6 +19,9 @@ signal update_actions
 signal harvest_fruit(item: Constants.FRUIT_TYPE, amount: int)
 signal harvest_plant(item: Constants.PLANT_TYPE, amount: int)
 signal vegetable_was_harvested
+
+signal set_water_level(value: int)
+signal set_water_level_max(value: int)
 
 signal open_menu(stats: StatsAndInventory)
 signal close_menu

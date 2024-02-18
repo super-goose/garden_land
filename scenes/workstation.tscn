@@ -1,0 +1,29 @@
+[gd_scene load_steps=5 format=3 uid="uid://bji307w43bn7y"]
+
+[ext_resource type="PackedScene" uid="uid://c3va341ysjimi" path="res://scenes/bases/interactable.tscn" id="1_rw0gb"]
+[ext_resource type="Texture2D" uid="uid://b5a2kt57uh5qx" path="res://modified-assets/tiles/building-parts/work-station.png" id="2_bojqh"]
+[ext_resource type="Script" path="res://scenes/workstation.gd" id="2_q000t"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_mv518"]
+radius = 7.0
+height = 36.0
+
+[node name="Workstation" instance=ExtResource("1_rw0gb")]
+script = ExtResource("2_q000t")
+
+[node name="CollisionShape2D" parent="Area2D" index="0"]
+position = Vector2(0, 3)
+rotation = 1.5708
+shape = SubResource("CapsuleShape2D_mv518")
+
+[node name="Sprite2D" parent="." index="1"]
+position = Vector2(0, -8)
+texture = ExtResource("2_bojqh")
+
+[node name="Button" parent="." index="2"]
+offset_left = -15.0
+offset_top = -14.0
+offset_right = 15.0
+offset_bottom = 6.0
+
+[connection signal="pressed" from="Button" to="." method="_on_button_pressed"]

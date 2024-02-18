@@ -1,0 +1,28 @@
+[gd_scene load_steps=5 format=3 uid="uid://cd84tjcgl7nxs"]
+
+[ext_resource type="PackedScene" uid="uid://c3va341ysjimi" path="res://scenes/bases/interactable.tscn" id="1_6huj5"]
+[ext_resource type="Texture2D" uid="uid://ctlj1kq4u246k" path="res://modified-assets/tiles/building-parts/water-well.png" id="2_jglt7"]
+[ext_resource type="Script" path="res://scenes/well.gd" id="2_mnx61"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_js7jc"]
+radius = 14.0
+height = 42.0
+
+[node name="Well" instance=ExtResource("1_6huj5")]
+script = ExtResource("2_mnx61")
+
+[node name="CollisionShape2D" parent="Area2D" index="0"]
+rotation = 1.5708
+shape = SubResource("CapsuleShape2D_js7jc")
+
+[node name="Water-well" type="Sprite2D" parent="." index="2"]
+position = Vector2(0, -7)
+texture = ExtResource("2_jglt7")
+
+[node name="Button" parent="." index="3"]
+offset_left = -16.0
+offset_top = -21.0
+offset_right = 15.0
+offset_bottom = 8.0
+
+[connection signal="pressed" from="Button" to="." method="_on_button_pressed"]

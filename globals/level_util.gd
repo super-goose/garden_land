@@ -109,6 +109,9 @@ func find_first_step(here, there):
 	return path[0]
 
 func calculate_dominant_direction(here: Vector2, there: Vector2, options: Dictionary):
+	if options.has('only'):
+		return options['only']
+
 	var direction_to_avoid = null
 	if options.has('avoid'):
 		direction_to_avoid = options['avoid']
