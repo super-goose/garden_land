@@ -10,6 +10,9 @@ var state: String # gets set to 'idle' in `_ready`
 var direction = 'down'
 var current_plant: GardenPlot
 var current_tree: FruitTree
+var current_mailbox: Mailbox
+var current_water_well: WaterWell
+var current_workstation: Workstation
 var watering_happened = false
 
 var stats_and_inventory : StatsAndInventory
@@ -130,6 +133,13 @@ func _on_ao_i_area_entered(area):
 		current_plant = area
 	elif area is FruitTree:
 		current_tree = area
+	elif area is Mailbox:
+		current_mailbox = area
+	elif area is WaterWell:
+		current_water_well = area
+	elif area is Workstation:
+		current_workstation = area
+
 
 func _on_ao_i_area_exited(area):
 	print('an area exited AoI')
@@ -137,6 +147,12 @@ func _on_ao_i_area_exited(area):
 		current_plant = null
 	if current_tree == area:
 		current_tree = null
+	if current_mailbox == area:
+		current_mailbox = null
+	elif current_water_well == area:
+		current_water_well = null
+	elif current_workstation == area:
+		current_workstation = null
 	set_actions()
 
 
@@ -177,7 +193,6 @@ func _handle_event_select_garden_plot(garden_plot: GardenPlot):
 func _handle_event_select_fruit_tree(fruit_tree: FruitTree):
 	var here = position_to_coords(position)
 	var fruit_tree_coordinates = Common.convert_to_grid_coordinates(fruit_tree.position)
-	# TODO: not avoiding 'down'
 	go_to_position(fruit_tree_coordinates, { 'avoid': 'down' })
 
 func _handle_event_select_mailbox(mailbox: Mailbox):
@@ -273,6 +288,14 @@ func set_actions():
 				actions.push_back(Constants.ACTIONS.Water)
 		elif current_tree and stats_and_inventory.has_axe:
 			actions.push_back(Constants.ACTIONS.Chop)
+		elif current_mailbox: # and if there is a letter...
+			print('and if there is a letter')
+			actions.push_back(Constants.ACTIONS.CheckMail)
+		elif current_water_well and stats_and_inventory.water_level < stats_and_inventory.water_level_max:
+			actions.push_back(Constants.ACTIONS.RefillWater)
+		elif current_workstation:
+			actions.push_back(Constants.ACTIONS.WorkAtStation)
 		elif LevelUtil.is_hoeable(position_to_coords($AoI/FocusCursor.global_position)) and stats_and_inventory.has_hoe:
 			actions.push_back(Constants.ACTIONS.Hoe)
+		
 	Events.set_actions.emit(actions)

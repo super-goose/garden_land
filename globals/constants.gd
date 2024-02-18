@@ -1,10 +1,10 @@
 extends Node
 
 var SETTINGS_HOUR_DURATION = 20 #5 #20
-var SETTINGS_CHANCE_OF_RAIN_MIN = 90 #20 # 90 #
-var SETTINGS_CHANCE_OF_RAIN_MAX = 100 #40 # 100 #
-var SETTINGS_CHANCE_OF_STOPPING_MIN = 60 #70 # 60# 
-var SETTINGS_CHANCE_OF_STOPPING_MAX = 100 # 70 #
+var SETTINGS_CHANCE_OF_RAIN_MIN = 20 # 90 #
+var SETTINGS_CHANCE_OF_RAIN_MAX = 40 # 100 #
+var SETTINGS_CHANCE_OF_STOPPING_MIN = 60 # 
+var SETTINGS_CHANCE_OF_STOPPING_MAX = 70 #
 
 enum TIME {
 	AM, PM
@@ -51,6 +51,9 @@ enum ACTIONS {
 	Water,
 	Hoe,
 	Sow,
+	CheckMail,
+	RefillWater,
+	WorkAtStation,
 	Harvest_Corn,
 	Harvest_Carrot,
 	Harvest_Cauliflower,
