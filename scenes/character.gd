@@ -135,6 +135,7 @@ func _on_ao_i_area_entered(area):
 		current_tree = area
 	elif area is Mailbox:
 		current_mailbox = area
+		current_mailbox.on_character_entered()
 	elif area is WaterWell:
 		current_water_well = area
 	elif area is Workstation:
@@ -148,6 +149,7 @@ func _on_ao_i_area_exited(area):
 	if current_tree == area:
 		current_tree = null
 	if current_mailbox == area:
+		current_mailbox.on_character_exited()
 		current_mailbox = null
 	elif current_water_well == area:
 		current_water_well = null
@@ -291,7 +293,7 @@ func set_actions():
 		elif current_mailbox: # and if there is a letter...
 			print('and if there is a letter')
 			actions.push_back(Constants.ACTIONS.CheckMail)
-		elif current_water_well and stats_and_inventory.water_level < stats_and_inventory.water_level_max:
+		elif current_water_well: # and stats_and_inventory.water_level < stats_and_inventory.water_level_max:
 			actions.push_back(Constants.ACTIONS.RefillWater)
 		elif current_workstation:
 			actions.push_back(Constants.ACTIONS.WorkAtStation)

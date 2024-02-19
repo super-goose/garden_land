@@ -88,6 +88,7 @@ chop={
 2d_physics/layer_1="character"
 2d_physics/layer_2="plant"
 2d_physics/layer_3="impassible"
+2d_physics/layer_4="interactable"
 
 [rendering]
 

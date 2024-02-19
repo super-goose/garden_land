@@ -1,5 +1,5 @@
 class_name Workstation
-extends Node2D
+extends Area2D
 
 func _on_button_pressed():
 	Events.select_workstation.emit(self)

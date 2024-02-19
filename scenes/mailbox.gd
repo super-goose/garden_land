@@ -1,5 +1,5 @@
 class_name Mailbox
-extends Node2D
+extends Area2D
 
 
 var has_mail = false
@@ -13,12 +13,12 @@ func _handle_event_quest_available():
 func _on_button_pressed():
 	Events.select_mailbox.emit(self)
 
-func _on_area_2d_area_entered(area):
+func on_character_entered():
 	if has_mail:
 		$AnimatedSprite2D.play('clear-alert')
 		has_mail = false
 	else:
 		$AnimatedSprite2D.play('open')
 
-func _on_area_2d_area_exited(area):
+func on_character_exited():
 	$AnimatedSprite2D.play('close')

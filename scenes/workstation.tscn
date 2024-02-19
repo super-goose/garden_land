@@ -4,17 +4,16 @@
 [ext_resource type="Texture2D" uid="uid://b5a2kt57uh5qx" path="res://modified-assets/tiles/building-parts/work-station.png" id="2_bojqh"]
 [ext_resource type="Script" path="res://scenes/workstation.gd" id="2_q000t"]
 
-[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_mv518"]
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_8nvy8"]
 radius = 7.0
-height = 36.0
+height = 38.0
 
 [node name="Workstation" instance=ExtResource("1_rw0gb")]
 script = ExtResource("2_q000t")
 
-[node name="CollisionShape2D" parent="Area2D" index="0"]
-position = Vector2(0, 3)
+[node name="CollisionShape2D" parent="." index="0"]
 rotation = 1.5708
-shape = SubResource("CapsuleShape2D_mv518")
+shape = SubResource("CapsuleShape2D_8nvy8")
 
 [node name="Sprite2D" parent="." index="1"]
 position = Vector2(0, -8)

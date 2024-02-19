@@ -1606,8 +1606,8 @@ animation = &"water_down"
 
 [node name="AoI" type="Area2D" parent="."]
 rotation = 3.14159
-collision_layer = 0
-collision_mask = 2
+collision_layer = 8
+collision_mask = 10
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="AoI"]
 position = Vector2(2.7887e-05, -15)
