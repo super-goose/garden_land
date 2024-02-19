@@ -168,7 +168,7 @@ func _on_animated_sprite_2d_animation_looped():
 		if times_hoed == HOE_LIMIT:
 			times_hoed = 0
 			var coordinates = Common.convert_to_grid_coordinates($AoI/FocusCursor.global_position)
-			LevelUtil.add_plantable_tile(coordinates) # TODO: very long running...
+			LevelUtil.add_plantable_tile(coordinates)
 			set_state('idle')
 
 
@@ -215,6 +215,12 @@ func _handle_event_select_workstation(workstation: Workstation):
 func _handle_event_perform_action(action: Constants.ACTIONS):
 	if action == Constants.ACTIONS.Menu:
 		Events.open_menu.emit(stats_and_inventory)
+	elif action == Constants.ACTIONS.RefillWater:
+		refill_water_can()
+	elif action == Constants.ACTIONS.WorkAtStation:
+		pass
+	elif action == Constants.ACTIONS.CheckMail:
+		pass
 	elif action == Constants.ACTIONS.Chop:
 		set_state('chop')
 	elif action == Constants.ACTIONS.Water:
@@ -229,7 +235,6 @@ func _handle_event_perform_action(action: Constants.ACTIONS):
 func _handle_event_select_seed_type(seed_type: Constants.PLANT_TYPE):
 	current_plant.set_type(seed_type)
 	set_state('idle', true)
-#	breakpoint # type is not getting set, or at least, the plant sprite is wrong
 
 func _handle_event_harvest_fruit(fruit: Constants.FRUIT_TYPE):
 	print('add this fruit to your inventory: %s' % fruit)
@@ -237,7 +242,6 @@ func _handle_event_harvest_fruit(fruit: Constants.FRUIT_TYPE):
 	await get_tree().create_timer(.2).timeout
 	print(stats_and_inventory.fruit_inventory[fruit])
 	set_actions()
-
 
 func _handle_event_harvest_plant(plant: Constants.PLANT_TYPE):
 	print('add this plant to your inventory: %s' % plant)
@@ -252,6 +256,16 @@ func harvest_plant(action_type: Constants.ACTIONS):
 
 func _handle_event_update_actions():
 	set_actions()
+
+func refill_water_can():
+	set_state('processing')
+
+	while stats_and_inventory.water_level < stats_and_inventory.water_level_max:
+		await get_tree().create_timer(.5).timeout
+		stats_and_inventory.water_level += 1
+		set_water_stuff()
+
+	set_state('idle')
 
 func facilitate_sowing():
 	Events.display_seed_options.emit([Constants.PLANT_TYPE.Tomato, Constants.PLANT_TYPE.Cucumber, Constants.PLANT_TYPE.Pumpkin])
@@ -293,7 +307,7 @@ func set_actions():
 		elif current_mailbox: # and if there is a letter...
 			print('and if there is a letter')
 			actions.push_back(Constants.ACTIONS.CheckMail)
-		elif current_water_well: # and stats_and_inventory.water_level < stats_and_inventory.water_level_max:
+		elif current_water_well and stats_and_inventory.water_level < stats_and_inventory.water_level_max:
 			actions.push_back(Constants.ACTIONS.RefillWater)
 		elif current_workstation:
 			actions.push_back(Constants.ACTIONS.WorkAtStation)

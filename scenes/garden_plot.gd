@@ -39,6 +39,7 @@ func increase_stage():
 	if type == Constants.PLANT_TYPE.None or stage == STAGE.ready:
 		return
 
+	$Sown.visible = false
 	var new_stage = {
 		STAGE.empty: STAGE.sprout,
 		STAGE.sprout: STAGE.growing,
@@ -55,7 +56,7 @@ func set_type(t: Constants.PLANT_TYPE):
 	if type == Constants.PLANT_TYPE.None:
 		set_stage(STAGE.empty)
 		return
-
+	$Sown.visible = true
 	$FarmingPlants.texture = Constants.GROW_SPRITES[type]
 	$FarmingPlants.hframes = 5 if type == Constants.PLANT_TYPE.Corn else 4
 	$FarmingPlants.position = Vector2(0, -12 if type == Constants.PLANT_TYPE.Corn else -5)
