@@ -180,7 +180,7 @@ func _on_animated_sprite_2d_animation_finished():
 
 	if state == 'water' and current_plant:
 		if not watering_happened:
-			current_plant.trigger_increase_stage()
+			current_plant.get_watered()
 			watering_happened = true
 			stats_and_inventory.water_level -= 1
 			set_water_stuff()

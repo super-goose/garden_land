@@ -1,6 +1,7 @@
-[gd_scene load_steps=5 format=3 uid="uid://c8jts7bt4i7p"]
+[gd_scene load_steps=6 format=3 uid="uid://c8jts7bt4i7p"]
 
 [ext_resource type="Script" path="res://scenes/garden_plot.gd" id="1_81omm"]
+[ext_resource type="Texture2D" uid="uid://boj441aaukfgx" path="res://modified-assets/plant-grow-sprites/watered.png" id="2_1rq7u"]
 [ext_resource type="Texture2D" uid="uid://cipwv30lu56nv" path="res://modified-assets/plant-grow-sprites/corn.png" id="2_rpaw6"]
 [ext_resource type="Texture2D" uid="uid://dup1g1sioxo6j" path="res://modified-assets/plant-grow-sprites/sown.png" id="3_fu1om"]
 
@@ -11,6 +12,12 @@ size = Vector2(18, 18)
 collision_layer = 2
 collision_mask = 0
 script = ExtResource("1_81omm")
+
+[node name="Watered" type="Sprite2D" parent="."]
+visible = false
+z_index = 6
+position = Vector2(0, 2)
+texture = ExtResource("2_1rq7u")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("RectangleShape2D_iitex")
@@ -23,6 +30,11 @@ texture = ExtResource("2_rpaw6")
 hframes = 5
 frame = 3
 
+[node name="Sown" type="Sprite2D" parent="."]
+visible = false
+position = Vector2(0, 2)
+texture = ExtResource("3_fu1om")
+
 [node name="Button" type="Button" parent="."]
 modulate = Color(1, 1, 1, 0)
 offset_left = -8.0
@@ -30,13 +42,4 @@ offset_top = -8.0
 offset_right = 8.0
 offset_bottom = 8.0
 
-[node name="StageTimer" type="Timer" parent="."]
-one_shot = true
-
-[node name="Sown" type="Sprite2D" parent="."]
-visible = false
-position = Vector2(0, 2)
-texture = ExtResource("3_fu1om")
-
 [connection signal="pressed" from="Button" to="." method="_on_button_pressed"]
-[connection signal="timeout" from="StageTimer" to="." method="_on_stage_timer_timeout"]

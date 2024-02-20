@@ -8,10 +8,13 @@ enum STAGE { empty, sprout, growing, showing, ready, corn }
 
 var harvest_yield: int
 var harvested = 0
+var was_watered = false
 
 var Vegetable = load("res://scenes/vegetable.tscn")
 
 func _ready():
+	Events.start_new_day.connect(_handle_event_start_new_day)
+	Events.stop_raining.connect(_handle_event_stop_raining)
 	$FarmingPlants.visible = stage != STAGE.empty
 	$FarmingPlants.frame = 0
 
@@ -28,12 +31,18 @@ func set_stage(s: STAGE):
 	}[s]
 	$FarmingPlants.frame = new_frame
 
-func trigger_increase_stage():
-	if $StageTimer.is_stopped():
-		$StageTimer.start()
+func get_watered():
+	was_watered = true
+	$Watered.visible = true
 
-func _on_stage_timer_timeout():
-	increase_stage()
+func _handle_event_start_new_day():
+	if was_watered:
+		increase_stage()
+	was_watered = false
+	$Watered.visible = false
+
+func _handle_event_stop_raining():
+	get_watered()
 
 func increase_stage():
 	if type == Constants.PLANT_TYPE.None or stage == STAGE.ready:
