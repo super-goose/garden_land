@@ -218,7 +218,7 @@ func _handle_event_perform_action(action: Constants.ACTIONS):
 	elif action == Constants.ACTIONS.RefillWater:
 		refill_water_can()
 	elif action == Constants.ACTIONS.WorkAtStation:
-		pass
+		Events.open_workstation_menu.emit(stats_and_inventory)
 	elif action == Constants.ACTIONS.CheckMail:
 		pass
 	elif action == Constants.ACTIONS.Chop:

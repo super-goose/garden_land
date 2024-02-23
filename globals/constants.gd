@@ -180,7 +180,7 @@ var INDIVIDUAL_SEEDS_BY_SEEDS_TYPE = {
 	Constants.SEEDS_TYPE.Wheat: load("res://modified-assets/farm-plants/farm-plant-seed-wheat.png"),
 	Constants.SEEDS_TYPE.Pumpkin: load("res://modified-assets/farm-plants/farm-plant-seed-pumpkin.png"),
 	Constants.SEEDS_TYPE.Parsnip: load("res://modified-assets/farm-plants/farm-plant-seed-parsnip.png"),
-	Constants.SEEDS_TYPE.Rose: load("res://modified-assets/farm-plants/farm-plant-seed-rose.png"),
+	Constants.SEEDS_TYPE.Rose: load("res://modified-assets/farm-plants/farm-plant-seed-flower.png"),
 	Constants.SEEDS_TYPE.Beet: load("res://modified-assets/farm-plants/farm-plant-seed-beet.png"),
 	Constants.SEEDS_TYPE.StarFruit: load("res://modified-assets/farm-plants/farm-plant-seed-starfruit.png"),
 	Constants.SEEDS_TYPE.Cucumber: load("res://modified-assets/farm-plants/farm-plant-seed-cucumber.png"),

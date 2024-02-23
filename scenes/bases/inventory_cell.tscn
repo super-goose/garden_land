@@ -1,5 +1,6 @@
-[gd_scene load_steps=6 format=3 uid="uid://7rb7svv3t4g7"]
+[gd_scene load_steps=7 format=3 uid="uid://7rb7svv3t4g7"]
 
+[ext_resource type="Script" path="res://scenes/bases/inventory_cell.gd" id="1_qe8ef"]
 [ext_resource type="Texture2D" uid="uid://ddr1oljc6bo37" path="res://modified-assets/ui/square-buttons-26x26.png" id="1_s1ql4"]
 [ext_resource type="Texture2D" uid="uid://lot5ys1edm1d" path="res://modified-assets/farm-plants/farm-plant-beet.png" id="2_jgxiy"]
 [ext_resource type="FontFile" uid="uid://bhvrl7wppixn1" path="res://fonts/PressStart2P-Regular-L.ttf" id="3_kvy3w"]
@@ -16,6 +17,7 @@ default_font_size = 8
 custom_minimum_size = Vector2(26, 26)
 layout_mode = 3
 anchors_preset = 0
+script = ExtResource("1_qe8ef")
 
 [node name="TextureRect" type="TextureRect" parent="."]
 layout_mode = 0
@@ -51,3 +53,11 @@ theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
 theme_override_constants/outline_size = 3
 text = "99"
 horizontal_alignment = 2
+
+[node name="Button" type="Button" parent="."]
+modulate = Color(1, 1, 1, 0)
+layout_mode = 0
+offset_right = 26.0
+offset_bottom = 26.0
+
+[connection signal="pressed" from="Button" to="." method="_on_button_pressed"]

@@ -23,7 +23,7 @@ visible = false
 [node name="WeatherLayer" parent="." instance=ExtResource("4_3m5er")]
 
 [node name="Level" parent="." instance=ExtResource("3_t3uwm")]
-starting_position = Vector2i(22, 26)
+starting_position = Vector2i(27, 25)
 
 [node name="Character" parent="." instance=ExtResource("4_38ofq")]
 start_position = Vector2i(10, 10)
