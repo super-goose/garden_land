@@ -10,6 +10,24 @@ enum TIME {
 	AM, PM
 }
 
+enum SEEDS_TYPE {
+	Corn,
+	Carrot,
+	Cauliflower,
+	Tomato,
+	Eggplant,
+	BlueFlower,
+	Lettuce,
+	Wheat,
+	Pumpkin,
+	Parsnip,
+	Rose,
+	Beet,
+	StarFruit,
+	Cucumber,
+	None,
+}
+
 enum PLANT_TYPE {
 	Corn,
 	Carrot,
@@ -149,4 +167,21 @@ var INDIVIDUAL_PLANT_BY_PLANT_TYPE = {
 	Constants.PLANT_TYPE.Lettuce: load("res://modified-assets/farm-plants/farm-plant-lettuce.png"),
 	Constants.PLANT_TYPE.Parsnip: load("res://modified-assets/farm-plants/farm-plant-parsnip.png"),
 	Constants.PLANT_TYPE.Pumpkin: load("res://modified-assets/farm-plants/farm-plant-pumpkin.png"),
+}
+
+var INDIVIDUAL_SEEDS_BY_SEEDS_TYPE = {
+	Constants.SEEDS_TYPE.Corn: load("res://modified-assets/farm-plants/farm-plant-seed-corn.png"),
+	Constants.SEEDS_TYPE.Carrot: load("res://modified-assets/farm-plants/farm-plant-seed-carrot.png"),
+	Constants.SEEDS_TYPE.Cauliflower: load("res://modified-assets/farm-plants/farm-plant-seed-cauliflower.png"),
+	Constants.SEEDS_TYPE.Tomato: load("res://modified-assets/farm-plants/farm-plant-seed-tomato.png"),
+	Constants.SEEDS_TYPE.Eggplant: load("res://modified-assets/farm-plants/farm-plant-seed-eggplant.png"),
+	Constants.SEEDS_TYPE.BlueFlower: load("res://modified-assets/farm-plants/farm-plant-seed-blueflower.png"),
+	Constants.SEEDS_TYPE.Lettuce: load("res://modified-assets/farm-plants/farm-plant-seed-lettuce.png"),
+	Constants.SEEDS_TYPE.Wheat: load("res://modified-assets/farm-plants/farm-plant-seed-wheat.png"),
+	Constants.SEEDS_TYPE.Pumpkin: load("res://modified-assets/farm-plants/farm-plant-seed-pumpkin.png"),
+	Constants.SEEDS_TYPE.Parsnip: load("res://modified-assets/farm-plants/farm-plant-seed-parsnip.png"),
+	Constants.SEEDS_TYPE.Rose: load("res://modified-assets/farm-plants/farm-plant-seed-rose.png"),
+	Constants.SEEDS_TYPE.Beet: load("res://modified-assets/farm-plants/farm-plant-seed-beet.png"),
+	Constants.SEEDS_TYPE.StarFruit: load("res://modified-assets/farm-plants/farm-plant-seed-starfruit.png"),
+	Constants.SEEDS_TYPE.Cucumber: load("res://modified-assets/farm-plants/farm-plant-seed-cucumber.png"),
 }

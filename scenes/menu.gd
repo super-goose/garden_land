@@ -1,26 +1,22 @@
 extends Control
 
-@onready var plant_grid_container = $ColorRect/MarginContainer/VBoxContainer/VegetablesSection
-@onready var fruit_grid_container = $ColorRect/MarginContainer/VBoxContainer/FruitSection
-@onready var tool_grid_container = $ColorRect/MarginContainer/VBoxContainer/ToolsSection
+@onready var seeds_grid_container = $ColorRect/MarginContainer/VBoxContainer/ScrollContainer/VBoxContainer/SeedsSection
+@onready var plant_grid_container = $ColorRect/MarginContainer/VBoxContainer/ScrollContainer/VBoxContainer/VegetablesSection
+@onready var fruit_grid_container = $ColorRect/MarginContainer/VBoxContainer/ScrollContainer/VBoxContainer/FruitSection
+@onready var tools_grid_container = $ColorRect/MarginContainer/VBoxContainer/ScrollContainer/VBoxContainer/ToolsSection
 
 var FruitCell = load("res://scenes/fruit_cell.tscn")
 var VegetableCell = load("res://scenes/vegetable_cell.tscn")
 var ToolCell = load("res://scenes/tool_cell.tscn")
+var SeedsCell = load("res://scenes/seeds_cell.tscn")
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-#	clear_inventory_display()
+	$ColorRect/MarginContainer/VBoxContainer/MenuHeader.close_button_pressed.connect(_on_close_button_pressed)
 	Events.open_menu.connect(open_menu)
-
-#func clear_inventory_display():
-#	plant_grid_container.clear_items()
-#	fruit_grid_container.clear_items()
-#	tool_grid_container.clear_items()
 
 func open_menu(stats: StatsAndInventory):
 	visible = true
-#	clear_inventory_display()
 	var plant_inventory = []
 	for plant in stats.plant_inventory:
 		if stats.plant_inventory[plant] == 0:
@@ -52,9 +48,18 @@ func open_menu(stats: StatsAndInventory):
 		hoe_cell.set_data(Constants.TOOL_TYPE.Hoe, "")
 		tools_inventory.push_back(hoe_cell)
 
+	var seeds_inventory = []
+	for seeds in stats.seeds_inventory:
+		if stats.seeds_inventory[seeds] == 0:
+			continue
+		var seeds_cell = SeedsCell.instantiate()
+		seeds_cell.set_data(seeds, stats.seeds_inventory[seeds])
+		seeds_inventory.push_back(seeds_cell)
+	
+	seeds_grid_container.set_items(seeds_inventory)
 	plant_grid_container.set_items(plant_inventory)
 	fruit_grid_container.set_items(fruit_inventory)
-	tool_grid_container.set_items(tools_inventory)
+	tools_grid_container.set_items(tools_inventory)
 
 func _on_close_button_pressed():
 	visible = false

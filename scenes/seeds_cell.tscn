@@ -1,0 +1,7 @@
+[gd_scene load_steps=3 format=3 uid="uid://cg4bcykrydq0o"]
+
+[ext_resource type="PackedScene" uid="uid://7rb7svv3t4g7" path="res://scenes/bases/inventory_cell.tscn" id="1_86u3i"]
+[ext_resource type="Script" path="res://scenes/seeds_cell.gd" id="2_7boi7"]
+
+[node name="SeedsCell" instance=ExtResource("1_86u3i")]
+script = ExtResource("2_7boi7")

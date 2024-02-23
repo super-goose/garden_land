@@ -3,8 +3,6 @@ extends Node2D
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	var start_position = $Level.get_start_position()
-	
-#	print("start position should be: %s" % start_position)
 	$Character.set_start_position(start_position)
 
 func _process(delta):

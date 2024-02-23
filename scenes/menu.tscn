@@ -47,14 +47,27 @@ layout_mode = 2
 layout_mode = 2
 title = "Menu"
 
-[node name="VegetablesSection" parent="ColorRect/MarginContainer/VBoxContainer" instance=ExtResource("3_wyerp")]
+[node name="ScrollContainer" type="ScrollContainer" parent="ColorRect/MarginContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="VBoxContainer" type="VBoxContainer" parent="ColorRect/MarginContainer/VBoxContainer/ScrollContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="ToolsSection" parent="ColorRect/MarginContainer/VBoxContainer/ScrollContainer/VBoxContainer" instance=ExtResource("3_wyerp")]
+layout_mode = 2
+title = "tools"
+
+[node name="SeedsSection" parent="ColorRect/MarginContainer/VBoxContainer/ScrollContainer/VBoxContainer" instance=ExtResource("3_wyerp")]
+layout_mode = 2
+title = "seeds"
+
+[node name="VegetablesSection" parent="ColorRect/MarginContainer/VBoxContainer/ScrollContainer/VBoxContainer" instance=ExtResource("3_wyerp")]
 layout_mode = 2
 title = "vegetables"
 
-[node name="FruitSection" parent="ColorRect/MarginContainer/VBoxContainer" instance=ExtResource("3_wyerp")]
+[node name="FruitSection" parent="ColorRect/MarginContainer/VBoxContainer/ScrollContainer/VBoxContainer" instance=ExtResource("3_wyerp")]
 layout_mode = 2
 title = "fruit"
-
-[node name="ToolsSection" parent="ColorRect/MarginContainer/VBoxContainer" instance=ExtResource("3_wyerp")]
-layout_mode = 2
-title = "tools"
