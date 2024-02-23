@@ -1,0 +1,51 @@
+[gd_scene load_steps=7 format=3 uid="uid://bqbms7serbb3f"]
+
+[ext_resource type="Script" path="res://scenes/menu_header.gd" id="1_l3184"]
+[ext_resource type="FontFile" uid="uid://bhvrl7wppixn1" path="res://fonts/PressStart2P-Regular-L.ttf" id="1_u0w46"]
+[ext_resource type="Texture2D" uid="uid://bbbocjo1ubnah" path="res://modified-assets/ui/icon-buttons-sprites.png" id="2_apy8y"]
+
+[sub_resource type="Theme" id="Theme_lfwxg"]
+default_font = ExtResource("1_u0w46")
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_2mkwb"]
+atlas = ExtResource("2_apy8y")
+region = Rect2(2.08165e-12, 320, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_4ihjm"]
+atlas = ExtResource("2_apy8y")
+region = Rect2(32, 320, 32, 32)
+
+[node name="MenuHeader" type="MarginContainer"]
+anchors_preset = 10
+anchor_right = 1.0
+offset_bottom = 32.0
+grow_horizontal = 2
+script = ExtResource("1_l3184")
+
+[node name="HBoxContainer" type="HBoxContainer" parent="."]
+layout_mode = 2
+alignment = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 2
+size_flags_vertical = 4
+
+[node name="Label" type="Label" parent="HBoxContainer/MarginContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme = SubResource("Theme_lfwxg")
+theme_override_font_sizes/font_size = 16
+text = "Menu"
+
+[node name="MarginContainer2" type="MarginContainer" parent="HBoxContainer"]
+layout_mode = 2
+theme_override_constants/margin_top = -2
+theme_override_constants/margin_right = -4
+
+[node name="CloseButton" type="TextureButton" parent="HBoxContainer/MarginContainer2"]
+layout_mode = 2
+texture_normal = SubResource("AtlasTexture_2mkwb")
+texture_pressed = SubResource("AtlasTexture_4ihjm")
+
+[connection signal="pressed" from="HBoxContainer/MarginContainer2/CloseButton" to="." method="_on_close_button_pressed"]

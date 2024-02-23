@@ -24,6 +24,7 @@ signal set_water_level(value: int)
 signal set_water_level_max(value: int)
 
 signal open_menu(stats: StatsAndInventory)
+signal open_workstation_menu(stats: StatsAndInventory)
 signal close_menu
 
 signal increase_hour(hour: int, am_pm: Constants.TIME)
