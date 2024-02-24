@@ -20,6 +20,10 @@ anchors_preset = 10
 anchor_right = 1.0
 offset_bottom = 32.0
 grow_horizontal = 2
+theme_override_constants/margin_left = 16
+theme_override_constants/margin_top = 8
+theme_override_constants/margin_right = 16
+theme_override_constants/margin_bottom = 16
 script = ExtResource("1_l3184")
 
 [node name="HBoxContainer" type="HBoxContainer" parent="."]
@@ -35,17 +39,20 @@ size_flags_vertical = 4
 layout_mode = 2
 size_flags_horizontal = 3
 theme = SubResource("Theme_lfwxg")
-theme_override_font_sizes/font_size = 16
+theme_override_font_sizes/font_size = 24
 text = "Menu"
 
 [node name="MarginContainer2" type="MarginContainer" parent="HBoxContainer"]
+custom_minimum_size = Vector2(32, 32)
 layout_mode = 2
 theme_override_constants/margin_top = -2
 theme_override_constants/margin_right = -4
 
 [node name="CloseButton" type="TextureButton" parent="HBoxContainer/MarginContainer2"]
+custom_minimum_size = Vector2(48, 48)
 layout_mode = 2
 texture_normal = SubResource("AtlasTexture_2mkwb")
 texture_pressed = SubResource("AtlasTexture_4ihjm")
+stretch_mode = 0
 
 [connection signal="pressed" from="HBoxContainer/MarginContainer2/CloseButton" to="." method="_on_close_button_pressed"]

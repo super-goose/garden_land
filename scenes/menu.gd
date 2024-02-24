@@ -1,9 +1,9 @@
 extends Control
 
-@onready var seeds_grid_container = $ColorRect/MarginContainer/VBoxContainer/ScrollContainer/VBoxContainer/SeedsSection
-@onready var plant_grid_container = $ColorRect/MarginContainer/VBoxContainer/ScrollContainer/VBoxContainer/VegetablesSection
-@onready var fruit_grid_container = $ColorRect/MarginContainer/VBoxContainer/ScrollContainer/VBoxContainer/FruitSection
-@onready var tools_grid_container = $ColorRect/MarginContainer/VBoxContainer/ScrollContainer/VBoxContainer/ToolsSection
+@onready var seeds_grid_container = $MarginContainer/VBoxContainer/ContentContainer/ScrollContainer/VBoxContainer/SeedsSection
+@onready var plant_grid_container = $MarginContainer/VBoxContainer/ContentContainer/ScrollContainer/VBoxContainer/VegetablesSection
+@onready var fruit_grid_container = $MarginContainer/VBoxContainer/ContentContainer/ScrollContainer/VBoxContainer/FruitSection
+@onready var tools_grid_container = $MarginContainer/VBoxContainer/ContentContainer/ScrollContainer/VBoxContainer/ToolsSection
 
 var FruitCell = load("res://scenes/fruit_cell.tscn")
 var VegetableCell = load("res://scenes/vegetable_cell.tscn")
@@ -12,7 +12,7 @@ var SeedsCell = load("res://scenes/seeds_cell.tscn")
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	$ColorRect/MarginContainer/VBoxContainer/MenuHeader.close_button_pressed.connect(_on_close_button_pressed)
+	$MarginContainer/VBoxContainer/MenuHeader.close_button_pressed.connect(_on_close_button_pressed)
 	Events.open_menu.connect(open_menu)
 
 func open_menu(stats: StatsAndInventory):

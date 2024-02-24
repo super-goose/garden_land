@@ -13,61 +13,58 @@ grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_js1in")
 
-[node name="ColorRect" type="ColorRect" parent="."]
-layout_mode = 1
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -66.5
-offset_top = -135.0
-offset_right = 66.5
-offset_bottom = 135.0
-grow_horizontal = 2
-grow_vertical = 2
-color = Color(0, 0, 0, 0.764706)
-
-[node name="MarginContainer" type="MarginContainer" parent="ColorRect"]
+[node name="MarginContainer" type="MarginContainer" parent="."]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-theme_override_constants/margin_left = 8
-theme_override_constants/margin_top = 8
-theme_override_constants/margin_right = 8
-theme_override_constants/margin_bottom = 8
+theme_override_constants/margin_left = 32
+theme_override_constants/margin_top = 32
+theme_override_constants/margin_right = 32
+theme_override_constants/margin_bottom = 32
 
-[node name="VBoxContainer" type="VBoxContainer" parent="ColorRect/MarginContainer"]
+[node name="ColorRect" type="ColorRect" parent="MarginContainer"]
+layout_mode = 2
+color = Color(0, 0, 0, 0.764706)
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer"]
 layout_mode = 2
 
-[node name="MenuHeader" parent="ColorRect/MarginContainer/VBoxContainer" instance=ExtResource("2_7kft0")]
+[node name="MenuHeader" parent="MarginContainer/VBoxContainer" instance=ExtResource("2_7kft0")]
 layout_mode = 2
 title = "Menu"
 
-[node name="ScrollContainer" type="ScrollContainer" parent="ColorRect/MarginContainer/VBoxContainer"]
+[node name="ContentContainer" type="MarginContainer" parent="MarginContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_constants/margin_left = 16
+theme_override_constants/margin_top = 0
+theme_override_constants/margin_right = 16
+theme_override_constants/margin_bottom = 16
+
+[node name="ScrollContainer" type="ScrollContainer" parent="MarginContainer/VBoxContainer/ContentContainer"]
 layout_mode = 2
 size_flags_vertical = 3
 
-[node name="VBoxContainer" type="VBoxContainer" parent="ColorRect/MarginContainer/VBoxContainer/ScrollContainer"]
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/VBoxContainer/ContentContainer/ScrollContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
 
-[node name="ToolsSection" parent="ColorRect/MarginContainer/VBoxContainer/ScrollContainer/VBoxContainer" instance=ExtResource("3_wyerp")]
+[node name="ToolsSection" parent="MarginContainer/VBoxContainer/ContentContainer/ScrollContainer/VBoxContainer" instance=ExtResource("3_wyerp")]
 layout_mode = 2
 title = "tools"
 
-[node name="SeedsSection" parent="ColorRect/MarginContainer/VBoxContainer/ScrollContainer/VBoxContainer" instance=ExtResource("3_wyerp")]
+[node name="SeedsSection" parent="MarginContainer/VBoxContainer/ContentContainer/ScrollContainer/VBoxContainer" instance=ExtResource("3_wyerp")]
 layout_mode = 2
 title = "seeds"
 
-[node name="VegetablesSection" parent="ColorRect/MarginContainer/VBoxContainer/ScrollContainer/VBoxContainer" instance=ExtResource("3_wyerp")]
+[node name="VegetablesSection" parent="MarginContainer/VBoxContainer/ContentContainer/ScrollContainer/VBoxContainer" instance=ExtResource("3_wyerp")]
 layout_mode = 2
 title = "vegetables"
 
-[node name="FruitSection" parent="ColorRect/MarginContainer/VBoxContainer/ScrollContainer/VBoxContainer" instance=ExtResource("3_wyerp")]
+[node name="FruitSection" parent="MarginContainer/VBoxContainer/ContentContainer/ScrollContainer/VBoxContainer" instance=ExtResource("3_wyerp")]
 layout_mode = 2
 title = "fruit"

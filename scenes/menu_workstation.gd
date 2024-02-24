@@ -1,14 +1,14 @@
 extends Control
 
-@onready var seeds_section = $ColorRect/MarginContainer/VBoxContainer/ScrollContainer/VBoxContainer/SeedsSection
-@onready var plant_section = $ColorRect/MarginContainer/VBoxContainer/ScrollContainer/VBoxContainer/VegetablesSection
+@onready var seeds_section = $MarginContainer/VBoxContainer/ContentContainer/ScrollContainer/VBoxContainer/SeedsSection
+@onready var plant_section = $MarginContainer/VBoxContainer/ContentContainer/ScrollContainer/VBoxContainer/VegetablesSection
 
 var FruitCell = load("res://scenes/fruit_cell.tscn")
 var VegetableCell = load("res://scenes/vegetable_cell.tscn")
 var SeedsCell = load("res://scenes/seeds_cell.tscn")
 
 func _ready():
-	$ColorRect/MarginContainer/VBoxContainer/MenuHeader.close_button_pressed.connect(_on_close_button_pressed)
+	$MarginContainer/VBoxContainer/MenuHeader.close_button_pressed.connect(_on_close_button_pressed)
 	Events.open_workstation_menu.connect(open_menu)
 
 func open_vegetable_processing_menu(type: Constants.VEGETABLE_TYPE):
