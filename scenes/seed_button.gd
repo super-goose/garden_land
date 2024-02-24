@@ -1,10 +1,7 @@
 class_name SeedButton
-extends TextureButton
+extends Control
 
 var type: Constants.VEGETABLE_TYPE
-
-func _ready():
-	pass
 
 func set_button_type(_type: Constants.VEGETABLE_TYPE):
 	type = _type
@@ -24,9 +21,8 @@ func set_button_type(_type: Constants.VEGETABLE_TYPE):
 		Constants.VEGETABLE_TYPE.StarFruit: load("res://modified-assets/farm-plants/farm-plant-seed-starfruit.png"),
 		Constants.VEGETABLE_TYPE.Cucumber: load("res://modified-assets/farm-plants/farm-plant-seed-cucumber.png"),
 	}
-	texture_normal = button_image[_type]
-	
+	$TextureRect.texture = button_image[_type]
 
-func _on_pressed():
+func _on_button_pressed():
 	Events.select_seed_type.emit(type)
 	Events.hide_seed_options.emit()

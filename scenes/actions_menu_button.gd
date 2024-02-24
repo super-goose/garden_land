@@ -1,5 +1,5 @@
 class_name ActionsMenuButton
-extends TextureButton
+extends Control
 
 @export var action: Constants.ACTIONS
 var action_image
@@ -34,5 +34,5 @@ func _ready():
 func set_button_type(action_type: Constants.ACTIONS):
 	action = action_type
 
-func _on_pressed():
+func _on_button_pressed():
 	Events.perform_action.emit(action)
