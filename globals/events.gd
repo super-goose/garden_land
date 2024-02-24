@@ -9,7 +9,7 @@ signal select_water_well(well: WaterWell)
 
 signal quest_available
 
-signal select_seed_type(type: Constants.PLANT_TYPE)
+signal select_seed_type(type: Constants.VEGETABLE_TYPE)
 signal perform_action(action: Constants.ACTIONS)
 signal set_actions(actions: Array)
 signal display_seed_options(seeds: Array)
@@ -17,7 +17,7 @@ signal hide_seed_options
 signal update_actions
 
 signal harvest_fruit(item: Constants.FRUIT_TYPE, amount: int)
-signal harvest_plant(item: Constants.PLANT_TYPE, amount: int)
+signal harvest_plant(item: Constants.VEGETABLE_TYPE, amount: int)
 signal vegetable_was_harvested
 
 signal set_water_level(value: int)

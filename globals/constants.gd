@@ -10,7 +10,7 @@ enum TIME {
 	AM, PM
 }
 
-enum SEEDS_TYPE {
+enum SEED_TYPE {
 	Corn,
 	Carrot,
 	Cauliflower,
@@ -28,7 +28,7 @@ enum SEEDS_TYPE {
 	None,
 }
 
-enum PLANT_TYPE {
+enum VEGETABLE_TYPE {
 	Corn,
 	Carrot,
 	Cauliflower,
@@ -89,54 +89,54 @@ enum ACTIONS {
 }
 
 var GROW_SPRITES = {
-	Constants.PLANT_TYPE.Corn: load("res://modified-assets/plant-grow-sprites/corn.png"),
-	Constants.PLANT_TYPE.Carrot: load("res://modified-assets/plant-grow-sprites/carrot.png"),
-	Constants.PLANT_TYPE.Cauliflower: load("res://modified-assets/plant-grow-sprites/cauliflower.png"),
-	Constants.PLANT_TYPE.Tomato: load("res://modified-assets/plant-grow-sprites/tomato.png"),
-	Constants.PLANT_TYPE.Eggplant: load("res://modified-assets/plant-grow-sprites/eggplant.png"),
-	Constants.PLANT_TYPE.BlueFlower: load("res://modified-assets/plant-grow-sprites/flower.png"),
-	Constants.PLANT_TYPE.Lettuce: load("res://modified-assets/plant-grow-sprites/lettuce.png"),
-	Constants.PLANT_TYPE.Wheat: load("res://modified-assets/plant-grow-sprites/wheat.png"),
-	Constants.PLANT_TYPE.Pumpkin: load("res://modified-assets/plant-grow-sprites/pumpkin.png"),
-	Constants.PLANT_TYPE.Parsnip: load("res://modified-assets/plant-grow-sprites/parsnip.png"),
-	Constants.PLANT_TYPE.Rose: load("res://modified-assets/plant-grow-sprites/rose.png"),
-	Constants.PLANT_TYPE.Beet: load("res://modified-assets/plant-grow-sprites/beet.png"),
-	Constants.PLANT_TYPE.StarFruit: load("res://modified-assets/plant-grow-sprites/star-fruit.png"),
-	Constants.PLANT_TYPE.Cucumber: load("res://modified-assets/plant-grow-sprites/cucumber.png"),
+	Constants.VEGETABLE_TYPE.Corn: load("res://modified-assets/plant-grow-sprites/corn.png"),
+	Constants.VEGETABLE_TYPE.Carrot: load("res://modified-assets/plant-grow-sprites/carrot.png"),
+	Constants.VEGETABLE_TYPE.Cauliflower: load("res://modified-assets/plant-grow-sprites/cauliflower.png"),
+	Constants.VEGETABLE_TYPE.Tomato: load("res://modified-assets/plant-grow-sprites/tomato.png"),
+	Constants.VEGETABLE_TYPE.Eggplant: load("res://modified-assets/plant-grow-sprites/eggplant.png"),
+	Constants.VEGETABLE_TYPE.BlueFlower: load("res://modified-assets/plant-grow-sprites/flower.png"),
+	Constants.VEGETABLE_TYPE.Lettuce: load("res://modified-assets/plant-grow-sprites/lettuce.png"),
+	Constants.VEGETABLE_TYPE.Wheat: load("res://modified-assets/plant-grow-sprites/wheat.png"),
+	Constants.VEGETABLE_TYPE.Pumpkin: load("res://modified-assets/plant-grow-sprites/pumpkin.png"),
+	Constants.VEGETABLE_TYPE.Parsnip: load("res://modified-assets/plant-grow-sprites/parsnip.png"),
+	Constants.VEGETABLE_TYPE.Rose: load("res://modified-assets/plant-grow-sprites/rose.png"),
+	Constants.VEGETABLE_TYPE.Beet: load("res://modified-assets/plant-grow-sprites/beet.png"),
+	Constants.VEGETABLE_TYPE.StarFruit: load("res://modified-assets/plant-grow-sprites/star-fruit.png"),
+	Constants.VEGETABLE_TYPE.Cucumber: load("res://modified-assets/plant-grow-sprites/cucumber.png"),
 }
 
-var HARVEST_ACTIONS_BY_PLANT_TYPE = {
-	Constants.PLANT_TYPE.Corn: Constants.ACTIONS.Harvest_Corn,
-	Constants.PLANT_TYPE.Carrot: Constants.ACTIONS.Harvest_Carrot,
-	Constants.PLANT_TYPE.Cauliflower: Constants.ACTIONS.Harvest_Cauliflower,
-	Constants.PLANT_TYPE.Tomato: Constants.ACTIONS.Harvest_Tomato,
-	Constants.PLANT_TYPE.Eggplant: Constants.ACTIONS.Harvest_Eggplant,
-	Constants.PLANT_TYPE.BlueFlower: Constants.ACTIONS.Harvest_BlueFlower,
-	Constants.PLANT_TYPE.Lettuce: Constants.ACTIONS.Harvest_Lettuce,
-	Constants.PLANT_TYPE.Wheat: Constants.ACTIONS.Harvest_Wheat,
-	Constants.PLANT_TYPE.Pumpkin: Constants.ACTIONS.Harvest_Pumpkin,
-	Constants.PLANT_TYPE.Parsnip: Constants.ACTIONS.Harvest_Parsnip,
-	Constants.PLANT_TYPE.Rose: Constants.ACTIONS.Harvest_Rose,
-	Constants.PLANT_TYPE.Beet: Constants.ACTIONS.Harvest_Beet,
-	Constants.PLANT_TYPE.StarFruit: Constants.ACTIONS.Harvest_StarFruit,
-	Constants.PLANT_TYPE.Cucumber: Constants.ACTIONS.Harvest_Cucumber,
+var HARVEST_ACTIONS_BY_VEGETABLE_TYPE = {
+	Constants.VEGETABLE_TYPE.Corn: Constants.ACTIONS.Harvest_Corn,
+	Constants.VEGETABLE_TYPE.Carrot: Constants.ACTIONS.Harvest_Carrot,
+	Constants.VEGETABLE_TYPE.Cauliflower: Constants.ACTIONS.Harvest_Cauliflower,
+	Constants.VEGETABLE_TYPE.Tomato: Constants.ACTIONS.Harvest_Tomato,
+	Constants.VEGETABLE_TYPE.Eggplant: Constants.ACTIONS.Harvest_Eggplant,
+	Constants.VEGETABLE_TYPE.BlueFlower: Constants.ACTIONS.Harvest_BlueFlower,
+	Constants.VEGETABLE_TYPE.Lettuce: Constants.ACTIONS.Harvest_Lettuce,
+	Constants.VEGETABLE_TYPE.Wheat: Constants.ACTIONS.Harvest_Wheat,
+	Constants.VEGETABLE_TYPE.Pumpkin: Constants.ACTIONS.Harvest_Pumpkin,
+	Constants.VEGETABLE_TYPE.Parsnip: Constants.ACTIONS.Harvest_Parsnip,
+	Constants.VEGETABLE_TYPE.Rose: Constants.ACTIONS.Harvest_Rose,
+	Constants.VEGETABLE_TYPE.Beet: Constants.ACTIONS.Harvest_Beet,
+	Constants.VEGETABLE_TYPE.StarFruit: Constants.ACTIONS.Harvest_StarFruit,
+	Constants.VEGETABLE_TYPE.Cucumber: Constants.ACTIONS.Harvest_Cucumber,
 }
 
-var HARVEST_YIELD_RANGES_BY_PLANT_TYPE = {
-	Constants.PLANT_TYPE.StarFruit: [1, 3],
-	Constants.PLANT_TYPE.Tomato: [3, 5],
-	Constants.PLANT_TYPE.Wheat: [5, 10],
-	Constants.PLANT_TYPE.Beet: [2, 3],
-	Constants.PLANT_TYPE.BlueFlower: [3, 5],
-	Constants.PLANT_TYPE.Carrot: [2, 4],
-	Constants.PLANT_TYPE.Cauliflower: [2, 3],
-	Constants.PLANT_TYPE.Corn: [3, 7],
-	Constants.PLANT_TYPE.Cucumber: [3, 6],
-	Constants.PLANT_TYPE.Eggplant: [2, 4],
-	Constants.PLANT_TYPE.Rose: [2, 5],
-	Constants.PLANT_TYPE.Lettuce: [2, 3],
-	Constants.PLANT_TYPE.Parsnip: [2, 4],
-	Constants.PLANT_TYPE.Pumpkin: [1, 3],
+var HARVEST_YIELD_RANGES_BY_VEGETABLE_TYPE = {
+	Constants.VEGETABLE_TYPE.StarFruit: [1, 3],
+	Constants.VEGETABLE_TYPE.Tomato: [3, 5],
+	Constants.VEGETABLE_TYPE.Wheat: [5, 10],
+	Constants.VEGETABLE_TYPE.Beet: [2, 3],
+	Constants.VEGETABLE_TYPE.BlueFlower: [3, 5],
+	Constants.VEGETABLE_TYPE.Carrot: [2, 4],
+	Constants.VEGETABLE_TYPE.Cauliflower: [2, 3],
+	Constants.VEGETABLE_TYPE.Corn: [3, 7],
+	Constants.VEGETABLE_TYPE.Cucumber: [3, 6],
+	Constants.VEGETABLE_TYPE.Eggplant: [2, 4],
+	Constants.VEGETABLE_TYPE.Rose: [2, 5],
+	Constants.VEGETABLE_TYPE.Lettuce: [2, 3],
+	Constants.VEGETABLE_TYPE.Parsnip: [2, 4],
+	Constants.VEGETABLE_TYPE.Pumpkin: [1, 3],
 }
 
 var INDIVIDUAL_TOOL_BY_TOOL_TYPE = {
@@ -152,36 +152,36 @@ var INDIVIDUAL_FRUIT_BY_FRUIT_TYPE = {
 	Constants.FRUIT_TYPE.Peach: load("res://modified-assets/fruit/peach.png"),
 }
 
-var INDIVIDUAL_PLANT_BY_PLANT_TYPE = {
-	Constants.PLANT_TYPE.StarFruit: load("res://modified-assets/farm-plants/farm-plant-starfruit.png"),
-	Constants.PLANT_TYPE.Tomato: load("res://modified-assets/farm-plants/farm-plant-tomato.png"),
-	Constants.PLANT_TYPE.Wheat: load("res://modified-assets/farm-plants/farm-plant-wheat.png"),
-	Constants.PLANT_TYPE.Beet: load("res://modified-assets/farm-plants/farm-plant-beet.png"),
-	Constants.PLANT_TYPE.BlueFlower: load("res://modified-assets/farm-plants/farm-plant-blueflower.png"),
-	Constants.PLANT_TYPE.Carrot: load("res://modified-assets/farm-plants/farm-plant-carrot.png"),
-	Constants.PLANT_TYPE.Cauliflower: load("res://modified-assets/farm-plants/farm-plant-cauliflower.png"),
-	Constants.PLANT_TYPE.Corn: load("res://modified-assets/farm-plants/farm-plant-corn.png"),
-	Constants.PLANT_TYPE.Cucumber: load("res://modified-assets/farm-plants/farm-plant-cucumber.png"),
-	Constants.PLANT_TYPE.Eggplant: load("res://modified-assets/farm-plants/farm-plant-eggplant.png"),
-	Constants.PLANT_TYPE.Rose: load("res://modified-assets/farm-plants/farm-plant-flower.png"),
-	Constants.PLANT_TYPE.Lettuce: load("res://modified-assets/farm-plants/farm-plant-lettuce.png"),
-	Constants.PLANT_TYPE.Parsnip: load("res://modified-assets/farm-plants/farm-plant-parsnip.png"),
-	Constants.PLANT_TYPE.Pumpkin: load("res://modified-assets/farm-plants/farm-plant-pumpkin.png"),
+var INDIVIDUAL_PLANT_BY_VEGETABLE_TYPE = {
+	Constants.VEGETABLE_TYPE.StarFruit: load("res://modified-assets/farm-plants/farm-plant-starfruit.png"),
+	Constants.VEGETABLE_TYPE.Tomato: load("res://modified-assets/farm-plants/farm-plant-tomato.png"),
+	Constants.VEGETABLE_TYPE.Wheat: load("res://modified-assets/farm-plants/farm-plant-wheat.png"),
+	Constants.VEGETABLE_TYPE.Beet: load("res://modified-assets/farm-plants/farm-plant-beet.png"),
+	Constants.VEGETABLE_TYPE.BlueFlower: load("res://modified-assets/farm-plants/farm-plant-blueflower.png"),
+	Constants.VEGETABLE_TYPE.Carrot: load("res://modified-assets/farm-plants/farm-plant-carrot.png"),
+	Constants.VEGETABLE_TYPE.Cauliflower: load("res://modified-assets/farm-plants/farm-plant-cauliflower.png"),
+	Constants.VEGETABLE_TYPE.Corn: load("res://modified-assets/farm-plants/farm-plant-corn.png"),
+	Constants.VEGETABLE_TYPE.Cucumber: load("res://modified-assets/farm-plants/farm-plant-cucumber.png"),
+	Constants.VEGETABLE_TYPE.Eggplant: load("res://modified-assets/farm-plants/farm-plant-eggplant.png"),
+	Constants.VEGETABLE_TYPE.Rose: load("res://modified-assets/farm-plants/farm-plant-flower.png"),
+	Constants.VEGETABLE_TYPE.Lettuce: load("res://modified-assets/farm-plants/farm-plant-lettuce.png"),
+	Constants.VEGETABLE_TYPE.Parsnip: load("res://modified-assets/farm-plants/farm-plant-parsnip.png"),
+	Constants.VEGETABLE_TYPE.Pumpkin: load("res://modified-assets/farm-plants/farm-plant-pumpkin.png"),
 }
 
-var INDIVIDUAL_SEEDS_BY_SEEDS_TYPE = {
-	Constants.SEEDS_TYPE.Corn: load("res://modified-assets/farm-plants/farm-plant-seed-corn.png"),
-	Constants.SEEDS_TYPE.Carrot: load("res://modified-assets/farm-plants/farm-plant-seed-carrot.png"),
-	Constants.SEEDS_TYPE.Cauliflower: load("res://modified-assets/farm-plants/farm-plant-seed-cauliflower.png"),
-	Constants.SEEDS_TYPE.Tomato: load("res://modified-assets/farm-plants/farm-plant-seed-tomato.png"),
-	Constants.SEEDS_TYPE.Eggplant: load("res://modified-assets/farm-plants/farm-plant-seed-eggplant.png"),
-	Constants.SEEDS_TYPE.BlueFlower: load("res://modified-assets/farm-plants/farm-plant-seed-blueflower.png"),
-	Constants.SEEDS_TYPE.Lettuce: load("res://modified-assets/farm-plants/farm-plant-seed-lettuce.png"),
-	Constants.SEEDS_TYPE.Wheat: load("res://modified-assets/farm-plants/farm-plant-seed-wheat.png"),
-	Constants.SEEDS_TYPE.Pumpkin: load("res://modified-assets/farm-plants/farm-plant-seed-pumpkin.png"),
-	Constants.SEEDS_TYPE.Parsnip: load("res://modified-assets/farm-plants/farm-plant-seed-parsnip.png"),
-	Constants.SEEDS_TYPE.Rose: load("res://modified-assets/farm-plants/farm-plant-seed-flower.png"),
-	Constants.SEEDS_TYPE.Beet: load("res://modified-assets/farm-plants/farm-plant-seed-beet.png"),
-	Constants.SEEDS_TYPE.StarFruit: load("res://modified-assets/farm-plants/farm-plant-seed-starfruit.png"),
-	Constants.SEEDS_TYPE.Cucumber: load("res://modified-assets/farm-plants/farm-plant-seed-cucumber.png"),
+var INDIVIDUAL_SEEDS_BY_SEED_TYPE = {
+	Constants.SEED_TYPE.Corn: load("res://modified-assets/farm-plants/farm-plant-seed-corn.png"),
+	Constants.SEED_TYPE.Carrot: load("res://modified-assets/farm-plants/farm-plant-seed-carrot.png"),
+	Constants.SEED_TYPE.Cauliflower: load("res://modified-assets/farm-plants/farm-plant-seed-cauliflower.png"),
+	Constants.SEED_TYPE.Tomato: load("res://modified-assets/farm-plants/farm-plant-seed-tomato.png"),
+	Constants.SEED_TYPE.Eggplant: load("res://modified-assets/farm-plants/farm-plant-seed-eggplant.png"),
+	Constants.SEED_TYPE.BlueFlower: load("res://modified-assets/farm-plants/farm-plant-seed-blueflower.png"),
+	Constants.SEED_TYPE.Lettuce: load("res://modified-assets/farm-plants/farm-plant-seed-lettuce.png"),
+	Constants.SEED_TYPE.Wheat: load("res://modified-assets/farm-plants/farm-plant-seed-wheat.png"),
+	Constants.SEED_TYPE.Pumpkin: load("res://modified-assets/farm-plants/farm-plant-seed-pumpkin.png"),
+	Constants.SEED_TYPE.Parsnip: load("res://modified-assets/farm-plants/farm-plant-seed-parsnip.png"),
+	Constants.SEED_TYPE.Rose: load("res://modified-assets/farm-plants/farm-plant-seed-flower.png"),
+	Constants.SEED_TYPE.Beet: load("res://modified-assets/farm-plants/farm-plant-seed-beet.png"),
+	Constants.SEED_TYPE.StarFruit: load("res://modified-assets/farm-plants/farm-plant-seed-starfruit.png"),
+	Constants.SEED_TYPE.Cucumber: load("res://modified-assets/farm-plants/farm-plant-seed-cucumber.png"),
 }

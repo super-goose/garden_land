@@ -2,7 +2,7 @@ class_name Vegetable
 extends "res://scenes/bases/collectible.gd"
 
 var direction: float
-var type: Constants.PLANT_TYPE
+var type: Constants.VEGETABLE_TYPE
 
 func _ready():
 	do_animation(
@@ -15,23 +15,23 @@ func _ready():
 #func _init():
 #	pass
 
-func set_vegetable_data(plant_type: Constants.PLANT_TYPE, index: int):
-	type = plant_type
+func set_vegetable_data(VEGETABLE_TYPE: Constants.VEGETABLE_TYPE, index: int):
+	type = VEGETABLE_TYPE
 	frame = [
-		Constants.PLANT_TYPE.Beet,
-		Constants.PLANT_TYPE.Carrot,
-		Constants.PLANT_TYPE.Cauliflower,
-		Constants.PLANT_TYPE.Corn,
-		Constants.PLANT_TYPE.Cucumber,
-		Constants.PLANT_TYPE.Eggplant,
-		Constants.PLANT_TYPE.BlueFlower,
-		Constants.PLANT_TYPE.Lettuce,
-		Constants.PLANT_TYPE.Parsnip,
-		Constants.PLANT_TYPE.Pumpkin,
-		Constants.PLANT_TYPE.Rose,
-		Constants.PLANT_TYPE.StarFruit,
-		Constants.PLANT_TYPE.Tomato,
-		Constants.PLANT_TYPE.Wheat,
+		Constants.VEGETABLE_TYPE.Beet,
+		Constants.VEGETABLE_TYPE.Carrot,
+		Constants.VEGETABLE_TYPE.Cauliflower,
+		Constants.VEGETABLE_TYPE.Corn,
+		Constants.VEGETABLE_TYPE.Cucumber,
+		Constants.VEGETABLE_TYPE.Eggplant,
+		Constants.VEGETABLE_TYPE.BlueFlower,
+		Constants.VEGETABLE_TYPE.Lettuce,
+		Constants.VEGETABLE_TYPE.Parsnip,
+		Constants.VEGETABLE_TYPE.Pumpkin,
+		Constants.VEGETABLE_TYPE.Rose,
+		Constants.VEGETABLE_TYPE.StarFruit,
+		Constants.VEGETABLE_TYPE.Tomato,
+		Constants.VEGETABLE_TYPE.Wheat,
 	].find(type)
 
 	position = [

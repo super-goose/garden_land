@@ -1,7 +1,7 @@
 class_name GardenPlot
 extends Area2D
 
-@export var type : Constants.PLANT_TYPE = Constants.PLANT_TYPE.None #TYPE
+@export var type : Constants.VEGETABLE_TYPE = Constants.VEGETABLE_TYPE.None #TYPE
 
 enum STAGE { empty, sprout, growing, showing, ready, corn }
 @export var stage : STAGE = STAGE.empty
@@ -27,7 +27,7 @@ func set_stage(s: STAGE):
 		STAGE.growing: 1,
 		STAGE.showing: 2,
 		STAGE.corn: 3,
-		STAGE.ready: 4 if type == Constants.PLANT_TYPE.Corn else 3,
+		STAGE.ready: 4 if type == Constants.VEGETABLE_TYPE.Corn else 3,
 	}[s]
 	$FarmingPlants.frame = new_frame
 
@@ -45,7 +45,7 @@ func _handle_event_stop_raining():
 	get_watered()
 
 func increase_stage():
-	if type == Constants.PLANT_TYPE.None or stage == STAGE.ready:
+	if type == Constants.VEGETABLE_TYPE.None or stage == STAGE.ready:
 		return
 
 	$Sown.visible = false
@@ -53,25 +53,25 @@ func increase_stage():
 		STAGE.empty: STAGE.sprout,
 		STAGE.sprout: STAGE.growing,
 		STAGE.growing: STAGE.showing,
-		STAGE.showing: STAGE.corn if type == Constants.PLANT_TYPE.Corn else STAGE.ready,
+		STAGE.showing: STAGE.corn if type == Constants.VEGETABLE_TYPE.Corn else STAGE.ready,
 		STAGE.corn: STAGE.ready,
 	}[stage]
 	set_stage(new_stage)
 	await get_tree().create_timer(.3).timeout
 	Events.update_actions.emit()
 
-func set_type(t: Constants.PLANT_TYPE):
+func set_type(t: Constants.VEGETABLE_TYPE):
 	type = t
-	if type == Constants.PLANT_TYPE.None:
+	if type == Constants.VEGETABLE_TYPE.None:
 		set_stage(STAGE.empty)
 		return
 	$Sown.visible = true
 	$FarmingPlants.texture = Constants.GROW_SPRITES[type]
-	$FarmingPlants.hframes = 5 if type == Constants.PLANT_TYPE.Corn else 4
-	$FarmingPlants.position = Vector2(0, -12 if type == Constants.PLANT_TYPE.Corn else -5)
+	$FarmingPlants.hframes = 5 if type == Constants.VEGETABLE_TYPE.Corn else 4
+	$FarmingPlants.position = Vector2(0, -12 if type == Constants.VEGETABLE_TYPE.Corn else -5)
 	$FarmingPlants.vframes = 1
 	$FarmingPlants.frame = 0
-	var harvest_range = Constants.HARVEST_YIELD_RANGES_BY_PLANT_TYPE[type]
+	var harvest_range = Constants.HARVEST_YIELD_RANGES_BY_VEGETABLE_TYPE[type]
 	harvest_yield = Dice.roll_d_range(harvest_range[0], harvest_range[1])
 	harvested = 0
 
@@ -82,7 +82,7 @@ func is_ready():
 	return stage == STAGE.ready
 
 func harvest():
-	if type == Constants.PLANT_TYPE.None:
+	if type == Constants.VEGETABLE_TYPE.None:
 		return
 	$FarmingPlants.frame = 2
 	Events.vegetable_was_harvested.connect(_handle_event_vegetable_was_harvested)
@@ -95,7 +95,7 @@ func harvest():
 func _handle_event_vegetable_was_harvested():
 	harvested = harvested + 1
 	if harvested == harvest_yield:
-		set_type(Constants.PLANT_TYPE.None)
+		set_type(Constants.VEGETABLE_TYPE.None)
 
 func get_harvest_action():
-	return Constants.HARVEST_ACTIONS_BY_PLANT_TYPE[type]
+	return Constants.HARVEST_ACTIONS_BY_VEGETABLE_TYPE[type]

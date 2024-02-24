@@ -11,12 +11,15 @@ func _ready():
 	$ColorRect/MarginContainer/VBoxContainer/MenuHeader.close_button_pressed.connect(_on_close_button_pressed)
 	Events.open_workstation_menu.connect(open_menu)
 
-func open_harvest_processing_menu(type: Constants.PLANT_TYPE):
+func open_vegetable_processing_menu(type: Constants.VEGETABLE_TYPE):
 	print('add to box')
 	print('harvest seeds')
 
-func open_move_to_box_menu():
-	pass
+func open_seed_processing_menu(type: Constants.SEED_TYPE):
+	print('add to box')
+
+func open_fruit_processing_menu(type: Constants.FRUIT_TYPE):
+	print('add to box')
 
 func open_menu(stats: StatsAndInventory):
 	visible = true
@@ -29,7 +32,7 @@ func open_menu(stats: StatsAndInventory):
 		plant_cell.set_data(plant, stats.plant_inventory[plant])
 		plant_cell.set_functionality(
 			func _press_vegetable_cell():
-				open_harvest_processing_menu(plant)
+				open_vegetable_processing_menu(plant)
 		)
 		plant_inventory.push_back(plant_cell)
 

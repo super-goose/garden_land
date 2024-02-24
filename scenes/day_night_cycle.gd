@@ -9,6 +9,16 @@ var become_night = [9, Constants.TIME.PM] # [12, Constants.TIME.PM] #
 func _ready():
 	$HourTimer.wait_time = Constants.SETTINGS_HOUR_DURATION
 	$HourTimer.start()
+	Events.open_menu.connect(_handle_event_open_menu)
+	Events.open_workstation_menu.connect(_handle_event_open_menu)
+	Events.close_menu.connect(_handle_event_close_menu)
+	
+
+func _handle_event_open_menu():
+	$HourTimer.paused = true
+
+func _handle_event_close_menu():
+	$HourTimer.paused = false
 
 func _on_hour_timer_timeout():
 	increase_hour()

@@ -232,7 +232,7 @@ func _handle_event_perform_action(action: Constants.ACTIONS):
 	else: # probably harvest; future actions (like a quest letter) should be handled before here
 		harvest_plant(action)
 
-func _handle_event_select_seed_type(seed_type: Constants.PLANT_TYPE):
+func _handle_event_select_seed_type(seed_type: Constants.VEGETABLE_TYPE):
 	current_plant.set_type(seed_type)
 	set_state('idle', true)
 
@@ -243,7 +243,7 @@ func _handle_event_harvest_fruit(fruit: Constants.FRUIT_TYPE):
 	print(stats_and_inventory.fruit_inventory[fruit])
 	set_actions()
 
-func _handle_event_harvest_plant(plant: Constants.PLANT_TYPE):
+func _handle_event_harvest_plant(plant: Constants.VEGETABLE_TYPE):
 	print('add this plant to your inventory: %s' % plant)
 	stats_and_inventory.plant_inventory[plant] += 1
 	await get_tree().create_timer(.2).timeout
@@ -268,7 +268,7 @@ func refill_water_can():
 	set_state('idle')
 
 func facilitate_sowing():
-	Events.display_seed_options.emit([Constants.PLANT_TYPE.Tomato, Constants.PLANT_TYPE.Cucumber, Constants.PLANT_TYPE.Pumpkin])
+	Events.display_seed_options.emit([Constants.VEGETABLE_TYPE.Tomato, Constants.VEGETABLE_TYPE.Cucumber, Constants.VEGETABLE_TYPE.Pumpkin])
 	print('await seed selection or dismissal')
 	print('decrement seed count if applicable')
 
@@ -296,7 +296,7 @@ func set_actions():
 
 	if state == 'idle':
 		if current_plant:
-			if current_plant.type == Constants.PLANT_TYPE.None:
+			if current_plant.type == Constants.VEGETABLE_TYPE.None:
 				actions.push_back(Constants.ACTIONS.Sow)
 			elif current_plant.is_ready():
 				actions.push_back(current_plant.get_harvest_action())

@@ -48,12 +48,12 @@ func _handle_hide_seed_options():
 	$Seeds.visible = false
 
 func __populate_seed_options():
-	for seed_type in Constants.PLANT_TYPE:
+	for seed_type in Constants.VEGETABLE_TYPE:
 		if seed_type == 'None':
 			continue
 #		print(str(seed_type))
 		var s = SeedButton.instantiate()
-		s.set_button_type(Constants.PLANT_TYPE[seed_type])
+		s.set_button_type(Constants.VEGETABLE_TYPE[seed_type])
 		seeds_container.add_child(s)
 
 func __populate_actions():
