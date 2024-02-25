@@ -5,8 +5,14 @@
 [ext_resource type="FontFile" uid="uid://bhvrl7wppixn1" path="res://fonts/PressStart2P-Regular-L.ttf" id="2_ejd7x"]
 
 [node name="ProcessingButton" type="MarginContainer"]
-offset_right = 24.0
-offset_bottom = 24.0
+custom_minimum_size = Vector2(294, 78)
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -147.0
+offset_right = 147.0
+offset_bottom = 78.0
+grow_horizontal = 2
 size_flags_vertical = 3
 theme_override_constants/margin_left = 12
 theme_override_constants/margin_top = 12

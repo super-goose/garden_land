@@ -3,7 +3,7 @@
 [ext_resource type="Script" path="res://scenes/menu_workstation.gd" id="1_rryry"]
 [ext_resource type="PackedScene" uid="uid://bqbms7serbb3f" path="res://scenes/menu_title.tscn" id="2_3tdak"]
 [ext_resource type="PackedScene" uid="uid://dx4wgdbp5b150" path="res://scenes/menu_section.tscn" id="3_1gsge"]
-[ext_resource type="PackedScene" uid="uid://bdi4v483a53ou" path="res://scenes/menu_process_button.tscn" id="4_ecvym"]
+[ext_resource type="PackedScene" uid="uid://c4cv1iqb33lcu" path="res://scenes/process_menu.tscn" id="4_ckmft"]
 
 [node name="WorkstationMenu" type="Control"]
 layout_mode = 3
@@ -63,34 +63,8 @@ title = "Seeds"
 layout_mode = 2
 title = "Vegetables"
 
-[node name="ProcessMenu" type="MarginContainer" parent="."]
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-theme_override_constants/margin_left = 0
-
-[node name="ColorRect" type="ColorRect" parent="ProcessMenu"]
-layout_mode = 2
-color = Color(0, 0, 0, 0.556863)
-
-[node name="MarginContainer" type="MarginContainer" parent="ProcessMenu"]
-layout_mode = 2
-theme_override_constants/margin_left = 32
-theme_override_constants/margin_top = 200
-theme_override_constants/margin_right = 32
-theme_override_constants/margin_bottom = 200
-
-[node name="ColorRect" type="ColorRect" parent="ProcessMenu/MarginContainer"]
-layout_mode = 2
-color = Color(0.337255, 0.396078, 0.376471, 1)
-
-[node name="VBoxContainer" type="VBoxContainer" parent="ProcessMenu/MarginContainer"]
-layout_mode = 2
-
-[node name="ProcessingButton" parent="ProcessMenu/MarginContainer/VBoxContainer" instance=ExtResource("4_ecvym")]
-layout_mode = 2
+[node name="ProcessMenu" parent="." instance=ExtResource("4_ckmft")]
+layout_mode = 0
+anchors_preset = 0
 
 [editable path="MenuContainer/VBoxContainer/MenuHeader"]

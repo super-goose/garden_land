@@ -12,6 +12,8 @@ func _ready():
 	Events.open_workstation_menu.connect(open_menu)
 
 func open_vegetable_processing_menu(type: Constants.VEGETABLE_TYPE):
+	$ProcessMenu.open()
+	$ProcessMenu.add_item()
 	print('add to box')
 	print('harvest seeds')
 

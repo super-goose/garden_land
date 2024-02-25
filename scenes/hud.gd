@@ -62,7 +62,7 @@ func __populate_seed_options():
 		seeds_container.add_child(s)
 
 func __populate_actions():
-	actions_container.get_children()
+	#actions_container.get_children()
 	for action in Constants.ACTIONS:
 		var a = ActionsMenuButton.instantiate()
 		a.set_button_type(Constants.ACTIONS[action])
