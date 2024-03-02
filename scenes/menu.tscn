@@ -1,9 +1,10 @@
-[gd_scene load_steps=5 format=3 uid="uid://b46obik1lqkq"]
+[gd_scene load_steps=6 format=3 uid="uid://b46obik1lqkq"]
 
 [ext_resource type="Script" path="res://scenes/menu.gd" id="1_js1in"]
 [ext_resource type="PackedScene" uid="uid://bqbms7serbb3f" path="res://scenes/menu_title.tscn" id="2_7kft0"]
 [ext_resource type="PackedScene" uid="uid://dx4wgdbp5b150" path="res://scenes/menu_section.tscn" id="3_wyerp"]
 [ext_resource type="FontFile" uid="uid://r5d0pkfw0bpw" path="res://fonts/KodeMono-VariableFont_wght.ttf" id="3_y75co"]
+[ext_resource type="PackedScene" uid="uid://c4cv1iqb33lcu" path="res://scenes/process_menu.tscn" id="5_okaoq"]
 
 [node name="Menu" type="Control"]
 layout_mode = 3
@@ -49,7 +50,7 @@ theme_override_constants/margin_bottom = 16
 layout_mode = 2
 theme_override_fonts/font = ExtResource("3_y75co")
 theme_override_font_sizes/font_size = 15
-current_tab = 2
+current_tab = 1
 
 [node name="Inventory" type="ScrollContainer" parent="MarginContainer/VBoxContainer/ContentContainer/TabContainer"]
 visible = false
@@ -78,7 +79,6 @@ layout_mode = 2
 title = "fruit"
 
 [node name="Workstation" type="ScrollContainer" parent="MarginContainer/VBoxContainer/ContentContainer/TabContainer"]
-visible = false
 layout_mode = 2
 size_flags_vertical = 3
 
@@ -104,6 +104,7 @@ layout_mode = 2
 title = "fruit"
 
 [node name="About" type="ScrollContainer" parent="MarginContainer/VBoxContainer/ContentContainer/TabContainer"]
+visible = false
 layout_mode = 2
 
 [node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/VBoxContainer/ContentContainer/TabContainer/About"]
@@ -115,7 +116,19 @@ layout_mode = 2
 size_flags_vertical = 3
 
 [node name="Label" type="Label" parent="MarginContainer/VBoxContainer/ContentContainer/TabContainer/About/VBoxContainer/MarginContainer"]
+custom_minimum_size = Vector2(2.08165e-12, 400)
 layout_mode = 2
 theme_override_fonts/font = ExtResource("3_y75co")
-text = "This is the about section of the app"
+text = "This is the about section of the app.
+
+Here is where I will thank my wife, and say this game is for her.
+
+It's also where I will say what font I am using, and provide its license if necessary
+
+Lastly, this is where I'll say that all art is either from Cup Nooble on itch, or derived from their work."
+autowrap_mode = 3
 clip_text = true
+
+[node name="ProcessMenu" parent="." instance=ExtResource("5_okaoq")]
+visible = false
+layout_mode = 1

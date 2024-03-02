@@ -10,11 +10,11 @@ func _ready():
 	$HourTimer.wait_time = Constants.SETTINGS_HOUR_DURATION
 	$HourTimer.start()
 	Events.open_menu.connect(_handle_event_open_menu)
-	Events.open_workstation_menu.connect(_handle_event_open_menu)
+	#Events.open_workstation_menu.connect(_handle_event_open_menu)
 	Events.close_menu.connect(_handle_event_close_menu)
 	
 
-func _handle_event_open_menu():
+func _handle_event_open_menu(_stats, _is_workstation):
 	$HourTimer.paused = true
 
 func _handle_event_close_menu():

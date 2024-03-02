@@ -214,11 +214,11 @@ func _handle_event_select_workstation(workstation: Workstation):
 
 func _handle_event_perform_action(action: Constants.ACTIONS):
 	if action == Constants.ACTIONS.Menu:
-		Events.open_menu.emit(stats_and_inventory)
+		Events.open_menu.emit(stats_and_inventory, false)
 	elif action == Constants.ACTIONS.RefillWater:
 		refill_water_can()
 	elif action == Constants.ACTIONS.WorkAtStation:
-		Events.open_workstation_menu.emit(stats_and_inventory)
+		Events.open_menu.emit(stats_and_inventory, true)
 	elif action == Constants.ACTIONS.CheckMail:
 		pass
 	elif action == Constants.ACTIONS.Chop:

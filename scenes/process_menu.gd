@@ -11,10 +11,10 @@ func open():
 func close():
 	visible = false
 
-func add_item(item: Array):
-	var b = ProcessingButton.instatiate()
-	b.set_words(item[0])
-	b.set_functionality(item[1])
+func add_item(item: Dictionary):
+	var b = ProcessingButton.instantiate()
+	b.set_words(item['words'])
+	b.set_functionality(item['functionality'])
 	button_container.add_child(b)
 
 func clear_items():

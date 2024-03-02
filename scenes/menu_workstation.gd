@@ -9,7 +9,7 @@ var SeedsCell = load("res://scenes/seeds_cell.tscn")
 
 func _ready():
 	$MenuContainer/VBoxContainer/MenuHeader.close_button_pressed.connect(_on_close_button_pressed)
-	Events.open_workstation_menu.connect(open_menu)
+	#Events.open_menu.connect(open_menu)
 
 func open_vegetable_processing_menu(type: Constants.VEGETABLE_TYPE):
 	$ProcessMenu.open()
