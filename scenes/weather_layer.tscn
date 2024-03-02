@@ -8,9 +8,10 @@ layer = 50
 script = ExtResource("1_udjow")
 
 [node name="CPUParticles2D" type="CPUParticles2D" parent="."]
-position = Vector2(93, 0)
+position = Vector2(183, -9)
 emitting = false
-amount = 27
+amount = 50
+lifetime = 2.0
 texture = ExtResource("1_e0klh")
 emission_shape = 3
-emission_rect_extents = Vector2(100, 1)
+emission_rect_extents = Vector2(200, 1)

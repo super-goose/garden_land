@@ -1,8 +1,9 @@
-[gd_scene load_steps=4 format=3 uid="uid://b46obik1lqkq"]
+[gd_scene load_steps=5 format=3 uid="uid://b46obik1lqkq"]
 
 [ext_resource type="Script" path="res://scenes/menu.gd" id="1_js1in"]
 [ext_resource type="PackedScene" uid="uid://bqbms7serbb3f" path="res://scenes/menu_title.tscn" id="2_7kft0"]
 [ext_resource type="PackedScene" uid="uid://dx4wgdbp5b150" path="res://scenes/menu_section.tscn" id="3_wyerp"]
+[ext_resource type="FontFile" uid="uid://r5d0pkfw0bpw" path="res://fonts/KodeMono-VariableFont_wght.ttf" id="3_y75co"]
 
 [node name="Menu" type="Control"]
 layout_mode = 3
@@ -20,10 +21,10 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-theme_override_constants/margin_left = 32
-theme_override_constants/margin_top = 32
-theme_override_constants/margin_right = 32
-theme_override_constants/margin_bottom = 32
+theme_override_constants/margin_left = 8
+theme_override_constants/margin_top = 8
+theme_override_constants/margin_right = 8
+theme_override_constants/margin_bottom = 8
 
 [node name="ColorRect" type="ColorRect" parent="MarginContainer"]
 layout_mode = 2
@@ -44,27 +45,77 @@ theme_override_constants/margin_top = 0
 theme_override_constants/margin_right = 16
 theme_override_constants/margin_bottom = 16
 
-[node name="ScrollContainer" type="ScrollContainer" parent="MarginContainer/VBoxContainer/ContentContainer"]
+[node name="TabContainer" type="TabContainer" parent="MarginContainer/VBoxContainer/ContentContainer"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("3_y75co")
+theme_override_font_sizes/font_size = 15
+current_tab = 2
+
+[node name="Inventory" type="ScrollContainer" parent="MarginContainer/VBoxContainer/ContentContainer/TabContainer"]
+visible = false
 layout_mode = 2
 size_flags_vertical = 3
 
-[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/VBoxContainer/ContentContainer/ScrollContainer"]
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/VBoxContainer/ContentContainer/TabContainer/Inventory"]
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
 
-[node name="ToolsSection" parent="MarginContainer/VBoxContainer/ContentContainer/ScrollContainer/VBoxContainer" instance=ExtResource("3_wyerp")]
+[node name="ToolsSection" parent="MarginContainer/VBoxContainer/ContentContainer/TabContainer/Inventory/VBoxContainer" instance=ExtResource("3_wyerp")]
 layout_mode = 2
 title = "tools"
 
-[node name="SeedsSection" parent="MarginContainer/VBoxContainer/ContentContainer/ScrollContainer/VBoxContainer" instance=ExtResource("3_wyerp")]
+[node name="SeedsSection" parent="MarginContainer/VBoxContainer/ContentContainer/TabContainer/Inventory/VBoxContainer" instance=ExtResource("3_wyerp")]
 layout_mode = 2
 title = "seeds"
 
-[node name="VegetablesSection" parent="MarginContainer/VBoxContainer/ContentContainer/ScrollContainer/VBoxContainer" instance=ExtResource("3_wyerp")]
+[node name="VegetablesSection" parent="MarginContainer/VBoxContainer/ContentContainer/TabContainer/Inventory/VBoxContainer" instance=ExtResource("3_wyerp")]
 layout_mode = 2
 title = "vegetables"
 
-[node name="FruitSection" parent="MarginContainer/VBoxContainer/ContentContainer/ScrollContainer/VBoxContainer" instance=ExtResource("3_wyerp")]
+[node name="FruitSection" parent="MarginContainer/VBoxContainer/ContentContainer/TabContainer/Inventory/VBoxContainer" instance=ExtResource("3_wyerp")]
 layout_mode = 2
 title = "fruit"
+
+[node name="Workstation" type="ScrollContainer" parent="MarginContainer/VBoxContainer/ContentContainer/TabContainer"]
+visible = false
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/VBoxContainer/ContentContainer/TabContainer/Workstation"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="ToolsSection" parent="MarginContainer/VBoxContainer/ContentContainer/TabContainer/Workstation/VBoxContainer" instance=ExtResource("3_wyerp")]
+layout_mode = 2
+title = "tools"
+
+[node name="SeedsSection" parent="MarginContainer/VBoxContainer/ContentContainer/TabContainer/Workstation/VBoxContainer" instance=ExtResource("3_wyerp")]
+layout_mode = 2
+title = "seeds"
+
+[node name="VegetablesSection" parent="MarginContainer/VBoxContainer/ContentContainer/TabContainer/Workstation/VBoxContainer" instance=ExtResource("3_wyerp")]
+layout_mode = 2
+title = "vegetables"
+
+[node name="FruitSection" parent="MarginContainer/VBoxContainer/ContentContainer/TabContainer/Workstation/VBoxContainer" instance=ExtResource("3_wyerp")]
+layout_mode = 2
+title = "fruit"
+
+[node name="About" type="ScrollContainer" parent="MarginContainer/VBoxContainer/ContentContainer/TabContainer"]
+layout_mode = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/VBoxContainer/ContentContainer/TabContainer/About"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="MarginContainer" type="MarginContainer" parent="MarginContainer/VBoxContainer/ContentContainer/TabContainer/About/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="Label" type="Label" parent="MarginContainer/VBoxContainer/ContentContainer/TabContainer/About/VBoxContainer/MarginContainer"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("3_y75co")
+text = "This is the about section of the app"
+clip_text = true

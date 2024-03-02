@@ -1,9 +1,9 @@
 extends Control
 
-@onready var seeds_grid_container = $MarginContainer/VBoxContainer/ContentContainer/ScrollContainer/VBoxContainer/SeedsSection
-@onready var plant_grid_container = $MarginContainer/VBoxContainer/ContentContainer/ScrollContainer/VBoxContainer/VegetablesSection
-@onready var fruit_grid_container = $MarginContainer/VBoxContainer/ContentContainer/ScrollContainer/VBoxContainer/FruitSection
-@onready var tools_grid_container = $MarginContainer/VBoxContainer/ContentContainer/ScrollContainer/VBoxContainer/ToolsSection
+@onready var seeds_grid_container = $MarginContainer/VBoxContainer/ContentContainer/TabContainer/Inventory/VBoxContainer/SeedsSection
+@onready var plant_grid_container = $MarginContainer/VBoxContainer/ContentContainer/TabContainer/Inventory/VBoxContainer/VegetablesSection
+@onready var fruit_grid_container = $MarginContainer/VBoxContainer/ContentContainer/TabContainer/Inventory/VBoxContainer/FruitSection
+@onready var tools_grid_container = $MarginContainer/VBoxContainer/ContentContainer/TabContainer/Inventory/VBoxContainer/ToolsSection
 
 var FruitCell = load("res://scenes/fruit_cell.tscn")
 var VegetableCell = load("res://scenes/vegetable_cell.tscn")

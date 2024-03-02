@@ -1,11 +1,8 @@
-[gd_scene load_steps=7 format=3 uid="uid://bqbms7serbb3f"]
+[gd_scene load_steps=6 format=3 uid="uid://bqbms7serbb3f"]
 
 [ext_resource type="Script" path="res://scenes/menu_header.gd" id="1_l3184"]
-[ext_resource type="FontFile" uid="uid://bhvrl7wppixn1" path="res://fonts/PressStart2P-Regular-L.ttf" id="1_u0w46"]
 [ext_resource type="Texture2D" uid="uid://bbbocjo1ubnah" path="res://modified-assets/ui/icon-buttons-sprites.png" id="2_apy8y"]
-
-[sub_resource type="Theme" id="Theme_lfwxg"]
-default_font = ExtResource("1_u0w46")
+[ext_resource type="FontFile" uid="uid://r5d0pkfw0bpw" path="res://fonts/KodeMono-VariableFont_wght.ttf" id="2_xe1r5"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_2mkwb"]
 atlas = ExtResource("2_apy8y")
@@ -38,8 +35,8 @@ size_flags_vertical = 4
 [node name="Label" type="Label" parent="HBoxContainer/MarginContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
-theme = SubResource("Theme_lfwxg")
-theme_override_font_sizes/font_size = 24
+theme_override_fonts/font = ExtResource("2_xe1r5")
+theme_override_font_sizes/font_size = 36
 text = "Menu"
 
 [node name="MarginContainer2" type="MarginContainer" parent="HBoxContainer"]
