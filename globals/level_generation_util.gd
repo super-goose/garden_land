@@ -3,7 +3,10 @@ extends Node
 const TILE_SIZE = 16
 
 const WHOLE_TILE_CELL = Vector2i(LevelGenerationUtil.TILE_SIZE, LevelGenerationUtil.TILE_SIZE)
-const HALF_TILE_CELL = Vector2i(LevelGenerationUtil.TILE_SIZE / 2, LevelGenerationUtil.TILE_SIZE / 2)
+const HALF_TILE_CELL = Vector2i(
+	int(LevelGenerationUtil.TILE_SIZE / 2),
+	int(LevelGenerationUtil.TILE_SIZE / 2),
+)
 
 
 const HILL_PROBABILITY_COEFFICIENT = 40 # 70 was original value

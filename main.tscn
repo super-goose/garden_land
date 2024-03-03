@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=3 uid="uid://38xtew55py1l"]
+[gd_scene load_steps=8 format=3 uid="uid://38xtew55py1l"]
 
 [ext_resource type="Script" path="res://main.gd" id="1_b3ke2"]
 [ext_resource type="PackedScene" uid="uid://cualt3fdfjppy" path="res://scenes/hud.tscn" id="2_tdtfc"]
@@ -6,7 +6,6 @@
 [ext_resource type="PackedScene" uid="uid://bhth6w0j355mt" path="res://scenes/weather_layer.tscn" id="4_3m5er"]
 [ext_resource type="PackedScene" uid="uid://brcxg1cwk4en0" path="res://scenes/character.tscn" id="4_38ofq"]
 [ext_resource type="PackedScene" uid="uid://cx3rui7gg3ks7" path="res://scenes/day_night_cycle.tscn" id="4_52oyc"]
-[ext_resource type="PackedScene" uid="uid://deasyjhl1urvp" path="res://scenes/menu_workstation.tscn" id="4_p4pbr"]
 [ext_resource type="PackedScene" uid="uid://b46obik1lqkq" path="res://scenes/menu.tscn" id="9_i5nh6"]
 
 [node name="Main" type="Node2D"]
@@ -15,9 +14,6 @@ script = ExtResource("1_b3ke2")
 [node name="HUD" parent="." instance=ExtResource("2_tdtfc")]
 
 [node name="Menu" parent="HUD" instance=ExtResource("9_i5nh6")]
-visible = false
-
-[node name="WorkstationMenu" parent="HUD" instance=ExtResource("4_p4pbr")]
 visible = false
 
 [node name="WeatherLayer" parent="." instance=ExtResource("4_3m5er")]

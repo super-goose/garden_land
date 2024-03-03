@@ -13,6 +13,7 @@ var current_tree: FruitTree
 var current_mailbox: Mailbox
 var current_water_well: WaterWell
 var current_workstation: Workstation
+var current_bed: Bed
 var watering_happened = false
 
 var stats_and_inventory : StatsAndInventory
@@ -27,6 +28,7 @@ func _ready():
 	Events.select_mailbox.connect(_handle_event_select_mailbox)
 	Events.select_water_well.connect(_handle_event_select_water_well)
 	Events.select_workstation.connect(_handle_event_select_workstation)
+	Events.select_bed.connect(_handle_event_select_bed)
 
 	Events.perform_action.connect(_handle_event_perform_action)
 	Events.select_seed_type.connect(_handle_event_select_seed_type)
@@ -140,6 +142,8 @@ func _on_ao_i_area_entered(area):
 		current_water_well = area
 	elif area is Workstation:
 		current_workstation = area
+	elif area is Bed:
+		current_bed = area
 
 
 func _on_ao_i_area_exited(area):
@@ -155,6 +159,8 @@ func _on_ao_i_area_exited(area):
 		current_water_well = null
 	elif current_workstation == area:
 		current_workstation = null
+	elif current_bed == area:
+		current_bed = null
 	set_actions()
 
 
@@ -188,29 +194,34 @@ func _on_animated_sprite_2d_animation_finished():
 
 func _handle_event_select_garden_plot(garden_plot: GardenPlot):
 	print('a garden plot was selected... do something with it? display a context menu??')
-	var here = position_to_coords(position)
+	#var here = position_to_coords(position)
 	var garden_plot_coordinates = Common.convert_to_grid_coordinates(garden_plot.position)
 	go_to_position(garden_plot_coordinates)
 
 func _handle_event_select_fruit_tree(fruit_tree: FruitTree):
-	var here = position_to_coords(position)
+	#var here = position_to_coords(position)
 	var fruit_tree_coordinates = Common.convert_to_grid_coordinates(fruit_tree.position)
 	go_to_position(fruit_tree_coordinates, { 'avoid': 'down' })
 
 func _handle_event_select_mailbox(mailbox: Mailbox):
-	var here = position_to_coords(position)
+	#var here = position_to_coords(position)
 	var mailbox_coordinates = Common.convert_to_grid_coordinates(mailbox.position)
 	go_to_position(mailbox_coordinates, { 'avoid': 'down' })
 
 func _handle_event_select_water_well(well: WaterWell):
-	var here = position_to_coords(position)
+	#var here = position_to_coords(position)
 	var well_coordinates = Common.convert_to_grid_coordinates(well.position)
 	go_to_position(well_coordinates, { 'only': 'up' })
 
 func _handle_event_select_workstation(workstation: Workstation):
-	var here = position_to_coords(position)
+	#var here = position_to_coords(position)
 	var workstation_coordinates = Common.convert_to_grid_coordinates(workstation.position)
 	go_to_position(workstation_coordinates, { 'only': 'up' })
+
+func _handle_event_select_bed(bed: Bed):
+	print('bed was selected')
+	var bed_coordinates = Common.convert_to_grid_coordinates(bed.position)
+	go_to_position(bed_coordinates, { 'only': 'left' })
 
 func _handle_event_perform_action(action: Constants.ACTIONS):
 	if action == Constants.ACTIONS.Menu:
@@ -219,8 +230,10 @@ func _handle_event_perform_action(action: Constants.ACTIONS):
 		refill_water_can()
 	elif action == Constants.ACTIONS.WorkAtStation:
 		Events.open_menu.emit(stats_and_inventory, true)
+	elif action == Constants.ACTIONS.UseBed:
+		print('use that bed, yo')
 	elif action == Constants.ACTIONS.CheckMail:
-		pass
+		print('check that mail, yo')
 	elif action == Constants.ACTIONS.Chop:
 		set_state('chop')
 	elif action == Constants.ACTIONS.Water:
@@ -312,6 +325,8 @@ func set_actions():
 			actions.push_back(Constants.ACTIONS.RefillWater)
 		elif current_workstation:
 			actions.push_back(Constants.ACTIONS.WorkAtStation)
+		elif current_bed:
+			actions.push_back(Constants.ACTIONS.UseBed)
 		elif LevelUtil.is_hoeable(position_to_coords($AoI/FocusCursor.global_position)) and stats_and_inventory.has_hoe:
 			actions.push_back(Constants.ACTIONS.Hoe)
 		

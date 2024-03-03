@@ -6,6 +6,7 @@ signal select_fruit_tree(fruit_tree: FruitTree)
 signal select_mailbox(mailbox: Mailbox)
 signal select_workstation(workstation: Workstation)
 signal select_water_well(well: WaterWell)
+signal select_bed(bed: Bed)
 
 signal quest_available
 
@@ -15,10 +16,11 @@ signal set_actions(actions: Array)
 signal display_seed_options(seeds: Dictionary)
 signal hide_seed_options
 signal update_actions
+signal refresh_stats_and_inventory
 
 signal harvest_fruit(item: Constants.FRUIT_TYPE, amount: int)
 signal harvest_plant(item: Constants.VEGETABLE_TYPE, amount: int)
-signal vegetable_was_harvested
+signal vegetable_was_harvested(stats: StatsAndInventory)
 
 signal set_water_level(value: int)
 signal set_water_level_max(value: int)

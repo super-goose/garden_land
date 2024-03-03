@@ -15,49 +15,57 @@ enum PROCESS_MENU_TYPE {
 @onready var inv_plant_grid_container = $MarginContainer/VBoxContainer/ContentContainer/TabContainer/Inventory/VBoxContainer/VegetablesSection
 @onready var inv_fruit_grid_container = $MarginContainer/VBoxContainer/ContentContainer/TabContainer/Inventory/VBoxContainer/FruitSection
 @onready var inv_tools_grid_container = $MarginContainer/VBoxContainer/ContentContainer/TabContainer/Inventory/VBoxContainer/ToolsSection
+@onready var inv_box_grid_container = $MarginContainer/VBoxContainer/ContentContainer/TabContainer/Inventory/VBoxContainer/BoxSection
 
 @onready var ws_seeds_grid_container = $MarginContainer/VBoxContainer/ContentContainer/TabContainer/Workstation/VBoxContainer/SeedsSection
 @onready var ws_plant_grid_container = $MarginContainer/VBoxContainer/ContentContainer/TabContainer/Workstation/VBoxContainer/VegetablesSection
 @onready var ws_fruit_grid_container = $MarginContainer/VBoxContainer/ContentContainer/TabContainer/Workstation/VBoxContainer/FruitSection
 @onready var ws_tools_grid_container = $MarginContainer/VBoxContainer/ContentContainer/TabContainer/Workstation/VBoxContainer/ToolsSection
+@onready var ws_box_grid_container = $MarginContainer/VBoxContainer/ContentContainer/TabContainer/Workstation/VBoxContainer/BoxSection
 
 var FruitCell = load("res://scenes/fruit_cell.tscn")
 var VegetableCell = load("res://scenes/vegetable_cell.tscn")
 var ToolCell = load("res://scenes/tool_cell.tscn")
 var SeedsCell = load("res://scenes/seeds_cell.tscn")
 
+var is_workstation_menu = false
+
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	menu_header.close_button_pressed.connect(_on_close_button_pressed)
 	Events.open_menu.connect(open_menu)
 
-func open_process_vegetable_menu(vegetable: Constants.VEGETABLE_TYPE):
+func open_process_vegetable_menu(vegetable: Constants.VEGETABLE_TYPE, stats: StatsAndInventory):
 	process_menu.open()
 	process_menu.add_item({
 		'words': 'harvest seeds',
 		'functionality': func veg_functionality():
-			print('process this vegetable')
+			stats.convert_vegetable_to_seeds(vegetable)
+			process_menu.close()
 	})
 	process_menu.add_item({
 		'words': 'add vegetable to box',
 		'functionality': func veg_functionality():
-			print('process this vegetable')
+			stats.add_vegetable_to_box(vegetable, 1)
+			process_menu.close()
 	})
 
-func open_process_fruit_menu(vegetable: Constants.FRUIT_TYPE):
+func open_process_fruit_menu(fruit: Constants.FRUIT_TYPE, stats: StatsAndInventory):
 	process_menu.open()
 	process_menu.add_item({
 		'words': 'add fruit to box',
 		'functionality': func veg_functionality():
-			print('process this fruit')
+			stats.add_fruit_to_box(fruit, 1)
+			process_menu.close()
 	})
 
-func open_process_seeds_menu(vegetable: Constants.VEGETABLE_TYPE):
+func open_process_seeds_menu(seeds: Constants.VEGETABLE_TYPE, stats: StatsAndInventory):
 	process_menu.open()
 	process_menu.add_item({
 		'words': 'add seeds to box',
 		'functionality': func veg_functionality():
-			print('process these seeds')
+			stats.add_seeds_to_box(seeds, 1)
+			process_menu.close()
 	})
 
 func populate_workstation_tab(stats: StatsAndInventory):
@@ -69,7 +77,7 @@ func populate_workstation_tab(stats: StatsAndInventory):
 		vegetable_cell.set_data(vegetable, stats.vegetable_inventory[vegetable])
 		vegetable_cell.set_functionality(
 			func __open_process_vegetable_menu():
-				open_process_vegetable_menu(vegetable)
+				open_process_vegetable_menu(vegetable, stats)
 		)
 		vegetable_inventory.push_back(vegetable_cell)
 		
@@ -82,7 +90,7 @@ func populate_workstation_tab(stats: StatsAndInventory):
 		fruit_cell.set_data(fruit, stats.fruit_inventory[fruit])
 		fruit_cell.set_functionality(
 			func __open_process_fruit_menu():
-				open_process_fruit_menu(fruit)
+				open_process_fruit_menu(fruit, stats)
 		)
 		fruit_inventory.push_back(fruit_cell)
 
@@ -108,15 +116,38 @@ func populate_workstation_tab(stats: StatsAndInventory):
 		var seeds_cell = SeedsCell.instantiate()
 		seeds_cell.set_functionality(
 			func __open_process_seeds_menu():
-				open_process_seeds_menu(seeds)
+				open_process_seeds_menu(seeds, stats)
 		)
 		seeds_cell.set_data(seeds, stats.seeds_inventory[seeds])
 		seeds_inventory.push_back(seeds_cell)
-	
+
+	var box_inventory = []
+	for seeds in stats.box_inventory['seeds']:
+		if stats.box_inventory['seeds'][seeds] == 0:
+			continue
+		var seeds_cell = SeedsCell.instantiate()
+		seeds_cell.set_data(seeds, stats.box_inventory['seeds'][seeds])
+		box_inventory.push_back(seeds_cell)
+
+	for fruit in stats.box_inventory['fruit']:
+		if stats.box_inventory['fruit'][fruit] == 0:
+			continue
+		var fruit_cell = FruitCell.instantiate()
+		fruit_cell.set_data(fruit, stats.box_inventory['fruit'][fruit])
+		box_inventory.push_back(fruit_cell)
+
+	for vegetable in stats.box_inventory['vegetable']:
+		if stats.box_inventory['vegetable'][vegetable] == 0:
+			continue
+		var vegetable_cell = VegetableCell.instantiate()
+		vegetable_cell.set_data(vegetable, stats.box_inventory['vegetable'][vegetable])
+		box_inventory.push_back(vegetable_cell)
+
 	ws_seeds_grid_container.set_items(seeds_inventory)
 	ws_plant_grid_container.set_items(vegetable_inventory)
 	ws_fruit_grid_container.set_items(fruit_inventory)
 	ws_tools_grid_container.set_items(tools_inventory)
+	ws_box_grid_container.set_items(box_inventory)
 
 
 func populate_inventory_tab(stats: StatsAndInventory):
@@ -158,19 +189,50 @@ func populate_inventory_tab(stats: StatsAndInventory):
 		var seeds_cell = SeedsCell.instantiate()
 		seeds_cell.set_data(seeds, stats.seeds_inventory[seeds])
 		seeds_inventory.push_back(seeds_cell)
-	
+
+	var box_inventory = []
+	for seeds in stats.box_inventory['seeds']:
+		if stats.box_inventory['seeds'][seeds] == 0:
+			continue
+		var seeds_cell = SeedsCell.instantiate()
+		seeds_cell.set_data(seeds, stats.box_inventory['seeds'][seeds])
+		box_inventory.push_back(seeds_cell)
+
+	for fruit in stats.box_inventory['fruit']:
+		if stats.box_inventory['fruit'][fruit] == 0:
+			continue
+		var fruit_cell = FruitCell.instantiate()
+		fruit_cell.set_data(fruit, stats.box_inventory['fruit'][fruit])
+		box_inventory.push_back(fruit_cell)
+
+	for vegetable in stats.box_inventory['vegetable']:
+		if stats.box_inventory['vegetable'][vegetable] == 0:
+			continue
+		var vegetable_cell = VegetableCell.instantiate()
+		vegetable_cell.set_data(vegetable, stats.box_inventory['vegetable'][vegetable])
+		box_inventory.push_back(vegetable_cell)
+
 	inv_seeds_grid_container.set_items(seeds_inventory)
 	inv_plant_grid_container.set_items(plant_inventory)
 	inv_fruit_grid_container.set_items(fruit_inventory)
 	inv_tools_grid_container.set_items(tools_inventory)
+	inv_box_grid_container.set_items(box_inventory)
 
 func open_menu(stats: StatsAndInventory, is_workstation = false):
 	tab_container.set_tab_hidden(1, not is_workstation)
+	is_workstation_menu = is_workstation
 	if is_workstation:
 		populate_workstation_tab(stats)
 	visible = true
 	populate_inventory_tab(stats)
+	Events.refresh_stats_and_inventory.connect(_handle_event_refresh_inventory)
 
 func _on_close_button_pressed():
 	visible = false
 	Events.close_menu.emit()
+	Events.refresh_stats_and_inventory.disconnect(_handle_event_refresh_inventory)
+
+func _handle_event_refresh_inventory(stats: StatsAndInventory):
+	populate_inventory_tab(stats)
+	if is_workstation_menu:
+		populate_workstation_tab(stats)

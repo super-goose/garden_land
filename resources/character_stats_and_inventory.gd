@@ -93,36 +93,42 @@ func add_fruit_to_box(fruit_type: Constants.FRUIT_TYPE, amount: int):
 		return
 	fruit_inventory[fruit_type] -= amount
 	box_inventory['fruit'][fruit_type] += amount
+	Events.refresh_stats_and_inventory.emit(self)
 
 func remove_fruit_from_box(fruit_type: Constants.FRUIT_TYPE, amount: int):
 	if box_inventory['fruit'][fruit_type] == 0:
 		return
 	fruit_inventory[fruit_type] += amount
 	box_inventory['fruit'][fruit_type] -= amount
+	Events.refresh_stats_and_inventory.emit(self)
 
 func add_vegetable_to_box(vegetable_type: Constants.VEGETABLE_TYPE, amount: int):
 	if vegetable_inventory[vegetable_type] == 0:
 		return
 	vegetable_inventory[vegetable_type] -= amount
 	box_inventory['vegetable'][vegetable_type] += amount
+	Events.refresh_stats_and_inventory.emit(self)
 
 func remove_vegetable_from_box(vegetable_type: Constants.VEGETABLE_TYPE, amount: int):
 	if box_inventory['vegetable'][vegetable_type] == 0:
 		return
 	vegetable_inventory[vegetable_type] += amount
 	box_inventory['vegetable'][vegetable_type] -= amount
+	Events.refresh_stats_and_inventory.emit(self)
 
 func add_seeds_to_box(seeds_type: Constants.VEGETABLE_TYPE, amount: int):
 	if seeds_inventory[seeds_type] == 0:
 		return
 	seeds_inventory[seeds_type] -= amount
 	box_inventory['seeds'][seeds_type] += amount
+	Events.refresh_stats_and_inventory.emit(self)
 
 func remove_seeds_from_box(seeds_type: Constants.VEGETABLE_TYPE, amount: int):
 	if box_inventory['seeds'][seeds_type] == 0:
 		return
 	seeds_inventory[seeds_type] += amount
 	box_inventory['seeds'][seeds_type] -= amount
+	Events.refresh_stats_and_inventory.emit(self)
 
 func empty_box():
 	for seed_type in Constants.VEGETABLE_TYPE:
@@ -134,6 +140,9 @@ func empty_box():
 	for vegetable_type in Constants.VEGETABLE_TYPE:
 		box_inventory['vegetable'][vegetable_type] = 0
 
+	Events.refresh_stats_and_inventory.emit(self)
+
+
 func convert_vegetable_to_seeds(vegetable_type: Constants.VEGETABLE_TYPE):
 	if vegetable_inventory[vegetable_type] == 0:
 		return
@@ -143,3 +152,4 @@ func convert_vegetable_to_seeds(vegetable_type: Constants.VEGETABLE_TYPE):
 	
 	vegetable_inventory[vegetable_type] -= 1
 	seeds_inventory[vegetable_type] += harvest_yield
+	Events.refresh_stats_and_inventory.emit(self)

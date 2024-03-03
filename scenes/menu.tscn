@@ -76,6 +76,10 @@ title = "vegetables"
 layout_mode = 2
 title = "fruit"
 
+[node name="BoxSection" parent="MarginContainer/VBoxContainer/ContentContainer/TabContainer/Inventory/VBoxContainer" instance=ExtResource("3_wyerp")]
+layout_mode = 2
+title = "box"
+
 [node name="Workstation" type="ScrollContainer" parent="MarginContainer/VBoxContainer/ContentContainer/TabContainer"]
 visible = false
 layout_mode = 2
@@ -101,6 +105,10 @@ title = "vegetables"
 [node name="FruitSection" parent="MarginContainer/VBoxContainer/ContentContainer/TabContainer/Workstation/VBoxContainer" instance=ExtResource("3_wyerp")]
 layout_mode = 2
 title = "fruit"
+
+[node name="BoxSection" parent="MarginContainer/VBoxContainer/ContentContainer/TabContainer/Workstation/VBoxContainer" instance=ExtResource("3_wyerp")]
+layout_mode = 2
+title = "box"
 
 [node name="About" type="ScrollContainer" parent="MarginContainer/VBoxContainer/ContentContainer/TabContainer"]
 visible = false

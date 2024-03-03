@@ -73,6 +73,7 @@ enum ACTIONS {
 	CheckMail,
 	RefillWater,
 	WorkAtStation,
+	UseBed,
 	Harvest_Corn,
 	Harvest_Carrot,
 	Harvest_Cauliflower,

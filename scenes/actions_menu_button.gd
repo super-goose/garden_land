@@ -8,6 +8,7 @@ func _ready():
 	action_image = {
 		Constants.ACTIONS.RefillWater: load("res://modified-assets/ui/action-button-water-well.png"),
 		Constants.ACTIONS.WorkAtStation: load("res://modified-assets/ui/action-button-workstation.png"),
+		Constants.ACTIONS.UseBed: load("res://modified-assets/ui/action-button-bed.png"),
 		Constants.ACTIONS.CheckMail: load("res://modified-assets/ui/action-button-letter.png"),
 		Constants.ACTIONS.Menu: load("res://modified-assets/ui/menu_button.png"),
 		Constants.ACTIONS.Hoe: load("res://modified-assets/tools/tools-hoe.png"),

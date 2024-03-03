@@ -1,0 +1,30 @@
+[gd_scene load_steps=6 format=3 uid="uid://d33xtd5umv0jx"]
+
+[ext_resource type="PackedScene" uid="uid://c3va341ysjimi" path="res://scenes/bases/interactable.tscn" id="1_edr4b"]
+[ext_resource type="Texture2D" uid="uid://b6ge0p35tj1in" path="res://modified-assets/tiles/building-parts/basic-furniture.png" id="2_3xp8h"]
+[ext_resource type="Script" path="res://scenes/bed.gd" id="2_nvhtu"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_crlc0"]
+radius = 8.0
+height = 26.0
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ojg5n"]
+atlas = ExtResource("2_3xp8h")
+region = Rect2(2.08165e-12, 57, 16, 24)
+
+[node name="Bed" instance=ExtResource("1_edr4b")]
+script = ExtResource("2_nvhtu")
+
+[node name="CollisionShape2D" parent="." index="0"]
+position = Vector2(0, -4)
+shape = SubResource("CapsuleShape2D_crlc0")
+
+[node name="Sprite2D" parent="." index="1"]
+position = Vector2(0, -4)
+texture = SubResource("AtlasTexture_ojg5n")
+
+[node name="Button" parent="." index="2"]
+offset_top = -16.0
+offset_bottom = 8.0
+
+[connection signal="pressed" from="Button" to="." method="_on_button_pressed"]
