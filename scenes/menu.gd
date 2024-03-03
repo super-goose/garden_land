@@ -52,26 +52,26 @@ func open_process_fruit_menu(vegetable: Constants.FRUIT_TYPE):
 			print('process this fruit')
 	})
 
-func open_process_seeds_menu(vegetable: Constants.SEED_TYPE):
+func open_process_seeds_menu(vegetable: Constants.VEGETABLE_TYPE):
 	process_menu.open()
 	process_menu.add_item({
-		'words': 'add fruit to box',
+		'words': 'add seeds to box',
 		'functionality': func veg_functionality():
 			print('process these seeds')
 	})
 
 func populate_workstation_tab(stats: StatsAndInventory):
-	var plant_inventory = []
-	for plant in stats.plant_inventory:
-		if stats.plant_inventory[plant] == 0:
+	var vegetable_inventory = []
+	for vegetable in stats.vegetable_inventory:
+		if stats.vegetable_inventory[vegetable] == 0:
 			continue
-		var plant_cell = VegetableCell.instantiate()
-		plant_cell.set_data(plant, stats.plant_inventory[plant])
-		plant_cell.set_functionality(
+		var vegetable_cell = VegetableCell.instantiate()
+		vegetable_cell.set_data(vegetable, stats.vegetable_inventory[vegetable])
+		vegetable_cell.set_functionality(
 			func __open_process_vegetable_menu():
-				open_process_vegetable_menu(plant)
+				open_process_vegetable_menu(vegetable)
 		)
-		plant_inventory.push_back(plant_cell)
+		vegetable_inventory.push_back(vegetable_cell)
 		
 
 	var fruit_inventory = []
@@ -114,18 +114,18 @@ func populate_workstation_tab(stats: StatsAndInventory):
 		seeds_inventory.push_back(seeds_cell)
 	
 	ws_seeds_grid_container.set_items(seeds_inventory)
-	ws_plant_grid_container.set_items(plant_inventory)
+	ws_plant_grid_container.set_items(vegetable_inventory)
 	ws_fruit_grid_container.set_items(fruit_inventory)
 	ws_tools_grid_container.set_items(tools_inventory)
 
 
 func populate_inventory_tab(stats: StatsAndInventory):
 	var plant_inventory = []
-	for plant in stats.plant_inventory:
-		if stats.plant_inventory[plant] == 0:
+	for plant in stats.vegetable_inventory:
+		if stats.vegetable_inventory[plant] == 0:
 			continue
 		var plant_cell = VegetableCell.instantiate()
-		plant_cell.set_data(plant, stats.plant_inventory[plant])
+		plant_cell.set_data(plant, stats.vegetable_inventory[plant])
 		plant_inventory.push_back(plant_cell)
 
 	var fruit_inventory = []

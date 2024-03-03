@@ -6,10 +6,17 @@
 
 [node name="ProcessingButton" type="MarginContainer"]
 custom_minimum_size = Vector2(294, 78)
-anchors_preset = 10
-anchor_right = 1.0
-offset_bottom = 78.0
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -147.0
+offset_top = -39.0
+offset_right = 147.0
+offset_bottom = 39.0
 grow_horizontal = 2
+grow_vertical = 2
 size_flags_vertical = 3
 theme_override_constants/margin_left = 12
 theme_override_constants/margin_top = 12

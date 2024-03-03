@@ -17,7 +17,7 @@ func open_vegetable_processing_menu(type: Constants.VEGETABLE_TYPE):
 	print('add to box')
 	print('harvest seeds')
 
-func open_seed_processing_menu(type: Constants.SEED_TYPE):
+func open_seed_processing_menu(type: Constants.VEGETABLE_TYPE):
 	print('add to box')
 
 func open_fruit_processing_menu(type: Constants.FRUIT_TYPE):

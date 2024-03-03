@@ -12,7 +12,7 @@ signal quest_available
 signal select_seed_type(type: Constants.VEGETABLE_TYPE)
 signal perform_action(action: Constants.ACTIONS)
 signal set_actions(actions: Array)
-signal display_seed_options(seeds: Array)
+signal display_seed_options(seeds: Dictionary)
 signal hide_seed_options
 signal update_actions
 

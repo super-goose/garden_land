@@ -268,7 +268,7 @@ func refill_water_can():
 	set_state('idle')
 
 func facilitate_sowing():
-	Events.display_seed_options.emit([Constants.VEGETABLE_TYPE.Tomato, Constants.VEGETABLE_TYPE.Cucumber, Constants.VEGETABLE_TYPE.Pumpkin])
+	Events.display_seed_options.emit(stats_and_inventory.seeds_inventory)
 	print('await seed selection or dismissal')
 	print('decrement seed count if applicable')
 
