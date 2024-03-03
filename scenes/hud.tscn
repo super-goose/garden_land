@@ -58,7 +58,7 @@ offset_top = 2.0
 offset_right = -2.0
 offset_bottom = 43.0
 grow_horizontal = 2
-theme_override_constants/separation = 2
+theme_override_constants/separation = 1
 
 [node name="Clock" parent="." instance=ExtResource("2_vko8y")]
 
