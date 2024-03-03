@@ -35,6 +35,7 @@ func _handle_set_actions(actions: Array):
 func _handle_display_seed_options(seeds: Dictionary):
 	for child in seeds_container.get_children():
 		child.visible = seeds[child.type] > 0
+		child.set_amount(seeds[child.type])
 	var t = get_tree().create_tween()
 	var new_position = Vector2(0, pos_y_seeds_in)
 	$Seeds.visible = true

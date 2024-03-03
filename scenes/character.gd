@@ -234,6 +234,7 @@ func _handle_event_perform_action(action: Constants.ACTIONS):
 
 func _handle_event_select_seed_type(seed_type: Constants.VEGETABLE_TYPE):
 	current_plant.set_type(seed_type)
+	stats_and_inventory.seeds_inventory[seed_type] -= 1
 	set_state('idle', true)
 
 func _handle_event_harvest_fruit(fruit: Constants.FRUIT_TYPE):
