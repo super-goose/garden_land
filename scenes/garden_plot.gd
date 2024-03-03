@@ -32,10 +32,14 @@ func set_stage(s: STAGE):
 	$FarmingPlants.frame = new_frame
 
 func get_watered():
+	if type == Constants.VEGETABLE_TYPE.None:
+		return
 	was_watered = true
 	$Watered.visible = true
 
 func _handle_event_start_new_day():
+	if type == Constants.VEGETABLE_TYPE.None:
+		return
 	if was_watered:
 		increase_stage()
 	was_watered = false

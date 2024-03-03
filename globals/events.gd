@@ -27,6 +27,9 @@ signal open_menu(stats: StatsAndInventory, is_workstation: bool)
 #signal open_workstation_menu(stats: StatsAndInventory)
 signal close_menu
 
+signal time_passage_pause
+signal time_passage_play
+signal time_passage_fast_forward
 signal increase_hour(hour: int, am_pm: Constants.TIME)
 signal become_day
 signal become_night

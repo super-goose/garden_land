@@ -1,13 +1,9 @@
-[gd_scene load_steps=6 format=3 uid="uid://cualt3fdfjppy"]
+[gd_scene load_steps=5 format=3 uid="uid://cualt3fdfjppy"]
 
 [ext_resource type="Script" path="res://scenes/hud.gd" id="1_vkfkb"]
+[ext_resource type="PackedScene" uid="uid://bp7q5ii3fmxeq" path="res://scenes/clock.tscn" id="2_vko8y"]
 [ext_resource type="Texture2D" uid="uid://3lr1g1bnvqfs" path="res://modified-assets/ui/water-level-frame.png" id="3_fwvtq"]
-[ext_resource type="Texture2D" uid="uid://xscardfv0f0k" path="res://modified-assets/ui/clock.png" id="3_tt11b"]
 [ext_resource type="Texture2D" uid="uid://ba12dhrqpfd72" path="res://modified-assets/ui/water-level.png" id="4_1vf81"]
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_xbxyn"]
-atlas = ExtResource("3_tt11b")
-region = Rect2(144, 2.08165e-12, 16, 16)
 
 [node name="HUD" type="CanvasLayer"]
 script = ExtResource("1_vkfkb")
@@ -64,22 +60,7 @@ offset_bottom = 43.0
 grow_horizontal = 2
 theme_override_constants/separation = 2
 
-[node name="Clock" type="MarginContainer" parent="."]
-anchors_preset = 1
-anchor_left = 1.0
-anchor_right = 1.0
-offset_left = -36.0
-offset_top = -6.0
-offset_right = -16.0
-offset_bottom = 14.0
-grow_horizontal = 0
-scale = Vector2(2, 2)
-theme_override_constants/margin_top = 4
-theme_override_constants/margin_right = 4
-
-[node name="TextureRect" type="TextureRect" parent="Clock"]
-layout_mode = 2
-texture = SubResource("AtlasTexture_xbxyn")
+[node name="Clock" parent="." instance=ExtResource("2_vko8y")]
 
 [node name="WaterLevel" type="MarginContainer" parent="."]
 offset_right = 109.0

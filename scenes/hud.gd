@@ -6,7 +6,6 @@ extends CanvasLayer
 var seeds_duration = .3
 var pos_y_seeds_in = 544 # get this dynamically
 var pos_y_seeds_out = 544 + 102 + 200 # get this dynamically (200 is padding for taller screens)
-var hour_frame = [12, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11]
 
 @onready var SeedButton = load("res://scenes/seed_button.tscn")
 @onready var ActionsMenuButton = load("res://scenes/actions_menu_button.tscn")
@@ -18,15 +17,10 @@ func _ready():
 	Events.hide_seed_options.connect(_handle_hide_seed_options)
 	Events.set_water_level.connect(set_water_level)
 	Events.set_water_level_max.connect(set_water_level_max)
-	Events.increase_hour.connect(increase_hour)
 
 	__populate_actions()
 	__populate_seed_options()
 	_handle_hide_seed_options()
-
-func increase_hour(hour: int, _am_pm):
-	var x = 16 * hour_frame.find(hour)
-	$Clock/TextureRect.texture.region = Rect2(x, 0, 16, 16)
 
 func set_water_level(value: int):
 	$WaterLevel/TextureProgressBar.value = value

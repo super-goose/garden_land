@@ -1,0 +1,98 @@
+[gd_scene load_steps=10 format=3 uid="uid://bp7q5ii3fmxeq"]
+
+[ext_resource type="Script" path="res://scenes/clock.gd" id="1_cb56d"]
+[ext_resource type="Texture2D" uid="uid://xscardfv0f0k" path="res://modified-assets/ui/clock.png" id="2_fj0oe"]
+[ext_resource type="Texture2D" uid="uid://i0u52qjw4g2j" path="res://modified-assets/ui/clock-play.png" id="3_38rkb"]
+[ext_resource type="Texture2D" uid="uid://dgfs5hc8xtsr" path="res://modified-assets/ui/clock-fast-forward.png" id="4_08wtn"]
+[ext_resource type="Texture2D" uid="uid://d02gnx02v0m1v" path="res://modified-assets/ui/clock-pause.png" id="5_67ldf"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_xbxyn"]
+atlas = ExtResource("2_fj0oe")
+region = Rect2(144, 2.08165e-12, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_326xb"]
+atlas = ExtResource("3_38rkb")
+region = Rect2(2.08165e-12, 2.08165e-12, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_2xc1o"]
+atlas = ExtResource("4_08wtn")
+region = Rect2(2.08165e-12, 2.08165e-12, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_cp0ri"]
+atlas = ExtResource("5_67ldf")
+region = Rect2(2.08165e-12, 2.08165e-12, 16, 16)
+
+[node name="Clock" type="MarginContainer"]
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -36.0
+offset_top = -6.0
+offset_right = -16.0
+offset_bottom = 14.0
+grow_horizontal = 0
+scale = Vector2(2, 2)
+theme_override_constants/margin_top = 4
+theme_override_constants/margin_right = 4
+script = ExtResource("1_cb56d")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+layout_mode = 2
+theme_override_constants/separation = 0
+
+[node name="TextureClock" type="TextureRect" parent="VBoxContainer"]
+layout_mode = 2
+texture = SubResource("AtlasTexture_xbxyn")
+
+[node name="Button" type="Button" parent="VBoxContainer/TextureClock"]
+modulate = Color(1, 1, 1, 0)
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="TexturePlay" type="TextureRect" parent="VBoxContainer"]
+layout_mode = 2
+texture = SubResource("AtlasTexture_326xb")
+
+[node name="Button" type="Button" parent="VBoxContainer/TexturePlay"]
+modulate = Color(1, 1, 1, 0)
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="TextureFastForward" type="TextureRect" parent="VBoxContainer"]
+layout_mode = 2
+texture = SubResource("AtlasTexture_2xc1o")
+
+[node name="Button" type="Button" parent="VBoxContainer/TextureFastForward"]
+modulate = Color(1, 1, 1, 0)
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="TexturePause" type="TextureRect" parent="VBoxContainer"]
+layout_mode = 2
+texture = SubResource("AtlasTexture_cp0ri")
+
+[node name="Button" type="Button" parent="VBoxContainer/TexturePause"]
+modulate = Color(1, 1, 1, 0)
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[connection signal="pressed" from="VBoxContainer/TextureClock/Button" to="." method="_on_clock_button_pressed"]
+[connection signal="pressed" from="VBoxContainer/TexturePlay/Button" to="." method="_on_play_button_pressed"]
+[connection signal="pressed" from="VBoxContainer/TextureFastForward/Button" to="." method="_on_fast_forward_button_pressed"]
+[connection signal="pressed" from="VBoxContainer/TexturePause/Button" to="." method="_on_pause_button_pressed"]
