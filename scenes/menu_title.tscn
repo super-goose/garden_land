@@ -1,14 +1,22 @@
-[gd_scene load_steps=6 format=3 uid="uid://bqbms7serbb3f"]
+[gd_scene load_steps=8 format=3 uid="uid://bqbms7serbb3f"]
 
 [ext_resource type="Script" path="res://scenes/menu_header.gd" id="1_l3184"]
 [ext_resource type="Texture2D" uid="uid://bbbocjo1ubnah" path="res://modified-assets/ui/icon-buttons-sprites.png" id="2_apy8y"]
 [ext_resource type="FontFile" uid="uid://r5d0pkfw0bpw" path="res://fonts/KodeMono-VariableFont_wght.ttf" id="2_xe1r5"]
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_2mkwb"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_ue78j"]
+atlas = ExtResource("2_apy8y")
+region = Rect2(2.08165e-12, 128, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_4ihjm"]
+atlas = ExtResource("2_apy8y")
+region = Rect2(32, 128, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_57af3"]
 atlas = ExtResource("2_apy8y")
 region = Rect2(2.08165e-12, 320, 32, 32)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_4ihjm"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_vm7hp"]
 atlas = ExtResource("2_apy8y")
 region = Rect2(32, 320, 32, 32)
 
@@ -39,17 +47,23 @@ theme_override_fonts/font = ExtResource("2_xe1r5")
 theme_override_font_sizes/font_size = 36
 text = "Menu"
 
-[node name="MarginContainer2" type="MarginContainer" parent="HBoxContainer"]
+[node name="MarginContainer2" type="HBoxContainer" parent="HBoxContainer"]
 custom_minimum_size = Vector2(32, 32)
 layout_mode = 2
-theme_override_constants/margin_top = -2
-theme_override_constants/margin_right = -4
+
+[node name="SettingsButton" type="TextureButton" parent="HBoxContainer/MarginContainer2"]
+custom_minimum_size = Vector2(48, 48)
+layout_mode = 2
+texture_normal = SubResource("AtlasTexture_ue78j")
+texture_pressed = SubResource("AtlasTexture_4ihjm")
+stretch_mode = 0
 
 [node name="CloseButton" type="TextureButton" parent="HBoxContainer/MarginContainer2"]
 custom_minimum_size = Vector2(48, 48)
 layout_mode = 2
-texture_normal = SubResource("AtlasTexture_2mkwb")
-texture_pressed = SubResource("AtlasTexture_4ihjm")
+texture_normal = SubResource("AtlasTexture_57af3")
+texture_pressed = SubResource("AtlasTexture_vm7hp")
 stretch_mode = 0
 
+[connection signal="pressed" from="HBoxContainer/MarginContainer2/SettingsButton" to="." method="_on_settings_button_pressed"]
 [connection signal="pressed" from="HBoxContainer/MarginContainer2/CloseButton" to="." method="_on_close_button_pressed"]

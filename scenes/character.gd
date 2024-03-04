@@ -48,7 +48,7 @@ func set_start_position(v: Vector2i):
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
-	handle_input(delta)
+	#handle_input(delta)
 	play_state_animation()
 	process_state_action()
 #	position_focus_indicator()
@@ -56,20 +56,20 @@ func _process(delta):
 func process_state_action():
 	pass
 
-func handle_input(delta):
-	if Input.is_action_pressed("water"):
-		set_state('water')
-		return
-
-	watering_happened = false
-	$AnimatedWater.visible = false
-
-	if Input.is_action_just_pressed("hoe"):
-		set_state('hoe')
-	
-	if Input.is_action_pressed("chop"):
-		set_state('chop')
-		return
+#func handle_input(delta):
+	#if Input.is_action_pressed("water"):
+		#set_state('water')
+		#return
+#
+	#watering_happened = false
+	#$AnimatedWater.visible = false
+#
+	#if Input.is_action_just_pressed("hoe"):
+		#set_state('hoe')
+	#
+	#if Input.is_action_pressed("chop"):
+		#set_state('chop')
+		#return
 
 func play_state_animation():
 	var animation_name = "%s_%s" % [state, direction]
@@ -112,7 +112,7 @@ func go_to_next_position():
 func move_to(p: Vector2i):
 	var new_position = coords_to_position(p)
 	var t = get_tree().create_tween()
-	var duration = .5 * (Vector2(new_position).distance_to(position) / LevelGenerationUtil.TILE_SIZE)
+	var duration = .5 * (Vector2(new_position).distance_to(position) / LevelGenerationUtil.TILE_SIZE) * Constants.WALK_SPEED_COEFFICIENT
 	set_state('walk')
 	_set_direction_from_vectors(position, new_position)
 	t.tween_property(self, 'position', new_position, duration)

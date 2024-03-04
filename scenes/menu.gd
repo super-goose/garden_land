@@ -33,6 +33,7 @@ var is_workstation_menu = false
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	menu_header.close_button_pressed.connect(_on_close_button_pressed)
+	menu_header.settings_button_pressed.connect(_on_settings_button_pressed)
 	Events.open_menu.connect(open_menu)
 
 func open_process_vegetable_menu(vegetable: Constants.VEGETABLE_TYPE, stats: StatsAndInventory):
@@ -231,6 +232,9 @@ func _on_close_button_pressed():
 	visible = false
 	Events.close_menu.emit()
 	Events.refresh_stats_and_inventory.disconnect(_handle_event_refresh_inventory)
+
+func _on_settings_button_pressed():
+	print('handle settings menu')
 
 func _handle_event_refresh_inventory(stats: StatsAndInventory):
 	populate_inventory_tab(stats)
