@@ -1,0 +1,24 @@
+[gd_scene load_steps=3 format=3 uid="uid://umrcnsijl28k"]
+
+[ext_resource type="Script" path="res://scenes/confirmation_prompt.gd" id="1_ekkna"]
+[ext_resource type="FontFile" uid="uid://r5d0pkfw0bpw" path="res://fonts/KodeMono-VariableFont_wght.ttf" id="2_a0dy0"]
+
+[node name="ConfirmationPrompt" type="MarginContainer"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_ekkna")
+
+[node name="Label" type="Label" parent="."]
+custom_minimum_size = Vector2(2.08165e-12, 85)
+layout_mode = 2
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 4
+theme_override_fonts/font = ExtResource("2_a0dy0")
+theme_override_font_sizes/font_size = 16
+text = "this is some long ass text that should wrap and we can see how it works"
+horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_mode = 3

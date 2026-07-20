@@ -35,6 +35,7 @@ func _ready():
 	Events.become_night.connect(become_night)
 	Events.start_raining.connect(start_raining)
 	Events.stop_raining.connect(stop_raining)
+	Events.darken_for_bedtime.connect(darken_for_bedtime)
 
 func start_raining():
 	var c = Common.get_color(85, 87, 147, 255)
@@ -69,6 +70,20 @@ func become_night():
 	var t = get_tree().create_tween()
 	t.tween_property($DarkLight, 'energy', 0.7, dawn_dusk_duration)
 	t.parallel().tween_property($Lamp, 'energy', 0.7, dawn_dusk_duration)
+
+func darken_for_bedtime():
+	var c = Common.get_color(255, 255, 255, 255)
+	$DarkLight.color = c
+	$DarkLight.enabled = true
+	var t = get_tree().create_tween()
+	t.tween_property($DarkLight, 'energy', 1, 1)
+	t.tween_property($DarkLight, 'energy', 0, 1)
+	t.tween_callback(
+		func ():
+			disable_darklight()
+			Events.start_new_day.emit()
+			Events.increase_hour.emit()
+	)
 
 func set_up_a_star_data():
 	LevelUtil.set_up_a_star($TileMap2, [

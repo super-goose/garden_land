@@ -14,6 +14,14 @@ func _ready():
 	Events.time_passage_fast_forward.connect(_handle_event_time_passage_fast_forward)
 	Events.time_passage_play.connect(_handle_event_time_passage_play)
 	Events.time_passage_pause.connect(_handle_event_time_passage_pause)
+	Events.go_to_bed.connect(_handle_event_go_to_bed)
+
+func _handle_event_go_to_bed():
+	Events.darken_for_bedtime.emit()
+	am_pm = Constants.TIME.AM
+	hour = 7
+	$HourTimer.start()
+
 
 func _handle_event_time_passage_fast_forward():
 	$HourTimer.paused = false

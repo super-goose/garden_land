@@ -1,0 +1,22 @@
+[gd_scene load_steps=5 format=3 uid="uid://djepff7cp326g"]
+
+[ext_resource type="PackedScene" uid="uid://c4cv1iqb33lcu" path="res://scenes/process_menu.tscn" id="1_trijh"]
+[ext_resource type="Script" path="res://scenes/confirmation_dialog.gd" id="2_3w60k"]
+[ext_resource type="PackedScene" uid="uid://umrcnsijl28k" path="res://scenes/confirmation_prompt.tscn" id="3_ir408"]
+[ext_resource type="PackedScene" uid="uid://bdi4v483a53ou" path="res://scenes/menu_process_button.tscn" id="4_vrjjn"]
+
+[node name="ConfirmationDialog" instance=ExtResource("1_trijh")]
+script = ExtResource("2_3w60k")
+
+[node name="ColorRect" parent="MarginContainer/VBoxContainer" index="1"]
+size_flags_vertical = 3
+color = Color(0.301961, 0.345098, 0.541176, 1)
+
+[node name="ConfirmationPrompt" parent="MarginContainer/VBoxContainer/ColorRect/VBoxContainer" index="0" instance=ExtResource("3_ir408")]
+layout_mode = 2
+
+[node name="ProcessingButton" parent="MarginContainer/VBoxContainer/ColorRect/VBoxContainer" index="1" instance=ExtResource("4_vrjjn")]
+layout_mode = 2
+
+[node name="ProcessingButton2" parent="MarginContainer/VBoxContainer/ColorRect/VBoxContainer" index="2" instance=ExtResource("4_vrjjn")]
+layout_mode = 2

@@ -26,13 +26,16 @@ signal set_water_level(value: int)
 signal set_water_level_max(value: int)
 
 signal open_menu(stats: StatsAndInventory, is_workstation: bool)
-#signal open_workstation_menu(stats: StatsAndInventory)
+signal open_confirmation_menu(prompt: String)
+signal confirmation_granted(granted: bool)
 signal close_menu
 
 signal time_passage_pause
 signal time_passage_play
 signal time_passage_fast_forward
 signal increase_hour(hour: int, am_pm: Constants.TIME)
+signal go_to_bed
+signal darken_for_bedtime
 signal become_day
 signal become_night
 signal start_new_day

@@ -1,7 +1,7 @@
 @icon("res://meta/assets/character.png")
 extends CharacterBody2D
 
-const SPEED = 60
+const SPEED = 120
 const HOE_LIMIT = 2
 
 #var inventory_and_stats
@@ -231,6 +231,7 @@ func _handle_event_perform_action(action: Constants.ACTIONS):
 	elif action == Constants.ACTIONS.WorkAtStation:
 		Events.open_menu.emit(stats_and_inventory, true)
 	elif action == Constants.ACTIONS.UseBed:
+		go_to_bed()
 		print('use that bed, yo')
 	elif action == Constants.ACTIONS.CheckMail:
 		print('check that mail, yo')
@@ -244,6 +245,15 @@ func _handle_event_perform_action(action: Constants.ACTIONS):
 		facilitate_sowing()
 	else: # probably harvest; future actions (like a quest letter) should be handled before here
 		harvest_plant(action)
+
+func go_to_bed():
+	Events.open_confirmation_menu.emit('Are you sure you want to go to bed?')
+	var granted = await Events.confirmation_granted
+	
+	if not granted:
+		return
+
+	Events.go_to_bed.emit()
 
 func _handle_event_select_seed_type(seed_type: Constants.VEGETABLE_TYPE):
 	current_plant.set_type(seed_type)

@@ -16,7 +16,10 @@ func add_item(item: Dictionary):
 	var b = ProcessingButton.instantiate()
 	b.set_words(item['words'])
 	b.set_functionality(item['functionality'])
-	button_container.add_child(b)
+	add_to_button_container(b)
+
+func add_to_button_container(item):
+	button_container.add_child(item)
 	button_container_container.custom_minimum_size.y += 85
 
 func clear_items():

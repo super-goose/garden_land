@@ -1,7 +1,6 @@
-[gd_scene load_steps=3 format=3 uid="uid://c4cv1iqb33lcu"]
+[gd_scene load_steps=2 format=3 uid="uid://c4cv1iqb33lcu"]
 
 [ext_resource type="Script" path="res://scenes/process_menu.gd" id="1_2acyy"]
-[ext_resource type="PackedScene" uid="uid://bdi4v483a53ou" path="res://scenes/menu_process_button.tscn" id="2_8r71n"]
 
 [node name="ProcessMenu" type="MarginContainer"]
 anchors_preset = 15
@@ -41,12 +40,6 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-
-[node name="ProcessingButton" parent="MarginContainer/VBoxContainer/ColorRect/VBoxContainer" instance=ExtResource("2_8r71n")]
-layout_mode = 2
-
-[node name="ProcessingButton2" parent="MarginContainer/VBoxContainer/ColorRect/VBoxContainer" instance=ExtResource("2_8r71n")]
-layout_mode = 2
 
 [node name="Button" type="Button" parent="MarginContainer/VBoxContainer"]
 modulate = Color(1, 1, 1, 0)

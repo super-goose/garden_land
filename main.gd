@@ -41,4 +41,3 @@ func _unhandled_input(event: InputEvent) -> void:
 			destination = Common.convert_to_grid_coordinates(destination)
 			print('go to: %s' % destination)
 			$Character.go_to_position(destination)
-
