@@ -24,7 +24,17 @@ const LAYER_STRUCTURE = 9
 
 var map_generated = false
 
+const SAVE_PATH := "user://garden_data.tres"
+
+var garden_data: GardenData = null
+
+
 func _ready():
+	if ResourceLoader.exists(SAVE_PATH):
+		garden_data = ResourceLoader.load(SAVE_PATH, "", ResourceLoader.CACHE_MODE_IGNORE)
+	else:
+		garden_data = GardenData.new()
+
 	if generate_random_map:
 		generate_said_random_map()
 	else:

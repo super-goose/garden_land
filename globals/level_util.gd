@@ -157,4 +157,3 @@ func find_path(here: Vector2, there: Vector2, options: Dictionary):
 		'path': path,
 		'direction': dominant_direction,
 	}
-

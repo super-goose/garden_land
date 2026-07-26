@@ -6,5 +6,3 @@ func set_data(type: Constants.VEGETABLE_TYPE, amount: int):
 	var text = "%s"%amount
 	$TextureRect/TextureRect.texture = texture
 	$TextureRect/Label.text = text
-
-

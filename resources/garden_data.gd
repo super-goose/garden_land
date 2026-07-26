@@ -1,0 +1,2 @@
+class_name GardenData
+extends Resource
