@@ -25,7 +25,9 @@ var hoeable_tiles = []
 @onready var a_star = AStar2D.new()
 
 func convert_to_grid_coordinates(p : Vector2) -> Vector2i:
+	@warning_ignore('integer_division')
 	var x = (int(p.x) - (int(p.x) % TILE_SIZE)) / TILE_SIZE
+	@warning_ignore('integer_division')
 	var y = (int(p.y) - (int(p.y) % TILE_SIZE)) / TILE_SIZE
 	return Vector2i(x, y)
 
@@ -43,11 +45,16 @@ func add_plantable_tile(c: Vector2i):
 # that might throw off the reliability of this function
 # CONCEPT: id = xxxxxyyyyy
 func vector_to_a_star_id(v: Vector2i):
+	#return "%s,%s" % [v.x, v.y]
 	var _x = v.x + 1000
 	var _y = v.y + 1000
 	return _x * 10000 + _y
 
 func a_star_id_to_vector(id: int):
+	#var split = id.split(',')
+	#var x = int(split[0])
+	#var y = int(split[1])
+	#return Vector2i(x, y)
 	var _x = int(id / 10000)
 	var _y = id % 10000
 	return Vector2i(_x - 1000, _y - 1000)
@@ -68,28 +75,33 @@ func is_surrounded_by_terrain(c: Vector2i) -> bool:
 func is_hoeable(tile):
 	return tile in hoeable_tiles
 
-func set_up_a_star(tilemap: TileMap, included_layers: Array[int], excluded_layers: Array[int]):
+func set_up_a_star(included_layers, excluded_cells):
 	a_star.clear()
 
-	var excluded_sets = excluded_layers.map(
-		func excluded_cells_from_layer_map(layer):
-			return tilemap.get_used_cells(layer)
-	)
-
-	var excluded_set = Common.union(excluded_sets)
-
-#	print(excluded_set)
+	#var excluded_sets = excluded_layers.map(
+		#func excluded_cells_from_layer_map(layer):
+			#'''
+			#grass
+			#not rocks and stuff
+			#not hill
+			#not hill bushes
+			#not structures
+			#'''
+			#return tilemap.get_used_cells(layer)
+	#)
+#
+	#var excluded_set = Common.union(excluded_sets)
 
 	for i in range(included_layers.size()):
 		# using the index here, allows us to give different
 		# weights to different cells, for preference in a* alg
-		var cells = tilemap.get_used_cells(included_layers[i])
+		var cells = included_layers[i]
 		for cell in cells:
 #			if cell == Vector2i(3, -8):
 #				breakpoint
-			if cell not in excluded_set:
+			if cell not in excluded_cells:
 				var a_s_id = vector_to_a_star_id(cell)
-				a_star.add_point(a_s_id, cell, (i * i) + .1) # TODO: check weight
+				a_star.add_point(a_s_id, cell, i + .1) # TODO: check weight
 
 	var point_ids = a_star.get_point_ids()
 	for id in point_ids:

@@ -38,7 +38,7 @@ func _ready():
 	if generate_random_map:
 		generate_said_random_map()
 	else:
-		LevelUtil.plantable_tiles = $TileMap2.get_used_cells(LAYER_DIRT)
+		LevelUtil.plantable_tiles = $Dirt.get_used_cells()
 		on_plantable_tiles_modified()
 	LevelUtil.plantable_tiles_modified.connect(on_plantable_tiles_modified)
 	Events.become_day.connect(become_day)
@@ -96,29 +96,28 @@ func darken_for_bedtime():
 	)
 
 func set_up_a_star_data():
-	LevelUtil.set_up_a_star($TileMap2, [
+	LevelUtil.set_up_a_star([
 		# in preference order, ascending
-		LAYER_PATH,
-		LAYER_GRASS,
-		LAYER_DIRT,
-		LAYER_STRUCTURE_FLOOR,
-	], [
-		LAYER_ROCKS_AND_STUFF,
-		LAYER_HILL,
-		LAYER_HILL_BUSHES,
-		LAYER_STRUCTURE,
-
-	])
+		$Dirt.get_used_cells(),
+		$Grass.get_used_cells(),
+		$Path.get_used_cells(),
+		$StructuresFloor.get_used_cells(),
+	], Common.union([
+		$RocksAndStuff.get_used_cells(),
+		$Hill.get_used_cells(),
+		$HillBushes.get_used_cells(),
+		$Structures.get_used_cells(),
+	]))
 
 func set_hoeable_tiles():
 	var not_grass = Common.union([
-		$TileMap2.get_used_cells(LAYER_HILL_BUSHES),
-		$TileMap2.get_used_cells(LAYER_DIRT),
-		$TileMap2.get_used_cells(LAYER_PATH),
-		$TileMap2.get_used_cells(LAYER_ROCKS_AND_STUFF),
-		$TileMap2.get_used_cells(LAYER_STRUCTURE_FLOOR),
+		$HillBushes.get_used_cells(),
+		$Dirt.get_used_cells(),
+		$Path.get_used_cells(),
+		$RocksAndStuff.get_used_cells(),
+		$StructuresFloor.get_used_cells(),
 	])
-	var hoeable_grass = $TileMap2.get_used_cells(LAYER_GRASS).filter(
+	var hoeable_grass = $Grass.get_used_cells().filter(
 		func hoeable_grass_filter(cell):
 			return cell not in not_grass
 	)
@@ -127,12 +126,12 @@ func set_hoeable_tiles():
 func on_plantable_tiles_modified(dirt_cell = null):
 	if dirt_cell:
 		LevelUtil.plantable_tiles.push_back(dirt_cell)
-		$TileMap2.set_cells_terrain_connect(LAYER_DIRT, LevelUtil.plantable_tiles, 0, 1)
+		$Dirt.set_cells_terrain_connect(LevelUtil.plantable_tiles, 0, 1)
 
-	$TileMap2.set_cells_terrain_connect(LAYER_DIRT, LevelUtil.plantable_tiles, 0, 1)
+	$Dirt.set_cells_terrain_connect(LevelUtil.plantable_tiles, 0, 1)
 	for tile_coord in LevelUtil.plantable_tiles:
-		if not $TileMap2.get_cell_tile_data(LAYER_PLOT, tile_coord):
-			$TileMap2.set_cell(LAYER_PLOT, tile_coord, 10, Vector2i.ZERO, 2)
+		if not $Plot.get_cell_tile_data(tile_coord):
+			$Plot.set_cell(tile_coord, 10, Vector2i.ZERO, 2)
 
 	set_up_a_star_data()
 	set_hoeable_tiles()
