@@ -39,7 +39,7 @@ func add_plantable_tile(c: Vector2i):
 		return
 
 	plantable_tiles.push_front(c)
-	emit_signal('plantable_tiles_modified')
+	emit_signal('plantable_tiles_modified', c)
 
 # LIMITATION: if the map extends to the left or above of -1000, -1000,
 # that might throw off the reliability of this function
@@ -78,30 +78,15 @@ func is_hoeable(tile):
 func set_up_a_star(included_layers, excluded_cells):
 	a_star.clear()
 
-	#var excluded_sets = excluded_layers.map(
-		#func excluded_cells_from_layer_map(layer):
-			#'''
-			#grass
-			#not rocks and stuff
-			#not hill
-			#not hill bushes
-			#not structures
-			#'''
-			#return tilemap.get_used_cells(layer)
-	#)
-#
-	#var excluded_set = Common.union(excluded_sets)
 
 	for i in range(included_layers.size()):
 		# using the index here, allows us to give different
 		# weights to different cells, for preference in a* alg
 		var cells = included_layers[i]
 		for cell in cells:
-#			if cell == Vector2i(3, -8):
-#				breakpoint
 			if cell not in excluded_cells:
 				var a_s_id = vector_to_a_star_id(cell)
-				a_star.add_point(a_s_id, cell, i + .1) # TODO: check weight
+				a_star.add_point(a_s_id, cell, (i * i) + .1) # TODO: check weight
 
 	var point_ids = a_star.get_point_ids()
 	for id in point_ids:

@@ -84,7 +84,9 @@ func play_state_animation():
 #	$Focus.global_position = focus_coords * LevelGenerationUtil.TILE_SIZE
 
 func position_to_coords(p: Vector2) -> Vector2i:
-	return Vector2i((p - Vector2(LevelGenerationUtil.HALF_TILE_CELL)) / LevelGenerationUtil.TILE_SIZE)
+	#var coord = Vector2i((p - Vector2(LevelGenerationUtil.HALF_TILE_CELL)) / LevelGenerationUtil.TILE_SIZE)
+	var coord = Vector2i(p / LevelGenerationUtil.TILE_SIZE)
+	return coord
 
 func coords_to_position(p: Vector2i) -> Vector2:
 	return (p * LevelGenerationUtil.TILE_SIZE) + LevelGenerationUtil.HALF_TILE_CELL
@@ -312,7 +314,7 @@ func set_state(new_state: String, force_update = false):
 	if state == new_state and not force_update:
 		return
 	state = new_state
-	await get_tree().create_timer(.3).timeout
+	await get_tree().create_timer(.1).timeout
 	set_actions()
 
 func set_actions():

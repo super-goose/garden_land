@@ -1,6 +1,6 @@
-[gd_scene load_steps=10 format=3 uid="uid://bp7q5ii3fmxeq"]
+[gd_scene format=3 uid="uid://bp7q5ii3fmxeq"]
 
-[ext_resource type="Script" path="res://scenes/clock.gd" id="1_cb56d"]
+[ext_resource type="Script" uid="uid://bnqy8ppw66jpg" path="res://scenes/clock.gd" id="1_cb56d"]
 [ext_resource type="Texture2D" uid="uid://xscardfv0f0k" path="res://modified-assets/ui/clock.png" id="2_fj0oe"]
 [ext_resource type="Texture2D" uid="uid://i0u52qjw4g2j" path="res://modified-assets/ui/clock-play.png" id="3_38rkb"]
 [ext_resource type="Texture2D" uid="uid://dgfs5hc8xtsr" path="res://modified-assets/ui/clock-fast-forward.png" id="4_08wtn"]
@@ -22,7 +22,7 @@ region = Rect2(2.08165e-12, 2.08165e-12, 16, 16)
 atlas = ExtResource("5_67ldf")
 region = Rect2(2.08165e-12, 2.08165e-12, 16, 16)
 
-[node name="Clock" type="MarginContainer"]
+[node name="Clock" type="MarginContainer" unique_id=293134630]
 anchors_preset = 1
 anchor_left = 1.0
 anchor_right = 1.0
@@ -36,15 +36,15 @@ theme_override_constants/margin_top = 4
 theme_override_constants/margin_right = 4
 script = ExtResource("1_cb56d")
 
-[node name="VBoxContainer" type="VBoxContainer" parent="."]
+[node name="VBoxContainer" type="VBoxContainer" parent="." unique_id=1683359048]
 layout_mode = 2
 theme_override_constants/separation = 0
 
-[node name="TextureClock" type="TextureRect" parent="VBoxContainer"]
+[node name="TextureClock" type="TextureRect" parent="VBoxContainer" unique_id=1335714768]
 layout_mode = 2
 texture = SubResource("AtlasTexture_xbxyn")
 
-[node name="Button" type="Button" parent="VBoxContainer/TextureClock"]
+[node name="Button" type="Button" parent="VBoxContainer/TextureClock" unique_id=546349914]
 modulate = Color(1, 1, 1, 0)
 layout_mode = 1
 anchors_preset = 15
@@ -53,11 +53,11 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="TexturePlay" type="TextureRect" parent="VBoxContainer"]
+[node name="TexturePlay" type="TextureRect" parent="VBoxContainer" unique_id=2007920812]
 layout_mode = 2
 texture = SubResource("AtlasTexture_326xb")
 
-[node name="Button" type="Button" parent="VBoxContainer/TexturePlay"]
+[node name="Button" type="Button" parent="VBoxContainer/TexturePlay" unique_id=811448305]
 modulate = Color(1, 1, 1, 0)
 layout_mode = 1
 anchors_preset = 15
@@ -66,11 +66,11 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="TextureFastForward" type="TextureRect" parent="VBoxContainer"]
+[node name="TextureFastForward" type="TextureRect" parent="VBoxContainer" unique_id=1219458979]
 layout_mode = 2
 texture = SubResource("AtlasTexture_2xc1o")
 
-[node name="Button" type="Button" parent="VBoxContainer/TextureFastForward"]
+[node name="Button" type="Button" parent="VBoxContainer/TextureFastForward" unique_id=1460223367]
 modulate = Color(1, 1, 1, 0)
 layout_mode = 1
 anchors_preset = 15
@@ -79,11 +79,11 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="TexturePause" type="TextureRect" parent="VBoxContainer"]
+[node name="TexturePause" type="TextureRect" parent="VBoxContainer" unique_id=1690202594]
 layout_mode = 2
 texture = SubResource("AtlasTexture_cp0ri")
 
-[node name="Button" type="Button" parent="VBoxContainer/TexturePause"]
+[node name="Button" type="Button" parent="VBoxContainer/TexturePause" unique_id=1789896675]
 modulate = Color(1, 1, 1, 0)
 layout_mode = 1
 anchors_preset = 15

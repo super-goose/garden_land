@@ -11,17 +11,6 @@ extends Node2D
 @export var hill_coefficient = 70
 
 
-const LAYER_WATER = 0
-const LAYER_GRASS = 1
-const LAYER_DIRT = 2
-const LAYER_ROCKS_AND_STUFF = 3
-const LAYER_HILL = 4
-const LAYER_PLOT = 5
-const LAYER_HILL_BUSHES = 6
-const LAYER_PATH = 7
-const LAYER_STRUCTURE_FLOOR = 8
-const LAYER_STRUCTURE = 9
-
 var map_generated = false
 
 const SAVE_PATH := "user://garden_data.tres"
@@ -34,11 +23,12 @@ func _ready():
 		garden_data = ResourceLoader.load(SAVE_PATH, "", ResourceLoader.CACHE_MODE_IGNORE)
 	else:
 		garden_data = GardenData.new()
+		garden_data.dirt_tiles = $Dirt.get_used_cells()
 
 	if generate_random_map:
 		generate_said_random_map()
 	else:
-		LevelUtil.plantable_tiles = $Dirt.get_used_cells()
+		LevelUtil.plantable_tiles = garden_data.dirt_tiles
 		on_plantable_tiles_modified()
 	LevelUtil.plantable_tiles_modified.connect(on_plantable_tiles_modified)
 	Events.become_day.connect(become_day)
@@ -98,10 +88,10 @@ func darken_for_bedtime():
 func set_up_a_star_data():
 	LevelUtil.set_up_a_star([
 		# in preference order, ascending
-		$Dirt.get_used_cells(),
-		$Grass.get_used_cells(),
-		$Path.get_used_cells(),
 		$StructuresFloor.get_used_cells(),
+		$Path.get_used_cells(),
+		$Grass.get_used_cells(),
+		$Dirt.get_used_cells(),
 	], Common.union([
 		$RocksAndStuff.get_used_cells(),
 		$Hill.get_used_cells(),
@@ -126,10 +116,20 @@ func set_hoeable_tiles():
 func on_plantable_tiles_modified(dirt_cell = null):
 	if dirt_cell:
 		LevelUtil.plantable_tiles.push_back(dirt_cell)
-		$Dirt.set_cells_terrain_connect(LevelUtil.plantable_tiles, 0, 1)
 
 	$Dirt.set_cells_terrain_connect(LevelUtil.plantable_tiles, 0, 1)
+	
+	if dirt_cell:
+		garden_data.dirt_tiles = LevelUtil.plantable_tiles
+		ResourceSaver.save(garden_data, SAVE_PATH)
+	
 	for tile_coord in LevelUtil.plantable_tiles:
+		if (
+			not $Dirt.get_cell_tile_data(tile_coord + Vector2i.DOWN)
+			or not $Dirt.get_cell_tile_data(tile_coord + Vector2i.LEFT)
+			or not $Dirt.get_cell_tile_data(tile_coord + Vector2i.RIGHT)
+		):
+			continue
 		if not $Plot.get_cell_tile_data(tile_coord):
 			$Plot.set_cell(tile_coord, 10, Vector2i.ZERO, 2)
 
@@ -145,16 +145,16 @@ func generate_said_random_map():
 	for x in range(0, world_width):
 		for y in range(0, world_height):
 			if LevelGenerationUtil.grass_terrain_array.find(Vector2i(x, y)) > -1:
-				$TileMap2.set_cell(LAYER_WATER, Vector2i(x, y), 2, Vector2i(3 , 0))
+				$Water.set_cell(Vector2i(x, y), 2, Vector2i(3 , 0))
 			else:
-				$TileMap2.set_cell(LAYER_WATER, Vector2i(x, y), 2, Vector2i(Dice.rng.randi_range(0, 2) , 0))
+				$Water.set_cell(Vector2i(x, y), 2, Vector2i(Dice.rng.randi_range(0, 2) , 0))
 
 	# fills the tilemap grass and hill layers with grass and hill-bushes
-	$TileMap2.set_cells_terrain_connect(LAYER_GRASS, LevelGenerationUtil.grass_terrain_array, 0, 0)
-	$TileMap2.set_cells_terrain_connect(LAYER_HILL_BUSHES, LevelGenerationUtil.hill_terrain_array, 0, 2)
+	$Grass.set_cells_terrain_connect(LevelGenerationUtil.grass_terrain_array, 0, 0)
+	$HillBushes.set_cells_terrain_connect(LevelGenerationUtil.hill_terrain_array, 0, 2)
 
 	for tree_location in LevelGenerationUtil.tree_locations:
-		$TileMap2.set_cell(LAYER_DIRT, tree_location, 11, Vector2i.ZERO, 1)
+		$Dirt.set_cell(tree_location, 11, Vector2i.ZERO, 1)
 
 	map_generated = true
 

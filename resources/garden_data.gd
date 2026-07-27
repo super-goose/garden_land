@@ -1,2 +1,4 @@
 class_name GardenData
 extends Resource
+
+@export var dirt_tiles: Array[Vector2i]

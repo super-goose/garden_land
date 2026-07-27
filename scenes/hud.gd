@@ -44,7 +44,7 @@ func _handle_display_seed_options(seeds: Dictionary):
 func _handle_hide_seed_options():
 	var t = get_tree().create_tween()
 	var new_position = Vector2(0, pos_y_seeds_out)
-	await t.tween_property($Seeds, 'position', new_position, seeds_duration)
+	await t.tween_property($Seeds, 'position', new_position, seeds_duration).finished
 	$Seeds.visible = false
 
 func __populate_seed_options():
