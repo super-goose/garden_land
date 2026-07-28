@@ -13,7 +13,7 @@ extends Node2D
 
 var map_generated = false
 
-const SAVE_PATH := "user://garden_data.tres"
+const SAVE_PATH := "user://garden_data_8.tres"
 
 var garden_data: GardenData = null
 
@@ -36,6 +36,7 @@ func _ready():
 	Events.start_raining.connect(start_raining)
 	Events.stop_raining.connect(stop_raining)
 	Events.darken_for_bedtime.connect(darken_for_bedtime)
+	Events.update_garden_plot.connect(on_update_garden_plot)
 
 func start_raining():
 	var c = Common.get_color(85, 87, 147, 255)
@@ -113,7 +114,8 @@ func set_hoeable_tiles():
 	)
 	LevelUtil.hoeable_tiles = hoeable_grass
 
-var added_this_load: Array[Vector2] = []
+var added_this_load: Array[Vector2i] = []
+var GardenPlotScene = load("res://scenes/garden_plot.tscn")
 
 func on_plantable_tiles_modified(dirt_cell = null):
 	if dirt_cell:
@@ -123,8 +125,16 @@ func on_plantable_tiles_modified(dirt_cell = null):
 	
 	if dirt_cell:
 		garden_data.dirt_tiles = LevelUtil.plantable_tiles
-		ResourceSaver.save(garden_data, SAVE_PATH)
 	
+	'''
+	For this part, we are going to add a garden plot to each eligible dirt patch.
+	We are going to make sure the savable state has this data, and if it doesn't,
+	we will add it. We don't want to update any existing data, but we _do_ want to
+	update any new data in savable state
+	
+	this runs any time a player hoes up some dirt, so:
+		- don't mess with garden plots that are already on the map
+	'''
 	for tile_coord in LevelUtil.plantable_tiles:
 		if (
 			not $Dirt.get_cell_tile_data(tile_coord + Vector2i.DOWN)
@@ -132,29 +142,47 @@ func on_plantable_tiles_modified(dirt_cell = null):
 			or not $Dirt.get_cell_tile_data(tile_coord + Vector2i.RIGHT)
 		):
 			continue
-		var coord_key = "%s,%s" % [tile_coord.x, tile_coord.y]
+
+		#var coord_key = "%s,%s" % [tile_coord.x, tile_coord.y]
+
+		# check game state for this plot
+		# if it exists, add the saved data to the map
+		# if it doesn't, create new, and add that to savable state
 
 		# if we have already added this to the current loadout level, don't do anything
-		# we are done with this part
-		if added_this_load.has(coord_key):
+		# we are done with this part (this also means it exists in this array, it exists
+		# in savable state)
+		if added_this_load.has(tile_coord):
 			continue
 
-		
-		if garden_data.plot_states.has(coord_key): # exists
-			# add this plot to the current loadout state
-			continue
+		added_this_load.push_back(tile_coord)
 
-#breakp;oint do stuff heree
-		#var new_plot_state = GardenPlotState.new()
-		#new_plot_state.coordinates = tile_coord
-		#
-		#garden_data.plot_states[coord_key] = new_plot_state
-		if not $Plot.get_cell_tile_data(tile_coord):
-			$Plot.set_cell(tile_coord, 10, Vector2i.ZERO, 2)
+		var current_garden_plot: GardenPlot = GardenPlotScene.instantiate()
+		current_garden_plot.position = Vector2(tile_coord * 16) + Vector2(8, 8)
+
+		if tile_coord not in garden_data.plot_states: # exists
+			var new_garden_plot_state = GardenPlotState.new()
+			new_garden_plot_state.coordinates = tile_coord
+			garden_data.plot_states[tile_coord] = new_garden_plot_state
+
+		current_garden_plot.state = garden_data.plot_states[tile_coord]
+			
+
+		$GardenPlotContainer.add_child(current_garden_plot)
+		#if not $Plot.get_cell_tile_data(tile_coord):
+			#$Plot.set_cell(tile_coord, 10, Vector2i.ZERO, 2)
 			
 
 	set_up_a_star_data()
 	set_hoeable_tiles()
+	ResourceSaver.save(garden_data, SAVE_PATH)
+
+
+func on_update_garden_plot(garden_plot_state: GardenPlotState):
+	var c = garden_plot_state.coordinates
+	garden_data.plot_states[c] = garden_plot_state
+	ResourceSaver.save(garden_data, SAVE_PATH)
+	
 
 func generate_said_random_map():
 	# clears the tilemap

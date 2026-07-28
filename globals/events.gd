@@ -25,6 +25,8 @@ signal vegetable_was_harvested(stats: StatsAndInventory)
 signal set_water_level(value: int)
 signal set_water_level_max(value: int)
 
+signal update_garden_plot(garden_plot_state: GardenPlotState)
+
 signal open_menu(stats: StatsAndInventory, is_workstation: bool)
 signal open_confirmation_menu(prompt: String)
 signal confirmation_granted(granted: bool)

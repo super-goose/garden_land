@@ -19,7 +19,7 @@ var directions = [
 signal plantable_tiles_modified(dirt_cell)
 
 var dirt_terrain_array = []
-var plantable_tiles = []
+var plantable_tiles: Array[Vector2i] = []
 var hoeable_tiles = []
 
 @onready var a_star = AStar2D.new()
