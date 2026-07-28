@@ -31,7 +31,7 @@ func convert_to_grid_coordinates(p : Vector2) -> Vector2i:
 	var y = (int(p.y) - (int(p.y) % TILE_SIZE)) / TILE_SIZE
 	return Vector2i(x, y)
 
-
+## Emits signal to update plantable tiles
 func add_plantable_tile(c: Vector2i):
 	if plantable_tiles.find(c) > -1:
 		return

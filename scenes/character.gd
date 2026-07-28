@@ -322,7 +322,7 @@ func set_actions():
 
 	if state == 'idle':
 		if current_plant:
-			if current_plant.type == Constants.VEGETABLE_TYPE.None:
+			if current_plant.state.type == Constants.VEGETABLE_TYPE.None:
 				actions.push_back(Constants.ACTIONS.Sow)
 			elif current_plant.is_ready():
 				actions.push_back(current_plant.get_harvest_action())

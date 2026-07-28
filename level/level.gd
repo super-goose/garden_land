@@ -113,6 +113,8 @@ func set_hoeable_tiles():
 	)
 	LevelUtil.hoeable_tiles = hoeable_grass
 
+var added_this_load: Array[Vector2] = []
+
 func on_plantable_tiles_modified(dirt_cell = null):
 	if dirt_cell:
 		LevelUtil.plantable_tiles.push_back(dirt_cell)
@@ -130,8 +132,26 @@ func on_plantable_tiles_modified(dirt_cell = null):
 			or not $Dirt.get_cell_tile_data(tile_coord + Vector2i.RIGHT)
 		):
 			continue
+		var coord_key = "%s,%s" % [tile_coord.x, tile_coord.y]
+
+		# if we have already added this to the current loadout level, don't do anything
+		# we are done with this part
+		if added_this_load.has(coord_key):
+			continue
+
+		
+		if garden_data.plot_states.has(coord_key): # exists
+			# add this plot to the current loadout state
+			continue
+
+#breakp;oint do stuff heree
+		#var new_plot_state = GardenPlotState.new()
+		#new_plot_state.coordinates = tile_coord
+		#
+		#garden_data.plot_states[coord_key] = new_plot_state
 		if not $Plot.get_cell_tile_data(tile_coord):
 			$Plot.set_cell(tile_coord, 10, Vector2i.ZERO, 2)
+			
 
 	set_up_a_star_data()
 	set_hoeable_tiles()

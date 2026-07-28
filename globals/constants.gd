@@ -9,6 +9,8 @@ var SETTINGS_CHANCE_OF_RAIN_MAX = 20
 var SETTINGS_CHANCE_OF_STOPPING_MIN = 60
 var SETTINGS_CHANCE_OF_STOPPING_MAX = 70
 
+enum STAGE { empty, sprout, growing, showing, ready, corn }
+
 enum TIME {
 	AM, PM
 }
