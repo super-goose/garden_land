@@ -39,17 +39,13 @@ func update_plot():
 
 func set_stage(s: Constants.STAGE):
 	state.stage = s
-
 	update_plot()
-	
 
 func get_watered():
 	if state.type == Constants.VEGETABLE_TYPE.None:
 		return
 	state.was_watered = true
-
 	update_plot()
-	
 
 func _handle_event_start_new_day():
 	if state.type == Constants.VEGETABLE_TYPE.None:
@@ -57,9 +53,7 @@ func _handle_event_start_new_day():
 	if state.was_watered:
 		increase_stage()
 	state.was_watered = false
-
 	update_plot()
-	
 
 func _handle_event_stop_raining():
 	get_watered()
@@ -93,7 +87,6 @@ func set_type(t: Constants.VEGETABLE_TYPE):
 	state.harvested = 0
 	
 	update_plot()
-	
 
 func _on_button_pressed():
 	Events.select_garden_plot.emit(self)
@@ -120,7 +113,6 @@ func _handle_event_vegetable_was_harvested():
 		print('notify the player that the plant is spent')
 
 	update_plot()
-	
 
 func get_harvest_action():
 	return Constants.HARVEST_ACTIONS_BY_VEGETABLE_TYPE[state.type]

@@ -152,6 +152,7 @@ func _on_ao_i_area_exited(area):
 	print('an area exited AoI')
 	if current_plant == area:
 		current_plant = null
+		watering_happened = false
 	if current_tree == area:
 		current_tree = null
 	if current_mailbox == area:
@@ -271,9 +272,9 @@ func _handle_event_harvest_fruit(fruit: Constants.FRUIT_TYPE):
 
 func _handle_event_harvest_plant(plant: Constants.VEGETABLE_TYPE):
 	print('add this plant to your inventory: %s' % plant)
-	stats_and_inventory.plant_inventory[plant] += 1
+	stats_and_inventory.vegetable_inventory[plant] += 1
 	await get_tree().create_timer(.2).timeout
-	print(stats_and_inventory.plant_inventory[plant])
+	print(stats_and_inventory.vegetable_inventory[plant])
 	set_actions()
 
 func harvest_plant(action_type: Constants.ACTIONS):

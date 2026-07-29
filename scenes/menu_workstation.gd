@@ -27,7 +27,7 @@ func open_menu(stats: StatsAndInventory):
 	visible = true
 
 	var plant_inventory = []
-	for plant in stats.plant_inventory:
+	for plant in stats.vegetable_inventory:
 		if stats.plant_inventory[plant] == 0:
 			continue
 		var plant_cell = VegetableCell.instantiate()
