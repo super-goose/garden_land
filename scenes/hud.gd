@@ -1,7 +1,7 @@
 extends CanvasLayer
 
 @onready var actions_container = $Actions/ColorRect/HBoxContainer
-@onready var seeds_container = $Seeds/ColorRect/HBoxContainer
+@onready var seeds_container = $Seeds/ColorRect/GridContainer
 
 var seeds_duration = .3
 var pos_y_seeds_in = 544 # get this dynamically

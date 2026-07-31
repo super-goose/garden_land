@@ -50,66 +50,48 @@ grow_vertical = 0
 layout_mode = 2
 color = Color(0.184314, 0.184314, 0.184314, 0.447059)
 
-[node name="HBoxContainer" type="HBoxContainer" parent="Seeds/ColorRect" unique_id=229304465]
+[node name="GridContainer" type="GridContainer" parent="Seeds/ColorRect" unique_id=763075613]
 layout_mode = 1
 anchors_preset = 10
 anchor_right = 1.0
 offset_left = 2.0
 offset_top = 2.0
-offset_right = -2.0
-offset_bottom = 43.0
+offset_right = -1.0
+offset_bottom = 394.0
 grow_horizontal = 2
-theme_override_constants/separation = 1
+columns = 10
 
-[node name="SeedButton" parent="Seeds/ColorRect/HBoxContainer" unique_id=1895289917 instance=ExtResource("2_uo2fv")]
+[node name="SeedButton" parent="Seeds/ColorRect/GridContainer" unique_id=1895289917 instance=ExtResource("2_uo2fv")]
 layout_mode = 2
 
-[node name="SeedButton2" parent="Seeds/ColorRect/HBoxContainer" unique_id=989956426 instance=ExtResource("2_uo2fv")]
+[node name="SeedButton7" parent="Seeds/ColorRect/GridContainer" unique_id=48027038 instance=ExtResource("2_uo2fv")]
 layout_mode = 2
 
-[node name="SeedButton3" parent="Seeds/ColorRect/HBoxContainer" unique_id=307205883 instance=ExtResource("2_uo2fv")]
+[node name="SeedButton8" parent="Seeds/ColorRect/GridContainer" unique_id=1687245367 instance=ExtResource("2_uo2fv")]
 layout_mode = 2
 
-[node name="SeedButton4" parent="Seeds/ColorRect/HBoxContainer" unique_id=1916447956 instance=ExtResource("2_uo2fv")]
+[node name="SeedButton9" parent="Seeds/ColorRect/GridContainer" unique_id=1054216177 instance=ExtResource("2_uo2fv")]
 layout_mode = 2
 
-[node name="SeedButton5" parent="Seeds/ColorRect/HBoxContainer" unique_id=162208949 instance=ExtResource("2_uo2fv")]
+[node name="SeedButton11" parent="Seeds/ColorRect/GridContainer" unique_id=759993765 instance=ExtResource("2_uo2fv")]
 layout_mode = 2
 
-[node name="SeedButton6" parent="Seeds/ColorRect/HBoxContainer" unique_id=895159094 instance=ExtResource("2_uo2fv")]
+[node name="SeedButton12" parent="Seeds/ColorRect/GridContainer" unique_id=985021722 instance=ExtResource("2_uo2fv")]
 layout_mode = 2
 
-[node name="SeedButton7" parent="Seeds/ColorRect/HBoxContainer" unique_id=48027038 instance=ExtResource("2_uo2fv")]
+[node name="SeedButton13" parent="Seeds/ColorRect/GridContainer" unique_id=1280438620 instance=ExtResource("2_uo2fv")]
 layout_mode = 2
 
-[node name="SeedButton8" parent="Seeds/ColorRect/HBoxContainer" unique_id=1687245367 instance=ExtResource("2_uo2fv")]
+[node name="SeedButton14" parent="Seeds/ColorRect/GridContainer" unique_id=495836920 instance=ExtResource("2_uo2fv")]
 layout_mode = 2
 
-[node name="SeedButton9" parent="Seeds/ColorRect/HBoxContainer" unique_id=1054216177 instance=ExtResource("2_uo2fv")]
+[node name="SeedButton15" parent="Seeds/ColorRect/GridContainer" unique_id=1222241296 instance=ExtResource("2_uo2fv")]
 layout_mode = 2
 
-[node name="SeedButton10" parent="Seeds/ColorRect/HBoxContainer" unique_id=941175583 instance=ExtResource("2_uo2fv")]
+[node name="SeedButton16" parent="Seeds/ColorRect/GridContainer" unique_id=2048946518 instance=ExtResource("2_uo2fv")]
 layout_mode = 2
 
-[node name="SeedButton11" parent="Seeds/ColorRect/HBoxContainer" unique_id=759993765 instance=ExtResource("2_uo2fv")]
-layout_mode = 2
-
-[node name="SeedButton12" parent="Seeds/ColorRect/HBoxContainer" unique_id=985021722 instance=ExtResource("2_uo2fv")]
-layout_mode = 2
-
-[node name="SeedButton13" parent="Seeds/ColorRect/HBoxContainer" unique_id=1280438620 instance=ExtResource("2_uo2fv")]
-layout_mode = 2
-
-[node name="SeedButton14" parent="Seeds/ColorRect/HBoxContainer" unique_id=495836920 instance=ExtResource("2_uo2fv")]
-layout_mode = 2
-
-[node name="SeedButton15" parent="Seeds/ColorRect/HBoxContainer" unique_id=1222241296 instance=ExtResource("2_uo2fv")]
-layout_mode = 2
-
-[node name="SeedButton16" parent="Seeds/ColorRect/HBoxContainer" unique_id=2048946518 instance=ExtResource("2_uo2fv")]
-layout_mode = 2
-
-[node name="SeedButton17" parent="Seeds/ColorRect/HBoxContainer" unique_id=1258903490 instance=ExtResource("2_uo2fv")]
+[node name="SeedButton17" parent="Seeds/ColorRect/GridContainer" unique_id=1258903490 instance=ExtResource("2_uo2fv")]
 layout_mode = 2
 
 [node name="Clock" parent="." unique_id=1556443422 instance=ExtResource("2_vko8y")]

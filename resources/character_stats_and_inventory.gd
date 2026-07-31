@@ -36,8 +36,11 @@ extends Resource
 }
 
 @export var seeds_inventory = {
-	Constants.VEGETABLE_TYPE.Beet: 2,
 	Constants.VEGETABLE_TYPE.BlueFlower: 0,
+	Constants.VEGETABLE_TYPE.Rose: 0,
+	Constants.VEGETABLE_TYPE.StarFruit: 0,
+
+	Constants.VEGETABLE_TYPE.Beet: 2,
 	Constants.VEGETABLE_TYPE.Carrot: 6,
 	Constants.VEGETABLE_TYPE.Cauliflower: 2,
 	Constants.VEGETABLE_TYPE.Corn: 6,
@@ -46,20 +49,18 @@ extends Resource
 	Constants.VEGETABLE_TYPE.Lettuce: 4,
 	Constants.VEGETABLE_TYPE.Parsnip: 12,
 	Constants.VEGETABLE_TYPE.Pumpkin: 8,
-	Constants.VEGETABLE_TYPE.Rose: 0,
-	Constants.VEGETABLE_TYPE.StarFruit: 0,
 	Constants.VEGETABLE_TYPE.Tomato: 7,
 	Constants.VEGETABLE_TYPE.Wheat: 8,
 	###
-	Constants.VEGETABLE_TYPE.Sunflower: 0,
-	Constants.VEGETABLE_TYPE.SweetPotato: 0,
-	Constants.VEGETABLE_TYPE.Potato: 0,
-	Constants.VEGETABLE_TYPE.Watermelon: 0,
-	Constants.VEGETABLE_TYPE.SweetPea: 0,
-	Constants.VEGETABLE_TYPE.Cantaloupe: 0,
-	Constants.VEGETABLE_TYPE.Onion: 0,
-	Constants.VEGETABLE_TYPE.Pepper: 0,
-	Constants.VEGETABLE_TYPE.PurpleCabbage: 0,
+	Constants.VEGETABLE_TYPE.Sunflower: 2,
+	Constants.VEGETABLE_TYPE.SweetPotato: 2,
+	Constants.VEGETABLE_TYPE.Potato: 2,
+	Constants.VEGETABLE_TYPE.Watermelon: 2,
+	Constants.VEGETABLE_TYPE.SweetPea: 2,
+	Constants.VEGETABLE_TYPE.Cantaloupe: 2,
+	Constants.VEGETABLE_TYPE.Onion: 2,
+	Constants.VEGETABLE_TYPE.Pepper: 2,
+	Constants.VEGETABLE_TYPE.PurpleCabbage: 2,
 }
 
 @export var box_inventory = {

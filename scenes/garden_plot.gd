@@ -12,13 +12,15 @@ func _ready():
 	update_visuals()
 
 func update_visuals():
+	#var is_double_height = state.type == Constants.VEGETABLE_TYPE.Corn
+	var is_double_height = state.type in Constants.DOUBLE_HEIGHT
 	#if state.coordinates == Vector2i(29, 30):
 		#breakpoint
 	$FarmingPlants.visible = state.stage != Constants.STAGE.empty
 	if state.type != Constants.VEGETABLE_TYPE.None:
 		$FarmingPlants.texture = Constants.GROW_SPRITES[state.type]
 		$FarmingPlants.hframes = 5 if state.type == Constants.VEGETABLE_TYPE.Corn else 4
-		$FarmingPlants.position = Vector2(0, -12 if state.type == Constants.VEGETABLE_TYPE.Corn else -5)
+		$FarmingPlants.position = Vector2(0, -12 if is_double_height else -5)
 		$FarmingPlants.vframes = 1
 		var new_frame = {
 			Constants.STAGE.empty: -1,

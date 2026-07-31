@@ -138,8 +138,8 @@ func on_plantable_tiles_modified(dirt_cell = null):
 	for tile_coord in LevelUtil.plantable_tiles:
 		if (
 			not $Dirt.get_cell_tile_data(tile_coord + Vector2i.DOWN)
-			or not $Dirt.get_cell_tile_data(tile_coord + Vector2i.LEFT)
-			or not $Dirt.get_cell_tile_data(tile_coord + Vector2i.RIGHT)
+			#or not $Dirt.get_cell_tile_data(tile_coord + Vector2i.LEFT)
+			#or not $Dirt.get_cell_tile_data(tile_coord + Vector2i.RIGHT)
 		):
 			continue
 
