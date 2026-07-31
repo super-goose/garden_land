@@ -1,14 +1,15 @@
-[gd_scene load_steps=5 format=3 uid="uid://cualt3fdfjppy"]
+[gd_scene format=3 uid="uid://cualt3fdfjppy"]
 
-[ext_resource type="Script" path="res://scenes/hud.gd" id="1_vkfkb"]
+[ext_resource type="Script" uid="uid://vdxvjvx3eu36" path="res://scenes/hud.gd" id="1_vkfkb"]
+[ext_resource type="PackedScene" uid="uid://dnroisdn74j7y" path="res://scenes/seed_button.tscn" id="2_uo2fv"]
 [ext_resource type="PackedScene" uid="uid://bp7q5ii3fmxeq" path="res://scenes/clock.tscn" id="2_vko8y"]
 [ext_resource type="Texture2D" uid="uid://3lr1g1bnvqfs" path="res://modified-assets/ui/water-level-frame.png" id="3_fwvtq"]
 [ext_resource type="Texture2D" uid="uid://ba12dhrqpfd72" path="res://modified-assets/ui/water-level.png" id="4_1vf81"]
 
-[node name="HUD" type="CanvasLayer"]
+[node name="HUD" type="CanvasLayer" unique_id=1877553680]
 script = ExtResource("1_vkfkb")
 
-[node name="Actions" type="MarginContainer" parent="."]
+[node name="Actions" type="MarginContainer" parent="." unique_id=1869862933]
 custom_minimum_size = Vector2(2.08165e-12, 64)
 anchors_preset = 12
 anchor_top = 1.0
@@ -18,11 +19,11 @@ grow_horizontal = 2
 grow_vertical = 0
 mouse_filter = 0
 
-[node name="ColorRect" type="ColorRect" parent="Actions"]
+[node name="ColorRect" type="ColorRect" parent="Actions" unique_id=567540926]
 layout_mode = 2
 color = Color(0.117647, 0.117647, 0.117647, 0.74902)
 
-[node name="HBoxContainer" type="HBoxContainer" parent="Actions/ColorRect"]
+[node name="HBoxContainer" type="HBoxContainer" parent="Actions/ColorRect" unique_id=337661265]
 custom_minimum_size = Vector2(2.08165e-12, 28)
 layout_mode = 1
 anchors_preset = 14
@@ -35,7 +36,7 @@ grow_horizontal = 2
 grow_vertical = 2
 theme_override_constants/separation = 6
 
-[node name="Seeds" type="MarginContainer" parent="."]
+[node name="Seeds" type="MarginContainer" parent="." unique_id=2087239778]
 custom_minimum_size = Vector2(2.08165e-12, 96)
 anchors_preset = 12
 anchor_top = 1.0
@@ -45,11 +46,11 @@ offset_top = -111.0
 grow_horizontal = 2
 grow_vertical = 0
 
-[node name="ColorRect" type="ColorRect" parent="Seeds"]
+[node name="ColorRect" type="ColorRect" parent="Seeds" unique_id=14105605]
 layout_mode = 2
 color = Color(0.184314, 0.184314, 0.184314, 0.447059)
 
-[node name="HBoxContainer" type="HBoxContainer" parent="Seeds/ColorRect"]
+[node name="HBoxContainer" type="HBoxContainer" parent="Seeds/ColorRect" unique_id=229304465]
 layout_mode = 1
 anchors_preset = 10
 anchor_right = 1.0
@@ -60,16 +61,67 @@ offset_bottom = 43.0
 grow_horizontal = 2
 theme_override_constants/separation = 1
 
-[node name="Clock" parent="." instance=ExtResource("2_vko8y")]
+[node name="SeedButton" parent="Seeds/ColorRect/HBoxContainer" unique_id=1895289917 instance=ExtResource("2_uo2fv")]
+layout_mode = 2
 
-[node name="WaterLevel" type="MarginContainer" parent="."]
+[node name="SeedButton2" parent="Seeds/ColorRect/HBoxContainer" unique_id=989956426 instance=ExtResource("2_uo2fv")]
+layout_mode = 2
+
+[node name="SeedButton3" parent="Seeds/ColorRect/HBoxContainer" unique_id=307205883 instance=ExtResource("2_uo2fv")]
+layout_mode = 2
+
+[node name="SeedButton4" parent="Seeds/ColorRect/HBoxContainer" unique_id=1916447956 instance=ExtResource("2_uo2fv")]
+layout_mode = 2
+
+[node name="SeedButton5" parent="Seeds/ColorRect/HBoxContainer" unique_id=162208949 instance=ExtResource("2_uo2fv")]
+layout_mode = 2
+
+[node name="SeedButton6" parent="Seeds/ColorRect/HBoxContainer" unique_id=895159094 instance=ExtResource("2_uo2fv")]
+layout_mode = 2
+
+[node name="SeedButton7" parent="Seeds/ColorRect/HBoxContainer" unique_id=48027038 instance=ExtResource("2_uo2fv")]
+layout_mode = 2
+
+[node name="SeedButton8" parent="Seeds/ColorRect/HBoxContainer" unique_id=1687245367 instance=ExtResource("2_uo2fv")]
+layout_mode = 2
+
+[node name="SeedButton9" parent="Seeds/ColorRect/HBoxContainer" unique_id=1054216177 instance=ExtResource("2_uo2fv")]
+layout_mode = 2
+
+[node name="SeedButton10" parent="Seeds/ColorRect/HBoxContainer" unique_id=941175583 instance=ExtResource("2_uo2fv")]
+layout_mode = 2
+
+[node name="SeedButton11" parent="Seeds/ColorRect/HBoxContainer" unique_id=759993765 instance=ExtResource("2_uo2fv")]
+layout_mode = 2
+
+[node name="SeedButton12" parent="Seeds/ColorRect/HBoxContainer" unique_id=985021722 instance=ExtResource("2_uo2fv")]
+layout_mode = 2
+
+[node name="SeedButton13" parent="Seeds/ColorRect/HBoxContainer" unique_id=1280438620 instance=ExtResource("2_uo2fv")]
+layout_mode = 2
+
+[node name="SeedButton14" parent="Seeds/ColorRect/HBoxContainer" unique_id=495836920 instance=ExtResource("2_uo2fv")]
+layout_mode = 2
+
+[node name="SeedButton15" parent="Seeds/ColorRect/HBoxContainer" unique_id=1222241296 instance=ExtResource("2_uo2fv")]
+layout_mode = 2
+
+[node name="SeedButton16" parent="Seeds/ColorRect/HBoxContainer" unique_id=2048946518 instance=ExtResource("2_uo2fv")]
+layout_mode = 2
+
+[node name="SeedButton17" parent="Seeds/ColorRect/HBoxContainer" unique_id=1258903490 instance=ExtResource("2_uo2fv")]
+layout_mode = 2
+
+[node name="Clock" parent="." unique_id=1556443422 instance=ExtResource("2_vko8y")]
+
+[node name="WaterLevel" type="MarginContainer" parent="." unique_id=148676838]
 offset_right = 109.0
 offset_bottom = 15.0
 scale = Vector2(2, 2)
 theme_override_constants/margin_left = 4
 theme_override_constants/margin_top = 4
 
-[node name="TextureProgressBar" type="TextureProgressBar" parent="WaterLevel"]
+[node name="TextureProgressBar" type="TextureProgressBar" parent="WaterLevel" unique_id=896798018]
 layout_mode = 2
 max_value = 8.0
 value = 8.0

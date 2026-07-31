@@ -1,14 +1,14 @@
 class_name StatsAndInventory
 extends Resource
 
-var fruit_inventory = {
+@export var fruit_inventory = {
 	Constants.FRUIT_TYPE.Apple: 0, #3,
 	Constants.FRUIT_TYPE.Orange: 0, #7,
 	Constants.FRUIT_TYPE.Pear: 0, #10,
 	Constants.FRUIT_TYPE.Peach: 0, #666,
 }
 
-var vegetable_inventory = {
+@export var vegetable_inventory = {
 	Constants.VEGETABLE_TYPE.Beet: 0, #2,
 	Constants.VEGETABLE_TYPE.BlueFlower: 0, #4,
 	Constants.VEGETABLE_TYPE.Carrot: 0, #6,
@@ -23,9 +23,19 @@ var vegetable_inventory = {
 	Constants.VEGETABLE_TYPE.StarFruit: 0, #98,
 	Constants.VEGETABLE_TYPE.Tomato: 0, #7,
 	Constants.VEGETABLE_TYPE.Wheat: 0, #80,
+
+	Constants.VEGETABLE_TYPE.Sunflower: 0,
+	Constants.VEGETABLE_TYPE.SweetPotato: 0,
+	Constants.VEGETABLE_TYPE.Potato: 0,
+	Constants.VEGETABLE_TYPE.Watermelon: 0,
+	Constants.VEGETABLE_TYPE.SweetPea: 0,
+	Constants.VEGETABLE_TYPE.Cantaloupe: 0,
+	Constants.VEGETABLE_TYPE.Onion: 0,
+	Constants.VEGETABLE_TYPE.Pepper: 0,
+	Constants.VEGETABLE_TYPE.PurpleCabbage: 0,
 }
 
-var seeds_inventory = {
+@export var seeds_inventory = {
 	Constants.VEGETABLE_TYPE.Beet: 2,
 	Constants.VEGETABLE_TYPE.BlueFlower: 0,
 	Constants.VEGETABLE_TYPE.Carrot: 6,
@@ -40,9 +50,19 @@ var seeds_inventory = {
 	Constants.VEGETABLE_TYPE.StarFruit: 0,
 	Constants.VEGETABLE_TYPE.Tomato: 7,
 	Constants.VEGETABLE_TYPE.Wheat: 8,
+	###
+	Constants.VEGETABLE_TYPE.Sunflower: 0,
+	Constants.VEGETABLE_TYPE.SweetPotato: 0,
+	Constants.VEGETABLE_TYPE.Potato: 0,
+	Constants.VEGETABLE_TYPE.Watermelon: 0,
+	Constants.VEGETABLE_TYPE.SweetPea: 0,
+	Constants.VEGETABLE_TYPE.Cantaloupe: 0,
+	Constants.VEGETABLE_TYPE.Onion: 0,
+	Constants.VEGETABLE_TYPE.Pepper: 0,
+	Constants.VEGETABLE_TYPE.PurpleCabbage: 0,
 }
 
-var box_inventory = {
+@export var box_inventory = {
 	"seeds": {
 		Constants.VEGETABLE_TYPE.Beet: 0, #2,
 		Constants.VEGETABLE_TYPE.BlueFlower: 0, #4,
@@ -58,6 +78,17 @@ var box_inventory = {
 		Constants.VEGETABLE_TYPE.StarFruit: 0, #98,
 		Constants.VEGETABLE_TYPE.Tomato: 0, #7,
 		Constants.VEGETABLE_TYPE.Wheat: 0, #80,
+		####
+		#Constants.VEGETABLE_TYPE.Sunflower: 0,
+		#Constants.VEGETABLE_TYPE.SweetPotato: 0,
+		#Constants.VEGETABLE_TYPE.Potato: 0,
+		#Constants.VEGETABLE_TYPE.Watermelon: 0,
+		#Constants.VEGETABLE_TYPE.SweetPea: 0,
+		#Constants.VEGETABLE_TYPE.Cantaloupe: 0,
+		#Constants.VEGETABLE_TYPE.Onion: 0,
+		#Constants.VEGETABLE_TYPE.Pepper: 0,
+		#Constants.VEGETABLE_TYPE.PurpleCabbage: 0,
+
 	},
 	"fruit": {
 		Constants.FRUIT_TYPE.Apple: 0, #3,
@@ -80,13 +111,29 @@ var box_inventory = {
 		Constants.VEGETABLE_TYPE.StarFruit: 0, #98,
 		Constants.VEGETABLE_TYPE.Tomato: 0, #7,
 		Constants.VEGETABLE_TYPE.Wheat: 0, #80,
+		###
+		#Constants.VEGETABLE_TYPE.Sunflower: 0,
+		#Constants.VEGETABLE_TYPE.SweetPotato: 0,
+		#Constants.VEGETABLE_TYPE.Potato: 0,
+		#Constants.VEGETABLE_TYPE.Watermelon: 0,
+		#Constants.VEGETABLE_TYPE.SweetPea: 0,
+		#Constants.VEGETABLE_TYPE.Cantaloupe: 0,
+		#Constants.VEGETABLE_TYPE.Onion: 0,
+		#Constants.VEGETABLE_TYPE.Pepper: 0,
+		#Constants.VEGETABLE_TYPE.PurpleCabbage: 0,
+	},
+	#####
+	"other": {
+		Constants.CONSUMABLE_TYPE.Egg: 0,
+		Constants.CONSUMABLE_TYPE.Milk: 0,
+		Constants.CONSUMABLE_TYPE.Honey: 0,
 	}
 }
 
-var water_level_max = 8
-var water_level = water_level_max
-var has_axe = true #false
-var has_hoe = true #false
+@export var water_level_max = 8
+@export var water_level = water_level_max
+@export var has_axe = true #false
+@export var has_hoe = true #false
 
 func add_fruit_to_box(fruit_type: Constants.FRUIT_TYPE, amount: int):
 	if fruit_inventory[fruit_type] == 0:

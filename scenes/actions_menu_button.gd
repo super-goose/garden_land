@@ -29,6 +29,15 @@ func _ready():
 		Constants.ACTIONS.Harvest_Beet: load("res://modified-assets/farm-plants/farm-plant-beet.png"),
 		Constants.ACTIONS.Harvest_StarFruit: load("res://modified-assets/farm-plants/farm-plant-starfruit.png"),
 		Constants.ACTIONS.Harvest_Cucumber: load("res://modified-assets/farm-plants/farm-plant-cucumber.png"),
+		Constants.ACTIONS.Harvest_Sunflower: load("res://modified-assets/farm-plants/farm-plant-sunflower.png"),
+		Constants.ACTIONS.Harvest_SweetPotato: load("res://modified-assets/farm-plants/farm-plant-sweetpotato.png"),
+		Constants.ACTIONS.Harvest_Potato: load("res://modified-assets/farm-plants/farm-plant-potato.png"),
+		Constants.ACTIONS.Harvest_Watermelon: load("res://modified-assets/farm-plants/farm-plant-watermelon.png"),
+		Constants.ACTIONS.Harvest_SweetPea: load("res://modified-assets/farm-plants/farm-plant-sweetpea.png"),
+		Constants.ACTIONS.Harvest_Cantaloupe: load("res://modified-assets/farm-plants/farm-plant-cantaloupe.png"),
+		Constants.ACTIONS.Harvest_Onion: load("res://modified-assets/farm-plants/farm-plant-onion.png"),
+		Constants.ACTIONS.Harvest_Pepper: load("res://modified-assets/farm-plants/farm-plant-pepper.png"),
+		Constants.ACTIONS.Harvest_PurpleCabbage: load("res://modified-assets/farm-plants/farm-plant-purplecabbage.png"),
 	}
 	$TextureRect.texture = action_image[action]
 

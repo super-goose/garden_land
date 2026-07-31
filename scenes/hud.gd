@@ -7,8 +7,8 @@ var seeds_duration = .3
 var pos_y_seeds_in = 544 # get this dynamically
 var pos_y_seeds_out = 544 + 102 + 200 # get this dynamically (200 is padding for taller screens)
 
-@onready var SeedButton = load("res://scenes/seed_button.tscn")
-@onready var ActionsMenuButton = load("res://scenes/actions_menu_button.tscn")
+@onready var SeedButtonScene = load("res://scenes/seed_button.tscn")
+@onready var ActionsMenuButtonScene = load("res://scenes/actions_menu_button.tscn")
 
 func _ready():
 	print('connecting hud stuff')
@@ -48,17 +48,19 @@ func _handle_hide_seed_options():
 	$Seeds.visible = false
 
 func __populate_seed_options():
+	for child in seeds_container.get_children():
+		seeds_container.remove_child(child)
 	for seed_type in Constants.VEGETABLE_TYPE:
 		if seed_type == 'None':
 			continue
 #		print(str(seed_type))
-		var s = SeedButton.instantiate()
+		var s = SeedButtonScene.instantiate()
 		s.set_button_type(Constants.VEGETABLE_TYPE[seed_type])
 		seeds_container.add_child(s)
 
 func __populate_actions():
 	#actions_container.get_children()
 	for action in Constants.ACTIONS:
-		var a = ActionsMenuButton.instantiate()
+		var a = ActionsMenuButtonScene.instantiate()
 		a.set_button_type(Constants.ACTIONS[action])
 		actions_container.add_child(a)
