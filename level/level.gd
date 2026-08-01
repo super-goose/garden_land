@@ -9,17 +9,18 @@ extends Node2D
 @export var world_width = 60
 @export var world_height = 100
 @export var hill_coefficient = 70
+@export var use_save_file = true
 
 
 var map_generated = false
 
-const SAVE_PATH := "user://garden_data_8.tres"
+const SAVE_PATH := "user://garden_data.tres"
 
 var garden_data: GardenData = null
 
 
 func _ready():
-	if ResourceLoader.exists(SAVE_PATH):
+	if ResourceLoader.exists(SAVE_PATH) and use_save_file:
 		garden_data = ResourceLoader.load(SAVE_PATH, "", ResourceLoader.CACHE_MODE_IGNORE)
 	else:
 		garden_data = GardenData.new()
@@ -77,10 +78,15 @@ func darken_for_bedtime():
 	$DarkLight.color = c
 	$DarkLight.enabled = true
 	var t = get_tree().create_tween()
+	print('darken')
 	t.tween_property($DarkLight, 'energy', 1, 1)
+	print('lighten')
 	t.tween_property($DarkLight, 'energy', 0, 1)
+	t.parallel().tween_property($Lamp, 'energy', 0, 1)
+	print('now set callback')
 	t.tween_callback(
 		func ():
+			print('execute callback')
 			disable_darklight()
 			Events.start_new_day.emit()
 			Events.increase_hour.emit()

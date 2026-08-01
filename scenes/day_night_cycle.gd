@@ -3,8 +3,8 @@ extends Node
 var hour = 9
 var am_pm = Constants.TIME.AM
 
-var become_day = [6, Constants.TIME.AM]
-var become_night = [9, Constants.TIME.PM] # [12, Constants.TIME.PM] #
+var become_day = [5, Constants.TIME.AM]
+var become_night = [11, Constants.TIME.PM] # [12, Constants.TIME.PM] #
 
 func _ready():
 	$HourTimer.wait_time = Constants.SETTINGS_HOUR_DURATION_NORMAL
@@ -65,3 +65,4 @@ func increase_hour():
 		Events.become_night.emit()
 	
 	Events.increase_hour.emit(hour, am_pm)
+	Events.tick.emit()

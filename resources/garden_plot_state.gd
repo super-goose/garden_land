@@ -11,3 +11,4 @@ extends Resource
 @export var was_watered = false
 @export var just_sown = false
 @export var coordinates: Vector2i
+@export var stage_change_timestamp: int

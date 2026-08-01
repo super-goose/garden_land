@@ -1,11 +1,11 @@
-[gd_scene load_steps=2 format=3 uid="uid://cx3rui7gg3ks7"]
+[gd_scene format=3 uid="uid://cx3rui7gg3ks7"]
 
-[ext_resource type="Script" path="res://scenes/day_night_cycle.gd" id="1_mqbpm"]
+[ext_resource type="Script" uid="uid://7eikc4jcbgsp" path="res://scenes/day_night_cycle.gd" id="1_mqbpm"]
 
-[node name="DayNightCycle" type="Node"]
+[node name="DayNightCycle" type="Node" unique_id=98005538]
 script = ExtResource("1_mqbpm")
 
-[node name="HourTimer" type="Timer" parent="."]
+[node name="HourTimer" type="Timer" parent="." unique_id=829588582]
 wait_time = 20.0
 autostart = true
 

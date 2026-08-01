@@ -1,6 +1,6 @@
-[gd_scene load_steps=9 format=3 uid="uid://38xtew55py1l"]
+[gd_scene format=3 uid="uid://38xtew55py1l"]
 
-[ext_resource type="Script" path="res://main.gd" id="1_b3ke2"]
+[ext_resource type="Script" uid="uid://dgbbksqy3uwwi" path="res://main.gd" id="1_b3ke2"]
 [ext_resource type="PackedScene" uid="uid://cualt3fdfjppy" path="res://scenes/hud.tscn" id="2_tdtfc"]
 [ext_resource type="PackedScene" uid="uid://b8722pdwk2exe" path="res://level/level.tscn" id="3_t3uwm"]
 [ext_resource type="PackedScene" uid="uid://bhth6w0j355mt" path="res://scenes/weather_layer.tscn" id="4_3m5er"]
@@ -9,23 +9,22 @@
 [ext_resource type="PackedScene" uid="uid://cx3rui7gg3ks7" path="res://scenes/day_night_cycle.tscn" id="4_52oyc"]
 [ext_resource type="PackedScene" uid="uid://b46obik1lqkq" path="res://scenes/menu.tscn" id="9_i5nh6"]
 
-[node name="Main" type="Node2D"]
+[node name="Main" type="Node2D" unique_id=1791358894]
 script = ExtResource("1_b3ke2")
 
-[node name="HUD" parent="." instance=ExtResource("2_tdtfc")]
+[node name="HUD" parent="." unique_id=284358032 instance=ExtResource("2_tdtfc")]
 
-[node name="Menu" parent="HUD" instance=ExtResource("9_i5nh6")]
+[node name="Menu" parent="HUD" unique_id=1448019426 instance=ExtResource("9_i5nh6")]
 visible = false
 
-[node name="ConfirmationDialog" parent="HUD" instance=ExtResource("4_5qwwy")]
+[node name="ConfirmationDialog" parent="HUD" unique_id=1741187126 instance=ExtResource("4_5qwwy")]
 visible = false
 
-[node name="WeatherLayer" parent="." instance=ExtResource("4_3m5er")]
+[node name="WeatherLayer" parent="." unique_id=2034739513 instance=ExtResource("4_3m5er")]
 
-[node name="Level" parent="." instance=ExtResource("3_t3uwm")]
-starting_position = Vector2i(26, 26)
+[node name="Level" parent="." unique_id=2001793554 instance=ExtResource("3_t3uwm")]
 
-[node name="Character" parent="." instance=ExtResource("4_38ofq")]
+[node name="Character" parent="." unique_id=378178782 instance=ExtResource("4_38ofq")]
 start_position = Vector2i(10, 10)
 
-[node name="DayNightCycle" parent="." instance=ExtResource("4_52oyc")]
+[node name="DayNightCycle" parent="." unique_id=1628186884 instance=ExtResource("4_52oyc")]

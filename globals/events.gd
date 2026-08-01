@@ -1,6 +1,7 @@
 # class_name Events
 extends Node
 
+@warning_ignore_start("unused_signal")
 signal select_garden_plot(garden_plot: GardenPlot)
 signal select_fruit_tree(fruit_tree: FruitTree)
 signal select_mailbox(mailbox: Mailbox)
@@ -36,6 +37,7 @@ signal time_passage_pause
 signal time_passage_play
 signal time_passage_fast_forward
 signal increase_hour(hour: int, am_pm: Constants.TIME)
+signal tick
 signal go_to_bed
 signal darken_for_bedtime
 signal become_day
@@ -43,3 +45,4 @@ signal become_night
 signal start_new_day
 signal start_raining
 signal stop_raining
+@warning_ignore_restore("unused_signal")

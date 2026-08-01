@@ -4,10 +4,11 @@ extends Area2D
 var state: GardenPlotState
 
 
-var Vegetable = load("res://scenes/vegetable.tscn")
+var VegetableScene = load("res://scenes/vegetable.tscn")
 
 func _ready():
-	Events.start_new_day.connect(_handle_event_start_new_day)
+	#Events.start_new_day.connect(_handle_event_start_new_day)
+	Events.tick.connect(_handle_event_tick)
 	Events.stop_raining.connect(_handle_event_stop_raining)
 	update_visuals()
 
@@ -49,12 +50,16 @@ func get_watered():
 	state.was_watered = true
 	update_plot()
 
-func _handle_event_start_new_day():
+#func _handle_event_start_new_day():
+func _handle_event_tick():
 	if state.type == Constants.VEGETABLE_TYPE.None:
 		return
-	if state.was_watered:
+	if state.stage_change_timestamp == null:
+		return
+	var delta = int(Time.get_unix_time_from_system()) - state.stage_change_timestamp
+	if state.was_watered and delta > 10:
 		increase_stage()
-	state.was_watered = false
+		state.was_watered = false
 	update_plot()
 
 func _handle_event_stop_raining():
@@ -82,6 +87,7 @@ func set_type(t: Constants.VEGETABLE_TYPE):
 	if state.type == Constants.VEGETABLE_TYPE.None:
 		set_stage(Constants.STAGE.empty)
 		return
+	state.stage_change_timestamp = int(Time.get_unix_time_from_system())
 	state.just_sown = true
 
 	var harvest_range = Constants.HARVEST_YIELD_RANGES_BY_VEGETABLE_TYPE[state.type]
@@ -100,9 +106,10 @@ func harvest():
 	if state.type == Constants.VEGETABLE_TYPE.None:
 		return
 	state.stage = Constants.STAGE.showing
+	state.stage_change_timestamp = int(Time.get_unix_time_from_system())
 	Events.vegetable_was_harvested.connect(_handle_event_vegetable_was_harvested) #??
 	for i in range(state.harvest_yield):
-		var v = Vegetable.instantiate()
+		var v = VegetableScene.instantiate()
 		v.set_vegetable_data(state.type, i)
 		add_child(v)
 	
@@ -110,7 +117,7 @@ func harvest():
 
 func _handle_event_vegetable_was_harvested():
 	state.harvested = state.harvested + 1
-	if state.harvested == state.harvest_yield:
+	if state.harvested >= state.harvest_yield:
 		set_type(Constants.VEGETABLE_TYPE.None)
 		print('notify the player that the plant is spent')
 

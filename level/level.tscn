@@ -6,7 +6,7 @@
 
 [node name="Level" type="Node2D" unique_id=987084288]
 script = ExtResource("1_ld2mp")
-starting_position = Vector2i(35, 25)
+starting_position = Vector2i(20, 30)
 generate_random_map = false
 world_width = 40
 world_height = 30

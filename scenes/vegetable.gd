@@ -15,24 +15,9 @@ func _ready():
 #func _init():
 #	pass
 
-func set_vegetable_data(VEGETABLE_TYPE: Constants.VEGETABLE_TYPE, index: int):
-	type = VEGETABLE_TYPE
-	frame = [
-		Constants.VEGETABLE_TYPE.Beet,
-		Constants.VEGETABLE_TYPE.Carrot,
-		Constants.VEGETABLE_TYPE.Cauliflower,
-		Constants.VEGETABLE_TYPE.Corn,
-		Constants.VEGETABLE_TYPE.Cucumber,
-		Constants.VEGETABLE_TYPE.Eggplant,
-		Constants.VEGETABLE_TYPE.BlueFlower,
-		Constants.VEGETABLE_TYPE.Lettuce,
-		Constants.VEGETABLE_TYPE.Parsnip,
-		Constants.VEGETABLE_TYPE.Pumpkin,
-		Constants.VEGETABLE_TYPE.Rose,
-		Constants.VEGETABLE_TYPE.StarFruit,
-		Constants.VEGETABLE_TYPE.Tomato,
-		Constants.VEGETABLE_TYPE.Wheat,
-	].find(type)
+func set_vegetable_data(vegetable_type: Constants.VEGETABLE_TYPE, index: int):
+	type = vegetable_type
+	texture = Constants.INDIVIDUAL_PLANT_BY_VEGETABLE_TYPE[vegetable_type]
 
 	position = [
 		Vector2(11, -22),
