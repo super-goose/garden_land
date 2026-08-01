@@ -302,7 +302,7 @@ func refill_water_can():
 		await get_tree().create_timer(.5).timeout
 		stats_and_inventory.water_level += 1
 		set_water_stuff()
-
+	ResourceSaver.save(stats_and_inventory, SAVE_PATH)
 	set_state('idle')
 
 func facilitate_sowing():

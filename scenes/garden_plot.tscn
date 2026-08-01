@@ -24,7 +24,8 @@ shape = SubResource("RectangleShape2D_iitex")
 
 [node name="FarmingPlants" type="Sprite2D" parent="." unique_id=177650860]
 visible = false
-z_index = 5
+z_index = 10
+z_as_relative = false
 y_sort_enabled = true
 position = Vector2(2.08165e-12, -12)
 texture = ExtResource("2_rpaw6")
