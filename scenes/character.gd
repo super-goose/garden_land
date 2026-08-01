@@ -108,6 +108,7 @@ func go_to_next_position():
 		set_direction(final_direction)
 		await get_tree().create_timer(.5).timeout
 		set_state('idle')
+		Events.character_moved.emit(Common.character_position)
 		return
 	move_to(coord)
 

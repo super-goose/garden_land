@@ -45,4 +45,6 @@ signal become_night
 signal start_new_day
 signal start_raining
 signal stop_raining
+
+signal character_moved(coordinates: Vector2i)
 @warning_ignore_restore("unused_signal")

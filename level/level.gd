@@ -25,6 +25,7 @@ func _ready():
 	else:
 		garden_data = GardenData.new()
 		garden_data.dirt_tiles = $Dirt.get_used_cells()
+		garden_data.start_location = starting_position
 
 	if generate_random_map:
 		generate_said_random_map()
@@ -38,6 +39,7 @@ func _ready():
 	Events.stop_raining.connect(stop_raining)
 	Events.darken_for_bedtime.connect(darken_for_bedtime)
 	Events.update_garden_plot.connect(on_update_garden_plot)
+	Events.character_moved.connect(_handle_event_character_moved)
 
 func start_raining():
 	var c = Common.get_color(85, 87, 147, 255)
@@ -212,11 +214,15 @@ func generate_said_random_map():
 
 	map_generated = true
 
+func _handle_event_character_moved(coordinates: Vector2i):
+	garden_data.start_location = coordinates
+	ResourceSaver.save(garden_data, SAVE_PATH)
 
 func get_start_position() -> Vector2i:
-	if not map_generated:
-		return starting_position
-#		generate_said_random_map()
-	return LevelGenerationUtil.walkable_tiles[Dice.roll_dn(LevelGenerationUtil.walkable_tiles.size()) - 1]
-#	return Vector2i.ZERO
-	
+	if map_generated:
+		return LevelGenerationUtil.walkable_tiles[Dice.roll_dn(LevelGenerationUtil.walkable_tiles.size()) - 1]
+
+	if garden_data.start_location:
+		return garden_data.start_location
+
+	return starting_position
