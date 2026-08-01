@@ -1,12 +1,12 @@
-[gd_scene load_steps=6 format=3 uid="uid://b46obik1lqkq"]
+[gd_scene format=3 uid="uid://b46obik1lqkq"]
 
-[ext_resource type="Script" path="res://scenes/menu.gd" id="1_js1in"]
+[ext_resource type="Script" uid="uid://bf543hw26a85r" path="res://scenes/menu.gd" id="1_js1in"]
 [ext_resource type="PackedScene" uid="uid://bqbms7serbb3f" path="res://scenes/menu_title.tscn" id="2_7kft0"]
 [ext_resource type="PackedScene" uid="uid://dx4wgdbp5b150" path="res://scenes/menu_section.tscn" id="3_wyerp"]
 [ext_resource type="FontFile" uid="uid://r5d0pkfw0bpw" path="res://fonts/KodeMono-VariableFont_wght.ttf" id="3_y75co"]
 [ext_resource type="PackedScene" uid="uid://c4cv1iqb33lcu" path="res://scenes/process_menu.tscn" id="5_okaoq"]
 
-[node name="Menu" type="Control"]
+[node name="Menu" type="Control" unique_id=61085921]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -15,7 +15,7 @@ grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_js1in")
 
-[node name="MarginContainer" type="MarginContainer" parent="."]
+[node name="MarginContainer" type="MarginContainer" parent="." unique_id=472816287]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -27,18 +27,18 @@ theme_override_constants/margin_top = 8
 theme_override_constants/margin_right = 8
 theme_override_constants/margin_bottom = 8
 
-[node name="ColorRect" type="ColorRect" parent="MarginContainer"]
+[node name="ColorRect" type="ColorRect" parent="MarginContainer" unique_id=806958554]
 layout_mode = 2
 color = Color(0, 0, 0, 0.764706)
 
-[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer"]
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer" unique_id=1428298690]
 layout_mode = 2
 
-[node name="MenuHeader" parent="MarginContainer/VBoxContainer" instance=ExtResource("2_7kft0")]
+[node name="MenuHeader" parent="MarginContainer/VBoxContainer" unique_id=1198235524 instance=ExtResource("2_7kft0")]
 layout_mode = 2
 title = "Menu"
 
-[node name="ContentContainer" type="MarginContainer" parent="MarginContainer/VBoxContainer"]
+[node name="ContentContainer" type="MarginContainer" parent="MarginContainer/VBoxContainer" unique_id=974623757]
 layout_mode = 2
 size_flags_vertical = 3
 theme_override_constants/margin_left = 16
@@ -46,79 +46,83 @@ theme_override_constants/margin_top = 0
 theme_override_constants/margin_right = 16
 theme_override_constants/margin_bottom = 16
 
-[node name="TabContainer" type="TabContainer" parent="MarginContainer/VBoxContainer/ContentContainer"]
+[node name="TabContainer" type="TabContainer" parent="MarginContainer/VBoxContainer/ContentContainer" unique_id=476729948]
 layout_mode = 2
 theme_override_fonts/font = ExtResource("3_y75co")
 theme_override_font_sizes/font_size = 15
+current_tab = 0
 
-[node name="Inventory" type="ScrollContainer" parent="MarginContainer/VBoxContainer/ContentContainer/TabContainer"]
+[node name="Inventory" type="ScrollContainer" parent="MarginContainer/VBoxContainer/ContentContainer/TabContainer" unique_id=143868681]
 layout_mode = 2
 size_flags_vertical = 3
+metadata/_tab_index = 0
 
-[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/VBoxContainer/ContentContainer/TabContainer/Inventory"]
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/VBoxContainer/ContentContainer/TabContainer/Inventory" unique_id=626216265]
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
 
-[node name="ToolsSection" parent="MarginContainer/VBoxContainer/ContentContainer/TabContainer/Inventory/VBoxContainer" instance=ExtResource("3_wyerp")]
+[node name="ToolsSection" parent="MarginContainer/VBoxContainer/ContentContainer/TabContainer/Inventory/VBoxContainer" unique_id=1852916214 instance=ExtResource("3_wyerp")]
 layout_mode = 2
 title = "tools"
 
-[node name="SeedsSection" parent="MarginContainer/VBoxContainer/ContentContainer/TabContainer/Inventory/VBoxContainer" instance=ExtResource("3_wyerp")]
+[node name="SeedsSection" parent="MarginContainer/VBoxContainer/ContentContainer/TabContainer/Inventory/VBoxContainer" unique_id=1539680900 instance=ExtResource("3_wyerp")]
 layout_mode = 2
 title = "seeds"
 
-[node name="VegetablesSection" parent="MarginContainer/VBoxContainer/ContentContainer/TabContainer/Inventory/VBoxContainer" instance=ExtResource("3_wyerp")]
+[node name="VegetablesSection" parent="MarginContainer/VBoxContainer/ContentContainer/TabContainer/Inventory/VBoxContainer" unique_id=1730290663 instance=ExtResource("3_wyerp")]
 layout_mode = 2
 title = "vegetables"
 
-[node name="FruitSection" parent="MarginContainer/VBoxContainer/ContentContainer/TabContainer/Inventory/VBoxContainer" instance=ExtResource("3_wyerp")]
+[node name="FruitSection" parent="MarginContainer/VBoxContainer/ContentContainer/TabContainer/Inventory/VBoxContainer" unique_id=1698600290 instance=ExtResource("3_wyerp")]
 layout_mode = 2
 title = "fruit"
 
-[node name="BoxSection" parent="MarginContainer/VBoxContainer/ContentContainer/TabContainer/Inventory/VBoxContainer" instance=ExtResource("3_wyerp")]
+[node name="BoxSection" parent="MarginContainer/VBoxContainer/ContentContainer/TabContainer/Inventory/VBoxContainer" unique_id=1878200364 instance=ExtResource("3_wyerp")]
 layout_mode = 2
 title = "box"
 
-[node name="Workstation" type="ScrollContainer" parent="MarginContainer/VBoxContainer/ContentContainer/TabContainer"]
+[node name="Workstation" type="ScrollContainer" parent="MarginContainer/VBoxContainer/ContentContainer/TabContainer" unique_id=326228215]
 visible = false
 layout_mode = 2
 size_flags_vertical = 3
+metadata/_tab_index = 1
 
-[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/VBoxContainer/ContentContainer/TabContainer/Workstation"]
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/VBoxContainer/ContentContainer/TabContainer/Workstation" unique_id=204874949]
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
 
-[node name="ToolsSection" parent="MarginContainer/VBoxContainer/ContentContainer/TabContainer/Workstation/VBoxContainer" instance=ExtResource("3_wyerp")]
+[node name="ToolsSection" parent="MarginContainer/VBoxContainer/ContentContainer/TabContainer/Workstation/VBoxContainer" unique_id=346630075 instance=ExtResource("3_wyerp")]
 layout_mode = 2
 title = "tools"
 
-[node name="SeedsSection" parent="MarginContainer/VBoxContainer/ContentContainer/TabContainer/Workstation/VBoxContainer" instance=ExtResource("3_wyerp")]
+[node name="SeedsSection" parent="MarginContainer/VBoxContainer/ContentContainer/TabContainer/Workstation/VBoxContainer" unique_id=590627668 instance=ExtResource("3_wyerp")]
 layout_mode = 2
 title = "seeds"
 
-[node name="VegetablesSection" parent="MarginContainer/VBoxContainer/ContentContainer/TabContainer/Workstation/VBoxContainer" instance=ExtResource("3_wyerp")]
+[node name="VegetablesSection" parent="MarginContainer/VBoxContainer/ContentContainer/TabContainer/Workstation/VBoxContainer" unique_id=1579819686 instance=ExtResource("3_wyerp")]
 layout_mode = 2
 title = "vegetables"
 
-[node name="FruitSection" parent="MarginContainer/VBoxContainer/ContentContainer/TabContainer/Workstation/VBoxContainer" instance=ExtResource("3_wyerp")]
+[node name="FruitSection" parent="MarginContainer/VBoxContainer/ContentContainer/TabContainer/Workstation/VBoxContainer" unique_id=425660292 instance=ExtResource("3_wyerp")]
 layout_mode = 2
 title = "fruit"
 
-[node name="BoxSection" parent="MarginContainer/VBoxContainer/ContentContainer/TabContainer/Workstation/VBoxContainer" instance=ExtResource("3_wyerp")]
+[node name="BoxSection" parent="MarginContainer/VBoxContainer/ContentContainer/TabContainer/Workstation/VBoxContainer" unique_id=631676576 instance=ExtResource("3_wyerp")]
 layout_mode = 2
 title = "box"
 
-[node name="About" type="ScrollContainer" parent="MarginContainer/VBoxContainer/ContentContainer/TabContainer"]
+[node name="About" type="ScrollContainer" parent="MarginContainer/VBoxContainer/ContentContainer/TabContainer" unique_id=470255184]
 visible = false
 layout_mode = 2
+metadata/_tab_index = 2
 
-[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/VBoxContainer/ContentContainer/TabContainer/About"]
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/VBoxContainer/ContentContainer/TabContainer/About" unique_id=1588722032]
 layout_mode = 2
 size_flags_horizontal = 3
 
-[node name="MarginContainer" type="MarginContainer" parent="MarginContainer/VBoxContainer/ContentContainer/TabContainer/About/VBoxContainer"]
+[node name="MarginContainer" type="MarginContainer" parent="MarginContainer/VBoxContainer/ContentContainer/TabContainer/About/VBoxContainer" unique_id=874848326]
 layout_mode = 2
 size_flags_vertical = 3
 theme_override_constants/margin_left = 8
@@ -126,7 +130,7 @@ theme_override_constants/margin_top = 8
 theme_override_constants/margin_right = 8
 theme_override_constants/margin_bottom = 8
 
-[node name="Label" type="Label" parent="MarginContainer/VBoxContainer/ContentContainer/TabContainer/About/VBoxContainer/MarginContainer"]
+[node name="Label" type="Label" parent="MarginContainer/VBoxContainer/ContentContainer/TabContainer/About/VBoxContainer/MarginContainer" unique_id=1006690863]
 custom_minimum_size = Vector2(2.08165e-12, 400)
 layout_mode = 2
 theme_override_fonts/font = ExtResource("3_y75co")
@@ -140,6 +144,6 @@ Lastly, this is where I'll say that all art is either from Cup Nooble on itch, o
 autowrap_mode = 3
 clip_text = true
 
-[node name="ProcessMenu" parent="." instance=ExtResource("5_okaoq")]
+[node name="ProcessMenu" parent="." unique_id=2039231203 instance=ExtResource("5_okaoq")]
 visible = false
 layout_mode = 1

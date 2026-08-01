@@ -243,7 +243,6 @@ func _handle_event_perform_action(action: Constants.ACTIONS):
 		Events.open_menu.emit(stats_and_inventory, true)
 	elif action == Constants.ACTIONS.UseBed:
 		go_to_bed()
-		print('use that bed, yo')
 	elif action == Constants.ACTIONS.CheckMail:
 		print('check that mail, yo')
 	elif action == Constants.ACTIONS.Chop:
@@ -307,8 +306,8 @@ func refill_water_can():
 
 func facilitate_sowing():
 	Events.display_seed_options.emit(stats_and_inventory.seeds_inventory)
-	print('await seed selection or dismissal')
-	print('decrement seed count if applicable')
+	#print('await seed selection or dismissal')
+	#print('decrement seed count if applicable')
 
 func set_direction(new_direction):
 	if direction == new_direction:

@@ -1,3 +1,4 @@
+@icon("res://modified-assets/ui/menu_button.png")
 extends "res://scenes/process_menu.gd"
 
 var ConfirmationPrompt = load("res://scenes/confirmation_prompt.tscn")
