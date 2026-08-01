@@ -17,12 +17,19 @@ var current_bed: Bed
 var watering_happened = false
 
 var stats_and_inventory : StatsAndInventory
-@export var start_position : Vector2i
+var start_position : Vector2i
+
+const SAVE_PATH := "user://stats_and_inventory.tres"
+
+@export var use_save_file = true
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	stats_and_inventory = StatsAndInventory.new()
-	position = (start_position * LevelGenerationUtil.TILE_SIZE) + LevelGenerationUtil.HALF_TILE_CELL
+	if ResourceLoader.exists(SAVE_PATH) and use_save_file:
+		stats_and_inventory = ResourceLoader.load(SAVE_PATH, "", ResourceLoader.CACHE_MODE_IGNORE)
+	else:
+		stats_and_inventory = StatsAndInventory.new()
+
 	Events.select_garden_plot.connect(_handle_event_select_garden_plot)
 	Events.select_fruit_tree.connect(_handle_event_select_fruit_tree)
 	Events.select_mailbox.connect(_handle_event_select_mailbox)
@@ -47,14 +54,14 @@ func set_start_position(v: Vector2i):
 	position = (start_position * LevelGenerationUtil.TILE_SIZE) + LevelGenerationUtil.HALF_TILE_CELL 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta):
+func _process(_delta):
 	#handle_input(delta)
 	play_state_animation()
-	process_state_action()
+	#process_state_action()
 #	position_focus_indicator()
 
-func process_state_action():
-	pass
+#func process_state_action():
+	#pass
 
 #func handle_input(delta):
 	#if Input.is_action_pressed("water"):
@@ -262,6 +269,7 @@ func go_to_bed():
 func _handle_event_select_seed_type(seed_type: Constants.VEGETABLE_TYPE):
 	current_plant.set_type(seed_type)
 	stats_and_inventory.seeds_inventory[seed_type] -= 1
+	ResourceSaver.save(stats_and_inventory, SAVE_PATH)
 	set_state('idle', true)
 
 func _handle_event_harvest_fruit(fruit: Constants.FRUIT_TYPE):
@@ -269,6 +277,7 @@ func _handle_event_harvest_fruit(fruit: Constants.FRUIT_TYPE):
 	stats_and_inventory.fruit_inventory[fruit] += 1
 	await get_tree().create_timer(.2).timeout
 	print(stats_and_inventory.fruit_inventory[fruit])
+	ResourceSaver.save(stats_and_inventory, SAVE_PATH)
 	set_actions()
 
 func _handle_event_harvest_plant(plant: Constants.VEGETABLE_TYPE):
@@ -276,6 +285,7 @@ func _handle_event_harvest_plant(plant: Constants.VEGETABLE_TYPE):
 	stats_and_inventory.vegetable_inventory[plant] += 1
 	await get_tree().create_timer(.2).timeout
 	print(stats_and_inventory.vegetable_inventory[plant])
+	ResourceSaver.save(stats_and_inventory, SAVE_PATH)
 	set_actions()
 
 func harvest_plant(action_type: Constants.ACTIONS):
