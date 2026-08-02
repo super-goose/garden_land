@@ -74,3 +74,4 @@ energy = 0.0
 blend_mode = 1
 
 [node name="GardenPlotContainer" type="Node2D" parent="." unique_id=2129010068]
+y_sort_enabled = true

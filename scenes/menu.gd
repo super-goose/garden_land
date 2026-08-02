@@ -31,7 +31,6 @@ var SeedsCellScene = load("res://scenes/seeds_cell.tscn")
 
 var is_workstation_menu = false
 
-# Called when the node enters the scene tree for the first time.
 func _ready():
 	menu_header.close_button_pressed.connect(_on_close_button_pressed)
 	menu_header.settings_button_pressed.connect(_on_settings_button_pressed)
@@ -41,13 +40,13 @@ func open_process_vegetable_menu(vegetable: Constants.VEGETABLE_TYPE, stats: Sta
 	process_menu.open()
 	process_menu.add_item({
 		'words': 'harvest seeds',
-		'functionality': func veg_functionality():
+		'functionality': func veg_functionality_harvest():
 			stats.convert_vegetable_to_seeds(vegetable)
 			process_menu.close()
 	})
 	process_menu.add_item({
 		'words': 'add vegetable to box',
-		'functionality': func veg_functionality():
+		'functionality': func veg_functionality_add():
 			stats.add_vegetable_to_box(vegetable, 1)
 			process_menu.close()
 	})
