@@ -3,7 +3,7 @@ extends MarginContainer
 @onready var button_container_container = $MarginContainer/VBoxContainer/ColorRect
 @onready var button_container = $MarginContainer/VBoxContainer/ColorRect/VBoxContainer
 
-var ProcessingButton = load("res://scenes/menu_process_button.tscn")
+var ProcessingButtonScene = load("res://scenes/menu_process_button.tscn")
 
 func open():
 	visible = true
@@ -13,7 +13,7 @@ func close():
 	visible = false
 
 func add_item(item: Dictionary):
-	var b = ProcessingButton.instantiate()
+	var b = ProcessingButtonScene.instantiate()
 	b.set_words(item['words'])
 	b.set_functionality(item['functionality'])
 	add_to_button_container(b)

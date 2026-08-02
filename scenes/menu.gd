@@ -40,12 +40,14 @@ func open_process_vegetable_menu(vegetable: Constants.VEGETABLE_TYPE, stats: Sta
 	process_menu.open()
 	process_menu.add_item({
 		'words': 'harvest seeds',
+		'type': 'button',
 		'functionality': func veg_functionality_harvest():
 			stats.convert_vegetable_to_seeds(vegetable)
 			process_menu.close()
 	})
 	process_menu.add_item({
 		'words': 'add vegetable to box',
+		'type': 'button',
 		'functionality': func veg_functionality_add():
 			stats.add_vegetable_to_box(vegetable, 1)
 			process_menu.close()
@@ -55,6 +57,7 @@ func open_process_fruit_menu(fruit: Constants.FRUIT_TYPE, stats: StatsAndInvento
 	process_menu.open()
 	process_menu.add_item({
 		'words': 'add fruit to box',
+		'type': 'button',
 		'functionality': func veg_functionality():
 			stats.add_fruit_to_box(fruit, 1)
 			process_menu.close()
@@ -64,6 +67,7 @@ func open_process_seeds_menu(seeds: Constants.VEGETABLE_TYPE, stats: StatsAndInv
 	process_menu.open()
 	process_menu.add_item({
 		'words': 'add seeds to box',
+		'type': 'button',
 		'functionality': func veg_functionality():
 			stats.add_seeds_to_box(seeds, 1)
 			process_menu.close()

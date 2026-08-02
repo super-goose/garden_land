@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://ds8q4lodqig5w"
-path="res://.godot/imported/wood-bridge.png-04cbab952e7e83f00a4b45920788d4c3.ctex"
+uid="uid://cmubickqkhd82"
+path="res://.godot/imported/coin.png-08388ae1fd6b88ea389a7870ea3c6f0d.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://modified-assets/tiles/building-parts/wood-bridge.png"
-dest_files=["res://.godot/imported/wood-bridge.png-04cbab952e7e83f00a4b45920788d4c3.ctex"]
+source_file="res://modified-assets/objects/coin.png"
+dest_files=["res://.godot/imported/coin.png-08388ae1fd6b88ea389a7870ea3c6f0d.ctex"]
 
 [params]
 

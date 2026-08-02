@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://ds8q4lodqig5w"
-path="res://.godot/imported/wood-bridge.png-04cbab952e7e83f00a4b45920788d4c3.ctex"
+uid="uid://cd1v02kj1wfon"
+path="res://.godot/imported/big-panel.png-f3cbdf91a0db2dccfe7359e1da745d24.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://modified-assets/tiles/building-parts/wood-bridge.png"
-dest_files=["res://.godot/imported/wood-bridge.png-04cbab952e7e83f00a4b45920788d4c3.ctex"]
+source_file="res://modified-assets/ui/big-panel.png"
+dest_files=["res://.godot/imported/big-panel.png-f3cbdf91a0db2dccfe7359e1da745d24.ctex"]
 
 [params]
 

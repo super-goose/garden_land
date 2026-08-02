@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://ds8q4lodqig5w"
-path="res://.godot/imported/wood-bridge.png-04cbab952e7e83f00a4b45920788d4c3.ctex"
+uid="uid://gv4do6or56lu"
+path="res://.godot/imported/square-button-x.png-08c2fc477de762670c7c537d1bfa0410.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://modified-assets/tiles/building-parts/wood-bridge.png"
-dest_files=["res://.godot/imported/wood-bridge.png-04cbab952e7e83f00a4b45920788d4c3.ctex"]
+source_file="res://modified-assets/ui/square-button-x.png"
+dest_files=["res://.godot/imported/square-button-x.png-08c2fc477de762670c7c537d1bfa0410.ctex"]
 
 [params]
 

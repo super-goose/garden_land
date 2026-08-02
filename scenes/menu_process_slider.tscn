@@ -1,0 +1,95 @@
+[gd_scene format=3 uid="uid://bjgnv8nt6f26q"]
+
+[ext_resource type="Script" uid="uid://bf8c0vhf8jryy" path="res://scenes/menu_process_slider.gd" id="1_3n21q"]
+[ext_resource type="Texture2D" uid="uid://cd1v02kj1wfon" path="res://modified-assets/ui/big-panel.png" id="2_mbjr7"]
+[ext_resource type="FontFile" uid="uid://bhvrl7wppixn1" path="res://fonts/PressStart2P-Regular-L.ttf" id="3_mbjr7"]
+[ext_resource type="Texture2D" uid="uid://b2xqdffhq32mq" path="res://modified-assets/ui/square-button-check.png" id="4_iy14a"]
+[ext_resource type="Texture2D" uid="uid://gv4do6or56lu" path="res://modified-assets/ui/square-button-x.png" id="5_2paib"]
+
+[node name="ProcessingButton" type="MarginContainer" unique_id=363923323]
+custom_minimum_size = Vector2(294, 78)
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -147.0
+offset_top = -39.0
+offset_right = 147.0
+offset_bottom = 69.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_vertical = 3
+theme_override_constants/margin_left = 12
+theme_override_constants/margin_top = 12
+theme_override_constants/margin_right = 12
+theme_override_constants/margin_bottom = 12
+script = ExtResource("1_3n21q")
+
+[node name="Control" type="Control" parent="." unique_id=961790648]
+custom_minimum_size = Vector2(270, 54)
+layout_mode = 2
+size_flags_horizontal = 4
+
+[node name="TextureRect" type="TextureRect" parent="Control" unique_id=313694031]
+layout_mode = 1
+offset_right = 135.0
+offset_bottom = 28.0
+scale = Vector2(2, 2)
+texture = ExtResource("2_mbjr7")
+stretch_mode = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="." unique_id=1291302368]
+layout_mode = 2
+theme_override_constants/margin_left = 8
+theme_override_constants/margin_top = 4
+theme_override_constants/margin_right = 8
+theme_override_constants/margin_bottom = 0
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer" unique_id=713015583]
+layout_mode = 2
+theme_override_constants/separation = 0
+
+[node name="Label" type="Label" parent="MarginContainer/VBoxContainer" unique_id=105119272]
+custom_minimum_size = Vector2(0, 32)
+layout_mode = 2
+theme_override_colors/font_color = Color(0.392157, 0.333333, 0.321569, 1)
+theme_override_colors/font_outline_color = Color(1, 1, 1, 1)
+theme_override_constants/outline_size = 4
+theme_override_fonts/font = ExtResource("3_mbjr7")
+theme_override_font_sizes/font_size = 16
+text = "how many"
+horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_mode = 2
+clip_text = true
+
+[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer/VBoxContainer" unique_id=985024230]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="HSlider" type="HSlider" parent="MarginContainer/VBoxContainer/HBoxContainer" unique_id=1681995833]
+layout_mode = 2
+size_flags_horizontal = 3
+ticks_on_borders = true
+
+[node name="Control" type="Control" parent="MarginContainer/VBoxContainer/HBoxContainer" unique_id=85451646]
+visible = false
+layout_mode = 2
+
+[node name="Button" type="Button" parent="MarginContainer/VBoxContainer/HBoxContainer/Control" unique_id=1277836847]
+modulate = Color(1, 1, 1, 0)
+layout_mode = 0
+offset_left = -12.0
+offset_right = -4.0
+offset_bottom = 22.0
+
+[node name="Affirm" type="TextureButton" parent="MarginContainer/VBoxContainer/HBoxContainer" unique_id=1260592730]
+layout_mode = 2
+texture_normal = ExtResource("4_iy14a")
+
+[node name="Deny" type="TextureButton" parent="MarginContainer/VBoxContainer/HBoxContainer" unique_id=1221427472]
+layout_mode = 2
+texture_normal = ExtResource("5_2paib")
+
+[connection signal="pressed" from="MarginContainer/VBoxContainer/HBoxContainer/Control/Button" to="." method="_on_button_pressed"]
