@@ -42,8 +42,12 @@ func _ready():
 	Events.harvest_fruit.connect(_handle_event_harvest_fruit)
 	Events.harvest_plant.connect(_handle_event_harvest_plant)
 	Events.update_actions.connect(_handle_event_update_actions)
+	Events.refresh_stats_and_inventory.connect(_handle_event_refresh_inventory)
 	set_water_stuff()
 	set_state('idle')
+
+func _handle_event_refresh_inventory(_stats: StatsAndInventory):
+	ResourceSaver.save(stats_and_inventory, SAVE_PATH)
 
 func set_water_stuff():
 	Events.set_water_level_max.emit(stats_and_inventory.water_level_max)

@@ -49,8 +49,17 @@ func open_process_vegetable_menu(vegetable: Constants.VEGETABLE_TYPE, stats: Sta
 		'words': 'add vegetable to box',
 		'type': 'button',
 		'functionality': func veg_functionality_add():
-			stats.add_vegetable_to_box(vegetable, 1)
-			process_menu.close()
+
+			process_menu.clear_items()
+			process_menu.add_item({
+				'type': 'slider',
+				'max_value': stats.vegetable_inventory[vegetable],
+				'functionality': func veg_functionality_select(amount):
+					stats.add_vegetable_to_box(vegetable, amount)
+					process_menu.close(),
+				'cancel': func veg_functionality_close():
+					open_process_vegetable_menu(vegetable, stats)
+			})
 	})
 
 func open_process_fruit_menu(fruit: Constants.FRUIT_TYPE, stats: StatsAndInventory):
@@ -224,9 +233,11 @@ func populate_inventory_tab(stats: StatsAndInventory):
 	inv_box_grid_container.set_items(box_inventory)
 
 func open_menu(stats: StatsAndInventory, is_workstation = false):
+	tab_container.set_tab_hidden(0, is_workstation)
 	tab_container.set_tab_hidden(1, not is_workstation)
 	is_workstation_menu = is_workstation
 	if is_workstation:
+		tab_container.current_tab = 1
 		populate_workstation_tab(stats)
 	visible = true
 	populate_inventory_tab(stats)
