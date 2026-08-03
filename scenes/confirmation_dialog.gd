@@ -19,11 +19,13 @@ func _handle_event_open_confirmation_menu(prompt: String):
 
 	add_item({
 		'words': 'yes',
+		'type': 'button',
 		'functionality': confirm
 	})
 
 	add_item({
 		'words': 'no',
+		'type': 'button',
 		'functionality': close
 	})
 

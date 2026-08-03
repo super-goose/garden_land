@@ -64,12 +64,30 @@ func open_process_vegetable_menu(vegetable: Constants.VEGETABLE_TYPE, stats: Sta
 
 func open_process_fruit_menu(fruit: Constants.FRUIT_TYPE, stats: StatsAndInventory):
 	process_menu.open()
+	#process_menu.add_item({
+		#'words': 'add fruit to box',
+		#'type': 'button',
+		#'functionality': func veg_functionality():
+			#stats.add_fruit_to_box(fruit, 1)
+			#process_menu.close()
+	#})
 	process_menu.add_item({
 		'words': 'add fruit to box',
 		'type': 'button',
-		'functionality': func veg_functionality():
-			stats.add_fruit_to_box(fruit, 1)
-			process_menu.close()
+		'functionality': func fruit_functionality_add():
+			process_menu.clear_items()
+			process_menu.add_item({
+				'type': 'slider',
+				'max_value': stats.fruit_inventory[fruit],
+				'functionality': func veg_functionality_select(amount):
+					stats.add_fruit_to_box(fruit, amount)
+					process_menu.close(),
+				'cancel': func veg_functionality_close():
+					open_process_fruit_menu(fruit, stats)
+			})
+
+			#stats.add_fruit_to_box(fruit, 1)
+			#process_menu.close()
 	})
 
 func open_process_seeds_menu(seeds: Constants.VEGETABLE_TYPE, stats: StatsAndInventory):
