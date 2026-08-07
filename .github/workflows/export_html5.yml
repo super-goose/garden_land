@@ -5,14 +5,14 @@ on:
       - main
 
 env:
-  GODOT_VERSION: 4.1.1
+  GODOT_VERSION: 4.6.3
 
 jobs:
   export-html5:
     name: Export projects to HTML5 and deploy to S3
     runs-on: ubuntu-latest
     container:
-      image: barichello/godot-ci:4.1.1
+      image: barichello/godot-ci:4.6.3
     steps:
       - name: Checkout
         uses: actions/checkout@v2
