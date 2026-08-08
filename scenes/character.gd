@@ -16,8 +16,8 @@ var current_workstation: Workstation
 var current_bed: Bed
 var watering_happened = false
 
-var stats_and_inventory : StatsAndInventory
-var start_position : Vector2i
+@export var stats_and_inventory: StatsAndInventory
+var start_position: Vector2i
 
 const SAVE_PATH := "user://stats_and_inventory.tres"
 
@@ -27,8 +27,8 @@ const SAVE_PATH := "user://stats_and_inventory.tres"
 func _ready():
 	if ResourceLoader.exists(SAVE_PATH) and use_save_file:
 		stats_and_inventory = ResourceLoader.load(SAVE_PATH, "", ResourceLoader.CACHE_MODE_IGNORE)
-	else:
-		stats_and_inventory = StatsAndInventory.new()
+	#else:
+		#stats_and_inventory = StatsAndInventory.new()
 
 	Events.select_garden_plot.connect(_handle_event_select_garden_plot)
 	Events.select_fruit_tree.connect(_handle_event_select_fruit_tree)
@@ -249,6 +249,9 @@ func _handle_event_perform_action(action: Constants.ACTIONS):
 		go_to_bed()
 	elif action == Constants.ACTIONS.CheckMail:
 		print('check that mail, yo')
+		var next_quest = stats_and_inventory.get_next_quest()
+		if next_quest:
+			Events.open_letter.emit(next_quest)
 	elif action == Constants.ACTIONS.Chop:
 		set_state('chop')
 	elif action == Constants.ACTIONS.Water:
@@ -346,8 +349,9 @@ func set_actions():
 		elif current_tree and stats_and_inventory.has_axe:
 			actions.push_back(Constants.ACTIONS.Chop)
 		elif current_mailbox: # and if there is a letter...
-			print('and if there is a letter')
-			actions.push_back(Constants.ACTIONS.CheckMail)
+			var next_quest = stats_and_inventory.get_next_quest()
+			if next_quest:
+				actions.push_back(Constants.ACTIONS.CheckMail)
 		elif current_water_well and stats_and_inventory.water_level < stats_and_inventory.water_level_max:
 			actions.push_back(Constants.ACTIONS.RefillWater)
 		elif current_workstation:

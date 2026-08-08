@@ -1,6 +1,19 @@
 class_name StatsAndInventory
 extends Resource
 
+@export var quests: Array[Quest] = []
+
+func get_next_quest():
+	var possible_quests = quests.filter(
+		func filter_possible_quests(_quest):
+			# check quest stats
+			return true
+	)
+	if possible_quests.size() > 0:
+		return possible_quests[0]
+	
+	return null
+
 @export var fruit_inventory = {
 	Constants.FRUIT_TYPE.Apple: 0, #3,
 	Constants.FRUIT_TYPE.Orange: 0, #7,

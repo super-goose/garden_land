@@ -1,0 +1,21 @@
+[gd_resource type="Resource" script_class="Quest" format=3 uid="uid://r5see2322go4"]
+
+[ext_resource type="Script" uid="uid://bcg63bvxqumsx" path="res://resources/quest.gd" id="1_r0bva"]
+[ext_resource type="Script" uid="uid://dgbr24wfk4pto" path="res://resources/inventory_item.gd" id="2_63wto"]
+[ext_resource type="Script" uid="uid://cd6scf0di555j" path="res://resources/reward.gd" id="3_ququr"]
+
+[sub_resource type="Resource" id="Resource_r0bva"]
+script = ExtResource("3_ququr")
+gold = 20
+metadata/_custom_type_script = "uid://cd6scf0di555j"
+
+[resource]
+script = ExtResource("1_r0bva")
+name = "I want carrots!"
+blurb = "Hello,
+I would love some carrots for a carrot cake I am making. I thought, who better to grow good carrots than a rabbit! I will pay you to grow some for me. Just put them in a box, and ship them to me!
+Thank you,
+Spike"
+required_items = Array[ExtResource("2_63wto")]([null])
+reward = SubResource("Resource_r0bva")
+metadata/_custom_type_script = "uid://bcg63bvxqumsx"

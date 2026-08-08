@@ -35,6 +35,7 @@ layout_mode = 2
 [node name="MenuHeader" parent="MarginContainer/VBoxContainer" unique_id=1198235524 instance=ExtResource("2_gdeoo")]
 layout_mode = 2
 title = "Letter"
+show_settings = false
 
 [node name="ContentContainer" type="MarginContainer" parent="MarginContainer/VBoxContainer" unique_id=974623757]
 layout_mode = 2
@@ -56,6 +57,9 @@ patch_margin_left = 10
 patch_margin_top = 10
 patch_margin_right = 10
 patch_margin_bottom = 10
+
+[node name="Control" type="Control" parent="MarginContainer/VBoxContainer/ContentContainer/MarginContainer" unique_id=1086413402]
+layout_mode = 2
 
 [node name="Buttons" type="MarginContainer" parent="MarginContainer/VBoxContainer" unique_id=836291937]
 layout_mode = 2

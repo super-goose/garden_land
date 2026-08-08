@@ -33,7 +33,7 @@ enum TIME {
 	#None,
 #}
 
-enum DELIVERABLE {
+enum ITEM {
 	None,
 	Corn,
 	Carrot,
