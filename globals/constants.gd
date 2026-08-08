@@ -33,6 +33,51 @@ enum TIME {
 	#None,
 #}
 
+enum DELIVERABLE {
+	None,
+	Corn,
+	Carrot,
+	Cauliflower,
+	Tomato,
+	Eggplant,
+	BlueFlower,
+	Lettuce,
+	Wheat,
+	Pumpkin,
+	Parsnip,
+	Rose,
+	Beet,
+	StarFruit,
+	Cucumber,
+	####
+	Sunflower,
+	SweetPotato,
+	Potato,
+	Watermelon,
+	SweetPea,
+	Cantaloupe,
+	Onion,
+	Pepper,
+	PurpleCabbage,
+	####
+	Apple,
+	Orange,
+	Pear,
+	Peach,
+	Strawberry,
+	Blackberry,
+	Blueberry,
+	####
+	Honey,
+	Egg,
+	Milk,
+	####
+	WateringCan,
+	Axe,
+	Hoe,
+
+}
+
 const DOUBLE_HEIGHT = [
 	Constants.VEGETABLE_TYPE.Corn,
 	Constants.VEGETABLE_TYPE.SweetPea,

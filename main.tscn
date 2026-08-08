@@ -2,6 +2,7 @@
 
 [ext_resource type="Script" uid="uid://dgbbksqy3uwwi" path="res://main.gd" id="1_b3ke2"]
 [ext_resource type="PackedScene" uid="uid://cualt3fdfjppy" path="res://scenes/hud.tscn" id="2_tdtfc"]
+[ext_resource type="PackedScene" uid="uid://di6sq28cp15ox" path="res://scenes/letter.tscn" id="3_kek77"]
 [ext_resource type="PackedScene" uid="uid://b8722pdwk2exe" path="res://level/level.tscn" id="3_t3uwm"]
 [ext_resource type="PackedScene" uid="uid://bhth6w0j355mt" path="res://scenes/weather_layer.tscn" id="4_3m5er"]
 [ext_resource type="PackedScene" uid="uid://djepff7cp326g" path="res://scenes/confirmation_dialog.tscn" id="4_5qwwy"]
@@ -13,6 +14,9 @@
 script = ExtResource("1_b3ke2")
 
 [node name="HUD" parent="." unique_id=284358032 instance=ExtResource("2_tdtfc")]
+
+[node name="Letter" parent="HUD" unique_id=61085921 instance=ExtResource("3_kek77")]
+visible = false
 
 [node name="Menu" parent="HUD" unique_id=1448019426 instance=ExtResource("9_i5nh6")]
 visible = false
@@ -26,6 +30,5 @@ visible = false
 starting_position = Vector2i(25, 30)
 
 [node name="Character" parent="." unique_id=378178782 instance=ExtResource("4_38ofq")]
-start_position = Vector2i(10, 10)
 
 [node name="DayNightCycle" parent="." unique_id=1628186884 instance=ExtResource("4_52oyc")]
