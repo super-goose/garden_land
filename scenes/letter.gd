@@ -5,7 +5,11 @@ extends Control
 @export var current_quest: Quest : set = _set_current_quest
 
 @onready var menu_header = $MarginContainer/VBoxContainer/MenuHeader
-@onready var letter_content = $MarginContainer/VBoxContainer/ContentContainer/MarginContainer/LetterContent/RichTextLabel
+@onready var letter_content = $MarginContainer/VBoxContainer/ContentContainer/MarginContainer/MarginContainer/VBoxContainer/ScrollContainer/RichTextLabel
+@onready var quest_requirements: QuestDetailsComponent = $MarginContainer/VBoxContainer/ContentContainer/MarginContainer/MarginContainer/VBoxContainer/QuestRequirements
+@onready var quest_rewards: QuestDetailsComponent = $MarginContainer/VBoxContainer/ContentContainer/MarginContainer/MarginContainer/VBoxContainer/QuestRewards
+
+var coin_texture = load("res://modified-assets/objects/coin.png")
 
 func _set_current_quest(q: Quest):
 	current_quest = q
@@ -17,6 +21,24 @@ func fill_out_letter_content():
 
 	menu_header.title = current_quest.name
 	letter_content.text = current_quest.blurb
+	
+	quest_requirements.set_label('Requirements')
+	var requirements = []
+	for vegetable in current_quest.required_vegetables:
+		requirements.push_back({
+			'count': vegetable.count,
+			'texture': Constants.INDIVIDUAL_PLANT_BY_VEGETABLE_TYPE[vegetable.vegetable],
+		})
+	quest_requirements.set_items_and_counts(requirements)
+
+	quest_rewards.set_label('Reward')
+	var rewards = []
+	if current_quest.reward.gold > 0:
+		rewards.push_back({
+			'count': current_quest.reward.gold,
+			'texture': coin_texture,
+		})
+	quest_rewards.set_items_and_counts(rewards)
 
 func _ready():
 	#menu_header.close_button_pressed.connect(_on_close_button_pressed)

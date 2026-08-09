@@ -25,6 +25,7 @@ anchors_preset = 10
 anchor_right = 1.0
 offset_bottom = 32.0
 grow_horizontal = 2
+size_flags_horizontal = 3
 theme_override_constants/margin_left = 16
 theme_override_constants/margin_top = 8
 theme_override_constants/margin_right = 16
@@ -45,7 +46,7 @@ layout_mode = 2
 size_flags_horizontal = 3
 theme_override_fonts/font = ExtResource("2_xe1r5")
 theme_override_font_sizes/font_size = 36
-text = "Menu"
+text = "I want carrots"
 
 [node name="MarginContainer2" type="HBoxContainer" parent="HBoxContainer" unique_id=1682532546]
 custom_minimum_size = Vector2(32, 32)

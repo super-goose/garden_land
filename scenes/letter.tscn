@@ -6,6 +6,7 @@
 [ext_resource type="Texture2D" uid="uid://cd1v02kj1wfon" path="res://modified-assets/ui/big-panel.png" id="3_antxc"]
 [ext_resource type="Resource" uid="uid://r5see2322go4" path="res://resources/quests/00_carrots.tres" id="3_gdeoo"]
 [ext_resource type="Texture2D" uid="uid://c3duuqiyyd8yl" path="res://modified-assets/ui/big-button.png" id="5_053ud"]
+[ext_resource type="PackedScene" uid="uid://dvxyjgtkur1l" path="res://scenes/ui_components/quest_details.tscn" id="6_053ud"]
 
 [node name="Letter" type="Control" unique_id=61085921]
 layout_mode = 3
@@ -41,7 +42,8 @@ layout_mode = 2
 layout_mode = 2
 title = "I want carrots!"
 show_settings = false
-show_close = null
+show_close = false
+smaller_text = true
 
 [node name="ContentContainer" type="MarginContainer" parent="MarginContainer/VBoxContainer" unique_id=974623757]
 layout_mode = 2
@@ -62,24 +64,35 @@ patch_margin_top = 10
 patch_margin_right = 10
 patch_margin_bottom = 10
 
-[node name="LetterContent" type="MarginContainer" parent="MarginContainer/VBoxContainer/ContentContainer/MarginContainer" unique_id=484928721]
+[node name="MarginContainer" type="MarginContainer" parent="MarginContainer/VBoxContainer/ContentContainer/MarginContainer" unique_id=423007351]
 layout_mode = 2
-theme_override_constants/margin_left = 8
-theme_override_constants/margin_top = 8
-theme_override_constants/margin_right = 8
-theme_override_constants/margin_bottom = 8
+theme_override_constants/margin_left = 16
+theme_override_constants/margin_top = 16
+theme_override_constants/margin_right = 16
+theme_override_constants/margin_bottom = 16
 
-[node name="RichTextLabel" type="RichTextLabel" parent="MarginContainer/VBoxContainer/ContentContainer/MarginContainer/LetterContent" unique_id=265066551]
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/VBoxContainer/ContentContainer/MarginContainer/MarginContainer" unique_id=1683643776]
 layout_mode = 2
+
+[node name="ScrollContainer" type="ScrollContainer" parent="MarginContainer/VBoxContainer/ContentContainer/MarginContainer/MarginContainer/VBoxContainer" unique_id=1356556591]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="RichTextLabel" type="RichTextLabel" parent="MarginContainer/VBoxContainer/ContentContainer/MarginContainer/MarginContainer/VBoxContainer/ScrollContainer" unique_id=265066551]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
 theme_override_colors/default_color = Color(0, 0, 0, 1)
 text = "Hello,
-
-I would love some carrots for a carrot cake I am making. I thought, who better to grow good carrots than a rabbit! I will pay you to grow some for me. 
-
-Just put them in a box, and ship them to me!
-
+I would love some carrots for a carrot cake I am making. I thought, who better to grow good carrots than a rabbit! I will pay you to grow some for me. Just put them in a box, and ship them to me!
 Thank you,
 Spike"
+
+[node name="QuestRequirements" parent="MarginContainer/VBoxContainer/ContentContainer/MarginContainer/MarginContainer/VBoxContainer" unique_id=1755038635 instance=ExtResource("6_053ud")]
+layout_mode = 2
+
+[node name="QuestRewards" parent="MarginContainer/VBoxContainer/ContentContainer/MarginContainer/MarginContainer/VBoxContainer" unique_id=1465535858 instance=ExtResource("6_053ud")]
+layout_mode = 2
 
 [node name="Buttons" type="MarginContainer" parent="MarginContainer/VBoxContainer" unique_id=836291937]
 layout_mode = 2
