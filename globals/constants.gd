@@ -128,12 +128,14 @@ enum CONSUMABLE_TYPE {
 	Honey,
 	Egg,
 	Milk,
+	Mushroom,
 }
 
 enum TOOL_TYPE {
 	WateringCan,
 	Axe,
 	Hoe,
+	FishingRod
 }
 
 enum ACTIONS {

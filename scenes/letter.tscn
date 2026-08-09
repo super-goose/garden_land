@@ -1,8 +1,11 @@
 [gd_scene format=3 uid="uid://di6sq28cp15ox"]
 
 [ext_resource type="Script" uid="uid://tv6uvxuyyth0" path="res://scenes/letter.gd" id="1_8y6hk"]
+[ext_resource type="Theme" uid="uid://dv6j5aft1i3dx" path="res://resources/common_ui_theme.tres" id="1_gdeoo"]
 [ext_resource type="PackedScene" uid="uid://bqbms7serbb3f" path="res://scenes/menu_title.tscn" id="2_gdeoo"]
 [ext_resource type="Texture2D" uid="uid://cd1v02kj1wfon" path="res://modified-assets/ui/big-panel.png" id="3_antxc"]
+[ext_resource type="Resource" uid="uid://r5see2322go4" path="res://resources/quests/00_carrots.tres" id="3_gdeoo"]
+[ext_resource type="Texture2D" uid="uid://c3duuqiyyd8yl" path="res://modified-assets/ui/big-button.png" id="5_053ud"]
 
 [node name="Letter" type="Control" unique_id=61085921]
 layout_mode = 3
@@ -11,7 +14,9 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+theme = ExtResource("1_gdeoo")
 script = ExtResource("1_8y6hk")
+current_quest = ExtResource("3_gdeoo")
 
 [node name="MarginContainer" type="MarginContainer" parent="." unique_id=472816287]
 layout_mode = 1
@@ -34,8 +39,9 @@ layout_mode = 2
 
 [node name="MenuHeader" parent="MarginContainer/VBoxContainer" unique_id=1198235524 instance=ExtResource("2_gdeoo")]
 layout_mode = 2
-title = "Letter"
+title = "I want carrots!"
 show_settings = false
+show_close = null
 
 [node name="ContentContainer" type="MarginContainer" parent="MarginContainer/VBoxContainer" unique_id=974623757]
 layout_mode = 2
@@ -47,8 +53,6 @@ theme_override_constants/margin_bottom = 16
 
 [node name="MarginContainer" type="MarginContainer" parent="MarginContainer/VBoxContainer/ContentContainer" unique_id=729129683]
 layout_mode = 2
-theme_override_constants/margin_top = 30
-theme_override_constants/margin_bottom = 30
 
 [node name="NinePatchRect" type="NinePatchRect" parent="MarginContainer/VBoxContainer/ContentContainer/MarginContainer" unique_id=543517454]
 layout_mode = 2
@@ -58,11 +62,50 @@ patch_margin_top = 10
 patch_margin_right = 10
 patch_margin_bottom = 10
 
-[node name="Control" type="Control" parent="MarginContainer/VBoxContainer/ContentContainer/MarginContainer" unique_id=1086413402]
+[node name="LetterContent" type="MarginContainer" parent="MarginContainer/VBoxContainer/ContentContainer/MarginContainer" unique_id=484928721]
 layout_mode = 2
+theme_override_constants/margin_left = 8
+theme_override_constants/margin_top = 8
+theme_override_constants/margin_right = 8
+theme_override_constants/margin_bottom = 8
+
+[node name="RichTextLabel" type="RichTextLabel" parent="MarginContainer/VBoxContainer/ContentContainer/MarginContainer/LetterContent" unique_id=265066551]
+layout_mode = 2
+theme_override_colors/default_color = Color(0, 0, 0, 1)
+text = "Hello,
+
+I would love some carrots for a carrot cake I am making. I thought, who better to grow good carrots than a rabbit! I will pay you to grow some for me. 
+
+Just put them in a box, and ship them to me!
+
+Thank you,
+Spike"
 
 [node name="Buttons" type="MarginContainer" parent="MarginContainer/VBoxContainer" unique_id=836291937]
 layout_mode = 2
+theme_override_constants/margin_left = 16
+theme_override_constants/margin_right = 16
+theme_override_constants/margin_bottom = 16
 
 [node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer/VBoxContainer/Buttons" unique_id=1719897861]
 layout_mode = 2
+theme_override_constants/separation = 8
+alignment = 1
+
+[node name="TextureButton" type="TextureButton" parent="MarginContainer/VBoxContainer/Buttons/HBoxContainer" unique_id=2001614910]
+layout_mode = 2
+texture_normal = ExtResource("5_053ud")
+
+[node name="Label" type="Label" parent="MarginContainer/VBoxContainer/Buttons/HBoxContainer/TextureButton" unique_id=336826618]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 20
+text = "OK"
+horizontal_alignment = 1
+
+[connection signal="pressed" from="MarginContainer/VBoxContainer/Buttons/HBoxContainer/TextureButton" to="." method="_on_close_button_pressed"]

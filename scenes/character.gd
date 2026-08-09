@@ -249,9 +249,11 @@ func _handle_event_perform_action(action: Constants.ACTIONS):
 		go_to_bed()
 	elif action == Constants.ACTIONS.CheckMail:
 		print('check that mail, yo')
-		var next_quest = stats_and_inventory.get_next_quest()
+		var next_quest: Quest = stats_and_inventory.get_next_quest()
 		if next_quest:
 			Events.open_letter.emit(next_quest)
+			await Events.confirmation_granted
+			print("accept this quest: %s" % next_quest.name)
 	elif action == Constants.ACTIONS.Chop:
 		set_state('chop')
 	elif action == Constants.ACTIONS.Water:
@@ -344,7 +346,7 @@ func set_actions():
 				actions.push_back(Constants.ACTIONS.Sow)
 			elif current_plant.is_ready():
 				actions.push_back(current_plant.get_harvest_action())
-			elif stats_and_inventory.water_level > 0: # present greyed out water that would take you to the well
+			elif stats_and_inventory.has_watering_can and stats_and_inventory.water_level > 0: # present greyed out water that would take you to the well
 				actions.push_back(Constants.ACTIONS.Water)
 		elif current_tree and stats_and_inventory.has_axe:
 			actions.push_back(Constants.ACTIONS.Chop)

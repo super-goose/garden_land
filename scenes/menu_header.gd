@@ -1,13 +1,17 @@
+@tool
 extends MarginContainer
 
 @export var title: String = ''
 @export var show_settings = true
+@export var show_close = true
+
 signal close_button_pressed
 signal settings_button_pressed
 
 func _ready():
 	$HBoxContainer/MarginContainer/Label.text = title
 	$HBoxContainer/MarginContainer2/SettingsButton.visible = show_settings
+	$HBoxContainer/MarginContainer2/CloseButton.visible = show_close
 
 func _on_close_button_pressed():
 	close_button_pressed.emit()

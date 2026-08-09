@@ -145,9 +145,10 @@ func get_next_quest():
 }
 
 @export var water_level_max = 8
-@export var water_level = water_level_max
-@export var has_axe = true #false
+@export var water_level = 0
+@export var has_watering_can = true #false
 @export var has_hoe = true #false
+@export var has_axe = true #false
 
 func add_fruit_to_box(fruit_type: Constants.FRUIT_TYPE, amount: int):
 	if fruit_inventory[fruit_type] == 0:

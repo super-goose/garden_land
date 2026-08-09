@@ -1,0 +1,6 @@
+[gd_resource type="Theme" format=3 uid="uid://dv6j5aft1i3dx"]
+
+[ext_resource type="FontFile" uid="uid://r5d0pkfw0bpw" path="res://fonts/KodeMono-VariableFont_wght.ttf" id="1_c0edd"]
+
+[resource]
+default_font = ExtResource("1_c0edd")
