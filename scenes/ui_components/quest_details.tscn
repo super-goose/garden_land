@@ -1,9 +1,6 @@
 [gd_scene format=3 uid="uid://dvxyjgtkur1l"]
 
 [ext_resource type="Script" uid="uid://0vnjn760e25y" path="res://scenes/ui_components/quest_details.gd" id="1_fb1om"]
-[ext_resource type="Texture2D" uid="uid://cmubickqkhd82" path="res://modified-assets/objects/coin.png" id="1_hu1sl"]
-[ext_resource type="PackedScene" uid="uid://v2iigm4a88un" path="res://scenes/ui_components/dark_label.tscn" id="2_fb1om"]
-[ext_resource type="PackedScene" uid="uid://cphx0ywxqggrv" path="res://scenes/ui_components/vertical_separator.tscn" id="3_dy85t"]
 
 [node name="QuestDetails" type="MarginContainer" unique_id=1755038635]
 script = ExtResource("1_fb1om")
@@ -23,15 +20,4 @@ theme_override_colors/font_color = Color(0, 0, 0, 1)
 text = "Requirements"
 
 [node name="ItemsHBox" type="HBoxContainer" parent="HBoxContainer/MarginContainer/VBoxContainer" unique_id=1546869011]
-layout_mode = 2
-
-[node name="TextureRect" type="TextureRect" parent="HBoxContainer/MarginContainer/VBoxContainer/ItemsHBox" unique_id=29823359]
-layout_mode = 2
-texture = ExtResource("1_hu1sl")
-expand_mode = 3
-
-[node name="Label" parent="HBoxContainer/MarginContainer/VBoxContainer/ItemsHBox" unique_id=477596948 instance=ExtResource("2_fb1om")]
-layout_mode = 2
-
-[node name="ColorRect" parent="HBoxContainer/MarginContainer/VBoxContainer/ItemsHBox" unique_id=1604050277 instance=ExtResource("3_dy85t")]
 layout_mode = 2

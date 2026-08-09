@@ -1,7 +1,6 @@
 class_name QuestDetailsComponent
 extends MarginContainer
 
-var ItemLabel = load("res://scenes/ui_components/dark_label.tscn")
 var VerticalSeparator = load("res://scenes/ui_components/vertical_separator.tscn")
 
 func set_label(text: String):
