@@ -84,7 +84,11 @@ size_flags_horizontal = 3
 size_flags_vertical = 3
 theme_override_colors/default_color = Color(0, 0, 0, 1)
 text = "Hello,
-I would love some carrots for a carrot cake I am making. I thought, who better to grow good carrots than a rabbit! I will pay you to grow some for me. Just put them in a box, and ship them to me!
+
+I would love some carrots for a carrot cake I am making. I thought, who better to grow good carrots than a rabbit!
+
+I will pay you to grow some for me. Just put them in a box, and ship them to me!
+
 Thank you,
 Spike"
 

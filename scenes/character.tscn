@@ -1,12 +1,9 @@
 [gd_scene format=3 uid="uid://brcxg1cwk4en0"]
 
 [ext_resource type="Script" uid="uid://d2ovc8smxq0yg" path="res://scenes/character.gd" id="1_gyc1p"]
-[ext_resource type="Script" uid="uid://bcg63bvxqumsx" path="res://resources/quest.gd" id="2_8vsun"]
 [ext_resource type="Texture2D" uid="uid://bjkim2bgo5ugl" path="res://modified-assets/character/animations-16.png" id="2_thamh"]
-[ext_resource type="Resource" uid="uid://r5see2322go4" path="res://resources/quests/00_carrots.tres" id="3_8vsun"]
 [ext_resource type="Texture2D" uid="uid://rs6re8aihsh3" path="res://modified-assets/character/animations-18.png" id="3_fhawt"]
 [ext_resource type="Texture2D" uid="uid://dqsbbwhopqqkj" path="res://modified-assets/character/animations-19.png" id="4_05j7c"]
-[ext_resource type="Script" uid="uid://dqj8y03bccfwi" path="res://resources/character_stats_and_inventory.gd" id="4_i0gp7"]
 [ext_resource type="Texture2D" uid="uid://3qxl1j7l3kyu" path="res://modified-assets/character/animations-17.png" id="5_5rpjt"]
 [ext_resource type="Texture2D" uid="uid://ss6tijx004tv" path="res://modified-assets/character/animations-12.png" id="6_h6yfu"]
 [ext_resource type="Texture2D" uid="uid://docmd7yjinetb" path="res://modified-assets/character/animations-14.png" id="7_2fmh3"]
@@ -29,12 +26,6 @@
 [ext_resource type="Texture2D" uid="uid://rl2my07rmhcb" path="res://modified-assets/character/animations-23.png" id="24_3gbvd"]
 [ext_resource type="Texture2D" uid="uid://b56iu2xbx7fvv" path="res://modified-assets/character/animations-21.png" id="25_851rh"]
 [ext_resource type="Texture2D" uid="uid://c3muj86asyla7" path="res://modified-assets/character/water-from-watering-can-frames.png" id="26_61iji"]
-
-[sub_resource type="Resource" id="Resource_ofy33"]
-script = ExtResource("4_i0gp7")
-quests = Array[ExtResource("2_8vsun")]([ExtResource("3_8vsun")])
-water_level = null
-metadata/_custom_type_script = "uid://dqj8y03bccfwi"
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_sltv8"]
 size = Vector2(12, 14)
@@ -1590,8 +1581,6 @@ z_as_relative = false
 y_sort_enabled = true
 collision_mask = 4
 script = ExtResource("1_gyc1p")
-stats_and_inventory = SubResource("Resource_ofy33")
-use_save_file = false
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=665398758]
 shape = SubResource("RectangleShape2D_sltv8")

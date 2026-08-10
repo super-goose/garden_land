@@ -1,7 +1,21 @@
 class_name StatsAndInventory
 extends Resource
 
-@export var quests: Array[Quest] = []
+@export var quests: Array[Quest] = [
+	load("res://resources/quests/00_carrots.tres")
+]
+
+func set_quest_to_active(name: QuestConstants.Name):
+	for quest in quests:
+		quest.active = quest.real_name == name
+
+func get_current_quests():
+	var current_quests = quests.filter(
+		func filter_current_quests(quest: Quest):
+			# check quest stats
+			return quest.active
+	)
+	return current_quests
 
 func get_next_quest():
 	var possible_quests = quests.filter(

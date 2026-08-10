@@ -28,6 +28,7 @@ var FruitCellScene = load("res://scenes/fruit_cell.tscn")
 var VegetableCellScene = load("res://scenes/vegetable_cell.tscn")
 var ToolCellScene = load("res://scenes/tool_cell.tscn")
 var SeedsCellScene = load("res://scenes/seeds_cell.tscn")
+var QuestSummaryScene = load("res://scenes/ui_components/quest_summary.tscn")
 
 var is_workstation_menu = false
 
@@ -250,8 +251,20 @@ func populate_inventory_tab(stats: StatsAndInventory):
 	inv_tools_grid_container.set_items(tools_inventory)
 	inv_box_grid_container.set_items(box_inventory)
 
+func populate_quest_tab(stats: StatsAndInventory):
+	var quest_container = $MarginContainer/VBoxContainer/ContentContainer/TabContainer/Quests/MarginContainer/QuestVBoxContainer
+	for child in quest_container.get_children():
+		quest_container.remove_child(child)
+	for quest in stats.get_current_quests():
+		var qss = QuestSummaryScene.instantiate()
+		qss.populate_quest(quest)
+		quest_container.add_child(qss)
+
 func open_menu(stats: StatsAndInventory, is_workstation = false):
+	Events.time_passage_pause.emit()
+	# hide inventory tab when at workbench
 	tab_container.set_tab_hidden(0, is_workstation)
+	# hide workbench when not at workbench
 	tab_container.set_tab_hidden(1, not is_workstation)
 	is_workstation_menu = is_workstation
 	if is_workstation:
@@ -259,17 +272,20 @@ func open_menu(stats: StatsAndInventory, is_workstation = false):
 		populate_workstation_tab(stats)
 	visible = true
 	populate_inventory_tab(stats)
+	populate_quest_tab(stats)
 	Events.refresh_stats_and_inventory.connect(_handle_event_refresh_inventory)
 
 func _on_close_button_pressed():
 	visible = false
 	Events.close_menu.emit()
+	Events.time_passage_play.emit()
 	Events.refresh_stats_and_inventory.disconnect(_handle_event_refresh_inventory)
 
 func _on_settings_button_pressed():
 	print('handle settings menu')
 
 func _handle_event_refresh_inventory(stats: StatsAndInventory):
+	populate_quest_tab(stats)
 	populate_inventory_tab(stats)
 	if is_workstation_menu:
 		populate_workstation_tab(stats)

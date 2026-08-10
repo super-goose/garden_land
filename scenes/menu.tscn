@@ -1,10 +1,12 @@
 [gd_scene format=3 uid="uid://b46obik1lqkq"]
 
 [ext_resource type="Script" uid="uid://bf543hw26a85r" path="res://scenes/menu.gd" id="1_js1in"]
+[ext_resource type="Theme" uid="uid://dv6j5aft1i3dx" path="res://resources/common_ui_theme.tres" id="1_v86rl"]
 [ext_resource type="PackedScene" uid="uid://bqbms7serbb3f" path="res://scenes/menu_title.tscn" id="2_7kft0"]
 [ext_resource type="PackedScene" uid="uid://dx4wgdbp5b150" path="res://scenes/menu_section.tscn" id="3_wyerp"]
 [ext_resource type="FontFile" uid="uid://r5d0pkfw0bpw" path="res://fonts/KodeMono-VariableFont_wght.ttf" id="3_y75co"]
 [ext_resource type="PackedScene" uid="uid://c4cv1iqb33lcu" path="res://scenes/process_menu.tscn" id="5_okaoq"]
+[ext_resource type="PackedScene" uid="uid://dmw6a3nh3thv4" path="res://scenes/ui_components/quest_summary.tscn" id="6_13sgg"]
 
 [node name="Menu" type="Control" unique_id=61085921]
 layout_mode = 3
@@ -13,6 +15,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+theme = ExtResource("1_v86rl")
 script = ExtResource("1_js1in")
 
 [node name="MarginContainer" type="MarginContainer" parent="." unique_id=472816287]
@@ -50,9 +53,11 @@ theme_override_constants/margin_bottom = 16
 layout_mode = 2
 theme_override_fonts/font = ExtResource("3_y75co")
 theme_override_font_sizes/font_size = 15
-current_tab = 0
+current_tab = 2
+tab_1/hidden = true
 
 [node name="Inventory" type="ScrollContainer" parent="MarginContainer/VBoxContainer/ContentContainer/TabContainer" unique_id=143868681]
+visible = false
 layout_mode = 2
 size_flags_vertical = 3
 metadata/_tab_index = 0
@@ -113,10 +118,30 @@ title = "fruit"
 layout_mode = 2
 title = "box"
 
+[node name="Quests" type="ScrollContainer" parent="MarginContainer/VBoxContainer/ContentContainer/TabContainer" unique_id=777102413]
+layout_mode = 2
+metadata/_tab_index = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="MarginContainer/VBoxContainer/ContentContainer/TabContainer/Quests" unique_id=1022909854]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme_override_constants/margin_left = 8
+theme_override_constants/margin_top = 8
+theme_override_constants/margin_right = 8
+theme_override_constants/margin_bottom = 8
+
+[node name="QuestVBoxContainer" type="VBoxContainer" parent="MarginContainer/VBoxContainer/ContentContainer/TabContainer/Quests/MarginContainer" unique_id=628231796]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="QuestSummary" parent="MarginContainer/VBoxContainer/ContentContainer/TabContainer/Quests/MarginContainer/QuestVBoxContainer" unique_id=1839721902 instance=ExtResource("6_13sgg")]
+layout_mode = 2
+
 [node name="About" type="ScrollContainer" parent="MarginContainer/VBoxContainer/ContentContainer/TabContainer" unique_id=470255184]
 visible = false
 layout_mode = 2
-metadata/_tab_index = 2
+metadata/_tab_index = 3
 
 [node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/VBoxContainer/ContentContainer/TabContainer/About" unique_id=1588722032]
 layout_mode = 2

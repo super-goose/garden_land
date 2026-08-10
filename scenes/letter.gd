@@ -19,7 +19,7 @@ func fill_out_letter_content():
 	if not is_node_ready():
 		await ready
 
-	menu_header.title = current_quest.name
+	menu_header.set_title(current_quest.name)
 	letter_content.text = current_quest.blurb
 	
 	quest_requirements.set_label('Requirements')

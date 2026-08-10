@@ -16,19 +16,19 @@ var current_workstation: Workstation
 var current_bed: Bed
 var watering_happened = false
 
-@export var stats_and_inventory: StatsAndInventory
+var stats_and_inventory: StatsAndInventory
 var start_position: Vector2i
 
-const SAVE_PATH := "user://stats_and_inventory.tres"
+const SAVE_PATH := "user://stats_and_inventory_8-9-1.tres"
 
-@export var use_save_file = true
+@export var use_save_file = false
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	if ResourceLoader.exists(SAVE_PATH) and use_save_file:
 		stats_and_inventory = ResourceLoader.load(SAVE_PATH, "", ResourceLoader.CACHE_MODE_IGNORE)
-	#else:
-		#stats_and_inventory = StatsAndInventory.new()
+	else:
+		stats_and_inventory = StatsAndInventory.new()
 
 	Events.select_garden_plot.connect(_handle_event_select_garden_plot)
 	Events.select_fruit_tree.connect(_handle_event_select_fruit_tree)
@@ -253,7 +253,8 @@ func _handle_event_perform_action(action: Constants.ACTIONS):
 		if next_quest:
 			Events.open_letter.emit(next_quest)
 			await Events.confirmation_granted
-			print("accept this quest: %s" % next_quest.name)
+			stats_and_inventory.set_quest_to_active(next_quest.real_name)
+			ResourceSaver.save(stats_and_inventory, SAVE_PATH)
 	elif action == Constants.ACTIONS.Chop:
 		set_state('chop')
 	elif action == Constants.ACTIONS.Water:

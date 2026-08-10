@@ -1,0 +1,10 @@
+[gd_scene format=3 uid="uid://dmw6a3nh3thv4"]
+
+[ext_resource type="Script" uid="uid://dfybogerj5b1p" path="res://scenes/ui_components/quest_summary.gd" id="1_5n0p5"]
+
+[node name="QuestSummary" type="MarginContainer" unique_id=1839721902]
+script = ExtResource("1_5n0p5")
+
+[node name="Label" type="Label" parent="." unique_id=1663215863]
+layout_mode = 2
+text = "hey"

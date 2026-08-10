@@ -15,6 +15,10 @@ func _ready():
 	$HBoxContainer/MarginContainer2/CloseButton.visible = show_close
 	$HBoxContainer/MarginContainer/Label.add_theme_font_size_override("font_size", 24 if smaller_text else 36)
 
+func set_title(_title):
+	title = _title
+	$HBoxContainer/MarginContainer/Label.text = _title
+
 func _on_close_button_pressed():
 	close_button_pressed.emit()
 

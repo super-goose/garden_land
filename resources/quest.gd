@@ -35,6 +35,9 @@ extends Resource
 ## Gold, items, etc the user gets for completing the quest
 @export var reward: Reward 
 
+## Whether or not the quest is available currently
+@export var available: bool = false
+
 ## Whether or not the quest is active currently
 @export var active: bool = false
 
