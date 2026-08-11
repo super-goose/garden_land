@@ -19,14 +19,14 @@ var watering_happened = false
 var stats_and_inventory: StatsAndInventory
 var start_position: Vector2i
 
-const SAVE_PATH := "user://stats_and_inventory_8-9-1.tres"
+const SAVE_PATH := "user://stats_and_inventory_8-9-2.tres"
 
-@export var use_save_file = false
+var use_save_file = true
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	if ResourceLoader.exists(SAVE_PATH) and use_save_file:
-		stats_and_inventory = ResourceLoader.load(SAVE_PATH, "", ResourceLoader.CACHE_MODE_IGNORE)
+		stats_and_inventory = ResourceLoader.load(SAVE_PATH, "StatsAndInventory", ResourceLoader.CACHE_MODE_IGNORE)
 	else:
 		stats_and_inventory = StatsAndInventory.new()
 

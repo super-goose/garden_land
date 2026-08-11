@@ -36,13 +36,13 @@ extends Resource
 @export var reward: Reward 
 
 ## Whether or not the quest is available currently
-@export var available: bool = false
+@export var available: bool
 
 ## Whether or not the quest is active currently
-@export var active: bool = false
+@export var active: bool
 
 ## Whether or not the quest has been read
-@export var has_read: bool = false
+@export var has_read: bool
 
 ## Whether or not the quest is complete
-@export var completed: bool = false
+@export var completed: bool

@@ -2,12 +2,14 @@ class_name StatsAndInventory
 extends Resource
 
 @export var quests: Array[Quest] = [
-	load("res://resources/quests/00_carrots.tres")
+	load("res://resources/quests/00_carrots.tres").duplicate(true)
 ]
 
 func set_quest_to_active(name: QuestConstants.Name):
 	for quest in quests:
-		quest.active = quest.real_name == name
+		if quest.real_name == name:
+			quest.active = true
+		
 
 func get_current_quests():
 	var current_quests = quests.filter(
@@ -159,7 +161,7 @@ func get_next_quest():
 }
 
 @export var water_level_max = 8
-@export var water_level = 0
+@export var water_level = 8
 @export var has_watering_can = true #false
 @export var has_hoe = true #false
 @export var has_axe = true #false

@@ -1,10 +1,45 @@
 [gd_scene format=3 uid="uid://dmw6a3nh3thv4"]
 
 [ext_resource type="Script" uid="uid://dfybogerj5b1p" path="res://scenes/ui_components/quest_summary.gd" id="1_5n0p5"]
+[ext_resource type="Texture2D" uid="uid://cd1v02kj1wfon" path="res://modified-assets/ui/big-panel.png" id="2_q7jnk"]
+[ext_resource type="PackedScene" uid="uid://dvxyjgtkur1l" path="res://scenes/ui_components/quest_details.tscn" id="3_to3l5"]
 
 [node name="QuestSummary" type="MarginContainer" unique_id=1839721902]
+anchors_preset = 10
+anchor_right = 1.0
+offset_bottom = 23.0
+grow_horizontal = 2
 script = ExtResource("1_5n0p5")
 
-[node name="Label" type="Label" parent="." unique_id=1663215863]
+[node name="NinePatchRect" type="NinePatchRect" parent="." unique_id=1576352950]
 layout_mode = 2
-text = "hey"
+texture = ExtResource("2_q7jnk")
+patch_margin_left = 9
+patch_margin_top = 9
+patch_margin_right = 9
+patch_margin_bottom = 9
+
+[node name="MarginContainer" type="MarginContainer" parent="." unique_id=498212526]
+layout_mode = 2
+theme_override_constants/margin_left = 6
+theme_override_constants/margin_top = 6
+theme_override_constants/margin_right = 6
+theme_override_constants/margin_bottom = 6
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer" unique_id=1825491068]
+layout_mode = 2
+
+[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer/VBoxContainer" unique_id=1595830543]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="MarginContainer/VBoxContainer/HBoxContainer" unique_id=1663215863]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+text = "I want carrots"
+
+[node name="RewardDetails" parent="MarginContainer/VBoxContainer/HBoxContainer" unique_id=1755038635 instance=ExtResource("3_to3l5")]
+layout_mode = 2
+
+[node name="RequirementsDetails" parent="MarginContainer/VBoxContainer" unique_id=822332176 instance=ExtResource("3_to3l5")]
+layout_mode = 2

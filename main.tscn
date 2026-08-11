@@ -30,6 +30,5 @@ visible = false
 starting_position = Vector2i(25, 30)
 
 [node name="Character" parent="." unique_id=378178782 instance=ExtResource("4_38ofq")]
-use_save_file = false
 
 [node name="DayNightCycle" parent="." unique_id=1628186884 instance=ExtResource("4_52oyc")]

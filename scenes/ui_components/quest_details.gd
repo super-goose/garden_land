@@ -4,6 +4,7 @@ extends MarginContainer
 var VerticalSeparator = load("res://scenes/ui_components/vertical_separator.tscn")
 
 func set_label(text: String):
+	$HBoxContainer/MarginContainer/VBoxContainer/Label.visible = true
 	$HBoxContainer/MarginContainer/VBoxContainer/Label.text = text
 
 func set_items_and_counts(items: Array):
