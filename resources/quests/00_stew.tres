@@ -1,0 +1,50 @@
+[gd_resource type="Resource" script_class="Quest" format=3 uid="uid://cms8do3xl02wh"]
+
+[ext_resource type="Script" uid="uid://rbk0xtv16s73" path="res://resources/inventory_item_consumable.gd" id="1_8mlh1"]
+[ext_resource type="Script" uid="uid://6yv6w8ds1ty1" path="res://resources/inventory_item_fruit.gd" id="2_5djo2"]
+[ext_resource type="Script" uid="uid://c0eh28ud48bsp" path="res://resources/inventory_item_vegetable.gd" id="3_hiwx5"]
+[ext_resource type="Script" uid="uid://cd6scf0di555j" path="res://resources/reward.gd" id="4_5djo2"]
+[ext_resource type="Script" uid="uid://bcg63bvxqumsx" path="res://resources/quest.gd" id="4_m18ik"]
+
+[sub_resource type="Resource" id="Resource_hiwx5"]
+script = ExtResource("3_hiwx5")
+vegetable = 17
+count = 6
+metadata/_custom_type_script = "uid://c0eh28ud48bsp"
+
+[sub_resource type="Resource" id="Resource_m18ik"]
+script = ExtResource("3_hiwx5")
+vegetable = 21
+count = 6
+metadata/_custom_type_script = "uid://c0eh28ud48bsp"
+
+[sub_resource type="Resource" id="Resource_adsy1"]
+script = ExtResource("4_5djo2")
+gold = 20
+metadata/_custom_type_script = "uid://cd6scf0di555j"
+
+[sub_resource type="Resource" id="Resource_8mlh1"]
+script = ExtResource("3_hiwx5")
+vegetable = 17
+count = 3
+metadata/_custom_type_script = "uid://c0eh28ud48bsp"
+
+[sub_resource type="Resource" id="Resource_5djo2"]
+script = ExtResource("3_hiwx5")
+vegetable = 21
+count = 3
+metadata/_custom_type_script = "uid://c0eh28ud48bsp"
+
+[resource]
+script = ExtResource("4_m18ik")
+name = "Hearty Stew"
+prerequisite = Array[int]([0])
+blurb = "Hi!
+
+Me want stew.
+
+Sally"
+supplies_seeds = Array[ExtResource("3_hiwx5")]([SubResource("Resource_8mlh1"), SubResource("Resource_5djo2")])
+required_vegetables = Array[ExtResource("3_hiwx5")]([SubResource("Resource_hiwx5"), SubResource("Resource_m18ik")])
+reward = SubResource("Resource_adsy1")
+metadata/_custom_type_script = "uid://bcg63bvxqumsx"
