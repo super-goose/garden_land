@@ -54,7 +54,7 @@ func open_process_vegetable_menu(vegetable: Constants.VEGETABLE_TYPE, stats: Sta
 			process_menu.clear_items()
 			process_menu.add_item({
 				'type': 'slider',
-				'max_value': stats.vegetable_inventory[vegetable],
+				'max_value': stats.inventory.vegetable[vegetable],
 				'functionality': func veg_functionality_select(amount):
 					stats.add_vegetable_to_box(vegetable, amount)
 					process_menu.close(),
@@ -79,7 +79,7 @@ func open_process_fruit_menu(fruit: Constants.FRUIT_TYPE, stats: StatsAndInvento
 			process_menu.clear_items()
 			process_menu.add_item({
 				'type': 'slider',
-				'max_value': stats.fruit_inventory[fruit],
+				'max_value': stats.inventory.fruit[fruit],
 				'functionality': func veg_functionality_select(amount):
 					stats.add_fruit_to_box(fruit, amount)
 					process_menu.close(),
@@ -103,11 +103,11 @@ func open_process_seeds_menu(seeds: Constants.VEGETABLE_TYPE, stats: StatsAndInv
 
 func populate_workstation_tab(stats: StatsAndInventory):
 	var vegetable_inventory = []
-	for vegetable in stats.vegetable_inventory:
-		if stats.vegetable_inventory[vegetable] == 0:
+	for vegetable in stats.inventory.vegetable:
+		if stats.inventory.vegetable[vegetable] == 0:
 			continue
 		var vegetable_cell = VegetableCellScene.instantiate()
-		vegetable_cell.set_data(vegetable, stats.vegetable_inventory[vegetable])
+		vegetable_cell.set_data(vegetable, stats.inventory.vegetable[vegetable])
 		vegetable_cell.set_functionality(
 			func __open_process_vegetable_menu():
 				open_process_vegetable_menu(vegetable, stats)
@@ -116,11 +116,11 @@ func populate_workstation_tab(stats: StatsAndInventory):
 		
 
 	var fruit_inventory = []
-	for fruit in stats.fruit_inventory:
-		if stats.fruit_inventory[fruit] == 0:
+	for fruit in stats.inventory.fruit:
+		if stats.inventory.fruit[fruit] == 0:
 			continue
 		var fruit_cell = FruitCellScene.instantiate()
-		fruit_cell.set_data(fruit, stats.fruit_inventory[fruit])
+		fruit_cell.set_data(fruit, stats.inventory.fruit[fruit])
 		fruit_cell.set_functionality(
 			func __open_process_fruit_menu():
 				open_process_fruit_menu(fruit, stats)
@@ -143,37 +143,37 @@ func populate_workstation_tab(stats: StatsAndInventory):
 		tools_inventory.push_back(hoe_cell)
 
 	var seeds_inventory = []
-	for seeds in stats.seeds_inventory:
-		if stats.seeds_inventory[seeds] == 0:
+	for seeds in stats.inventory.seed:
+		if stats.inventory.seed[seeds] == 0:
 			continue
 		var seeds_cell = SeedsCellScene.instantiate()
 		seeds_cell.set_functionality(
 			func __open_process_seeds_menu():
 				open_process_seeds_menu(seeds, stats)
 		)
-		seeds_cell.set_data(seeds, stats.seeds_inventory[seeds])
+		seeds_cell.set_data(seeds, stats.inventory.seed[seeds])
 		seeds_inventory.push_back(seeds_cell)
 
 	var box_inventory = []
-	for seeds in stats.box_inventory['seeds']:
-		if stats.box_inventory['seeds'][seeds] == 0:
+	for seeds in stats.box_inventory.seed:
+		if stats.box_inventory.seed[seeds] == 0:
 			continue
 		var seeds_cell = SeedsCellScene.instantiate()
-		seeds_cell.set_data(seeds, stats.box_inventory['seeds'][seeds])
+		seeds_cell.set_data(seeds, stats.box_inventory.seed[seeds])
 		box_inventory.push_back(seeds_cell)
 
-	for fruit in stats.box_inventory['fruit']:
-		if stats.box_inventory['fruit'][fruit] == 0:
+	for fruit in stats.box_inventory.fruit:
+		if stats.box_inventory.fruit[fruit] == 0:
 			continue
 		var fruit_cell = FruitCellScene.instantiate()
-		fruit_cell.set_data(fruit, stats.box_inventory['fruit'][fruit])
+		fruit_cell.set_data(fruit, stats.box_inventory.fruit[fruit])
 		box_inventory.push_back(fruit_cell)
 
-	for vegetable in stats.box_inventory['vegetable']:
-		if stats.box_inventory['vegetable'][vegetable] == 0:
+	for vegetable in stats.box_inventory.vegetable:
+		if stats.box_inventory.vegetable[vegetable] == 0:
 			continue
 		var vegetable_cell = VegetableCellScene.instantiate()
-		vegetable_cell.set_data(vegetable, stats.box_inventory['vegetable'][vegetable])
+		vegetable_cell.set_data(vegetable, stats.box_inventory.vegetable[vegetable])
 		box_inventory.push_back(vegetable_cell)
 
 	ws_seeds_grid_container.set_items(seeds_inventory)
@@ -185,19 +185,19 @@ func populate_workstation_tab(stats: StatsAndInventory):
 
 func populate_inventory_tab(stats: StatsAndInventory):
 	var plant_inventory = []
-	for plant in stats.vegetable_inventory:
-		if stats.vegetable_inventory[plant] == 0:
+	for plant in stats.inventory.vegetable:
+		if stats.inventory.vegetable[plant] == 0:
 			continue
 		var plant_cell = VegetableCellScene.instantiate()
-		plant_cell.set_data(plant, stats.vegetable_inventory[plant])
+		plant_cell.set_data(plant, stats.inventory.vegetable[plant])
 		plant_inventory.push_back(plant_cell)
 
 	var fruit_inventory = []
-	for fruit in stats.fruit_inventory:
-		if stats.fruit_inventory[fruit] == 0:
+	for fruit in stats.inventory.fruit:
+		if stats.inventory.fruit[fruit] == 0:
 			continue
 		var fruit_cell = FruitCellScene.instantiate()
-		fruit_cell.set_data(fruit, stats.fruit_inventory[fruit])
+		fruit_cell.set_data(fruit, stats.inventory.fruit[fruit])
 		fruit_inventory.push_back(fruit_cell)
 
 	var tools_inventory = []
@@ -216,33 +216,33 @@ func populate_inventory_tab(stats: StatsAndInventory):
 		tools_inventory.push_back(hoe_cell)
 
 	var seeds_inventory = []
-	for seeds in stats.seeds_inventory:
-		if stats.seeds_inventory[seeds] == 0:
+	for seeds in stats.inventory.seed:
+		if stats.inventory.seed[seeds] == 0:
 			continue
 		var seeds_cell = SeedsCellScene.instantiate()
-		seeds_cell.set_data(seeds, stats.seeds_inventory[seeds])
+		seeds_cell.set_data(seeds, stats.inventory.seed[seeds])
 		seeds_inventory.push_back(seeds_cell)
 
 	var box_inventory = []
-	for seeds in stats.box_inventory['seeds']:
-		if stats.box_inventory['seeds'][seeds] == 0:
+	for seeds in stats.box_inventory.seed:
+		if stats.box_inventory.seed[seeds] == 0:
 			continue
 		var seeds_cell = SeedsCellScene.instantiate()
-		seeds_cell.set_data(seeds, stats.box_inventory['seeds'][seeds])
+		seeds_cell.set_data(seeds, stats.box_inventory.seed[seeds])
 		box_inventory.push_back(seeds_cell)
 
-	for fruit in stats.box_inventory['fruit']:
-		if stats.box_inventory['fruit'][fruit] == 0:
+	for fruit in stats.box_inventory.fruit:
+		if stats.box_inventory.fruit[fruit] == 0:
 			continue
 		var fruit_cell = FruitCellScene.instantiate()
-		fruit_cell.set_data(fruit, stats.box_inventory['fruit'][fruit])
+		fruit_cell.set_data(fruit, stats.box_inventory.fruit[fruit])
 		box_inventory.push_back(fruit_cell)
 
-	for vegetable in stats.box_inventory['vegetable']:
-		if stats.box_inventory['vegetable'][vegetable] == 0:
+	for vegetable in stats.box_inventory.vegetable:
+		if stats.box_inventory.vegetable[vegetable] == 0:
 			continue
 		var vegetable_cell = VegetableCellScene.instantiate()
-		vegetable_cell.set_data(vegetable, stats.box_inventory['vegetable'][vegetable])
+		vegetable_cell.set_data(vegetable, stats.box_inventory.vegetable[vegetable])
 		box_inventory.push_back(vegetable_cell)
 
 	inv_seeds_grid_container.set_items(seeds_inventory)

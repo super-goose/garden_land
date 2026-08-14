@@ -33,9 +33,7 @@ func get_next_quest():
 
 @export var inventory: Inventory = Inventory.new()
 
-@export var box_inventory: Array[Inventory] = [
-	Inventory.new()
-]
+@export var box_inventory: Inventory = Inventory.new()
 
 @export var water_level_max = 8
 @export var water_level = 8
@@ -47,53 +45,53 @@ func add_fruit_to_box(fruit_type: Constants.FRUIT_TYPE, amount: int):
 	if inventory.fruit[fruit_type] == 0:
 		return
 	inventory.fruit[fruit_type] -= amount
-	box_inventory[0].fruit[fruit_type] += amount
+	box_inventory.fruit[fruit_type] += amount
 	Events.refresh_stats_and_inventory.emit(self)
 
 func remove_fruit_from_box(fruit_type: Constants.FRUIT_TYPE, amount: int):
-	if box_inventory[0].fruit[fruit_type] == 0:
+	if box_inventory.fruit[fruit_type] == 0:
 		return
 	inventory.fruit[fruit_type] += amount
-	box_inventory[0].fruit[fruit_type] -= amount
+	box_inventory.fruit[fruit_type] -= amount
 	Events.refresh_stats_and_inventory.emit(self)
 
 func add_vegetable_to_box(vegetable_type: Constants.VEGETABLE_TYPE, amount: int):
 	if inventory.vegetable[vegetable_type] == 0:
 		return
 	inventory.vegetable[vegetable_type] -= amount
-	box_inventory[0].vegetable[vegetable_type] += amount
+	box_inventory.vegetable[vegetable_type] += amount
 	Events.refresh_stats_and_inventory.emit(self)
 
 func remove_vegetable_from_box(vegetable_type: Constants.VEGETABLE_TYPE, amount: int):
-	if box_inventory[0].vegetable[vegetable_type] == 0:
+	if box_inventory.vegetable[vegetable_type] == 0:
 		return
 	inventory.vegetable[vegetable_type] += amount
-	box_inventory[0].vegetable[vegetable_type] -= amount
+	box_inventory.vegetable[vegetable_type] -= amount
 	Events.refresh_stats_and_inventory.emit(self)
 
 func add_seeds_to_box(seeds_type: Constants.VEGETABLE_TYPE, amount: int):
 	if inventory.seed[seeds_type] == 0:
 		return
 	inventory.seed[seeds_type] -= amount
-	box_inventory[0].seeds[seeds_type] += amount
+	box_inventory.seeds[seeds_type] += amount
 	Events.refresh_stats_and_inventory.emit(self)
 
 func remove_seeds_from_box(seeds_type: Constants.VEGETABLE_TYPE, amount: int):
-	if box_inventory[0].seeds[seeds_type] == 0:
+	if box_inventory.seeds[seeds_type] == 0:
 		return
 	inventory.seed[seeds_type] += amount
-	box_inventory[0].seeds[seeds_type] -= amount
+	box_inventory.seeds[seeds_type] -= amount
 	Events.refresh_stats_and_inventory.emit(self)
 
 func empty_box():
 	for seed_type in Constants.VEGETABLE_TYPE:
-		box_inventory[0].seeds[seed_type] = 0
+		box_inventory.seeds[seed_type] = 0
 
 	for fruit_type in Constants.FRUIT_TYPE:
-		box_inventory[0].fruit[fruit_type] = 0
+		box_inventory.fruit[fruit_type] = 0
 
 	for vegetable_type in Constants.VEGETABLE_TYPE:
-		box_inventory[0].vegetable[vegetable_type] = 0
+		box_inventory.vegetable[vegetable_type] = 0
 
 	Events.refresh_stats_and_inventory.emit(self)
 

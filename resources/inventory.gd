@@ -1,5 +1,5 @@
 class_name Inventory
-extends Node
+extends Resource
 
 #@export var seeds: Array[InventoryItemVegetable]
 #
