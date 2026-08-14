@@ -9,6 +9,8 @@ func set_quest_to_active(name: QuestConstants.Name):
 	for quest in quests:
 		if quest.real_name == name:
 			quest.active = true
+			for seed_type in quest.supplies_seeds:
+				inventory.seed[seed_type.vegetable] += seed_type.count
 		
 
 func get_current_quests():
