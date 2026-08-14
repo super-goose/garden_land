@@ -12,17 +12,17 @@ enum PROCESS_MENU_TYPE {
 @onready var tab_container = $MarginContainer/VBoxContainer/ContentContainer/TabContainer
 @onready var process_menu = $ProcessMenu
 
-@onready var inv_seeds_grid_container = $MarginContainer/VBoxContainer/ContentContainer/TabContainer/Inventory/VBoxContainer/SeedsSection
-@onready var inv_plant_grid_container = $MarginContainer/VBoxContainer/ContentContainer/TabContainer/Inventory/VBoxContainer/VegetablesSection
-@onready var inv_fruit_grid_container = $MarginContainer/VBoxContainer/ContentContainer/TabContainer/Inventory/VBoxContainer/FruitSection
-@onready var inv_tools_grid_container = $MarginContainer/VBoxContainer/ContentContainer/TabContainer/Inventory/VBoxContainer/ToolsSection
-@onready var inv_box_grid_container = $MarginContainer/VBoxContainer/ContentContainer/TabContainer/Inventory/VBoxContainer/BoxSection
+@onready var inv_seeds_grid_container = $MarginContainer/VBoxContainer/ContentContainer/TabContainer/Inventory/MarginContainer/VBoxContainer/SeedsSection
+@onready var inv_plant_grid_container = $MarginContainer/VBoxContainer/ContentContainer/TabContainer/Inventory/MarginContainer/VBoxContainer/VegetablesSection
+@onready var inv_fruit_grid_container = $MarginContainer/VBoxContainer/ContentContainer/TabContainer/Inventory/MarginContainer/VBoxContainer/FruitSection
+@onready var inv_tools_grid_container = $MarginContainer/VBoxContainer/ContentContainer/TabContainer/Inventory/MarginContainer/VBoxContainer/ToolsSection
+@onready var inv_box_grid_container = $MarginContainer/VBoxContainer/ContentContainer/TabContainer/Inventory/MarginContainer/VBoxContainer/BoxSection
 
-@onready var ws_seeds_grid_container = $MarginContainer/VBoxContainer/ContentContainer/TabContainer/Workstation/VBoxContainer/SeedsSection
-@onready var ws_plant_grid_container = $MarginContainer/VBoxContainer/ContentContainer/TabContainer/Workstation/VBoxContainer/VegetablesSection
-@onready var ws_fruit_grid_container = $MarginContainer/VBoxContainer/ContentContainer/TabContainer/Workstation/VBoxContainer/FruitSection
-@onready var ws_tools_grid_container = $MarginContainer/VBoxContainer/ContentContainer/TabContainer/Workstation/VBoxContainer/ToolsSection
-@onready var ws_box_grid_container = $MarginContainer/VBoxContainer/ContentContainer/TabContainer/Workstation/VBoxContainer/BoxSection
+@onready var ws_seeds_grid_container = $MarginContainer/VBoxContainer/ContentContainer/TabContainer/Workstation/MarginContainer/VBoxContainer/SeedsSection
+@onready var ws_plant_grid_container = $MarginContainer/VBoxContainer/ContentContainer/TabContainer/Workstation/MarginContainer/VBoxContainer/VegetablesSection
+@onready var ws_fruit_grid_container = $MarginContainer/VBoxContainer/ContentContainer/TabContainer/Workstation/MarginContainer/VBoxContainer/FruitSection
+@onready var ws_tools_grid_container = $MarginContainer/VBoxContainer/ContentContainer/TabContainer/Workstation/MarginContainer/VBoxContainer/ToolsSection
+@onready var ws_box_grid_container = $MarginContainer/VBoxContainer/ContentContainer/TabContainer/Workstation/MarginContainer/VBoxContainer/BoxSection
 
 var FruitCellScene = load("res://scenes/fruit_cell.tscn")
 var VegetableCellScene = load("res://scenes/vegetable_cell.tscn")

@@ -277,23 +277,23 @@ func go_to_bed():
 
 func _handle_event_select_seed_type(seed_type: Constants.VEGETABLE_TYPE):
 	current_plant.set_type(seed_type)
-	stats_and_inventory.seeds_inventory[seed_type] -= 1
+	stats_and_inventory.inventory.seed[seed_type] -= 1
 	ResourceSaver.save(stats_and_inventory, SAVE_PATH)
 	set_state('idle', true)
 
 func _handle_event_harvest_fruit(fruit: Constants.FRUIT_TYPE):
 	print('add this fruit to your inventory: %s' % fruit)
-	stats_and_inventory.fruit_inventory[fruit] += 1
+	stats_and_inventory.inventory.fruit[fruit] += 1
 	await get_tree().create_timer(.2).timeout
-	print(stats_and_inventory.fruit_inventory[fruit])
+	print(stats_and_inventory.inventory.fruit[fruit])
 	ResourceSaver.save(stats_and_inventory, SAVE_PATH)
 	set_actions()
 
 func _handle_event_harvest_plant(plant: Constants.VEGETABLE_TYPE):
 	print('add this plant to your inventory: %s' % plant)
-	stats_and_inventory.vegetable_inventory[plant] += 1
+	stats_and_inventory.inventory.vegetable[plant] += 1
 	await get_tree().create_timer(.2).timeout
-	print(stats_and_inventory.vegetable_inventory[plant])
+	print(stats_and_inventory.inventory.vegetable[plant])
 	ResourceSaver.save(stats_and_inventory, SAVE_PATH)
 	set_actions()
 
@@ -315,7 +315,7 @@ func refill_water_can():
 	set_state('idle')
 
 func facilitate_sowing():
-	Events.display_seed_options.emit(stats_and_inventory.seeds_inventory)
+	Events.display_seed_options.emit(stats_and_inventory.inventory.seed)
 	#print('await seed selection or dismissal')
 	#print('decrement seed count if applicable')
 

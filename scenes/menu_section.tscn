@@ -1,10 +1,10 @@
-[gd_scene load_steps=4 format=3 uid="uid://dx4wgdbp5b150"]
+[gd_scene format=3 uid="uid://dx4wgdbp5b150"]
 
-[ext_resource type="Script" path="res://scenes/menu_section.gd" id="1_6d5nv"]
+[ext_resource type="Script" uid="uid://dfn4bmqpk1781" path="res://scenes/menu_section.gd" id="1_6d5nv"]
 [ext_resource type="FontFile" uid="uid://r5d0pkfw0bpw" path="res://fonts/KodeMono-VariableFont_wght.ttf" id="2_1ki2k"]
 [ext_resource type="PackedScene" uid="uid://byvy1uorcn2ip" path="res://scenes/vegetable_cell.tscn" id="2_iawya"]
 
-[node name="Section" type="MarginContainer"]
+[node name="Section" type="MarginContainer" unique_id=603332035]
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
@@ -12,33 +12,34 @@ grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_6d5nv")
 
-[node name="VBoxContainer" type="VBoxContainer" parent="."]
+[node name="VBoxContainer" type="VBoxContainer" parent="." unique_id=188558406]
 layout_mode = 2
 
-[node name="LabelContainer" type="MarginContainer" parent="VBoxContainer"]
+[node name="LabelContainer" type="MarginContainer" parent="VBoxContainer" unique_id=348558530]
 layout_mode = 2
 
-[node name="Label" type="Label" parent="VBoxContainer/LabelContainer"]
+[node name="Label" type="Label" parent="VBoxContainer/LabelContainer" unique_id=1365399114]
 layout_mode = 2
 theme_override_fonts/font = ExtResource("2_1ki2k")
 theme_override_font_sizes/font_size = 15
 text = "Vegetables"
 
-[node name="GridContainer" type="GridContainer" parent="VBoxContainer"]
+[node name="GridContainer" type="GridContainer" parent="VBoxContainer" unique_id=1858219296]
+custom_minimum_size = Vector2(0, 50)
 layout_mode = 2
 size_flags_vertical = 3
 theme_override_constants/h_separation = 10
 theme_override_constants/v_separation = 10
 columns = 5
 
-[node name="VegetableCell" parent="VBoxContainer/GridContainer" instance=ExtResource("2_iawya")]
+[node name="VegetableCell" parent="VBoxContainer/GridContainer" unique_id=1620359497 instance=ExtResource("2_iawya")]
 layout_mode = 2
 
-[node name="VegetableCell2" parent="VBoxContainer/GridContainer" instance=ExtResource("2_iawya")]
+[node name="VegetableCell2" parent="VBoxContainer/GridContainer" unique_id=100099113 instance=ExtResource("2_iawya")]
 layout_mode = 2
 
-[node name="VegetableCell3" parent="VBoxContainer/GridContainer" instance=ExtResource("2_iawya")]
+[node name="VegetableCell3" parent="VBoxContainer/GridContainer" unique_id=2071946666 instance=ExtResource("2_iawya")]
 layout_mode = 2
 
-[node name="VegetableCell4" parent="VBoxContainer/GridContainer" instance=ExtResource("2_iawya")]
+[node name="VegetableCell4" parent="VBoxContainer/GridContainer" unique_id=1798907883 instance=ExtResource("2_iawya")]
 layout_mode = 2

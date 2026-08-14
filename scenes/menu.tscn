@@ -53,37 +53,45 @@ theme_override_constants/margin_bottom = 16
 layout_mode = 2
 theme_override_fonts/font = ExtResource("3_y75co")
 theme_override_font_sizes/font_size = 15
-current_tab = 2
+current_tab = 0
 tab_1/hidden = true
 
 [node name="Inventory" type="ScrollContainer" parent="MarginContainer/VBoxContainer/ContentContainer/TabContainer" unique_id=143868681]
-visible = false
 layout_mode = 2
 size_flags_vertical = 3
 metadata/_tab_index = 0
 
-[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/VBoxContainer/ContentContainer/TabContainer/Inventory" unique_id=626216265]
+[node name="MarginContainer" type="MarginContainer" parent="MarginContainer/VBoxContainer/ContentContainer/TabContainer/Inventory" unique_id=1230198967]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme_override_constants/margin_left = 8
+theme_override_constants/margin_top = 8
+theme_override_constants/margin_right = 8
+theme_override_constants/margin_bottom = 8
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/VBoxContainer/ContentContainer/TabContainer/Inventory/MarginContainer" unique_id=626216265]
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
 
-[node name="ToolsSection" parent="MarginContainer/VBoxContainer/ContentContainer/TabContainer/Inventory/VBoxContainer" unique_id=1852916214 instance=ExtResource("3_wyerp")]
+[node name="ToolsSection" parent="MarginContainer/VBoxContainer/ContentContainer/TabContainer/Inventory/MarginContainer/VBoxContainer" unique_id=1852916214 instance=ExtResource("3_wyerp")]
 layout_mode = 2
 title = "tools"
 
-[node name="SeedsSection" parent="MarginContainer/VBoxContainer/ContentContainer/TabContainer/Inventory/VBoxContainer" unique_id=1539680900 instance=ExtResource("3_wyerp")]
+[node name="SeedsSection" parent="MarginContainer/VBoxContainer/ContentContainer/TabContainer/Inventory/MarginContainer/VBoxContainer" unique_id=1539680900 instance=ExtResource("3_wyerp")]
 layout_mode = 2
 title = "seeds"
 
-[node name="VegetablesSection" parent="MarginContainer/VBoxContainer/ContentContainer/TabContainer/Inventory/VBoxContainer" unique_id=1730290663 instance=ExtResource("3_wyerp")]
+[node name="VegetablesSection" parent="MarginContainer/VBoxContainer/ContentContainer/TabContainer/Inventory/MarginContainer/VBoxContainer" unique_id=1730290663 instance=ExtResource("3_wyerp")]
 layout_mode = 2
 title = "vegetables"
 
-[node name="FruitSection" parent="MarginContainer/VBoxContainer/ContentContainer/TabContainer/Inventory/VBoxContainer" unique_id=1698600290 instance=ExtResource("3_wyerp")]
+[node name="FruitSection" parent="MarginContainer/VBoxContainer/ContentContainer/TabContainer/Inventory/MarginContainer/VBoxContainer" unique_id=1698600290 instance=ExtResource("3_wyerp")]
 layout_mode = 2
 title = "fruit"
 
-[node name="BoxSection" parent="MarginContainer/VBoxContainer/ContentContainer/TabContainer/Inventory/VBoxContainer" unique_id=1878200364 instance=ExtResource("3_wyerp")]
+[node name="BoxSection" parent="MarginContainer/VBoxContainer/ContentContainer/TabContainer/Inventory/MarginContainer/VBoxContainer" unique_id=1878200364 instance=ExtResource("3_wyerp")]
 layout_mode = 2
 title = "box"
 
@@ -93,32 +101,40 @@ layout_mode = 2
 size_flags_vertical = 3
 metadata/_tab_index = 1
 
-[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/VBoxContainer/ContentContainer/TabContainer/Workstation" unique_id=204874949]
+[node name="MarginContainer" type="MarginContainer" parent="MarginContainer/VBoxContainer/ContentContainer/TabContainer/Workstation" unique_id=1741520869]
+layout_mode = 2
+theme_override_constants/margin_left = 8
+theme_override_constants/margin_top = 8
+theme_override_constants/margin_right = 8
+theme_override_constants/margin_bottom = 8
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/VBoxContainer/ContentContainer/TabContainer/Workstation/MarginContainer" unique_id=204874949]
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
 
-[node name="ToolsSection" parent="MarginContainer/VBoxContainer/ContentContainer/TabContainer/Workstation/VBoxContainer" unique_id=346630075 instance=ExtResource("3_wyerp")]
+[node name="ToolsSection" parent="MarginContainer/VBoxContainer/ContentContainer/TabContainer/Workstation/MarginContainer/VBoxContainer" unique_id=346630075 instance=ExtResource("3_wyerp")]
 layout_mode = 2
 title = "tools"
 
-[node name="SeedsSection" parent="MarginContainer/VBoxContainer/ContentContainer/TabContainer/Workstation/VBoxContainer" unique_id=590627668 instance=ExtResource("3_wyerp")]
+[node name="SeedsSection" parent="MarginContainer/VBoxContainer/ContentContainer/TabContainer/Workstation/MarginContainer/VBoxContainer" unique_id=590627668 instance=ExtResource("3_wyerp")]
 layout_mode = 2
 title = "seeds"
 
-[node name="VegetablesSection" parent="MarginContainer/VBoxContainer/ContentContainer/TabContainer/Workstation/VBoxContainer" unique_id=1579819686 instance=ExtResource("3_wyerp")]
+[node name="VegetablesSection" parent="MarginContainer/VBoxContainer/ContentContainer/TabContainer/Workstation/MarginContainer/VBoxContainer" unique_id=1579819686 instance=ExtResource("3_wyerp")]
 layout_mode = 2
 title = "vegetables"
 
-[node name="FruitSection" parent="MarginContainer/VBoxContainer/ContentContainer/TabContainer/Workstation/VBoxContainer" unique_id=425660292 instance=ExtResource("3_wyerp")]
+[node name="FruitSection" parent="MarginContainer/VBoxContainer/ContentContainer/TabContainer/Workstation/MarginContainer/VBoxContainer" unique_id=425660292 instance=ExtResource("3_wyerp")]
 layout_mode = 2
 title = "fruit"
 
-[node name="BoxSection" parent="MarginContainer/VBoxContainer/ContentContainer/TabContainer/Workstation/VBoxContainer" unique_id=631676576 instance=ExtResource("3_wyerp")]
+[node name="BoxSection" parent="MarginContainer/VBoxContainer/ContentContainer/TabContainer/Workstation/MarginContainer/VBoxContainer" unique_id=631676576 instance=ExtResource("3_wyerp")]
 layout_mode = 2
 title = "box"
 
 [node name="Quests" type="ScrollContainer" parent="MarginContainer/VBoxContainer/ContentContainer/TabContainer" unique_id=777102413]
+visible = false
 layout_mode = 2
 metadata/_tab_index = 2
 
