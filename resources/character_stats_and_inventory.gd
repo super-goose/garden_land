@@ -2,7 +2,9 @@ class_name StatsAndInventory
 extends Resource
 
 @export var quests: Array[Quest] = [
-	load("res://resources/quests/00_carrots.tres").duplicate(true)
+	load("res://resources/quests/00_carrots.tres").duplicate(true),
+	#load("res://resources/quests/01_stew.tres").duplicate(true),
+	
 ]
 
 func set_quest_to_active(name: QuestConstants.Name):
@@ -23,9 +25,8 @@ func get_current_quests():
 
 func get_next_quest():
 	var possible_quests = quests.filter(
-		func filter_possible_quests(_quest):
-			# check quest stats
-			return true
+		func filter_possible_quests(quest: Quest):
+			return !quest.active
 	)
 	if possible_quests.size() > 0:
 		return possible_quests[0]

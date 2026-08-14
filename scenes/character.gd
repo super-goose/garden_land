@@ -21,7 +21,7 @@ var start_position: Vector2i
 
 const SAVE_PATH := "user://stats_and_inventory_8-9-2.tres"
 
-var use_save_file = true
+var use_save_file = false
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
