@@ -1,9 +1,9 @@
-[gd_scene load_steps=3 format=3 uid="uid://cdbj207ey8npw"]
+[gd_scene format=3 uid="uid://cdbj207ey8npw"]
 
 [ext_resource type="Texture2D" uid="uid://donxxkby3mmqf" path="res://modified-assets/ui/menu_button.png" id="2_xq87i"]
-[ext_resource type="Script" path="res://scenes/actions_menu_button.gd" id="3_32318"]
+[ext_resource type="Script" uid="uid://bq47nxxhr7tgb" path="res://scenes/actions_menu_button.gd" id="3_32318"]
 
-[node name="ActionsMenuButton" type="Control"]
+[node name="ActionsMenuButton" type="Control" unique_id=2081445027]
 custom_minimum_size = Vector2(48, 48)
 layout_mode = 3
 anchors_preset = 0
@@ -14,7 +14,7 @@ offset_bottom = 49.0
 scale = Vector2(2, 2)
 script = ExtResource("3_32318")
 
-[node name="TextureRect" type="TextureRect" parent="."]
+[node name="TextureRect" type="TextureRect" parent="." unique_id=1038343812]
 layout_mode = 0
 offset_left = 1.0
 offset_top = 2.0
@@ -24,7 +24,7 @@ scale = Vector2(2, 2)
 texture = ExtResource("2_xq87i")
 stretch_mode = 4
 
-[node name="Button" type="Button" parent="."]
+[node name="Button" type="Button" parent="." unique_id=1469558000]
 modulate = Color(1, 1, 1, 0)
 layout_mode = 0
 offset_right = 47.0

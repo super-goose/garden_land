@@ -10,6 +10,7 @@ func _ready():
 		Constants.ACTIONS.WorkAtStation: load("res://modified-assets/ui/action-button-workstation.png"),
 		Constants.ACTIONS.UseBed: load("res://modified-assets/ui/action-button-bed.png"),
 		Constants.ACTIONS.CheckMail: load("res://modified-assets/ui/action-button-letter.png"),
+		Constants.ACTIONS.SendMail: load("res://modified-assets/ui/action-button-box.png"),
 		Constants.ACTIONS.Menu: load("res://modified-assets/ui/menu_button.png"),
 		Constants.ACTIONS.Hoe: load("res://modified-assets/tools/tools-hoe.png"),
 		Constants.ACTIONS.Water: load("res://modified-assets/tools/tools-water-can.png"),

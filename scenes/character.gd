@@ -14,7 +14,6 @@ var current_mailbox: Mailbox
 var current_water_well: WaterWell
 var current_workstation: Workstation
 var current_bed: Bed
-var watering_happened = false
 
 var stats_and_inventory: StatsAndInventory
 var start_position: Vector2i
@@ -29,6 +28,7 @@ func _ready():
 		stats_and_inventory = ResourceLoader.load(SAVE_PATH, "StatsAndInventory", ResourceLoader.CACHE_MODE_IGNORE)
 	else:
 		stats_and_inventory = StatsAndInventory.new()
+		stats_and_inventory.mark_next_quest_available()
 
 	Events.select_garden_plot.connect(_handle_event_select_garden_plot)
 	Events.select_fruit_tree.connect(_handle_event_select_fruit_tree)
@@ -164,7 +164,6 @@ func _on_ao_i_area_exited(area):
 	print('an area exited AoI')
 	if current_plant == area:
 		current_plant = null
-		watering_happened = false
 	if current_tree == area:
 		current_tree = null
 	if current_mailbox == area:
@@ -200,41 +199,32 @@ func _on_animated_sprite_2d_animation_finished():
 		set_state('idle')
 
 	if state == 'water' and current_plant:
-		if not watering_happened:
-			current_plant.get_watered()
-			watering_happened = true
-			stats_and_inventory.water_level -= 1
-			set_water_stuff()
+		current_plant.get_watered()
+		stats_and_inventory.water_level -= 1
+		set_water_stuff()
 		set_state('idle')
 
 func _handle_event_select_garden_plot(garden_plot: GardenPlot):
-	print('a garden plot was selected... do something with it? display a context menu??')
-	#var here = position_to_coords(position)
 	var garden_plot_coordinates = Common.convert_to_grid_coordinates(garden_plot.position)
 	go_to_position(garden_plot_coordinates)
 
 func _handle_event_select_fruit_tree(fruit_tree: FruitTree):
-	#var here = position_to_coords(position)
 	var fruit_tree_coordinates = Common.convert_to_grid_coordinates(fruit_tree.position)
 	go_to_position(fruit_tree_coordinates, { 'avoid': 'down' })
 
 func _handle_event_select_mailbox(mailbox: Mailbox):
-	#var here = position_to_coords(position)
 	var mailbox_coordinates = Common.convert_to_grid_coordinates(mailbox.position)
 	go_to_position(mailbox_coordinates, { 'avoid': 'down' })
 
 func _handle_event_select_water_well(well: WaterWell):
-	#var here = position_to_coords(position)
 	var well_coordinates = Common.convert_to_grid_coordinates(well.position)
 	go_to_position(well_coordinates, { 'only': 'up' })
 
 func _handle_event_select_workstation(workstation: Workstation):
-	#var here = position_to_coords(position)
 	var workstation_coordinates = Common.convert_to_grid_coordinates(workstation.position)
 	go_to_position(workstation_coordinates, { 'only': 'up' })
 
 func _handle_event_select_bed(bed: Bed):
-	print('bed was selected')
 	var bed_coordinates = Common.convert_to_grid_coordinates(bed.position)
 	go_to_position(bed_coordinates, { 'only': 'left' })
 
@@ -255,6 +245,10 @@ func _handle_event_perform_action(action: Constants.ACTIONS):
 			await Events.confirmation_granted
 			stats_and_inventory.set_quest_to_active(next_quest.real_name)
 			ResourceSaver.save(stats_and_inventory, SAVE_PATH)
+			set_actions()
+	elif action == Constants.ACTIONS.SendMail:
+		print('here!')
+		breakpoint
 	elif action == Constants.ACTIONS.Chop:
 		set_state('chop')
 	elif action == Constants.ACTIONS.Water:
@@ -351,7 +345,9 @@ func set_actions():
 				actions.push_back(Constants.ACTIONS.Water)
 		elif current_tree and stats_and_inventory.has_axe:
 			actions.push_back(Constants.ACTIONS.Chop)
-		elif current_mailbox: # and if there is a letter...
+		elif current_mailbox:
+			if stats_and_inventory.can_fulfill_quest():
+				actions.push_back(Constants.ACTIONS.SendMail)
 			var next_quest = stats_and_inventory.get_next_quest()
 			if next_quest:
 				actions.push_back(Constants.ACTIONS.CheckMail)

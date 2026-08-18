@@ -3,17 +3,51 @@ extends Resource
 
 @export var quests: Array[Quest] = [
 	load("res://resources/quests/00_carrots.tres").duplicate(true),
-	#load("res://resources/quests/01_stew.tres").duplicate(true),
-	
+	load("res://resources/quests/01_stew.tres").duplicate(true),
 ]
 
 func set_quest_to_active(name: QuestConstants.Name):
 	for quest in quests:
-		if quest.real_name == name:
-			quest.active = true
-			for seed_type in quest.supplies_seeds:
-				inventory.seed[seed_type.vegetable] += seed_type.count
-		
+		if quest.real_name != name:
+			continue
+		quest.active = true
+		quest.available = false
+		for seed_type in quest.supplies_seeds:
+			inventory.seed[seed_type.vegetable] += seed_type.count
+
+func quest_can_be_completed(name: QuestConstants.Name):
+	for quest in quests:
+		if quest.real_name != name:
+			continue
+		pass
+
+func mark_next_quest_available():
+	var completed = []
+	for quest in quests:
+		if quest.active or quest.available:
+			continue
+
+		if quest.completed:
+			completed.push_back(quest.real_name)
+			continue
+
+		var current_quest_ready = true
+		for req in quest.prerequisite:
+			if not completed.has(req):
+				current_quest_ready = false
+	
+		quest.available = current_quest_ready
+
+func set_quest_to_complete(name: QuestConstants.Name):
+	for quest in quests:
+		if quest.real_name != name:
+			continue
+		quest.complete = true
+		quest.active = false
+
+	mark_next_quest_available()
+
+	box_inventory = Inventory.new()
 
 func get_current_quests():
 	var current_quests = quests.filter(
@@ -26,17 +60,22 @@ func get_current_quests():
 func get_next_quest():
 	var possible_quests = quests.filter(
 		func filter_possible_quests(quest: Quest):
-			return !quest.active
+			return quest.available
 	)
+
 	if possible_quests.size() > 0:
 		return possible_quests[0]
-	
+
 	return null
 
 
 @export var inventory: Inventory = Inventory.new()
 
 @export var box_inventory: Inventory = Inventory.new()
+
+func can_fulfill_quest():
+	breakpoint
+
 
 @export var water_level_max = 8
 @export var water_level = 8
