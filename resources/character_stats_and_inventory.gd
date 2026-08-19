@@ -99,7 +99,8 @@ func fulfill_current_quest():
 
 		box_inventory = Inventory.new()
 		last_quest_fulfilled_timestamp = int(Time.get_unix_time_from_system())
-		return
+		return quest.name
+	return null
 
 
 

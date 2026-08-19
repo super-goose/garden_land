@@ -11,23 +11,30 @@ func close():
 	Events.confirmation_granted.emit(false)
 	visible = false
 
-func _handle_event_open_confirmation_menu(prompt: String):
+func _handle_event_open_confirmation_menu(prompt: String, confirm_only: bool):
 	open()
 	var cp = ConfirmationPrompt.instantiate()
 	cp.set_text(prompt)
 	add_to_button_container(cp)
 
-	add_item({
-		'words': 'yes',
-		'type': 'button',
-		'functionality': confirm
-	})
+	if confirm_only:
+		add_item({
+			'words': 'ok!',
+			'type': 'button',
+			'functionality': confirm
+		})
+	else:
+		add_item({
+			'words': 'yes',
+			'type': 'button',
+			'functionality': confirm
+		})
 
-	add_item({
-		'words': 'no',
-		'type': 'button',
-		'functionality': close
-	})
+		add_item({
+			'words': 'no',
+			'type': 'button',
+			'functionality': close
+		})
 
 func confirm():
 	Events.confirmation_granted.emit(true)

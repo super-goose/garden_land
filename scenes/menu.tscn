@@ -5,6 +5,7 @@
 [ext_resource type="PackedScene" uid="uid://bqbms7serbb3f" path="res://scenes/menu_title.tscn" id="2_7kft0"]
 [ext_resource type="PackedScene" uid="uid://dx4wgdbp5b150" path="res://scenes/menu_section.tscn" id="3_wyerp"]
 [ext_resource type="FontFile" uid="uid://r5d0pkfw0bpw" path="res://fonts/KodeMono-VariableFont_wght.ttf" id="3_y75co"]
+[ext_resource type="Texture2D" uid="uid://cmubickqkhd82" path="res://modified-assets/objects/coin.png" id="5_13sgg"]
 [ext_resource type="PackedScene" uid="uid://c4cv1iqb33lcu" path="res://scenes/process_menu.tscn" id="5_okaoq"]
 [ext_resource type="PackedScene" uid="uid://dmw6a3nh3thv4" path="res://scenes/ui_components/quest_summary.tscn" id="6_13sgg"]
 
@@ -74,6 +75,21 @@ theme_override_constants/margin_bottom = 8
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
+
+[node name="MarginContainer" type="MarginContainer" parent="MarginContainer/VBoxContainer/ContentContainer/TabContainer/Inventory/MarginContainer/VBoxContainer" unique_id=1785123934]
+layout_mode = 2
+
+[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer/VBoxContainer/ContentContainer/TabContainer/Inventory/MarginContainer/VBoxContainer/MarginContainer" unique_id=1601285884]
+layout_mode = 2
+
+[node name="TextureRect" type="TextureRect" parent="MarginContainer/VBoxContainer/ContentContainer/TabContainer/Inventory/MarginContainer/VBoxContainer/MarginContainer/HBoxContainer" unique_id=1072707257]
+layout_mode = 2
+texture = ExtResource("5_13sgg")
+expand_mode = 2
+
+[node name="Label" type="Label" parent="MarginContainer/VBoxContainer/ContentContainer/TabContainer/Inventory/MarginContainer/VBoxContainer/MarginContainer/HBoxContainer" unique_id=1185924558]
+layout_mode = 2
+text = "999"
 
 [node name="ToolsSection" parent="MarginContainer/VBoxContainer/ContentContainer/TabContainer/Inventory/MarginContainer/VBoxContainer" unique_id=1852916214 instance=ExtResource("3_wyerp")]
 layout_mode = 2

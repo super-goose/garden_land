@@ -257,8 +257,13 @@ func _handle_event_perform_action(action: Constants.ACTIONS):
 			ResourceSaver.save(stats_and_inventory, SAVE_PATH)
 			set_actions()
 	elif action == Constants.ACTIONS.SendMail:
-		stats_and_inventory.fulfill_current_quest()
-		ResourceSaver.save(stats_and_inventory, SAVE_PATH)
+		var quest_name = stats_and_inventory.fulfill_current_quest()
+		if quest_name:
+			ResourceSaver.save(stats_and_inventory, SAVE_PATH)
+			Events.open_confirmation_menu.emit(
+				"Congratulations! You have fulfilled the order for '%s'" % quest_name,
+				true,
+			)
 		set_actions()
 	elif action == Constants.ACTIONS.Chop:
 		set_state('chop')
@@ -272,7 +277,7 @@ func _handle_event_perform_action(action: Constants.ACTIONS):
 		harvest_plant(action)
 
 func go_to_bed():
-	Events.open_confirmation_menu.emit('Are you sure you want to go to bed?')
+	Events.open_confirmation_menu.emit('Are you sure you want to go to bed?', false)
 	var granted = await Events.confirmation_granted
 	
 	if not granted:

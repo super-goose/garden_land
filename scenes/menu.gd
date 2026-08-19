@@ -24,6 +24,8 @@ enum PROCESS_MENU_TYPE {
 @onready var ws_tools_grid_container = $MarginContainer/VBoxContainer/ContentContainer/TabContainer/Workstation/MarginContainer/VBoxContainer/ToolsSection
 @onready var ws_box_grid_container = $MarginContainer/VBoxContainer/ContentContainer/TabContainer/Workstation/MarginContainer/VBoxContainer/BoxSection
 
+@onready var inv_money_container = $MarginContainer/VBoxContainer/ContentContainer/TabContainer/Inventory/MarginContainer/VBoxContainer/MarginContainer/HBoxContainer/Label
+
 var FruitCellScene = load("res://scenes/fruit_cell.tscn")
 var VegetableCellScene = load("res://scenes/vegetable_cell.tscn")
 var ToolCellScene = load("res://scenes/tool_cell.tscn")
@@ -250,6 +252,7 @@ func populate_inventory_tab(stats: StatsAndInventory):
 	inv_fruit_grid_container.set_items(fruit_inventory)
 	inv_tools_grid_container.set_items(tools_inventory)
 	inv_box_grid_container.set_items(box_inventory)
+	inv_money_container.text = str(stats.gold)
 
 func populate_quest_tab(stats: StatsAndInventory):
 	var quest_container = $MarginContainer/VBoxContainer/ContentContainer/TabContainer/Quests/MarginContainer/QuestVBoxContainer
