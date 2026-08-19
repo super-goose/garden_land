@@ -12,9 +12,15 @@ vegetable = 1
 count = 5
 metadata/_custom_type_script = "uid://c0eh28ud48bsp"
 
+[sub_resource type="Resource" id="Resource_ququr"]
+script = ExtResource("6_575g6")
+count = 3
+metadata/_custom_type_script = "uid://c0eh28ud48bsp"
+
 [sub_resource type="Resource" id="Resource_r0bva"]
 script = ExtResource("3_ququr")
 gold = 20
+seeds = Array[ExtResource("6_575g6")]([SubResource("Resource_ququr")])
 metadata/_custom_type_script = "uid://cd6scf0di555j"
 
 [sub_resource type="Resource" id="Resource_o4q1w"]

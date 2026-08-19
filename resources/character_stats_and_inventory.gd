@@ -6,6 +6,8 @@ extends Resource
 	load("res://resources/quests/01_stew.tres").duplicate(true),
 ]
 
+@export var last_quest_fulfilled_timestamp: int = -1
+
 func set_quest_to_active(name: QuestConstants.Name):
 	for quest in quests:
 		if quest.real_name != name:
@@ -37,17 +39,7 @@ func mark_next_quest_available():
 				current_quest_ready = false
 	
 		quest.available = current_quest_ready
-
-func set_quest_to_complete(name: QuestConstants.Name):
-	for quest in quests:
-		if quest.real_name != name:
-			continue
-		quest.complete = true
-		quest.active = false
-
-	mark_next_quest_available()
-
-	box_inventory = Inventory.new()
+	last_quest_fulfilled_timestamp = -1
 
 func get_current_quests():
 	var current_quests = quests.filter(
@@ -73,8 +65,42 @@ func get_next_quest():
 
 @export var box_inventory: Inventory = Inventory.new()
 
+@export var gold = 0
+
+func _is_quest_fulfilled(quest: Quest):
+	for requirement in quest.required_vegetables:
+		if box_inventory.vegetable[requirement.vegetable] < requirement.count:
+			return false
+	for requirement in quest.required_fruit:
+		if box_inventory.fruit[requirement.fruit] < requirement.count:
+			return false
+	for requirement in quest.required_consumables:
+		if box_inventory.consumable[requirement.consumable] < requirement.count:
+			return false
+	return true
+
 func can_fulfill_quest():
-	breakpoint
+	for quest: Quest in get_current_quests():
+		if _is_quest_fulfilled(quest):
+			return true
+	return false
+
+func fulfill_current_quest():
+	for quest: Quest in get_current_quests():
+		if not _is_quest_fulfilled(quest):
+			continue
+		
+		gold = gold + quest.reward.gold
+		for seed_reward in quest.reward.seeds:
+			inventory.seed[seed_reward.vegetable] = inventory.seed[seed_reward.vegetable] + seed_reward.count
+		
+		quest.active = false
+		quest.completed = true
+
+		box_inventory = Inventory.new()
+		last_quest_fulfilled_timestamp = int(Time.get_unix_time_from_system())
+		return
+
 
 
 @export var water_level_max = 8

@@ -29,6 +29,8 @@ func _ready():
 	else:
 		stats_and_inventory = StatsAndInventory.new()
 		stats_and_inventory.mark_next_quest_available()
+		## debug
+		stats_and_inventory.inventory.vegetable[Constants.VEGETABLE_TYPE.Carrot] = 5
 
 	Events.select_garden_plot.connect(_handle_event_select_garden_plot)
 	Events.select_fruit_tree.connect(_handle_event_select_fruit_tree)
@@ -43,8 +45,16 @@ func _ready():
 	Events.harvest_plant.connect(_handle_event_harvest_plant)
 	Events.update_actions.connect(_handle_event_update_actions)
 	Events.refresh_stats_and_inventory.connect(_handle_event_refresh_inventory)
+	Events.tick.connect(_handle_event_tick)
 	set_water_stuff()
 	set_state('idle')
+
+func _handle_event_tick():
+	if stats_and_inventory.last_quest_fulfilled_timestamp == -1:
+		return
+	var now = int(Time.get_unix_time_from_system())
+	if now - stats_and_inventory.last_quest_fulfilled_timestamp > Constants.NEXT_QUEST_DELIVERY:
+		stats_and_inventory.mark_next_quest_available()
 
 func _handle_event_refresh_inventory(_stats: StatsAndInventory):
 	ResourceSaver.save(stats_and_inventory, SAVE_PATH)
@@ -247,8 +257,9 @@ func _handle_event_perform_action(action: Constants.ACTIONS):
 			ResourceSaver.save(stats_and_inventory, SAVE_PATH)
 			set_actions()
 	elif action == Constants.ACTIONS.SendMail:
-		print('here!')
-		breakpoint
+		stats_and_inventory.fulfill_current_quest()
+		ResourceSaver.save(stats_and_inventory, SAVE_PATH)
+		set_actions()
 	elif action == Constants.ACTIONS.Chop:
 		set_state('chop')
 	elif action == Constants.ACTIONS.Water:
