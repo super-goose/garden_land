@@ -14,23 +14,20 @@ extends Node2D
 
 var map_generated = false
 
-const SAVE_PATH := "user://garden_data.tres"
 
-var garden_data: GardenData = null
+
+
 
 
 func _ready():
-	if ResourceLoader.exists(SAVE_PATH) and use_save_file:
-		garden_data = ResourceLoader.load(SAVE_PATH, "", ResourceLoader.CACHE_MODE_IGNORE)
-	else:
-		garden_data = GardenData.new()
-		garden_data.dirt_tiles = $Dirt.get_used_cells()
-		garden_data.start_location = starting_position
+	if State.level_needs_populated:
+		State.garden_data.dirt_tiles = $Dirt.get_used_cells()
+		State.garden_data.start_location = starting_position
 
 	if generate_random_map:
 		generate_said_random_map()
 	else:
-		LevelUtil.plantable_tiles = garden_data.dirt_tiles
+		LevelUtil.plantable_tiles = State.garden_data.dirt_tiles
 		on_plantable_tiles_modified()
 	LevelUtil.plantable_tiles_modified.connect(on_plantable_tiles_modified)
 	Events.become_day.connect(become_day)
@@ -132,7 +129,7 @@ func on_plantable_tiles_modified(dirt_cell = null):
 	$Dirt.set_cells_terrain_connect(LevelUtil.plantable_tiles, 0, 1)
 	
 	if dirt_cell:
-		garden_data.dirt_tiles = LevelUtil.plantable_tiles
+		State.garden_data.dirt_tiles = LevelUtil.plantable_tiles
 	
 	'''
 	For this part, we are going to add a garden plot to each eligible dirt patch.
@@ -168,12 +165,12 @@ func on_plantable_tiles_modified(dirt_cell = null):
 		var current_garden_plot: GardenPlot = GardenPlotScene.instantiate()
 		current_garden_plot.position = Vector2(tile_coord * 16) + Vector2(8, 8)
 
-		if tile_coord not in garden_data.plot_states: # exists
+		if tile_coord not in State.garden_data.plot_states: # exists
 			var new_garden_plot_state = GardenPlotState.new()
 			new_garden_plot_state.coordinates = tile_coord
-			garden_data.plot_states[tile_coord] = new_garden_plot_state
+			State.garden_data.plot_states[tile_coord] = new_garden_plot_state
 
-		current_garden_plot.state = garden_data.plot_states[tile_coord]
+		current_garden_plot.state = State.garden_data.plot_states[tile_coord]
 			
 
 		$GardenPlotContainer.add_child(current_garden_plot)
@@ -183,13 +180,13 @@ func on_plantable_tiles_modified(dirt_cell = null):
 
 	set_up_a_star_data()
 	set_hoeable_tiles()
-	ResourceSaver.save(garden_data, SAVE_PATH)
+	State.save_save_file()
 
 
 func on_update_garden_plot(garden_plot_state: GardenPlotState):
 	var c = garden_plot_state.coordinates
-	garden_data.plot_states[c] = garden_plot_state
-	ResourceSaver.save(garden_data, SAVE_PATH)
+	State.garden_data.plot_states[c] = garden_plot_state
+	State.save_save_file()
 	
 
 func generate_said_random_map():
@@ -215,14 +212,14 @@ func generate_said_random_map():
 	map_generated = true
 
 func _handle_event_character_moved(coordinates: Vector2i):
-	garden_data.start_location = coordinates
-	ResourceSaver.save(garden_data, SAVE_PATH)
+	State.garden_data.start_location = coordinates
+	State.save_save_file()
 
 func get_start_position() -> Vector2i:
 	if map_generated:
 		return LevelGenerationUtil.walkable_tiles[Dice.roll_dn(LevelGenerationUtil.walkable_tiles.size()) - 1]
 
-	if garden_data.start_location:
-		return garden_data.start_location
+	if State.garden_data.start_location:
+		return State.garden_data.start_location
 
 	return starting_position

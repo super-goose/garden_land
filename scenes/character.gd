@@ -15,22 +15,16 @@ var current_water_well: WaterWell
 var current_workstation: Workstation
 var current_bed: Bed
 
-var stats_and_inventory: StatsAndInventory
 var start_position: Vector2i
 
-const SAVE_PATH := "user://stats_and_inventory_8-9-2.tres"
 
-var use_save_file = false
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	if ResourceLoader.exists(SAVE_PATH) and use_save_file:
-		stats_and_inventory = ResourceLoader.load(SAVE_PATH, "StatsAndInventory", ResourceLoader.CACHE_MODE_IGNORE)
-	else:
-		stats_and_inventory = StatsAndInventory.new()
-		stats_and_inventory.mark_next_quest_available()
+	if State.character_needs_populated:
+		State.stats_and_inventory.mark_next_quest_available()
 		## debug
-		stats_and_inventory.inventory.vegetable[Constants.VEGETABLE_TYPE.Carrot] = 5
+		State.stats_and_inventory.inventory.vegetable[Constants.VEGETABLE_TYPE.Carrot] = 5
 
 	Events.select_garden_plot.connect(_handle_event_select_garden_plot)
 	Events.select_fruit_tree.connect(_handle_event_select_fruit_tree)
@@ -50,18 +44,18 @@ func _ready():
 	set_state('idle')
 
 func _handle_event_tick():
-	if stats_and_inventory.last_quest_fulfilled_timestamp == -1:
+	if State.stats_and_inventory.last_quest_fulfilled_timestamp == -1:
 		return
 	var now = int(Time.get_unix_time_from_system())
-	if now - stats_and_inventory.last_quest_fulfilled_timestamp > Constants.NEXT_QUEST_DELIVERY:
-		stats_and_inventory.mark_next_quest_available()
+	if now - State.stats_and_inventory.last_quest_fulfilled_timestamp > Constants.NEXT_QUEST_DELIVERY:
+		State.stats_and_inventory.mark_next_quest_available()
 
 func _handle_event_refresh_inventory(_stats: StatsAndInventory):
-	ResourceSaver.save(stats_and_inventory, SAVE_PATH)
+	State.save_save_file()
 
 func set_water_stuff():
-	Events.set_water_level_max.emit(stats_and_inventory.water_level_max)
-	Events.set_water_level.emit(stats_and_inventory.water_level)
+	Events.set_water_level_max.emit(State.stats_and_inventory.water_level_max)
+	Events.set_water_level.emit(State.stats_and_inventory.water_level)
 
 func set_start_position(v: Vector2i):
 	start_position = v
@@ -210,7 +204,7 @@ func _on_animated_sprite_2d_animation_finished():
 
 	if state == 'water' and current_plant:
 		current_plant.get_watered()
-		stats_and_inventory.water_level -= 1
+		State.stats_and_inventory.water_level -= 1
 		set_water_stuff()
 		set_state('idle')
 
@@ -240,26 +234,26 @@ func _handle_event_select_bed(bed: Bed):
 
 func _handle_event_perform_action(action: Constants.ACTIONS):
 	if action == Constants.ACTIONS.Menu:
-		Events.open_menu.emit(stats_and_inventory, false)
+		Events.open_menu.emit(State.stats_and_inventory, false)
 	elif action == Constants.ACTIONS.RefillWater:
 		refill_water_can()
 	elif action == Constants.ACTIONS.WorkAtStation:
-		Events.open_menu.emit(stats_and_inventory, true)
+		Events.open_menu.emit(State.stats_and_inventory, true)
 	elif action == Constants.ACTIONS.UseBed:
 		go_to_bed()
 	elif action == Constants.ACTIONS.CheckMail:
 		print('check that mail, yo')
-		var next_quest: Quest = stats_and_inventory.get_next_quest()
+		var next_quest: Quest = State.stats_and_inventory.get_next_quest()
 		if next_quest:
 			Events.open_letter.emit(next_quest)
 			await Events.confirmation_granted
-			stats_and_inventory.set_quest_to_active(next_quest.real_name)
-			ResourceSaver.save(stats_and_inventory, SAVE_PATH)
+			State.stats_and_inventory.set_quest_to_active(next_quest.real_name)
+			State.save_save_file()
 			set_actions()
 	elif action == Constants.ACTIONS.SendMail:
-		var quest_name = stats_and_inventory.fulfill_current_quest()
+		var quest_name = State.stats_and_inventory.fulfill_current_quest()
 		if quest_name:
-			ResourceSaver.save(stats_and_inventory, SAVE_PATH)
+			State.save_save_file()
 			Events.open_confirmation_menu.emit(
 				"Congratulations! You have fulfilled the order for '%s'" % quest_name,
 				true,
@@ -287,24 +281,24 @@ func go_to_bed():
 
 func _handle_event_select_seed_type(seed_type: Constants.VEGETABLE_TYPE):
 	current_plant.set_type(seed_type)
-	stats_and_inventory.inventory.seed[seed_type] -= 1
-	ResourceSaver.save(stats_and_inventory, SAVE_PATH)
+	State.stats_and_inventory.inventory.seed[seed_type] -= 1
+	State.save_save_file()
 	set_state('idle', true)
 
 func _handle_event_harvest_fruit(fruit: Constants.FRUIT_TYPE):
 	print('add this fruit to your inventory: %s' % fruit)
-	stats_and_inventory.inventory.fruit[fruit] += 1
+	State.stats_and_inventory.inventory.fruit[fruit] += 1
 	await get_tree().create_timer(.2).timeout
-	print(stats_and_inventory.inventory.fruit[fruit])
-	ResourceSaver.save(stats_and_inventory, SAVE_PATH)
+	print(State.stats_and_inventory.inventory.fruit[fruit])
+	State.save_save_file()
 	set_actions()
 
 func _handle_event_harvest_plant(plant: Constants.VEGETABLE_TYPE):
 	print('add this plant to your inventory: %s' % plant)
-	stats_and_inventory.inventory.vegetable[plant] += 1
+	State.stats_and_inventory.inventory.vegetable[plant] += 1
 	await get_tree().create_timer(.2).timeout
-	print(stats_and_inventory.inventory.vegetable[plant])
-	ResourceSaver.save(stats_and_inventory, SAVE_PATH)
+	print(State.stats_and_inventory.inventory.vegetable[plant])
+	State.save_save_file()
 	set_actions()
 
 func harvest_plant(action_type: Constants.ACTIONS):
@@ -317,15 +311,15 @@ func _handle_event_update_actions():
 func refill_water_can():
 	set_state('processing')
 
-	while stats_and_inventory.water_level < stats_and_inventory.water_level_max:
+	while State.stats_and_inventory.water_level < State.stats_and_inventory.water_level_max:
 		await get_tree().create_timer(.5).timeout
-		stats_and_inventory.water_level += 1
+		State.stats_and_inventory.water_level += 1
 		set_water_stuff()
-	ResourceSaver.save(stats_and_inventory, SAVE_PATH)
+	State.save_save_file()
 	set_state('idle')
 
 func facilitate_sowing():
-	Events.display_seed_options.emit(stats_and_inventory.inventory.seed)
+	Events.display_seed_options.emit(State.stats_and_inventory.inventory.seed)
 	#print('await seed selection or dismissal')
 	#print('decrement seed count if applicable')
 
@@ -357,23 +351,23 @@ func set_actions():
 				actions.push_back(Constants.ACTIONS.Sow)
 			elif current_plant.is_ready():
 				actions.push_back(current_plant.get_harvest_action())
-			elif stats_and_inventory.has_watering_can and stats_and_inventory.water_level > 0: # present greyed out water that would take you to the well
+			elif State.stats_and_inventory.has_watering_can and State.stats_and_inventory.water_level > 0: # present greyed out water that would take you to the well
 				actions.push_back(Constants.ACTIONS.Water)
-		elif current_tree and stats_and_inventory.has_axe:
+		elif current_tree and State.stats_and_inventory.has_axe:
 			actions.push_back(Constants.ACTIONS.Chop)
 		elif current_mailbox:
-			if stats_and_inventory.can_fulfill_quest():
+			if State.stats_and_inventory.can_fulfill_quest():
 				actions.push_back(Constants.ACTIONS.SendMail)
-			var next_quest = stats_and_inventory.get_next_quest()
+			var next_quest = State.stats_and_inventory.get_next_quest()
 			if next_quest:
 				actions.push_back(Constants.ACTIONS.CheckMail)
-		elif current_water_well and stats_and_inventory.water_level < stats_and_inventory.water_level_max:
+		elif current_water_well and State.stats_and_inventory.water_level < State.stats_and_inventory.water_level_max:
 			actions.push_back(Constants.ACTIONS.RefillWater)
 		elif current_workstation:
 			actions.push_back(Constants.ACTIONS.WorkAtStation)
 		elif current_bed:
 			actions.push_back(Constants.ACTIONS.UseBed)
-		elif LevelUtil.is_hoeable(position_to_coords($AoI/FocusCursor.global_position)) and stats_and_inventory.has_hoe:
+		elif LevelUtil.is_hoeable(position_to_coords($AoI/FocusCursor.global_position)) and State.stats_and_inventory.has_hoe:
 			actions.push_back(Constants.ACTIONS.Hoe)
 		
 	Events.set_actions.emit(actions)
