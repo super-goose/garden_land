@@ -80,5 +80,38 @@ func to_dict():
 		"completed": completed, #: bool
 	}
 
-static func from_dict(dict: Dictionary):
-	pass
+static func from_dict(dict: Dictionary) -> Quest:
+	var quest = Quest.new()
+	quest.name = dict["name"]
+	quest.real_name = dict["real_name"]
+	quest.prerequisite = Array(dict["prerequisite"], TYPE_INT, "", null)
+	quest.blurb = dict["blurb"]
+	quest.note = dict["note"]
+	#quest.supplies_seeds = dict["supplies_seeds"].map(InventoryItemVegetable.from_dict) as Array[InventoryItemVegetable]
+	quest.supplies_seeds = Array(
+		dict["supplies_seeds"].map(InventoryItemVegetable.from_dict),
+		TYPE_OBJECT,
+		"Resource",
+		InventoryItemVegetable,
+	)
+	quest.supplies_equipment = Array(dict["supplies_equipment"], TYPE_INT, "", null)
+	#quest.required_vegetables = dict["required_vegetables"].map(InventoryItemVegetable.from_dict)
+	#quest.required_fruit = dict["required_fruit"].map(InventoryItemFruit.from_dict)
+	#quest.required_consumables = dict["required_consumables"].map(InventoryItemConsumable.from_dict)
+	quest.required_vegetables = Array(
+		dict["required_vegetables"].map(InventoryItemVegetable.from_dict),
+		TYPE_OBJECT, "Resource", InventoryItemVegetable
+	)
+	quest.required_fruit = Array(
+		dict["required_fruit"].map(InventoryItemFruit.from_dict),
+		TYPE_OBJECT, "Resource", InventoryItemFruit
+	)
+	quest.required_consumables = Array(
+		dict["required_consumables"].map(InventoryItemConsumable.from_dict),
+		TYPE_OBJECT, "Resource", InventoryItemConsumable
+	)
+	quest.available = dict["available"]
+	quest.active = dict["active"]
+	quest.has_read = dict["has_read"]
+	quest.completed = dict["completed"]
+	return quest

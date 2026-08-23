@@ -54,10 +54,11 @@ theme_override_constants/margin_bottom = 16
 layout_mode = 2
 theme_override_fonts/font = ExtResource("3_y75co")
 theme_override_font_sizes/font_size = 15
-current_tab = 0
+current_tab = 4
 tab_1/hidden = true
 
 [node name="Inventory" type="ScrollContainer" parent="MarginContainer/VBoxContainer/ContentContainer/TabContainer" unique_id=143868681]
+visible = false
 layout_mode = 2
 size_flags_vertical = 3
 metadata/_tab_index = 0
@@ -201,6 +202,33 @@ Lastly, this is where I'll say that all art is either from Cup Nooble on itch, o
 autowrap_mode = 3
 clip_text = true
 
+[node name="Dev" type="ScrollContainer" parent="MarginContainer/VBoxContainer/ContentContainer/TabContainer" unique_id=1511546960]
+layout_mode = 2
+metadata/_tab_index = 4
+
+[node name="MarginContainer" type="MarginContainer" parent="MarginContainer/VBoxContainer/ContentContainer/TabContainer/Dev" unique_id=412390682]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/VBoxContainer/ContentContainer/TabContainer/Dev/MarginContainer" unique_id=1446506256]
+layout_mode = 2
+
+[node name="CopyButton" type="Button" parent="MarginContainer/VBoxContainer/ContentContainer/TabContainer/Dev/MarginContainer/VBoxContainer" unique_id=887932856]
+layout_mode = 2
+text = "Copy State"
+
+[node name="PasteButton" type="Button" parent="MarginContainer/VBoxContainer/ContentContainer/TabContainer/Dev/MarginContainer/VBoxContainer" unique_id=1888354910]
+layout_mode = 2
+text = "Paste State"
+
+[node name="TextEdit" type="TextEdit" parent="MarginContainer/VBoxContainer/ContentContainer/TabContainer/Dev/MarginContainer/VBoxContainer" unique_id=1360383305]
+layout_mode = 2
+size_flags_vertical = 3
+
 [node name="ProcessMenu" parent="." unique_id=2039231203 instance=ExtResource("5_okaoq")]
 visible = false
 layout_mode = 1
+
+[connection signal="pressed" from="MarginContainer/VBoxContainer/ContentContainer/TabContainer/Dev/MarginContainer/VBoxContainer/CopyButton" to="." method="_on_copy_button_pressed"]
+[connection signal="pressed" from="MarginContainer/VBoxContainer/ContentContainer/TabContainer/Dev/MarginContainer/VBoxContainer/PasteButton" to="." method="_on_paste_button_pressed"]

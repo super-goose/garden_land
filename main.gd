@@ -9,6 +9,10 @@ func _ready():
 	Events.time_passage_pause.connect(_handle_event_time_passage_pause)
 	Events.time_passage_play.connect(_handle_event_time_passage_unpause)
 	Events.time_passage_fast_forward.connect(_handle_event_time_passage_unpause)
+	State.reload_game.connect(_handle_state_reload_game)
+
+func _handle_state_reload_game():
+	get_tree().reload_current_scene()
 
 func _handle_event_time_passage_pause():
 	$WeatherLayer.process_mode = Node.PROCESS_MODE_DISABLED
@@ -22,7 +26,7 @@ func _handle_event_time_passage_unpause():
 	$Character.process_mode = Node.PROCESS_MODE_ALWAYS
 	is_paused = false
 
-func _process(delta):
+func _process(_delta):
 	if Input.is_action_just_pressed("utility_reload"):
 		get_tree().reload_current_scene()
 

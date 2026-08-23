@@ -37,19 +37,19 @@ static func from_dict(data: Dictionary):
 			continue
 
 		i.seed[Constants.VEGETABLE_TYPE[v_type]] = data["seed"][v_type]
-		i.vegetable_[Constants.VEGETABLE_TYPE[v_type]] = data["vegetable"][v_type]
+		i.vegetable[Constants.VEGETABLE_TYPE[v_type]] = data["vegetable"][v_type]
 
 	for f_type in Constants.FRUIT_TYPE:
 		if f_type == 'None':
 			continue
 
-		i.fruit_[Constants.FRUIT_TYPE[f_type]] = data["fruit"][f_type]
+		i.fruit[Constants.FRUIT_TYPE[f_type]] = data["fruit"][f_type]
 
 	for c_type in Constants.CONSUMABLE_TYPE:
 		if c_type == 'None':
 			continue
 
-		i.consumable_[Constants.CONSUMABLE_TYPE[c_type]] = data["consumable"][c_type]
+		i.consumable[Constants.CONSUMABLE_TYPE[c_type]] = data["consumable"][c_type]
 
 	return i
 

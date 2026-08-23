@@ -1,7 +1,8 @@
 # class_name State
 extends Node
 
-
+@warning_ignore("unused_signal")
+signal reload_game
 
 const LEVEL_SAVE_PATH := "user://garden_data.tres"
 var use_level_save_file = true
@@ -33,6 +34,8 @@ func state_to_dict():
 func dict_to_state(dict: Dictionary):
 	stats_and_inventory = StatsAndInventory.from_dict(dict['stats_and_inventory'])
 	garden_data = GardenData.from_dict(dict['garden_data'])
+	reload_game.emit()
+	
 
 
 
@@ -52,6 +55,6 @@ func load_save_file():
 
 
 func save_save_file():
-	print(state_to_dict())
+	#print(state_to_dict())
 	ResourceSaver.save(garden_data, LEVEL_SAVE_PATH)
 	ResourceSaver.save(stats_and_inventory, CHARACTER_SAVE_PATH)

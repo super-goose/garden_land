@@ -30,7 +30,7 @@ static func from_dict(data: Dictionary) -> GardenData:
 
 	var plot_states_ = {}
 	for pos in data["plot_states"]:
-		plot_states_[Vector2i(pos[0], pos[1])] = GardenPlotState.from_dict(data["plot_states"][pos])
+		plot_states_[Vector2i(int(pos[0]), int(pos[1]))] = GardenPlotState.from_dict(data["plot_states"][pos])
 	garden_data.plot_states = plot_states_
 
 	var start_location_ = data["start_location"]

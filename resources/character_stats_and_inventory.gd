@@ -65,7 +65,7 @@ func get_next_quest():
 
 @export var box_inventory: Inventory = Inventory.new()
 
-@export var gold = 0
+@export var gold: int = 0
 
 func _is_quest_fulfilled(quest: Quest):
 	for requirement in quest.required_vegetables:
@@ -114,8 +114,8 @@ func fulfill_current_quest():
 
 
 
-@export var water_level_max = 8
-@export var water_level = 8
+@export var water_level_max: int = 8
+@export var water_level: int = 8
 @export var has_watering_can = true #false
 @export var has_hoe = false
 @export var has_axe = false
@@ -204,8 +204,11 @@ func to_dict():
 
 static func from_dict(dict: Dictionary):
 	var s = StatsAndInventory.new()
-	s.quests = dict['quests'].map(
-		func _dict_to_quest(qd: Dictionary): return Quest.from_dict(qd)
+	s.quests = Array(
+		dict['quests'].map(
+			func _dict_to_quest(qd: Dictionary): return Quest.from_dict(qd)
+		),
+		TYPE_OBJECT, "Resource", Quest
 	)
 	s.inventory = Inventory.from_dict(dict['inventory'])
 	s.box_inventory = Inventory.from_dict(dict['box_inventory'])
