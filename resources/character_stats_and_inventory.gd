@@ -175,7 +175,6 @@ func empty_box():
 
 	Events.refresh_stats_and_inventory.emit(self)
 
-
 func convert_vegetable_to_seeds(vegetable_type: Constants.VEGETABLE_TYPE):
 	if inventory.vegetable[vegetable_type] == 0:
 		return
@@ -186,3 +185,38 @@ func convert_vegetable_to_seeds(vegetable_type: Constants.VEGETABLE_TYPE):
 	inventory.vegetable[vegetable_type] -= 1
 	inventory.seed[vegetable_type] += harvest_yield
 	Events.refresh_stats_and_inventory.emit(self)
+
+func to_dict():
+	return {
+		"quests": quests.map(
+			func _quest_to_dict(q: Quest): return q.to_dict()
+		), #: Array[Quest]
+		"inventory": inventory.to_dict(), #: Inventory = Inventory.new()
+		"box_inventory": box_inventory.to_dict(), #: Inventory = Inventory.new()
+		"gold": gold, # = 0
+		"last_quest_fulfilled_timestamp": last_quest_fulfilled_timestamp, #: int
+		"water_level_max": water_level_max, # = 8
+		"water_level": water_level, # = 8
+		"has_watering_can": has_watering_can, # = true #false
+		"has_hoe": has_hoe, # = false
+		"has_axe": has_axe, # = false
+	}
+
+static func from_dict(dict: Dictionary):
+	var s = StatsAndInventory.new()
+	s.quests = dict['quests'].map(
+		func _dict_to_quest(qd: Dictionary): return Quest.from_dict(qd)
+	)
+	s.inventory = Inventory.from_dict(dict['inventory'])
+	s.box_inventory = Inventory.from_dict(dict['box_inventory'])
+	
+	s.gold = dict['gold']
+	s.last_quest_fulfilled_timestamp = dict['last_quest_fulfilled_timestamp']
+	s.water_level_max = dict['water_level_max']
+	s.water_level = dict['water_level']
+	s.has_watering_can = dict['has_watering_can']
+	s.has_hoe = dict['has_hoe']
+	s.has_axe = dict['has_axe']
+
+	return s
+	

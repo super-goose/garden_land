@@ -8,3 +8,15 @@ static func build(consumable_type: Constants.CONSUMABLE_TYPE, consumable_count: 
 	iic.consumable = consumable_type
 	iic.count = consumable_count
 	return iic
+
+func to_dict():
+	return {
+		"consumable": consumable,
+		"count": count,
+	}
+
+static func from_dict(dict: Dictionary):
+	var i = InventoryItemConsumable.new()
+	i.consumable = dict['consumable']
+	i.count = dict['count']
+	return i

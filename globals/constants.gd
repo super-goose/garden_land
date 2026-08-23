@@ -130,6 +130,7 @@ enum CONSUMABLE_TYPE {
 	Egg,
 	Milk,
 	Mushroom,
+	None,
 }
 
 enum TOOL_TYPE {

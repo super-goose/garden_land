@@ -12,5 +12,7 @@ static var REWARD = {
 	], []),
 	Name.BeginnerStew: Reward.new(20, [
 		InventoryItemVegetable.build(Constants.VEGETABLE_TYPE.Potato, 5)
-	], [])
+	], [
+		Constants.TOOL_TYPE.Axe
+	])
 }

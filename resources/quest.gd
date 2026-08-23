@@ -45,3 +45,40 @@ extends Resource
 
 ## Whether or not the quest is complete
 @export var completed: bool
+
+func to_dict():
+	var inv_veg_to_dict = func inv_seed_to_dict(iiv: InventoryItemVegetable):
+		return {
+			"vegetable": iiv.vegetable,
+			"count": iiv.count,
+		}
+	var inv_fruit_to_dict = func inv_seed_to_dict(iif: InventoryItemFruit):
+		return {
+			"fruit": iif.fruit,
+			"count": iif.count,
+		}
+	var inv_consumable_to_dict = func inv_seed_to_dict(iic: InventoryItemConsumable):
+		return {
+			"consumable": iic.consumable,
+			"count": iic.count,
+		}
+
+	return {
+		"name": name, #: String
+		"real_name": real_name, #: QuestConstants.Name
+		"prerequisite": prerequisite, #: Array[QuestConstants.Name] = []
+		"blurb": blurb, #: String
+		"note": note, #: String
+		"supplies_seeds": supplies_seeds.map(inv_veg_to_dict), #: Array[InventoryItemVegetable]
+		"supplies_equipment": supplies_equipment, #: Array[Constants.TOOL_TYPE]
+		"required_vegetables": required_vegetables.map(inv_veg_to_dict), #: Array[InventoryItemVegetable]
+		"required_fruit": required_fruit.map(inv_fruit_to_dict), #: Array[InventoryItemFruit]
+		"required_consumables": required_consumables.map(inv_consumable_to_dict), #: Array[InventoryItemConsumable]
+		"available": available, #: bool
+		"active": active, #: bool
+		"has_read": has_read, #: bool
+		"completed": completed, #: bool
+	}
+
+static func from_dict(dict: Dictionary):
+	pass
