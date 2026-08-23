@@ -23,7 +23,6 @@ extends Resource
 @export var supplies_equipment: Array[Constants.TOOL_TYPE]
 
 ## Deliverables (vegetables) the user must provide in order to fulfill the quest
-#@export var required_vegetables: Array[InventoryItem]
 @export var required_vegetables: Array[InventoryItemVegetable]
 
 ## Deliverables (fruit) the user must provide in order to fulfill the quest
@@ -32,8 +31,8 @@ extends Resource
 ## Deliverables (consumables) the user must provide in order to fulfill the quest
 @export var required_consumables: Array[InventoryItemConsumable]
 
-## Gold, items, etc the user gets for completing the quest
-@export var reward: Reward 
+### Gold, items, etc the user gets for completing the quest
+#@export var reward: Reward 
 
 ## Whether or not the quest is available currently
 @export var available: bool

@@ -33,11 +33,17 @@ func fill_out_letter_content():
 
 	quest_rewards.set_label('Reward')
 	var rewards = []
-	if current_quest.reward.gold > 0:
+	if QuestConstants.REWARD[current_quest.real_name].gold > 0:
 		rewards.push_back({
-			'count': current_quest.reward.gold,
+			'count': QuestConstants.REWARD[current_quest.real_name].gold,
 			'texture': coin_texture,
 		})
+	for s: InventoryItemVegetable in QuestConstants.REWARD[current_quest.real_name].seeds:
+		rewards.push_back({
+			'count': s.count,
+			'texture': Constants.INDIVIDUAL_SEEDS_BY_SEED_TYPE[s.vegetable],
+		})
+
 	quest_rewards.set_items_and_counts(rewards)
 
 func _ready():

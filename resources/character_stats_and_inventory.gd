@@ -90,9 +90,19 @@ func fulfill_current_quest():
 		if not _is_quest_fulfilled(quest):
 			continue
 		
-		gold = gold + quest.reward.gold
-		for seed_reward in quest.reward.seeds:
+		var new_gold = QuestConstants.REWARD[quest.real_name].gold
+		
+		gold = gold + new_gold
+		for seed_reward in QuestConstants.REWARD[quest.real_name].seeds:
 			inventory.seed[seed_reward.vegetable] = inventory.seed[seed_reward.vegetable] + seed_reward.count
+		
+		if QuestConstants.REWARD[quest.real_name].tool.size():
+			if QuestConstants.REWARD[quest.real_name].tool[0] == Constants.TOOL_TYPE.Hoe:
+				has_hoe = true
+			if QuestConstants.REWARD[quest.real_name].tool[0] == Constants.TOOL_TYPE.Axe:
+				has_axe = true
+			if QuestConstants.REWARD[quest.real_name].tool[0] == Constants.TOOL_TYPE.FishingRod:
+				has_fishing_rod = true
 		
 		quest.active = false
 		quest.completed = true
@@ -109,6 +119,7 @@ func fulfill_current_quest():
 @export var has_watering_can = true #false
 @export var has_hoe = false
 @export var has_axe = false
+@export var has_fishing_rod = false
 
 func add_fruit_to_box(fruit_type: Constants.FRUIT_TYPE, amount: int):
 	if inventory.fruit[fruit_type] == 0:
