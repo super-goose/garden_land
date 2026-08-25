@@ -1,4 +1,5 @@
 @icon("res://meta/assets/character.png")
+class_name PlayerCharacter
 extends CharacterBody2D
 
 const SPEED = 120

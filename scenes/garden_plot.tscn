@@ -10,7 +10,6 @@ size = Vector2(18, 18)
 
 [node name="GardenPlot" type="Area2D" unique_id=518200412]
 collision_layer = 2
-collision_mask = 0
 script = ExtResource("1_81omm")
 
 [node name="Watered" type="Sprite2D" parent="." unique_id=1948929577]
@@ -33,6 +32,7 @@ hframes = 5
 
 [node name="Sown" type="Sprite2D" parent="." unique_id=497424204]
 visible = false
+y_sort_enabled = true
 position = Vector2(0, 2)
 texture = ExtResource("3_fu1om")
 
@@ -43,4 +43,6 @@ offset_top = -8.0
 offset_right = 8.0
 offset_bottom = 8.0
 
+[connection signal="area_entered" from="." to="." method="_on_area_entered"]
+[connection signal="area_exited" from="." to="." method="_on_area_exited"]
 [connection signal="pressed" from="Button" to="." method="_on_button_pressed"]

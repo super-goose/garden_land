@@ -125,3 +125,17 @@ func _handle_event_vegetable_was_harvested():
 
 func get_harvest_action():
 	return Constants.HARVEST_ACTIONS_BY_VEGETABLE_TYPE[state.type]
+
+
+func _on_area_entered(area: Area2D) -> void:
+	if area.get_parent() is PlayerCharacter:
+		print('character has entered me', state.coordinates)
+		$FarmingPlants.z_index = 5
+	else:
+		print('something has entered me')
+
+
+func _on_area_exited(area: Area2D) -> void:
+	if area.get_parent() is PlayerCharacter:
+		print('character has exited me', state.coordinates)
+		$FarmingPlants.z_index = 10
