@@ -34,6 +34,7 @@ func state_to_dict():
 func dict_to_state(dict: Dictionary):
 	stats_and_inventory = StatsAndInventory.from_dict(dict['stats_and_inventory'])
 	garden_data = GardenData.from_dict(dict['garden_data'])
+	
 	reload_game.emit()
 	
 

@@ -14,11 +14,6 @@ extends Node2D
 
 var map_generated = false
 
-
-
-
-
-
 func _ready():
 	if State.level_needs_populated:
 		State.garden_data.dirt_tiles = $Dirt.get_used_cells()
@@ -29,6 +24,9 @@ func _ready():
 	else:
 		LevelUtil.plantable_tiles = State.garden_data.dirt_tiles
 		on_plantable_tiles_modified()
+
+	#refresh_garden_plots_from_state()
+
 	LevelUtil.plantable_tiles_modified.connect(on_plantable_tiles_modified)
 	Events.become_day.connect(become_day)
 	Events.become_night.connect(become_night)
@@ -37,6 +35,12 @@ func _ready():
 	Events.darken_for_bedtime.connect(darken_for_bedtime)
 	Events.update_garden_plot.connect(on_update_garden_plot)
 	Events.character_moved.connect(_handle_event_character_moved)
+
+#func refresh_garden_plots_from_state():
+	#for plot in $GardenPlotContainer.get_children():
+		#if plot.state and plot.state.coordinates in State.garden_data.plot_states:
+			#plot.state = State.garden_data.plot_states[plot.state.coordinates]
+			#plot.update_visuals() # or whatever your refresh method is called
 
 func start_raining():
 	var c = Common.get_color(85, 87, 147, 255)

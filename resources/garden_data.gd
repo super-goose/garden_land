@@ -23,17 +23,16 @@ func to_dict():
 static func from_dict(data: Dictionary) -> GardenData:
 	var garden_data = GardenData.new()
 
-	var dirt_tiles_: Array[Vector2i] = []
 	for tile in data["dirt_tiles"]:
-		dirt_tiles_.append(Vector2i(tile[0], tile[1]))
-	garden_data.dirt_tiles = dirt_tiles_
+		garden_data.dirt_tiles.append(Vector2i(tile[0], tile[1]))
 
-	var plot_states_ = {}
-	for pos in data["plot_states"]:
-		plot_states_[Vector2i(int(pos[0]), int(pos[1]))] = GardenPlotState.from_dict(data["plot_states"][pos])
-	garden_data.plot_states = plot_states_
+	for pos_str in data["plot_states"]:
+		var pos = JSON.parse_string(pos_str)
+		#if pos[0] == 39 and pos[1] == 22:
+			#breakpoint
+		garden_data.plot_states[Vector2i(int(pos[0]), int(pos[1]))] = GardenPlotState.from_dict(data["plot_states"][pos_str])
 
-	var start_location_ = data["start_location"]
-	garden_data.start_location = Vector2i(start_location_[0], start_location_[1])
+	var s_loc = data["start_location"]
+	garden_data.start_location = Vector2i(s_loc[0], s_loc[1])
 
 	return garden_data
