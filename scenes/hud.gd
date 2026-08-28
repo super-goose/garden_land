@@ -39,6 +39,7 @@ func _handle_display_seed_options(seeds: Dictionary):
 	var t = get_tree().create_tween()
 	var new_position = Vector2(0, pos_y_seeds_in)
 	$Seeds.visible = true
+	$Button.visible = true
 	t.tween_property($Seeds, 'position', new_position, seeds_duration)
 
 func _handle_hide_seed_options():
@@ -46,6 +47,7 @@ func _handle_hide_seed_options():
 	var new_position = Vector2(0, pos_y_seeds_out)
 	await t.tween_property($Seeds, 'position', new_position, seeds_duration).finished
 	$Seeds.visible = false
+	$Button.visible = false
 
 func __populate_seed_options():
 	for child in seeds_container.get_children():
@@ -64,3 +66,7 @@ func __populate_actions():
 		var a = ActionsMenuButtonScene.instantiate()
 		a.set_button_type(Constants.ACTIONS[action])
 		actions_container.add_child(a)
+
+
+func _on_button_pressed() -> void:
+	_handle_hide_seed_options()
