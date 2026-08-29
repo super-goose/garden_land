@@ -38,7 +38,7 @@ signal time_passage_pause
 signal time_passage_play
 signal time_passage_fast_forward
 signal increase_hour(hour: int, am_pm: Constants.TIME)
-signal tick
+signal tick(timestamp: int)
 signal go_to_bed
 signal darken_for_bedtime
 signal become_day

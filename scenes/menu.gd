@@ -287,20 +287,6 @@ func _on_close_button_pressed():
 func _on_settings_button_pressed():
 	print('handle settings menu')
 
-func _on_copy_button_pressed() -> void:
-	var json_string = JSON.stringify(State.state_to_dict(), '  ')
-	DisplayServer.clipboard_set(json_string)
-
-func _on_paste_button_pressed() -> void:
-	var json = JSON.new()
-	var error = json.parse(DisplayServer.clipboard_get())
-
-	if error == OK:
-		var data = json.get_data()
-		State.dict_to_state(data)
-	else:
-		print("JSON Parse Error: ", json.get_error_message(), " at line ", json.get_error_line())
-
 func _handle_event_refresh_inventory(stats: StatsAndInventory):
 	populate_quest_tab(stats)
 	populate_inventory_tab(stats)

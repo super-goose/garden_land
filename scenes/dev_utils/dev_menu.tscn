@@ -1,0 +1,22 @@
+[gd_scene format=3 uid="uid://cuvqad353rsee"]
+
+[ext_resource type="Script" uid="uid://bvq6lfqmo45hb" path="res://scenes/dev_utils/dev_menu.gd" id="1_aq6xk"]
+
+[node name="DevUtilsMenu" type="MarginContainer" unique_id=651437095]
+size_flags_horizontal = 3
+size_flags_vertical = 3
+script = ExtResource("1_aq6xk")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="." unique_id=2122768491]
+layout_mode = 2
+
+[node name="CopyButton" type="Button" parent="VBoxContainer" unique_id=996658341]
+layout_mode = 2
+text = "Copy State"
+
+[node name="PasteButton" type="Button" parent="VBoxContainer" unique_id=1423136964]
+layout_mode = 2
+text = "Paste State"
+
+[connection signal="pressed" from="VBoxContainer/CopyButton" to="." method="_on_copy_button_pressed"]
+[connection signal="pressed" from="VBoxContainer/PasteButton" to="." method="_on_paste_button_pressed"]

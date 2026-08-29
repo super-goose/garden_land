@@ -15,6 +15,8 @@ func _ready():
 	Events.time_passage_play.connect(_handle_event_time_passage_play)
 	Events.time_passage_pause.connect(_handle_event_time_passage_pause)
 	Events.go_to_bed.connect(_handle_event_go_to_bed)
+	#if State.world_needs_processing:
+		#play_catch_up_with_the_world()
 
 func _handle_event_go_to_bed():
 	Events.darken_for_bedtime.emit()
@@ -46,6 +48,13 @@ func _on_hour_timer_timeout():
 	print('an hour has passed')
 	increase_hour()
 
+func play_catch_up_with_the_world():
+	var now = int(Time.get_unix_time_from_system())
+	breakpoint
+	while State.world_data.last_processed_timestamp < now:
+		State.world_data.last_processed_timestamp += int($HourTimer.wait_time)
+		Events.tick.emit(State.world_data.last_processed_timestamp)
+
 func increase_hour():
 	hour += 1
 	if hour == 12:
@@ -65,4 +74,8 @@ func increase_hour():
 		Events.become_night.emit()
 	
 	Events.increase_hour.emit(hour, am_pm)
-	Events.tick.emit()
+	var now = int(Time.get_unix_time_from_system())
+	Events.tick.emit(now)
+	#State.world_data.last_processed_timestamp = now
+	State.save_save_file()
+	

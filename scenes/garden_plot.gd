@@ -51,12 +51,12 @@ func get_watered():
 	update_plot()
 
 #func _handle_event_start_new_day():
-func _handle_event_tick():
+func _handle_event_tick(timestamp: int):
 	if state.type == Constants.VEGETABLE_TYPE.None:
 		return
 	if state.stage_change_timestamp == null:
 		return
-	var delta = int(Time.get_unix_time_from_system()) - state.stage_change_timestamp
+	var delta = timestamp - state.stage_change_timestamp
 	if state.was_watered and delta > 10:
 		increase_stage()
 		state.was_watered = false

@@ -27,8 +27,6 @@ func to_dict():
 
 static func from_dict(data: Dictionary) -> GardenPlotState:
 	var plot_state = GardenPlotState.new()
-	if data["coordinates"][0] == 39 and data["coordinates"][0] == 22:
-		breakpoint
 
 	plot_state.type = data["type"]
 	plot_state.stage = data["stage"]

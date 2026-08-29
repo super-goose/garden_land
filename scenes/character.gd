@@ -44,11 +44,11 @@ func _ready():
 	set_water_stuff()
 	set_state('idle')
 
-func _handle_event_tick():
+func _handle_event_tick(timestamp: int):
 	if State.stats_and_inventory.last_quest_fulfilled_timestamp == -1:
 		return
-	var now = int(Time.get_unix_time_from_system())
-	if now - State.stats_and_inventory.last_quest_fulfilled_timestamp > Constants.NEXT_QUEST_DELIVERY:
+	#var now = int(Time.get_unix_time_from_system())
+	if timestamp - State.stats_and_inventory.last_quest_fulfilled_timestamp > Constants.NEXT_QUEST_DELIVERY:
 		State.stats_and_inventory.mark_next_quest_available()
 
 func _handle_event_refresh_inventory(_stats: StatsAndInventory):
