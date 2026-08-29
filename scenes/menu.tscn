@@ -222,10 +222,6 @@ text = "Copy State"
 layout_mode = 2
 text = "Paste State"
 
-[node name="TextEdit" type="TextEdit" parent="MarginContainer/VBoxContainer/ContentContainer/TabContainer/Dev/MarginContainer/VBoxContainer" unique_id=1360383305]
-layout_mode = 2
-size_flags_vertical = 3
-
 [node name="ProcessMenu" parent="." unique_id=2039231203 instance=ExtResource("5_okaoq")]
 visible = false
 layout_mode = 1

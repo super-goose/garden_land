@@ -96,12 +96,12 @@ func fulfill_current_quest():
 		for seed_reward in QuestConstants.REWARD[quest.real_name].seeds:
 			inventory.seed[seed_reward.vegetable] = inventory.seed[seed_reward.vegetable] + seed_reward.count
 		
-		if QuestConstants.REWARD[quest.real_name].tool.size(): # TODO
-			if QuestConstants.REWARD[quest.real_name].tool[0] == Constants.TOOL_TYPE.Hoe:
+		if QuestConstants.REWARD[quest.real_name].tool:
+			if QuestConstants.REWARD[quest.real_name].tool == Constants.TOOL_TYPE.Hoe:
 				has_hoe = true
-			if QuestConstants.REWARD[quest.real_name].tool[0] == Constants.TOOL_TYPE.Axe:
+			if QuestConstants.REWARD[quest.real_name].tool == Constants.TOOL_TYPE.Axe:
 				has_axe = true
-			if QuestConstants.REWARD[quest.real_name].tool[0] == Constants.TOOL_TYPE.FishingRod:
+			if QuestConstants.REWARD[quest.real_name].tool == Constants.TOOL_TYPE.FishingRod:
 				has_fishing_rod = true
 		
 		quest.active = false
