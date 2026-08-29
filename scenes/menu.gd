@@ -25,6 +25,7 @@ enum PROCESS_MENU_TYPE {
 @onready var ws_box_grid_container = $MarginContainer/VBoxContainer/ContentContainer/TabContainer/Workstation/MarginContainer/VBoxContainer/BoxSection
 
 @onready var inv_money_container = $MarginContainer/VBoxContainer/ContentContainer/TabContainer/Inventory/MarginContainer/VBoxContainer/MarginContainer/HBoxContainer/Label
+@onready var dev_utils_menu = $MarginContainer/VBoxContainer/ContentContainer/TabContainer/Dev/DevUtilsMenu
 
 var FruitCellScene = load("res://scenes/fruit_cell.tscn")
 var VegetableCellScene = load("res://scenes/vegetable_cell.tscn")
@@ -103,79 +104,79 @@ func open_process_seeds_menu(seeds: Constants.VEGETABLE_TYPE, stats: StatsAndInv
 			process_menu.close()
 	})
 
-func populate_workstation_tab(stats: StatsAndInventory):
+func populate_workstation_tab():
 	var vegetable_inventory = []
-	for vegetable in stats.inventory.vegetable:
-		if stats.inventory.vegetable[vegetable] == 0:
+	for vegetable in State.stats_and_inventory.inventory.vegetable:
+		if State.stats_and_inventory.inventory.vegetable[vegetable] == 0:
 			continue
 		var vegetable_cell = VegetableCellScene.instantiate()
-		vegetable_cell.set_data(vegetable, stats.inventory.vegetable[vegetable])
+		vegetable_cell.set_data(vegetable, State.stats_and_inventory.inventory.vegetable[vegetable])
 		vegetable_cell.set_functionality(
 			func __open_process_vegetable_menu():
-				open_process_vegetable_menu(vegetable, stats)
+				open_process_vegetable_menu(vegetable, State.stats_and_inventory)
 		)
 		vegetable_inventory.push_back(vegetable_cell)
 		
 
 	var fruit_inventory = []
-	for fruit in stats.inventory.fruit:
-		if stats.inventory.fruit[fruit] == 0:
+	for fruit in State.stats_and_inventory.inventory.fruit:
+		if State.stats_and_inventory.inventory.fruit[fruit] == 0:
 			continue
 		var fruit_cell = FruitCellScene.instantiate()
-		fruit_cell.set_data(fruit, stats.inventory.fruit[fruit])
+		fruit_cell.set_data(fruit, State.stats_and_inventory.inventory.fruit[fruit])
 		fruit_cell.set_functionality(
 			func __open_process_fruit_menu():
-				open_process_fruit_menu(fruit, stats)
+				open_process_fruit_menu(fruit, State.stats_and_inventory)
 		)
 		fruit_inventory.push_back(fruit_cell)
 
 	var tools_inventory = []
 	var water_can_cell = ToolCellScene.instantiate()
-	water_can_cell.set_data(Constants.TOOL_TYPE.WateringCan, "%s/%s"%[stats.water_level, stats.water_level_max])
+	water_can_cell.set_data(Constants.TOOL_TYPE.WateringCan, "%s/%s"%[State.stats_and_inventory.water_level, State.stats_and_inventory.water_level_max])
 	tools_inventory.push_back(water_can_cell)
 	
-	if stats.has_axe:
+	if State.stats_and_inventory.has_axe:
 		var axe_cell = ToolCellScene.instantiate()
 		axe_cell.set_data(Constants.TOOL_TYPE.Axe, "")
 		tools_inventory.push_back(axe_cell)
 
-	if stats.has_hoe:
+	if State.stats_and_inventory.has_hoe:
 		var hoe_cell = ToolCellScene.instantiate()
 		hoe_cell.set_data(Constants.TOOL_TYPE.Hoe, "")
 		tools_inventory.push_back(hoe_cell)
 
 	var seeds_inventory = []
-	for seeds in stats.inventory.seed:
-		if stats.inventory.seed[seeds] == 0:
+	for seeds in State.stats_and_inventory.inventory.seed:
+		if State.stats_and_inventory.inventory.seed[seeds] == 0:
 			continue
 		var seeds_cell = SeedsCellScene.instantiate()
 		seeds_cell.set_functionality(
 			func __open_process_seeds_menu():
-				open_process_seeds_menu(seeds, stats)
+				open_process_seeds_menu(seeds, State.stats_and_inventory)
 		)
-		seeds_cell.set_data(seeds, stats.inventory.seed[seeds])
+		seeds_cell.set_data(seeds, State.stats_and_inventory.inventory.seed[seeds])
 		seeds_inventory.push_back(seeds_cell)
 
 	var box_inventory = []
-	for seeds in stats.box_inventory.seed:
-		if stats.box_inventory.seed[seeds] == 0:
+	for seeds in State.stats_and_inventory.box_inventory.seed:
+		if State.stats_and_inventory.box_inventory.seed[seeds] == 0:
 			continue
 		var seeds_cell = SeedsCellScene.instantiate()
-		seeds_cell.set_data(seeds, stats.box_inventory.seed[seeds])
+		seeds_cell.set_data(seeds, State.stats_and_inventory.box_inventory.seed[seeds])
 		box_inventory.push_back(seeds_cell)
 
-	for fruit in stats.box_inventory.fruit:
-		if stats.box_inventory.fruit[fruit] == 0:
+	for fruit in State.stats_and_inventory.box_inventory.fruit:
+		if State.stats_and_inventory.box_inventory.fruit[fruit] == 0:
 			continue
 		var fruit_cell = FruitCellScene.instantiate()
-		fruit_cell.set_data(fruit, stats.box_inventory.fruit[fruit])
+		fruit_cell.set_data(fruit, State.stats_and_inventory.box_inventory.fruit[fruit])
 		box_inventory.push_back(fruit_cell)
 
-	for vegetable in stats.box_inventory.vegetable:
-		if stats.box_inventory.vegetable[vegetable] == 0:
+	for vegetable in State.stats_and_inventory.box_inventory.vegetable:
+		if State.stats_and_inventory.box_inventory.vegetable[vegetable] == 0:
 			continue
 		var vegetable_cell = VegetableCellScene.instantiate()
-		vegetable_cell.set_data(vegetable, stats.box_inventory.vegetable[vegetable])
+		vegetable_cell.set_data(vegetable, State.stats_and_inventory.box_inventory.vegetable[vegetable])
 		box_inventory.push_back(vegetable_cell)
 
 	ws_seeds_grid_container.set_items(seeds_inventory)
@@ -185,66 +186,66 @@ func populate_workstation_tab(stats: StatsAndInventory):
 	ws_box_grid_container.set_items(box_inventory)
 
 
-func populate_inventory_tab(stats: StatsAndInventory):
+func populate_inventory_tab():
 	var plant_inventory = []
-	for plant in stats.inventory.vegetable:
-		if stats.inventory.vegetable[plant] == 0:
+	for plant in State.stats_and_inventory.inventory.vegetable:
+		if State.stats_and_inventory.inventory.vegetable[plant] == 0:
 			continue
 		var plant_cell = VegetableCellScene.instantiate()
-		plant_cell.set_data(plant, stats.inventory.vegetable[plant])
+		plant_cell.set_data(plant, State.stats_and_inventory.inventory.vegetable[plant])
 		plant_inventory.push_back(plant_cell)
 
 	var fruit_inventory = []
-	for fruit in stats.inventory.fruit:
-		if stats.inventory.fruit[fruit] == 0:
+	for fruit in State.stats_and_inventory.inventory.fruit:
+		if State.stats_and_inventory.inventory.fruit[fruit] == 0:
 			continue
 		var fruit_cell = FruitCellScene.instantiate()
-		fruit_cell.set_data(fruit, stats.inventory.fruit[fruit])
+		fruit_cell.set_data(fruit, State.stats_and_inventory.inventory.fruit[fruit])
 		fruit_inventory.push_back(fruit_cell)
 
 	var tools_inventory = []
 	var water_can_cell = ToolCellScene.instantiate()
-	water_can_cell.set_data(Constants.TOOL_TYPE.WateringCan, "%s/%s"%[stats.water_level, stats.water_level_max])
+	water_can_cell.set_data(Constants.TOOL_TYPE.WateringCan, "%s/%s"%[State.stats_and_inventory.water_level, State.stats_and_inventory.water_level_max])
 	tools_inventory.push_back(water_can_cell)
 	
-	if stats.has_axe:
+	if State.stats_and_inventory.has_axe:
 		var axe_cell = ToolCellScene.instantiate()
 		axe_cell.set_data(Constants.TOOL_TYPE.Axe, "")
 		tools_inventory.push_back(axe_cell)
 
-	if stats.has_hoe:
+	if State.stats_and_inventory.has_hoe:
 		var hoe_cell = ToolCellScene.instantiate()
 		hoe_cell.set_data(Constants.TOOL_TYPE.Hoe, "")
 		tools_inventory.push_back(hoe_cell)
 
 	var seeds_inventory = []
-	for seeds in stats.inventory.seed:
-		if stats.inventory.seed[seeds] == 0:
+	for seeds in State.stats_and_inventory.inventory.seed:
+		if State.stats_and_inventory.inventory.seed[seeds] == 0:
 			continue
 		var seeds_cell = SeedsCellScene.instantiate()
-		seeds_cell.set_data(seeds, stats.inventory.seed[seeds])
+		seeds_cell.set_data(seeds, State.stats_and_inventory.inventory.seed[seeds])
 		seeds_inventory.push_back(seeds_cell)
 
 	var box_inventory = []
-	for seeds in stats.box_inventory.seed:
-		if stats.box_inventory.seed[seeds] == 0:
+	for seeds in State.stats_and_inventory.box_inventory.seed:
+		if State.stats_and_inventory.box_inventory.seed[seeds] == 0:
 			continue
 		var seeds_cell = SeedsCellScene.instantiate()
-		seeds_cell.set_data(seeds, stats.box_inventory.seed[seeds])
+		seeds_cell.set_data(seeds, State.stats_and_inventory.box_inventory.seed[seeds])
 		box_inventory.push_back(seeds_cell)
 
-	for fruit in stats.box_inventory.fruit:
-		if stats.box_inventory.fruit[fruit] == 0:
+	for fruit in State.stats_and_inventory.box_inventory.fruit:
+		if State.stats_and_inventory.box_inventory.fruit[fruit] == 0:
 			continue
 		var fruit_cell = FruitCellScene.instantiate()
-		fruit_cell.set_data(fruit, stats.box_inventory.fruit[fruit])
+		fruit_cell.set_data(fruit, State.stats_and_inventory.box_inventory.fruit[fruit])
 		box_inventory.push_back(fruit_cell)
 
-	for vegetable in stats.box_inventory.vegetable:
-		if stats.box_inventory.vegetable[vegetable] == 0:
+	for vegetable in State.stats_and_inventory.box_inventory.vegetable:
+		if State.stats_and_inventory.box_inventory.vegetable[vegetable] == 0:
 			continue
 		var vegetable_cell = VegetableCellScene.instantiate()
-		vegetable_cell.set_data(vegetable, stats.box_inventory.vegetable[vegetable])
+		vegetable_cell.set_data(vegetable, State.stats_and_inventory.box_inventory.vegetable[vegetable])
 		box_inventory.push_back(vegetable_cell)
 
 	inv_seeds_grid_container.set_items(seeds_inventory)
@@ -252,18 +253,18 @@ func populate_inventory_tab(stats: StatsAndInventory):
 	inv_fruit_grid_container.set_items(fruit_inventory)
 	inv_tools_grid_container.set_items(tools_inventory)
 	inv_box_grid_container.set_items(box_inventory)
-	inv_money_container.text = str(stats.gold)
+	inv_money_container.text = str(State.stats_and_inventory.gold)
 
-func populate_quest_tab(stats: StatsAndInventory):
+func populate_quest_tab():
 	var quest_container = $MarginContainer/VBoxContainer/ContentContainer/TabContainer/Quests/MarginContainer/QuestVBoxContainer
 	for child in quest_container.get_children():
 		quest_container.remove_child(child)
-	for quest in stats.get_current_quests():
+	for quest in State.stats_and_inventory.get_current_quests():
 		var qss = QuestSummaryScene.instantiate()
 		qss.populate_quest(quest)
 		quest_container.add_child(qss)
 
-func open_menu(stats: StatsAndInventory, is_workstation = false):
+func open_menu(_stats: StatsAndInventory, is_workstation = false):
 	Events.time_passage_pause.emit()
 	# hide inventory tab when at workbench
 	tab_container.set_tab_hidden(0, is_workstation)
@@ -272,11 +273,11 @@ func open_menu(stats: StatsAndInventory, is_workstation = false):
 	is_workstation_menu = is_workstation
 	if is_workstation:
 		tab_container.current_tab = 1
-		populate_workstation_tab(stats)
+		populate_workstation_tab()
 	visible = true
-	populate_inventory_tab(stats)
-	populate_quest_tab(stats)
-	$MarginContainer/VBoxContainer/ContentContainer/TabContainer/Dev/DevUtilsMenu.refresh()
+	populate_inventory_tab()
+	populate_quest_tab()
+	dev_utils_menu.refresh()
 	Events.refresh_stats_and_inventory.connect(_handle_event_refresh_inventory)
 
 func _on_close_button_pressed():
@@ -288,8 +289,9 @@ func _on_close_button_pressed():
 func _on_settings_button_pressed():
 	print('handle settings menu')
 
-func _handle_event_refresh_inventory(stats: StatsAndInventory):
-	populate_quest_tab(stats)
-	populate_inventory_tab(stats)
+func _handle_event_refresh_inventory():
+	populate_quest_tab()
+	populate_inventory_tab()
+	dev_utils_menu.refresh()
 	if is_workstation_menu:
-		populate_workstation_tab(stats)
+		populate_workstation_tab()

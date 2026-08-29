@@ -51,7 +51,7 @@ func _handle_event_tick(timestamp: int):
 	if timestamp - State.stats_and_inventory.last_quest_fulfilled_timestamp > Constants.NEXT_QUEST_DELIVERY:
 		State.stats_and_inventory.mark_next_quest_available()
 
-func _handle_event_refresh_inventory(_stats: StatsAndInventory):
+func _handle_event_refresh_inventory():
 	State.save_save_file()
 
 func set_water_stuff():

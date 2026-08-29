@@ -126,42 +126,42 @@ func add_fruit_to_box(fruit_type: Constants.FRUIT_TYPE, amount: int):
 		return
 	inventory.fruit[fruit_type] -= amount
 	box_inventory.fruit[fruit_type] += amount
-	Events.refresh_stats_and_inventory.emit(self)
+	Events.refresh_stats_and_inventory.emit()
 
 func remove_fruit_from_box(fruit_type: Constants.FRUIT_TYPE, amount: int):
 	if box_inventory.fruit[fruit_type] == 0:
 		return
 	inventory.fruit[fruit_type] += amount
 	box_inventory.fruit[fruit_type] -= amount
-	Events.refresh_stats_and_inventory.emit(self)
+	Events.refresh_stats_and_inventory.emit()
 
 func add_vegetable_to_box(vegetable_type: Constants.VEGETABLE_TYPE, amount: int):
 	if inventory.vegetable[vegetable_type] == 0:
 		return
 	inventory.vegetable[vegetable_type] -= amount
 	box_inventory.vegetable[vegetable_type] += amount
-	Events.refresh_stats_and_inventory.emit(self)
+	Events.refresh_stats_and_inventory.emit()
 
 func remove_vegetable_from_box(vegetable_type: Constants.VEGETABLE_TYPE, amount: int):
 	if box_inventory.vegetable[vegetable_type] == 0:
 		return
 	inventory.vegetable[vegetable_type] += amount
 	box_inventory.vegetable[vegetable_type] -= amount
-	Events.refresh_stats_and_inventory.emit(self)
+	Events.refresh_stats_and_inventory.emit()
 
 func add_seeds_to_box(seeds_type: Constants.VEGETABLE_TYPE, amount: int):
 	if inventory.seed[seeds_type] == 0:
 		return
 	inventory.seed[seeds_type] -= amount
 	box_inventory.seeds[seeds_type] += amount
-	Events.refresh_stats_and_inventory.emit(self)
+	Events.refresh_stats_and_inventory.emit()
 
 func remove_seeds_from_box(seeds_type: Constants.VEGETABLE_TYPE, amount: int):
 	if box_inventory.seeds[seeds_type] == 0:
 		return
 	inventory.seed[seeds_type] += amount
 	box_inventory.seeds[seeds_type] -= amount
-	Events.refresh_stats_and_inventory.emit(self)
+	Events.refresh_stats_and_inventory.emit()
 
 func empty_box():
 	for seed_type in Constants.VEGETABLE_TYPE:
@@ -173,7 +173,7 @@ func empty_box():
 	for vegetable_type in Constants.VEGETABLE_TYPE:
 		box_inventory.vegetable[vegetable_type] = 0
 
-	Events.refresh_stats_and_inventory.emit(self)
+	Events.refresh_stats_and_inventory.emit()
 
 func convert_vegetable_to_seeds(vegetable_type: Constants.VEGETABLE_TYPE):
 	if inventory.vegetable[vegetable_type] == 0:
@@ -184,7 +184,7 @@ func convert_vegetable_to_seeds(vegetable_type: Constants.VEGETABLE_TYPE):
 	
 	inventory.vegetable[vegetable_type] -= 1
 	inventory.seed[vegetable_type] += harvest_yield
-	Events.refresh_stats_and_inventory.emit(self)
+	Events.refresh_stats_and_inventory.emit()
 
 func to_dict():
 	return {
