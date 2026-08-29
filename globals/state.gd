@@ -10,7 +10,7 @@ var level_needs_populated = false
 var garden_data: GardenData
 
 const CHARACTER_SAVE_PATH := "user://stats_and_inventory_8-9-2.tres"
-var use_character_save_file = false
+var use_character_save_file = true
 var character_needs_populated = false
 var stats_and_inventory: StatsAndInventory
 

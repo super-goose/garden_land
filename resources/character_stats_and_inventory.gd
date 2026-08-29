@@ -96,7 +96,7 @@ func fulfill_current_quest():
 		for seed_reward in QuestConstants.REWARD[quest.real_name].seeds:
 			inventory.seed[seed_reward.vegetable] = inventory.seed[seed_reward.vegetable] + seed_reward.count
 		
-		if QuestConstants.REWARD[quest.real_name].tool.size():
+		if QuestConstants.REWARD[quest.real_name].tool.size(): # TODO
 			if QuestConstants.REWARD[quest.real_name].tool[0] == Constants.TOOL_TYPE.Hoe:
 				has_hoe = true
 			if QuestConstants.REWARD[quest.real_name].tool[0] == Constants.TOOL_TYPE.Axe:
@@ -118,7 +118,7 @@ func fulfill_current_quest():
 @export var water_level: int = 8
 @export var has_watering_can = true #false
 @export var has_hoe = false
-@export var has_axe = false
+@export var has_axe = true #false
 @export var has_fishing_rod = false
 
 func add_fruit_to_box(fruit_type: Constants.FRUIT_TYPE, amount: int):

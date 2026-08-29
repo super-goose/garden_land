@@ -131,6 +131,7 @@ func _on_area_entered(area: Area2D) -> void:
 	if area.get_parent() is PlayerCharacter:
 		print('character has entered me', state.coordinates)
 		$FarmingPlants.z_index = 5
+		$Watered.z_index = 1
 	else:
 		print('something has entered me')
 
@@ -139,3 +140,4 @@ func _on_area_exited(area: Area2D) -> void:
 	if area.get_parent() is PlayerCharacter:
 		print('character has exited me', state.coordinates)
 		$FarmingPlants.z_index = 10
+		$Watered.z_index = 6

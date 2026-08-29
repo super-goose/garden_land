@@ -1,11 +1,11 @@
-[gd_scene load_steps=107 format=3 uid="uid://brefn2rc6esy6"]
+[gd_scene format=3 uid="uid://brefn2rc6esy6"]
 
-[ext_resource type="Script" path="res://scenes/tree.gd" id="1_4avj3"]
-[ext_resource type="Texture2D" uid="uid://dueskurjavkfv" path="res://modified-assets/fruit-bearers/tree-apple-sprites.png" id="3_07b3d"]
-[ext_resource type="Texture2D" uid="uid://dmxm4w2nasj1a" path="res://modified-assets/fruit-bearers/tree-sprites.png" id="4_ig0eu"]
-[ext_resource type="Texture2D" uid="uid://cre77g3i0hx66" path="res://modified-assets/fruit-bearers/tree-orange-sprites.png" id="5_2fbr7"]
-[ext_resource type="Texture2D" uid="uid://c7ycv4bpmumcm" path="res://modified-assets/fruit-bearers/tree-peach-sprites.png" id="6_kh3dt"]
-[ext_resource type="Texture2D" uid="uid://djgqh36mpe0u8" path="res://modified-assets/fruit-bearers/tree-pear-sprites.png" id="7_jott8"]
+[ext_resource type="Script" uid="uid://dyiciamw44uuo" path="res://scenes/tree.gd" id="1_4avj3"]
+[ext_resource type="Texture2D" uid="uid://dueskurjavkfv" path="res://Sprout Lands - Sprites - premium pack/Objects/Tree animations/tree apple sprites.png" id="3_07b3d"]
+[ext_resource type="Texture2D" uid="uid://dmxm4w2nasj1a" path="res://Sprout Lands - Sprites - premium pack/Objects/Tree animations/tree sprites.png" id="4_ig0eu"]
+[ext_resource type="Texture2D" uid="uid://cre77g3i0hx66" path="res://Sprout Lands - Sprites - premium pack/Objects/Tree animations/tree orange sprites.png" id="5_2fbr7"]
+[ext_resource type="Texture2D" uid="uid://c7ycv4bpmumcm" path="res://Sprout Lands - Sprites - premium pack/Objects/Tree animations/tree peach sprites.png" id="6_kh3dt"]
+[ext_resource type="Texture2D" uid="uid://djgqh36mpe0u8" path="res://Sprout Lands - Sprites - premium pack/Objects/Tree animations/tree pear sprites.png" id="7_jott8"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_atu5w"]
 radius = 11.0
@@ -769,34 +769,34 @@ animations = [{
 "speed": 5.0
 }]
 
-[node name="Tree" type="Area2D"]
+[node name="Tree" type="Area2D" unique_id=675773689]
 z_index = 10
 collision_layer = 2
 collision_mask = 0
 script = ExtResource("1_4avj3")
 
-[node name="CollisionShape2D2" type="CollisionShape2D" parent="."]
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="." unique_id=1772930100]
 position = Vector2(0, -12)
 shape = SubResource("CapsuleShape2D_atu5w")
 
-[node name="Stump" type="Sprite2D" parent="."]
+[node name="Stump" type="Sprite2D" parent="." unique_id=1335520801]
 position = Vector2(0, -2)
 
-[node name="FullTree" type="AnimatedSprite2D" parent="."]
+[node name="FullTree" type="AnimatedSprite2D" parent="." unique_id=1783940206]
 position = Vector2(0, -16)
 sprite_frames = SubResource("SpriteFrames_gvloj")
 animation = &"none-wind"
 
-[node name="StaticBody2D" type="StaticBody2D" parent="FullTree"]
+[node name="StaticBody2D" type="StaticBody2D" parent="FullTree" unique_id=939437347]
 position = Vector2(0, 16)
 collision_layer = 4
 collision_mask = 0
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="FullTree/StaticBody2D"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="FullTree/StaticBody2D" unique_id=1434465555]
 position = Vector2(0, -12)
 shape = SubResource("CapsuleShape2D_atu5w")
 
-[node name="Button" type="Button" parent="."]
+[node name="Button" type="Button" parent="." unique_id=289982282]
 modulate = Color(0.917647, 0.917647, 0.917647, 0)
 offset_left = -12.0
 offset_top = -27.0

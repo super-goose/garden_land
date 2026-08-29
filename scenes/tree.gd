@@ -6,7 +6,7 @@ const TYPES = ['apple', 'orange', 'peach', 'pear', 'none']
 var hp = 3
 var is_intact = true
 var type : String
-var Fruit = preload("res://scenes/fruit.tscn")
+var HarvestedFruit = preload("res://scenes/fruit.tscn")
 var display_type : String
 
 func _ready():
@@ -22,7 +22,6 @@ func get_chopped():
 		$FullTree.play("%s-shed" % display_type)
 		
 	elif is_intact:
-		var ft = $FullTree
 		$FullTree.frame = 0
 		$FullTree.play("none-wind")
 #			collision_layer = 0
@@ -39,8 +38,9 @@ func _on_full_tree_animation_finished():
 	if $FullTree.animation == "%s-shed" % display_type:
 
 		for i in range(3):
-			var f = Fruit.instantiate()
+			var f = HarvestedFruit.instantiate()
 			f.set_fruit_data(type, i)
+			
 			add_child(f)
 
 		display_type = 'none'

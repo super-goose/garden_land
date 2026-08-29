@@ -1,9 +1,9 @@
-[gd_scene load_steps=3 format=3 uid="uid://cmfvv6mvxxdbn"]
+[gd_scene format=3 uid="uid://cmfvv6mvxxdbn"]
 
-[ext_resource type="Script" path="res://scenes/fruit.gd" id="1_agjoj"]
+[ext_resource type="Script" uid="uid://d1irc8qagsb0t" path="res://scenes/fruit.gd" id="1_agjoj"]
 [ext_resource type="Texture2D" uid="uid://dw32tori7mdr5" path="res://modified-assets/fruit/fruit.png" id="1_h0vdv"]
 
-[node name="Fruit" type="Sprite2D"]
+[node name="Fruit" type="Sprite2D" unique_id=1908645990]
 z_as_relative = false
 texture = ExtResource("1_h0vdv")
 centered = false
