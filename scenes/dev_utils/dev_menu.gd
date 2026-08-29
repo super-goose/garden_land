@@ -1,5 +1,8 @@
 extends MarginContainer
 
+func _ready():
+	refresh()
+
 func _on_copy_button_pressed() -> void:
 	var json_string = JSON.stringify(State.state_to_dict(), '  ')
 	DisplayServer.clipboard_set(json_string)
@@ -13,3 +16,22 @@ func _on_paste_button_pressed() -> void:
 		State.dict_to_state(data)
 	else:
 		print("JSON Parse Error: ", json.get_error_message(), " at line ", json.get_error_line())
+
+func refresh():
+	for child in $VBoxContainer.get_children():
+		if child is not DevItemCount:
+			continue
+		$VBoxContainer.remove_child(child)
+	
+	var DevItemCountScene = preload("res://scenes/dev_utils/dev_item_count.tscn")
+	for veg in Constants.VEGETABLE_TYPE:
+		if veg == 'None':
+			continue
+		var dic = DevItemCountScene.instantiate()
+
+		dic.type = 'vegetable'
+		dic.value = veg
+
+		$VBoxContainer.add_child(dic)
+		
+		dic.populate()

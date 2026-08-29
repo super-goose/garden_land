@@ -276,6 +276,7 @@ func open_menu(stats: StatsAndInventory, is_workstation = false):
 	visible = true
 	populate_inventory_tab(stats)
 	populate_quest_tab(stats)
+	$MarginContainer/VBoxContainer/ContentContainer/TabContainer/Dev/DevUtilsMenu.refresh()
 	Events.refresh_stats_and_inventory.connect(_handle_event_refresh_inventory)
 
 func _on_close_button_pressed():

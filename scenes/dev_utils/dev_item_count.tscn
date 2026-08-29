@@ -1,0 +1,36 @@
+[gd_scene format=3 uid="uid://crtlg7j01uh8h"]
+
+[ext_resource type="Texture2D" uid="uid://p6y0mtyxdpdh" path="res://modified-assets/ui/button-minus.png" id="1_6txqb"]
+[ext_resource type="Script" uid="uid://xwxo0sqfqsk0" path="res://scenes/dev_utils/dev_item_count.gd" id="1_8mjce"]
+[ext_resource type="Texture2D" uid="uid://cml6hb3pqm4ta" path="res://modified-assets/fruit/orange.png" id="1_w131t"]
+[ext_resource type="Texture2D" uid="uid://b8oc5ac25xyr7" path="res://modified-assets/ui/button-plus.png" id="2_w131t"]
+
+[node name="DevItemCount" type="MarginContainer" unique_id=228893526]
+anchors_preset = 10
+anchor_right = 1.0
+grow_horizontal = 2
+script = ExtResource("1_8mjce")
+
+[node name="HBoxContainer" type="HBoxContainer" parent="." unique_id=944014969]
+layout_mode = 2
+
+[node name="TextureRect" type="TextureRect" parent="HBoxContainer" unique_id=1224296157]
+layout_mode = 2
+texture = ExtResource("1_w131t")
+expand_mode = 2
+
+[node name="Label" type="Label" parent="HBoxContainer" unique_id=1453923033]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "The longest name (2)"
+
+[node name="Decrease" type="TextureButton" parent="HBoxContainer" unique_id=752347165]
+layout_mode = 2
+texture_normal = ExtResource("1_6txqb")
+
+[node name="Increase" type="TextureButton" parent="HBoxContainer" unique_id=1694388162]
+layout_mode = 2
+texture_normal = ExtResource("2_w131t")
+
+[connection signal="pressed" from="HBoxContainer/Decrease" to="." method="_on_decrease_pressed"]
+[connection signal="pressed" from="HBoxContainer/Increase" to="." method="_on_increase_pressed"]
