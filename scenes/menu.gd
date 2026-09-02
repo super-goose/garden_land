@@ -270,6 +270,7 @@ func open_menu(_stats: StatsAndInventory, is_workstation = false):
 	tab_container.set_tab_hidden(0, is_workstation)
 	# hide workbench when not at workbench
 	tab_container.set_tab_hidden(1, not is_workstation)
+	tab_container.set_tab_hidden(4, not State.DEBUG_MODE)
 	is_workstation_menu = is_workstation
 	if is_workstation:
 		tab_container.current_tab = 1

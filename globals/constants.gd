@@ -151,6 +151,7 @@ enum ACTIONS {
 	RefillWater,
 	WorkAtStation,
 	UseBed,
+	Dev,
 	Harvest_Corn,
 	Harvest_Carrot,
 	Harvest_Cauliflower,

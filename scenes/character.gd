@@ -268,6 +268,8 @@ func _handle_event_perform_action(action: Constants.ACTIONS):
 		set_state('hoe')
 	elif action == Constants.ACTIONS.Sow:
 		facilitate_sowing()
+	elif action == Constants.ACTIONS.Dev:
+		breakpoint
 	else: # probably harvest; future actions (like a quest letter) should be handled before here
 		harvest_plant(action)
 
@@ -354,6 +356,8 @@ func set_actions():
 				actions.push_back(current_plant.get_harvest_action())
 			elif State.stats_and_inventory.has_watering_can and State.stats_and_inventory.water_level > 0: # present greyed out water that would take you to the well
 				actions.push_back(Constants.ACTIONS.Water)
+			if State.DEBUG_MODE:
+				actions.push_back(Constants.ACTIONS.Dev)
 		elif current_tree and State.stats_and_inventory.has_axe:
 			actions.push_back(Constants.ACTIONS.Chop)
 		elif current_mailbox:

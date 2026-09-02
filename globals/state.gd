@@ -4,6 +4,8 @@ extends Node
 @warning_ignore("unused_signal")
 signal reload_game
 
+var DEBUG_MODE = true
+
 #const WORLD_SAVE_PATH := "user://world_data.tres"
 #var use_world_save_file = true
 #var world_needs_processing = false

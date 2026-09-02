@@ -16,6 +16,7 @@ func _ready():
 		Constants.ACTIONS.Water: load("res://modified-assets/tools/tools-water-can.png"),
 		Constants.ACTIONS.Chop: load("res://modified-assets/tools/tools-axe.png"),
 		Constants.ACTIONS.Sow: load("res://modified-assets/farm-plants/farm-plant-seed-blank.png"),
+		Constants.ACTIONS.Dev: load("res://modified-assets/ui/action-button-dev.png"),
 		Constants.ACTIONS.Harvest_Corn: load("res://modified-assets/farm-plants/farm-plant-corn.png"),
 		Constants.ACTIONS.Harvest_Carrot: load("res://modified-assets/farm-plants/farm-plant-carrot.png"),
 		Constants.ACTIONS.Harvest_Cauliflower: load("res://modified-assets/farm-plants/farm-plant-cauliflower.png"),
