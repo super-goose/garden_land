@@ -34,6 +34,10 @@ signal open_confirmation_menu(prompt: String, confirm_only: bool)
 signal confirmation_granted(granted: bool)
 signal close_menu
 
+signal open_dev_plot_menu
+signal add_to_dev_plot_menu(items)
+signal close_dev_plot_menu
+
 signal time_passage_pause
 signal time_passage_play
 signal time_passage_fast_forward

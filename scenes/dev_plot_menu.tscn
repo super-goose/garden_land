@@ -1,0 +1,7 @@
+[gd_scene format=3 uid="uid://dkupj4jpft3vy"]
+
+[ext_resource type="PackedScene" uid="uid://c4cv1iqb33lcu" path="res://scenes/process_menu.tscn" id="1_mb6q8"]
+[ext_resource type="Script" uid="uid://c762oo15fcigq" path="res://scenes/dev_plot_menu.gd" id="2_88dp1"]
+
+[node name="DevPlotMenu" unique_id=1339332556 instance=ExtResource("1_mb6q8")]
+script = ExtResource("2_88dp1")

@@ -14,6 +14,11 @@ func set_max_value(max_amount: int):
 	slider.value = 1
 	set_words(1)
 
+func set_current_value(current_amount: int):
+	var slider = $MarginContainer/VBoxContainer/HBoxContainer/HSlider
+	slider.value = current_amount
+	
+
 func set_words(amount: int):
 	$MarginContainer/VBoxContainer/Label.text = "%s selected" % amount
 

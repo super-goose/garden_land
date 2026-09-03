@@ -269,9 +269,26 @@ func _handle_event_perform_action(action: Constants.ACTIONS):
 	elif action == Constants.ACTIONS.Sow:
 		facilitate_sowing()
 	elif action == Constants.ACTIONS.Dev:
-		breakpoint
+		open_dev_plot_menu()
 	else: # probably harvest; future actions (like a quest letter) should be handled before here
 		harvest_plant(action)
+
+func open_dev_plot_menu():
+	Events.open_dev_plot_menu.emit()
+	Events.add_to_dev_plot_menu.emit([
+		{
+			'type': 'slider',
+			'max_value': 5 if current_plant.state.type == Constants.VEGETABLE_TYPE.Corn else 4,
+			'current_value': current_plant.state.stage,
+			'functionality': func dev_plot_menu_functionality_select(amount):
+				current_plant.state.stage = amount
+				current_plant.update_visuals()
+				Events.close_dev_plot_menu.emit(),
+			'cancel': func dev_plot_menu_functionality_close():
+				Events.close_dev_plot_menu.emit(),
+		}
+
+	])
 
 func go_to_bed():
 	Events.open_confirmation_menu.emit('Are you sure you want to go to bed?', false)

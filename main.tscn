@@ -8,6 +8,7 @@
 [ext_resource type="PackedScene" uid="uid://djepff7cp326g" path="res://scenes/confirmation_dialog.tscn" id="4_5qwwy"]
 [ext_resource type="PackedScene" uid="uid://brcxg1cwk4en0" path="res://scenes/character.tscn" id="4_38ofq"]
 [ext_resource type="PackedScene" uid="uid://cx3rui7gg3ks7" path="res://scenes/day_night_cycle.tscn" id="4_52oyc"]
+[ext_resource type="PackedScene" uid="uid://dkupj4jpft3vy" path="res://scenes/dev_plot_menu.tscn" id="6_4c57u"]
 [ext_resource type="PackedScene" uid="uid://b46obik1lqkq" path="res://scenes/menu.tscn" id="9_i5nh6"]
 
 [node name="Main" type="Node2D" unique_id=1791358894]
@@ -22,6 +23,9 @@ visible = false
 visible = false
 
 [node name="ConfirmationDialog" parent="HUD" unique_id=1741187126 instance=ExtResource("4_5qwwy")]
+visible = false
+
+[node name="DevPlotMenu" parent="HUD" unique_id=1339332556 instance=ExtResource("6_4c57u")]
 visible = false
 
 [node name="WeatherLayer" parent="." unique_id=2034739513 instance=ExtResource("4_3m5er")]

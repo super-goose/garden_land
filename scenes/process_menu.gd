@@ -23,6 +23,8 @@ func add_item(item: Dictionary):
 		var s = ProcessingSliderScene.instantiate()
 		s.set_functionality(item['functionality'], item['cancel'])
 		s.set_max_value(item['max_value'])
+		if item.has('current_value'):
+			s.set_current_value(item['current_value'])
 		add_to_slider_container(s)
 
 func add_to_button_container(item):
