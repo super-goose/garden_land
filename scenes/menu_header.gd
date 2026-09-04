@@ -15,6 +15,12 @@ func _ready():
 	$HBoxContainer/MarginContainer2/CloseButton.visible = show_close
 	$HBoxContainer/MarginContainer/Label.add_theme_font_size_override("font_size", 24 if smaller_text else 36)
 
+func flash_title():
+	var label = $HBoxContainer/MarginContainer/Label
+	var tween = create_tween()
+	tween.tween_property(label, "modulate:a", 0.0, 0.25)
+	tween.tween_property(label, "modulate:a", 1.0, 0.25)
+
 func set_title(_title):
 	title = _title
 	$HBoxContainer/MarginContainer/Label.text = _title

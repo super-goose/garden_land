@@ -317,8 +317,23 @@ func _on_close_button_pressed():
 	Events.time_passage_play.emit()
 	Events.refresh_stats_and_inventory.disconnect(_handle_event_refresh_inventory)
 
+var _settings_press_count = 0
+var _settings_press_timer = false
+
 func _on_settings_button_pressed():
-	print('handle settings menu')
+	if _settings_press_count == 5:
+		State.DEBUG_MODE = true
+		menu_header.flash_title()
+		return
+	if _settings_press_timer:
+		_settings_press_count += 1
+		return
+	
+	_settings_press_count = 0
+	_settings_press_timer = true
+	var DEV_MODE_TIMEOUT_DURATION = 3 # seconds
+	await get_tree().create_timer(DEV_MODE_TIMEOUT_DURATION).timeout
+	_settings_press_timer = false
 
 func _handle_event_refresh_inventory():
 	populate_quest_tab()
