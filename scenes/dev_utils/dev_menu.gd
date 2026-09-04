@@ -33,5 +33,26 @@ func refresh():
 		dic.value = veg
 
 		$VBoxContainer.add_child(dic)
-		
+		dic.populate()
+
+	for fruit in Constants.FRUIT_TYPE:
+		if fruit == 'None':
+			continue
+		var dic = DevItemCountScene.instantiate()
+
+		dic.type = 'fruit'
+		dic.value = fruit
+
+		$VBoxContainer.add_child(dic)
+		dic.populate()
+
+	for cons in Constants.CONSUMABLE_TYPE:
+		if cons == 'None':
+			continue
+		var dic = DevItemCountScene.instantiate()
+
+		dic.type = 'consumable'
+		dic.value = cons
+
+		$VBoxContainer.add_child(dic)
 		dic.populate()

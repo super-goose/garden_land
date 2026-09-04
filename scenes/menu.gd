@@ -13,12 +13,14 @@ enum PROCESS_MENU_TYPE {
 @onready var process_menu = $ProcessMenu
 
 @onready var inv_seeds_grid_container = $MarginContainer/VBoxContainer/ContentContainer/TabContainer/Inventory/MarginContainer/VBoxContainer/SeedsSection
+@onready var inv_consumable_grid_container = $MarginContainer/VBoxContainer/ContentContainer/TabContainer/Inventory/MarginContainer/VBoxContainer/ConsumableSection
 @onready var inv_plant_grid_container = $MarginContainer/VBoxContainer/ContentContainer/TabContainer/Inventory/MarginContainer/VBoxContainer/VegetablesSection
 @onready var inv_fruit_grid_container = $MarginContainer/VBoxContainer/ContentContainer/TabContainer/Inventory/MarginContainer/VBoxContainer/FruitSection
 @onready var inv_tools_grid_container = $MarginContainer/VBoxContainer/ContentContainer/TabContainer/Inventory/MarginContainer/VBoxContainer/ToolsSection
 @onready var inv_box_grid_container = $MarginContainer/VBoxContainer/ContentContainer/TabContainer/Inventory/MarginContainer/VBoxContainer/BoxSection
 
 @onready var ws_seeds_grid_container = $MarginContainer/VBoxContainer/ContentContainer/TabContainer/Workstation/MarginContainer/VBoxContainer/SeedsSection
+@onready var ws_consumable_grid_container = $MarginContainer/VBoxContainer/ContentContainer/TabContainer/Workstation/MarginContainer/VBoxContainer/ConsumableSection
 @onready var ws_plant_grid_container = $MarginContainer/VBoxContainer/ContentContainer/TabContainer/Workstation/MarginContainer/VBoxContainer/VegetablesSection
 @onready var ws_fruit_grid_container = $MarginContainer/VBoxContainer/ContentContainer/TabContainer/Workstation/MarginContainer/VBoxContainer/FruitSection
 @onready var ws_tools_grid_container = $MarginContainer/VBoxContainer/ContentContainer/TabContainer/Workstation/MarginContainer/VBoxContainer/ToolsSection
@@ -27,6 +29,7 @@ enum PROCESS_MENU_TYPE {
 @onready var inv_money_container = $MarginContainer/VBoxContainer/ContentContainer/TabContainer/Inventory/MarginContainer/VBoxContainer/MarginContainer/HBoxContainer/Label
 @onready var dev_utils_menu = $MarginContainer/VBoxContainer/ContentContainer/TabContainer/Dev/DevUtilsMenu
 
+var ConsumableCellScene = load("res://scenes/consumable_cell.tscn")
 var FruitCellScene = load("res://scenes/fruit_cell.tscn")
 var VegetableCellScene = load("res://scenes/vegetable_cell.tscn")
 var ToolCellScene = load("res://scenes/tool_cell.tscn")
@@ -105,6 +108,14 @@ func open_process_seeds_menu(seeds: Constants.VEGETABLE_TYPE, stats: StatsAndInv
 	})
 
 func populate_workstation_tab():
+	var consumable_inventory = []
+	for consumable in State.stats_and_inventory.inventory.consumable:
+		if State.stats_and_inventory.inventory.consumable[consumable] == 0:
+			continue
+		var consumable_cell = ConsumableCellScene.instantiate()
+		consumable_cell.set_data(consumable, State.stats_and_inventory.inventory.consumable[consumable])
+		consumable_inventory.push_back(consumable_cell)
+
 	var vegetable_inventory = []
 	for vegetable in State.stats_and_inventory.inventory.vegetable:
 		if State.stats_and_inventory.inventory.vegetable[vegetable] == 0:
@@ -116,7 +127,6 @@ func populate_workstation_tab():
 				open_process_vegetable_menu(vegetable, State.stats_and_inventory)
 		)
 		vegetable_inventory.push_back(vegetable_cell)
-		
 
 	var fruit_inventory = []
 	for fruit in State.stats_and_inventory.inventory.fruit:
@@ -134,7 +144,7 @@ func populate_workstation_tab():
 	var water_can_cell = ToolCellScene.instantiate()
 	water_can_cell.set_data(Constants.TOOL_TYPE.WateringCan, "%s/%s"%[State.stats_and_inventory.water_level, State.stats_and_inventory.water_level_max])
 	tools_inventory.push_back(water_can_cell)
-	
+
 	if State.stats_and_inventory.has_axe:
 		var axe_cell = ToolCellScene.instantiate()
 		axe_cell.set_data(Constants.TOOL_TYPE.Axe, "")
@@ -180,6 +190,7 @@ func populate_workstation_tab():
 		box_inventory.push_back(vegetable_cell)
 
 	ws_seeds_grid_container.set_items(seeds_inventory)
+	ws_consumable_grid_container.set_items(consumable_inventory)
 	ws_plant_grid_container.set_items(vegetable_inventory)
 	ws_fruit_grid_container.set_items(fruit_inventory)
 	ws_tools_grid_container.set_items(tools_inventory)
@@ -187,13 +198,13 @@ func populate_workstation_tab():
 
 
 func populate_inventory_tab():
-	var plant_inventory = []
-	for plant in State.stats_and_inventory.inventory.vegetable:
-		if State.stats_and_inventory.inventory.vegetable[plant] == 0:
+	var consumable_inventory = []
+	for consumable in State.stats_and_inventory.inventory.consumable:
+		if State.stats_and_inventory.inventory.consumable[consumable] == 0:
 			continue
-		var plant_cell = VegetableCellScene.instantiate()
-		plant_cell.set_data(plant, State.stats_and_inventory.inventory.vegetable[plant])
-		plant_inventory.push_back(plant_cell)
+		var consumable_cell = ConsumableCellScene.instantiate()
+		consumable_cell.set_data(consumable, State.stats_and_inventory.inventory.consumable[consumable])
+		consumable_inventory.push_back(consumable_cell)
 
 	var fruit_inventory = []
 	for fruit in State.stats_and_inventory.inventory.fruit:
@@ -203,9 +214,20 @@ func populate_inventory_tab():
 		fruit_cell.set_data(fruit, State.stats_and_inventory.inventory.fruit[fruit])
 		fruit_inventory.push_back(fruit_cell)
 
+	var plant_inventory = []
+	for plant in State.stats_and_inventory.inventory.vegetable:
+		if State.stats_and_inventory.inventory.vegetable[plant] == 0:
+			continue
+		var plant_cell = VegetableCellScene.instantiate()
+		plant_cell.set_data(plant, State.stats_and_inventory.inventory.vegetable[plant])
+		plant_inventory.push_back(plant_cell)
+
 	var tools_inventory = []
 	var water_can_cell = ToolCellScene.instantiate()
-	water_can_cell.set_data(Constants.TOOL_TYPE.WateringCan, "%s/%s"%[State.stats_and_inventory.water_level, State.stats_and_inventory.water_level_max])
+	water_can_cell.set_data(Constants.TOOL_TYPE.WateringCan, "%s/%s" % [
+		State.stats_and_inventory.water_level,
+		State.stats_and_inventory.water_level_max,
+	])
 	tools_inventory.push_back(water_can_cell)
 	
 	if State.stats_and_inventory.has_axe:
@@ -234,6 +256,13 @@ func populate_inventory_tab():
 		seeds_cell.set_data(seeds, State.stats_and_inventory.box_inventory.seed[seeds])
 		box_inventory.push_back(seeds_cell)
 
+	for consumable in State.stats_and_inventory.box_inventory.consumable:
+		if State.stats_and_inventory.box_inventory.consumable[consumable] == 0:
+			continue
+		var consumable_cell = ConsumableCellScene.instantiate()
+		consumable_cell.set_data(consumable, State.stats_and_inventory.box_inventory.consumable[consumable])
+		box_inventory.push_back(consumable_cell)
+
 	for fruit in State.stats_and_inventory.box_inventory.fruit:
 		if State.stats_and_inventory.box_inventory.fruit[fruit] == 0:
 			continue
@@ -249,6 +278,7 @@ func populate_inventory_tab():
 		box_inventory.push_back(vegetable_cell)
 
 	inv_seeds_grid_container.set_items(seeds_inventory)
+	inv_consumable_grid_container.set_items(consumable_inventory)
 	inv_plant_grid_container.set_items(plant_inventory)
 	inv_fruit_grid_container.set_items(fruit_inventory)
 	inv_tools_grid_container.set_items(tools_inventory)

@@ -97,6 +97,10 @@ text = "999"
 layout_mode = 2
 title = "tools"
 
+[node name="ConsumableSection" parent="MarginContainer/VBoxContainer/ContentContainer/TabContainer/Inventory/MarginContainer/VBoxContainer" unique_id=603332035 instance=ExtResource("3_wyerp")]
+layout_mode = 2
+title = "consumables"
+
 [node name="SeedsSection" parent="MarginContainer/VBoxContainer/ContentContainer/TabContainer/Inventory/MarginContainer/VBoxContainer" unique_id=1539680900 instance=ExtResource("3_wyerp")]
 layout_mode = 2
 title = "seeds"
@@ -134,6 +138,10 @@ size_flags_vertical = 3
 [node name="ToolsSection" parent="MarginContainer/VBoxContainer/ContentContainer/TabContainer/Workstation/MarginContainer/VBoxContainer" unique_id=346630075 instance=ExtResource("3_wyerp")]
 layout_mode = 2
 title = "tools"
+
+[node name="ConsumableSection" parent="MarginContainer/VBoxContainer/ContentContainer/TabContainer/Workstation/MarginContainer/VBoxContainer" unique_id=1984282462 instance=ExtResource("3_wyerp")]
+layout_mode = 2
+title = "consumables"
 
 [node name="SeedsSection" parent="MarginContainer/VBoxContainer/ContentContainer/TabContainer/Workstation/MarginContainer/VBoxContainer" unique_id=590627668 instance=ExtResource("3_wyerp")]
 layout_mode = 2

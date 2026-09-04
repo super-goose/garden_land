@@ -299,6 +299,9 @@ var INDIVIDUAL_FRUIT_BY_FRUIT_TYPE = {
 	Constants.FRUIT_TYPE.Orange: load("res://modified-assets/fruit/orange.png"),
 	Constants.FRUIT_TYPE.Pear: load("res://modified-assets/fruit/pear.png"),
 	Constants.FRUIT_TYPE.Peach: load("res://modified-assets/fruit/peach.png"),
+	Constants.FRUIT_TYPE.Blackberry: load("res://modified-assets/fruit/blackberry.png"),
+	Constants.FRUIT_TYPE.Blueberry: load("res://modified-assets/fruit/blueberry.png"),
+	Constants.FRUIT_TYPE.Strawberry: load("res://modified-assets/fruit/strawberry.png"),
 }
 
 var INDIVIDUAL_PRODUCT_BY_VEGETABLE_TYPE = {
@@ -358,4 +361,11 @@ var INDIVIDUAL_SEEDS_BY_SEED_TYPE = {
 	Constants.VEGETABLE_TYPE.Onion: load("res://modified-assets/farm-plants/farm-plant-seed-onion.png"),
 	Constants.VEGETABLE_TYPE.Pepper: load("res://modified-assets/farm-plants/farm-plant-seed-pepper.png"),
 	Constants.VEGETABLE_TYPE.PurpleCabbage: load("res://modified-assets/farm-plants/farm-plant-seed-purplecabbage.png"),
+}
+
+var INDIVIDUAL_CONSUMABLE_BY_CONSUMABLE_TYPE = {
+	Constants.CONSUMABLE_TYPE.Honey: load("res://modified-assets/consumable/honey.png"),
+	Constants.CONSUMABLE_TYPE.Egg: load("res://modified-assets/consumable/egg.png"),
+	Constants.CONSUMABLE_TYPE.Milk: load("res://modified-assets/consumable/milk-white.png"),
+	Constants.CONSUMABLE_TYPE.Mushroom: load("res://modified-assets/consumable/mushroom.png"),
 }
