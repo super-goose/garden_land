@@ -48,6 +48,7 @@ func register_tree(tree_scene: FruitTree):
 func update_tree(tree_scene: FruitTree):
 	var key = tree_scene.coordinates
 	wild_growth_state.trees[key] = tree_scene.state
+	save_save_file()
 
 func state_to_dict():
 	return {
