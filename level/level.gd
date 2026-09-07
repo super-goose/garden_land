@@ -24,6 +24,7 @@ func _ready():
 	else:
 		LevelUtil.plantable_tiles = State.garden_data.dirt_tiles
 		on_plantable_tiles_modified()
+		#tree_state_on_load_modified()
 
 	#refresh_garden_plots_from_state()
 
@@ -44,7 +45,7 @@ func _ready():
 
 func start_raining():
 	var c = Common.get_color(85, 87, 147, 255)
-	var cc = $DarkLight.color
+	#var cc = $DarkLight.color
 	$DarkLight.color = c
 	$DarkLight.enabled = true
 	var t = get_tree().create_tween()
@@ -123,10 +124,21 @@ func set_hoeable_tiles():
 	)
 	LevelUtil.hoeable_tiles = hoeable_grass
 
-var added_this_load: Array[Vector2i] = []
-var GardenPlotScene = load("res://scenes/garden_plot.tscn")
+#func tree_state_on_load_modified():
+	#print("Let's do tree stuff, yeah?")
+	#for coordinate in $RocksAndStuff.get_used_cells():
+		#var rock_or_stuff = $RocksAndStuff.get_used_cells_by_id(11, coordinate, 1)
+		##var rock_or_stuff_data = rock_or_stuff.get_custom_data("coordinates")
+		##if rock_or_stuff is not FruitTree:
+			##continue
+#
+		#print('---', rock_or_stuff)
+
+## kept global because this will run frequently
+var plantable_tiles_added_this_load: Array[Vector2i] = []
 
 func on_plantable_tiles_modified(dirt_cell = null):
+	var GardenPlotScene = load("res://scenes/garden_plot.tscn")
 	if dirt_cell:
 		LevelUtil.plantable_tiles.push_back(dirt_cell)
 
@@ -145,26 +157,16 @@ func on_plantable_tiles_modified(dirt_cell = null):
 		- don't mess with garden plots that are already on the map
 	'''
 	for tile_coord in LevelUtil.plantable_tiles:
-		if (
-			not $Dirt.get_cell_tile_data(tile_coord + Vector2i.DOWN)
-			#or not $Dirt.get_cell_tile_data(tile_coord + Vector2i.LEFT)
-			#or not $Dirt.get_cell_tile_data(tile_coord + Vector2i.RIGHT)
-		):
-			continue
-
-		#var coord_key = "%s,%s" % [tile_coord.x, tile_coord.y]
-
-		# check game state for this plot
-		# if it exists, add the saved data to the map
-		# if it doesn't, create new, and add that to savable state
+		if not $Dirt.get_cell_tile_data(tile_coord + Vector2i.DOWN):
+			continue # skip putting garden plot on dirt if there is no dirt below it on the map
 
 		# if we have already added this to the current loadout level, don't do anything
 		# we are done with this part (this also means it exists in this array, it exists
 		# in savable state)
-		if added_this_load.has(tile_coord):
+		if plantable_tiles_added_this_load.has(tile_coord):
 			continue
 
-		added_this_load.push_back(tile_coord)
+		plantable_tiles_added_this_load.push_back(tile_coord)
 
 		var current_garden_plot: GardenPlot = GardenPlotScene.instantiate()
 		current_garden_plot.position = Vector2(tile_coord * 16) + Vector2(8, 8)

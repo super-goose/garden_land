@@ -4,6 +4,7 @@ extends Resource
 @export var dirt_tiles: Array[Vector2i]
 @export var plot_states: Dictionary = {}
 @export var start_location: Vector2i
+@export var tree_states: Dictionary = {}
 
 func to_dict():
 	var dirt_tiles_ = []

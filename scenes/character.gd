@@ -200,6 +200,8 @@ func _on_animated_sprite_2d_animation_looped():
 func _on_animated_sprite_2d_animation_finished():
 	if state == 'chop':
 		if current_tree:
+			print('character location: %s' % position)
+			print('character location: %s' % Common.convert_to_grid_coordinates(position))
 			current_tree.get_chopped()
 		set_state('idle')
 

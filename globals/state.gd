@@ -3,6 +3,7 @@ extends Node
 
 @warning_ignore("unused_signal")
 signal reload_game
+signal register_tree
 
 var DEBUG_MODE = false
 
@@ -29,8 +30,10 @@ func _ready():
 	# TODO: when we get us a load file screen, this next call will not be in _ready()
 	load_save_file() # this one right here # # # # # # # # # # # # # # #
 	# here's the one # # # # # # # # # # # # # # # # # # # # # # # # # #
+	register_tree.connect(_on_register_tree)
 
-
+func _on_register_tree(tree_scene):
+	print("State: this %s tree is at %s" % [tree_scene.type, tree_scene.position])
 
 func state_to_dict():
 	return {

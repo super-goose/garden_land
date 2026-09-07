@@ -5,6 +5,7 @@ const TYPES = ['apple', 'orange', 'peach', 'pear', 'none']
 
 var hp_related_timestamp = null
 
+var coordinates : Vector2i
 var hp = MAX_HP
 var is_intact = true
 var type : String
@@ -16,9 +17,10 @@ func _ready():
 	display_type = type
 	Events.tick.connect(_handle_event_tick)
 	$FullTree.play("%s-init" % display_type)
+	State.register_tree.emit(self)
+	coordinates = Common.convert_to_grid_coordinates(position)
 
 func get_chopped():
-#	print('tree is getting chopped')
 	hp -= 1
 	if display_type != 'none':
 		z_index = 0

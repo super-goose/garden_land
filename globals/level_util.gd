@@ -16,6 +16,8 @@ var directions = [
 	Vector2i.DOWN + Vector2i.LEFT,
 	Vector2i.DOWN + Vector2i.RIGHT,
 ]
+
+## emitted when a new plantable tile is added to the map
 signal plantable_tiles_modified(dirt_cell)
 
 var dirt_terrain_array = []
