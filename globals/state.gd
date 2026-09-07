@@ -3,7 +3,6 @@ extends Node
 
 @warning_ignore("unused_signal")
 signal reload_game
-signal register_tree
 
 var DEBUG_MODE = false
 
@@ -22,6 +21,10 @@ var use_character_save_file = false #true
 var character_needs_populated = false
 var stats_and_inventory: StatsAndInventory
 
+const WILD_GROWTH_SAVE_PATH := "user://wild_growth_state.tres"
+var use_wild_growth_save_file = true
+var wild_growth_state: WildGrowthState
+
 const MASTER_SAVE_PATH := "user://game_state.tres"
 
 
@@ -30,20 +33,33 @@ func _ready():
 	# TODO: when we get us a load file screen, this next call will not be in _ready()
 	load_save_file() # this one right here # # # # # # # # # # # # # # #
 	# here's the one # # # # # # # # # # # # # # # # # # # # # # # # # #
-	register_tree.connect(_on_register_tree)
 
-func _on_register_tree(tree_scene):
-	print("State: this %s tree is at %s" % [tree_scene.type, tree_scene.position])
+func register_tree(tree_scene: FruitTree):
+	var key = tree_scene.coordinates
+	if wild_growth_state.trees.has(key):
+		tree_scene.state = wild_growth_state.trees[key]
+	else:
+		var new_tree_state = FruitTreeState.new()
+		new_tree_state.set_new_types()
+		wild_growth_state.trees[key] = new_tree_state
+		tree_scene.state = new_tree_state
+	tree_scene.post_state_visual_update()
+
+func update_tree(tree_scene: FruitTree):
+	var key = tree_scene.coordinates
+	wild_growth_state.trees[key] = tree_scene.state
 
 func state_to_dict():
 	return {
 		"stats_and_inventory": stats_and_inventory.to_dict(),
 		"garden_data": garden_data.to_dict(),
+		"wild_growth_state": wild_growth_state.to_dict()
 	}
 
 func dict_to_state(dict: Dictionary):
 	stats_and_inventory = StatsAndInventory.from_dict(dict['stats_and_inventory'])
 	garden_data = GardenData.from_dict(dict['garden_data'])
+	wild_growth_state = WildGrowthState.from_dict(dict['wild_growth_state'])
 	
 	reload_game.emit()
 	
@@ -64,6 +80,10 @@ func load_save_file():
 		stats_and_inventory = StatsAndInventory.new()
 		character_needs_populated = true
 
+	if ResourceLoader.exists(WILD_GROWTH_SAVE_PATH) and use_wild_growth_save_file:
+		wild_growth_state = ResourceLoader.load(WILD_GROWTH_SAVE_PATH, "WildGrowthState", ResourceLoader.CACHE_MODE_IGNORE)
+	else:
+		wild_growth_state = WildGrowthState.new()
 	#if ResourceLoader.exists(WORLD_SAVE_PATH) and use_world_save_file:
 		#world_data = ResourceLoader.load(WORLD_SAVE_PATH, "WorldData", ResourceLoader.CACHE_MODE_IGNORE)
 		#world_needs_processing = true
@@ -75,3 +95,4 @@ func save_save_file():
 	#print(state_to_dict())
 	ResourceSaver.save(garden_data, LEVEL_SAVE_PATH)
 	ResourceSaver.save(stats_and_inventory, CHARACTER_SAVE_PATH)
+	ResourceSaver.save(wild_growth_state, WILD_GROWTH_SAVE_PATH)
