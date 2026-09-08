@@ -168,22 +168,23 @@ func on_plantable_tiles_modified(dirt_cell = null):
 
 		plantable_tiles_added_this_load.push_back(tile_coord)
 
-		var current_garden_plot: GardenPlot = GardenPlotScene.instantiate()
-		current_garden_plot.position = Vector2(tile_coord * 16) + Vector2(8, 8)
+		#var current_garden_plot: GardenPlot = GardenPlotScene.instantiate()
+		#current_garden_plot.position = Vector2(tile_coord * 16) + Vector2(8, 8)
 
-		if tile_coord not in State.garden_data.plot_states: # exists
-			var new_garden_plot_state = GardenPlotState.new()
-			new_garden_plot_state.coordinates = tile_coord
-			State.garden_data.plot_states[tile_coord] = new_garden_plot_state
+		#if tile_coord not in State.garden_data.plot_states: # exists
+			#var new_garden_plot_state = GardenPlotState.new()
+			#new_garden_plot_state.coordinates = tile_coord
+			#State.garden_data.plot_states[tile_coord] = new_garden_plot_state
 
-		current_garden_plot.state = State.garden_data.plot_states[tile_coord]
+		#current_garden_plot.state = State.garden_data.plot_states[tile_coord]
 			
 
-		$GardenPlotContainer.add_child(current_garden_plot)
-		#if not $Plot.get_cell_tile_data(tile_coord):
-			#$Plot.set_cell(tile_coord, 10, Vector2i.ZERO, 2)
+		#$GardenPlotContainer.add_child(current_garden_plot)
+		if not $Plot.get_cell_tile_data(tile_coord):
+			$Plot.set_cell(tile_coord, 10, Vector2i.ZERO, 2)
 			
 
+	print('$GardenPlotContainer.get_children() = %s' % $GardenPlotContainer.get_children().size())
 	set_up_a_star_data()
 	set_hoeable_tiles()
 	State.save_save_file()

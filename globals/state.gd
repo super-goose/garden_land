@@ -50,6 +50,21 @@ func update_tree(tree_scene: FruitTree):
 	wild_growth_state.trees[key] = tree_scene.state
 	save_save_file()
 
+func register_garden_plot(garden_plot_scene: GardenPlot):
+	print('garden plot is registering itself now')
+	var key = garden_plot_scene.coordinates
+	if garden_data.plot_states.has(key):
+		garden_plot_scene.state = garden_data.plot_states[key]
+	else:
+		var new_garden_plot_state = GardenPlotState.new()
+		garden_data.plot_states[key] = new_garden_plot_state
+		garden_plot_scene.state = new_garden_plot_state
+
+func update_garden_plot(garden_plot_scene: GardenPlot):
+	var key = garden_plot_scene.coordinates
+	garden_data.plot_states[key] = garden_plot_scene.state
+	save_save_file()
+
 func state_to_dict():
 	return {
 		"stats_and_inventory": stats_and_inventory.to_dict(),

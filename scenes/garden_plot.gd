@@ -2,7 +2,7 @@ class_name GardenPlot
 extends Area2D
 
 var state: GardenPlotState
-
+var coordinates: Vector2i
 
 var VegetableScene = load("res://scenes/vegetable.tscn")
 
@@ -10,6 +10,10 @@ func _ready():
 	#Events.start_new_day.connect(_handle_event_start_new_day)
 	Events.tick.connect(_handle_event_tick)
 	Events.stop_raining.connect(_handle_event_stop_raining)
+
+	coordinates = Common.convert_to_grid_coordinates(position)
+	State.register_garden_plot(self)
+
 	update_visuals()
 
 func update_visuals():
@@ -37,8 +41,7 @@ func update_visuals():
 	
 func update_plot():
 	update_visuals()
-	Events.update_garden_plot.emit(state)
-
+	State.update_garden_plot(self)
 
 func set_stage(s: Constants.STAGE):
 	state.stage = s
@@ -105,6 +108,8 @@ func is_ready():
 func harvest():
 	if state.type == Constants.VEGETABLE_TYPE.None:
 		return
+	state.just_sown = false
+	state.was_watered = false
 	state.stage = Constants.STAGE.showing
 	state.stage_change_timestamp = int(Time.get_unix_time_from_system())
 	Events.vegetable_was_harvested.connect(_handle_event_vegetable_was_harvested) #??
