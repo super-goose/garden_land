@@ -1,4 +1,3 @@
-@tool
 @icon("res://modified-assets/ui/action-button-letter.png")
 extends Control
 
