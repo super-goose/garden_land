@@ -107,7 +107,7 @@ func open_process_seeds_menu(seeds: Constants.VEGETABLE_TYPE, stats: StatsAndInv
 			process_menu.close()
 	})
 
-func populate_workstation_tab():
+func _build_inventory_and_workstation_menu_content(is_workstation: bool):
 	var consumable_inventory = []
 	for consumable in State.stats_and_inventory.inventory.consumable:
 		if State.stats_and_inventory.inventory.consumable[consumable] == 0:
@@ -122,10 +122,11 @@ func populate_workstation_tab():
 			continue
 		var vegetable_cell = VegetableCellScene.instantiate()
 		vegetable_cell.set_data(vegetable, State.stats_and_inventory.inventory.vegetable[vegetable])
-		vegetable_cell.set_functionality(
-			func __open_process_vegetable_menu():
-				open_process_vegetable_menu(vegetable, State.stats_and_inventory)
-		)
+		if is_workstation:
+			vegetable_cell.set_functionality(
+				func __open_process_vegetable_menu():
+					open_process_vegetable_menu(vegetable, State.stats_and_inventory)
+			)
 		vegetable_inventory.push_back(vegetable_cell)
 
 	var fruit_inventory = []
@@ -134,10 +135,11 @@ func populate_workstation_tab():
 			continue
 		var fruit_cell = FruitCellScene.instantiate()
 		fruit_cell.set_data(fruit, State.stats_and_inventory.inventory.fruit[fruit])
-		fruit_cell.set_functionality(
-			func __open_process_fruit_menu():
-				open_process_fruit_menu(fruit, State.stats_and_inventory)
-		)
+		if is_workstation:
+			fruit_cell.set_functionality(
+				func __open_process_fruit_menu():
+					open_process_fruit_menu(fruit, State.stats_and_inventory)
+			)
 		fruit_inventory.push_back(fruit_cell)
 
 	var tools_inventory = []
@@ -160,10 +162,11 @@ func populate_workstation_tab():
 		if State.stats_and_inventory.inventory.seed[seeds] == 0:
 			continue
 		var seeds_cell = SeedsCellScene.instantiate()
-		seeds_cell.set_functionality(
-			func __open_process_seeds_menu():
-				open_process_seeds_menu(seeds, State.stats_and_inventory)
-		)
+		if is_workstation:
+			seeds_cell.set_functionality(
+				func __open_process_seeds_menu():
+					open_process_seeds_menu(seeds, State.stats_and_inventory)
+			)
 		seeds_cell.set_data(seeds, State.stats_and_inventory.inventory.seed[seeds])
 		seeds_inventory.push_back(seeds_cell)
 
@@ -188,6 +191,31 @@ func populate_workstation_tab():
 		var vegetable_cell = VegetableCellScene.instantiate()
 		vegetable_cell.set_data(vegetable, State.stats_and_inventory.box_inventory.vegetable[vegetable])
 		box_inventory.push_back(vegetable_cell)
+
+	for consumable in State.stats_and_inventory.box_inventory.consumable:
+		if State.stats_and_inventory.box_inventory.consumable[consumable] == 0:
+			continue
+		var consumable_cell = ConsumableCellScene.instantiate()
+		consumable_cell.set_data(consumable, State.stats_and_inventory.box_inventory.consumable[consumable])
+		box_inventory.push_back(consumable_cell)
+
+	return {
+		'consumable': consumable_inventory,
+		'vegetable': vegetable_inventory,
+		'fruit': fruit_inventory,
+		'tools': tools_inventory,
+		'seeds': seeds_inventory,
+		'box': box_inventory,
+	}
+
+func populate_workstation_tab():
+	var content = _build_inventory_and_workstation_menu_content(true)
+	var consumable_inventory = content['consumable']
+	var vegetable_inventory = content['vegetable']
+	var fruit_inventory = content['fruit']
+	var tools_inventory = content['tools']
+	var seeds_inventory = content['seeds']
+	var box_inventory = content['box']
 
 	ws_seeds_grid_container.set_items(seeds_inventory)
 	ws_consumable_grid_container.set_items(consumable_inventory)
@@ -198,88 +226,17 @@ func populate_workstation_tab():
 
 
 func populate_inventory_tab():
-	var consumable_inventory = []
-	for consumable in State.stats_and_inventory.inventory.consumable:
-		if State.stats_and_inventory.inventory.consumable[consumable] == 0:
-			continue
-		var consumable_cell = ConsumableCellScene.instantiate()
-		consumable_cell.set_data(consumable, State.stats_and_inventory.inventory.consumable[consumable])
-		consumable_inventory.push_back(consumable_cell)
-
-	var fruit_inventory = []
-	for fruit in State.stats_and_inventory.inventory.fruit:
-		if State.stats_and_inventory.inventory.fruit[fruit] == 0:
-			continue
-		var fruit_cell = FruitCellScene.instantiate()
-		fruit_cell.set_data(fruit, State.stats_and_inventory.inventory.fruit[fruit])
-		fruit_inventory.push_back(fruit_cell)
-
-	var plant_inventory = []
-	for plant in State.stats_and_inventory.inventory.vegetable:
-		if State.stats_and_inventory.inventory.vegetable[plant] == 0:
-			continue
-		var plant_cell = VegetableCellScene.instantiate()
-		plant_cell.set_data(plant, State.stats_and_inventory.inventory.vegetable[plant])
-		plant_inventory.push_back(plant_cell)
-
-	var tools_inventory = []
-	var water_can_cell = ToolCellScene.instantiate()
-	water_can_cell.set_data(Constants.TOOL_TYPE.WateringCan, "%s/%s" % [
-		State.stats_and_inventory.water_level,
-		State.stats_and_inventory.water_level_max,
-	])
-	tools_inventory.push_back(water_can_cell)
-	
-	if State.stats_and_inventory.has_axe:
-		var axe_cell = ToolCellScene.instantiate()
-		axe_cell.set_data(Constants.TOOL_TYPE.Axe, "")
-		tools_inventory.push_back(axe_cell)
-
-	if State.stats_and_inventory.has_hoe:
-		var hoe_cell = ToolCellScene.instantiate()
-		hoe_cell.set_data(Constants.TOOL_TYPE.Hoe, "")
-		tools_inventory.push_back(hoe_cell)
-
-	var seeds_inventory = []
-	for seeds in State.stats_and_inventory.inventory.seed:
-		if State.stats_and_inventory.inventory.seed[seeds] == 0:
-			continue
-		var seeds_cell = SeedsCellScene.instantiate()
-		seeds_cell.set_data(seeds, State.stats_and_inventory.inventory.seed[seeds])
-		seeds_inventory.push_back(seeds_cell)
-
-	var box_inventory = []
-	for seeds in State.stats_and_inventory.box_inventory.seed:
-		if State.stats_and_inventory.box_inventory.seed[seeds] == 0:
-			continue
-		var seeds_cell = SeedsCellScene.instantiate()
-		seeds_cell.set_data(seeds, State.stats_and_inventory.box_inventory.seed[seeds])
-		box_inventory.push_back(seeds_cell)
-
-	for consumable in State.stats_and_inventory.box_inventory.consumable:
-		if State.stats_and_inventory.box_inventory.consumable[consumable] == 0:
-			continue
-		var consumable_cell = ConsumableCellScene.instantiate()
-		consumable_cell.set_data(consumable, State.stats_and_inventory.box_inventory.consumable[consumable])
-		box_inventory.push_back(consumable_cell)
-
-	for fruit in State.stats_and_inventory.box_inventory.fruit:
-		if State.stats_and_inventory.box_inventory.fruit[fruit] == 0:
-			continue
-		var fruit_cell = FruitCellScene.instantiate()
-		fruit_cell.set_data(fruit, State.stats_and_inventory.box_inventory.fruit[fruit])
-		box_inventory.push_back(fruit_cell)
-
-	for vegetable in State.stats_and_inventory.box_inventory.vegetable:
-		if State.stats_and_inventory.box_inventory.vegetable[vegetable] == 0:
-			continue
-		var vegetable_cell = VegetableCellScene.instantiate()
-		vegetable_cell.set_data(vegetable, State.stats_and_inventory.box_inventory.vegetable[vegetable])
-		box_inventory.push_back(vegetable_cell)
+	var content = _build_inventory_and_workstation_menu_content(false)
+	var consumable_inventory = content['consumable']
+	var vegetable_inventory = content['vegetable']
+	var fruit_inventory = content['fruit']
+	var tools_inventory = content['tools']
+	var seeds_inventory = content['seeds']
+	var box_inventory = content['box']
 
 	inv_seeds_grid_container.set_items(seeds_inventory)
 	inv_consumable_grid_container.set_items(consumable_inventory)
-	inv_plant_grid_container.set_items(plant_inventory)
+	inv_plant_grid_container.set_items(vegetable_inventory)
 	inv_fruit_grid_container.set_items(fruit_inventory)
 	inv_tools_grid_container.set_items(tools_inventory)
 	inv_box_grid_container.set_items(box_inventory)
