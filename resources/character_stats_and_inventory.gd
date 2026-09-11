@@ -116,9 +116,9 @@ func fulfill_current_quest():
 
 @export var water_level_max: int = 8
 @export var water_level: int = 8
-@export var has_watering_can = true #false
-@export var has_hoe = false
-@export var has_axe = true #false
+@export var has_watering_can = true
+@export var has_hoe = true
+@export var has_axe = false
 @export var has_fishing_rod = false
 
 func add_fruit_to_box(fruit_type: Constants.FRUIT_TYPE, amount: int):

@@ -77,9 +77,12 @@ func is_surrounded_by_terrain(c: Vector2i) -> bool:
 func is_hoeable(tile):
 	return tile in hoeable_tiles
 
+var excluded_cell_array = []
+
 func set_up_a_star(included_layers, excluded_cells):
 	a_star.clear()
 
+	excluded_cell_array = excluded_cells
 
 	for i in range(included_layers.size()):
 		# using the index here, allows us to give different
@@ -107,6 +110,13 @@ func find_first_step(here, there):
 		return there if _are_connected(here, there) else here
 	return path[0]
 
+var direction_to_vector = {
+	'up': Vector2.DOWN,
+	'down': Vector2.UP,
+	'left': Vector2.RIGHT,
+	'right': Vector2.LEFT,
+}
+
 func calculate_dominant_direction(here: Vector2, there: Vector2, options: Dictionary):
 	if options.has('only'):
 		return options['only']
@@ -115,28 +125,31 @@ func calculate_dominant_direction(here: Vector2, there: Vector2, options: Dictio
 	if options.has('avoid'):
 		direction_to_avoid = options['avoid']
 
+	var can_go_right = not excluded_cell_array.has(here + direction_to_vector['right'])
+	var can_go_left = not excluded_cell_array.has(here + direction_to_vector['left'])
+	var can_go_down = not excluded_cell_array.has(here + direction_to_vector['down'])
+	var can_go_up = not excluded_cell_array.has(here + direction_to_vector['up'])
+
 	if abs(here.x - there.x) > abs(here.y - there.y) or direction_to_avoid in ['up', 'down']: # l or r
-		if here.x < there.x:
+		if here.x < there.x and can_go_right:
 			return 'right'
-		else:
+		elif can_go_left:
 			return 'left'
 	elif abs(here.x - there.x) < abs(here.y - there.y): # u or d
-		if here.y < there.y:
+		if here.y < there.y and can_go_down:
 			return 'down'
-		else:
+		elif can_go_up:
 			return 'up'
 	else: # diagonally
-		if here.y < there.y:
+		if here.y < there.y and can_go_down:
 			return 'down'
-		else:
+		elif can_go_up:
 			return 'up'
 
 func _get_path(here, there):
 	var here_id = vector_to_a_star_id(here)
 	var there_id = vector_to_a_star_id(there)
-	var are_connected = a_star.are_points_connected(here_id, there_id)
-#	breakpoint
-	print(are_connected)
+
 	return Array(a_star.get_id_path(here_id, there_id)).map(
 		func get_path_map(id):
 			return a_star_id_to_vector(id)
@@ -144,13 +157,11 @@ func _get_path(here, there):
 
 func find_path(here: Vector2, there: Vector2, options: Dictionary):
 	var dominant_direction = calculate_dominant_direction(here, there, options)
-	var next_to_there = there + {
-		'up': Vector2.DOWN,
-		'down': Vector2.UP,
-		'left': Vector2.RIGHT,
-		'right': Vector2.LEFT,
-	}[dominant_direction]
+	var next_to_there = there + direction_to_vector[dominant_direction]
 	var path = _get_path(here, next_to_there)
+	print("%s is disabled: %s" % [
+		next_to_there, excluded_cell_array.has(next_to_there),
+	])
 	path.pop_front()
 	return {
 		'path': path,

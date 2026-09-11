@@ -1,5 +1,7 @@
 extends Node
 
+const DAY_NIGHT_CYCLE_ENABLED = false
+
 var hour = 9
 var am_pm = Constants.TIME.AM
 
@@ -67,11 +69,12 @@ func increase_hour():
 	if hour == 13:
 		hour = 1
 
-	if hour == become_day[0] and am_pm == become_day[1]:
-		Events.become_day.emit()
-	
-	if hour == become_night[0] and am_pm == become_night[1]:
-		Events.become_night.emit()
+	if DAY_NIGHT_CYCLE_ENABLED:
+		if hour == become_day[0] and am_pm == become_day[1]:
+			Events.become_day.emit()
+		
+		if hour == become_night[0] and am_pm == become_night[1]:
+			Events.become_night.emit()
 	
 	Events.increase_hour.emit(hour, am_pm)
 	var now = int(Time.get_unix_time_from_system())
