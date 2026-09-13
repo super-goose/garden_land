@@ -107,6 +107,7 @@ func open_process_seeds_menu(seeds: Constants.VEGETABLE_TYPE, stats: StatsAndInv
 			process_menu.close()
 	})
 
+## build the inventory and workstation menu items
 func _build_inventory_and_workstation_menu_content(is_workstation: bool):
 	var consumable_inventory = []
 	for consumable in State.stats_and_inventory.inventory.consumable:

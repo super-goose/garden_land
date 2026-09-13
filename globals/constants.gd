@@ -73,6 +73,7 @@ enum ITEM {
 	Honey,
 	Egg,
 	Milk,
+	Mushroom,
 	####
 	WateringCan,
 	Axe,
