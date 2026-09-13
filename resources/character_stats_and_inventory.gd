@@ -2,8 +2,9 @@ class_name StatsAndInventory
 extends Resource
 
 @export var quests: Array[Quest] = [
-	load("res://resources/quests/00_carrots.tres").duplicate(true),
-	load("res://resources/quests/01_stew.tres").duplicate(true),
+	load("res://resources/quests/00_welcome.tres").duplicate(true),
+	load("res://resources/quests/01_carrots.tres").duplicate(true),
+	load("res://resources/quests/02_stew.tres").duplicate(true),
 ]
 
 @export var last_quest_fulfilled_timestamp: int = -1
@@ -16,6 +17,9 @@ func set_quest_to_active(name: QuestConstants.Name):
 		quest.available = false
 		for seed_type in quest.supplies_seeds:
 			inventory.seed[seed_type.vegetable] += seed_type.count
+
+	if name == QuestConstants.Name.Welcome:
+		fulfill_current_quest()
 
 func quest_can_be_completed(name: QuestConstants.Name):
 	for quest in quests:
@@ -39,6 +43,8 @@ func mark_next_quest_available():
 				current_quest_ready = false
 	
 		quest.available = current_quest_ready
+		if current_quest_ready:
+			Events.quest_available.emit()
 	last_quest_fulfilled_timestamp = -1
 
 func get_current_quests():
@@ -117,7 +123,7 @@ func fulfill_current_quest():
 @export var water_level_max: int = 8
 @export var water_level: int = 8
 @export var has_watering_can = true
-@export var has_hoe = true
+@export var has_hoe = false
 @export var has_axe = false
 @export var has_fishing_rod = false
 

@@ -20,6 +20,8 @@ metadata/_custom_type_script = "uid://c0eh28ud48bsp"
 [resource]
 script = ExtResource("1_r0bva")
 name = "I want carrots!"
+real_name = 1
+prerequisite = Array[int]([0])
 blurb = "Hello,
 
 I would love some carrots for a carrot cake I am making. I thought, who better to grow good carrots than a rabbit!

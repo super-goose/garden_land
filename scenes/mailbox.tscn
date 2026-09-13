@@ -1,7 +1,7 @@
-[gd_scene load_steps=25 format=3 uid="uid://73teedqgramh"]
+[gd_scene format=3 uid="uid://73teedqgramh"]
 
 [ext_resource type="Texture2D" uid="uid://d25hgmkkplg3y" path="res://modified-assets/tiles/building-parts/mailbox-animation-frames.png" id="1_dktbo"]
-[ext_resource type="Script" path="res://scenes/mailbox.gd" id="1_r05yo"]
+[ext_resource type="Script" uid="uid://bvbcc5bbbvyqm" path="res://scenes/mailbox.gd" id="1_r05yo"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_8uf8n"]
 radius = 7.0
@@ -175,22 +175,23 @@ animations = [{
 "speed": 10.0
 }]
 
-[node name="Mailbox" type="Area2D"]
+[node name="Mailbox" type="Area2D" unique_id=506281916]
 collision_layer = 8
 collision_mask = 0
 script = ExtResource("1_r05yo")
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=344072120]
 position = Vector2(0, 4)
 rotation = 1.5708
 shape = SubResource("CapsuleShape2D_8uf8n")
 
-[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=498842405]
 position = Vector2(4, -12)
 sprite_frames = SubResource("SpriteFrames_netce")
 animation = &"idle"
+frame_progress = 1.0
 
-[node name="Button" type="Button" parent="."]
+[node name="Button" type="Button" parent="." unique_id=66511210]
 modulate = Color(1, 1, 1, 0)
 offset_left = -5.0
 offset_top = -12.0

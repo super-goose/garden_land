@@ -1,0 +1,34 @@
+[gd_resource type="Resource" script_class="Quest" format=3 uid="uid://3n2yisckrw8m"]
+
+[ext_resource type="Script" uid="uid://rbk0xtv16s73" path="res://resources/inventory_item_consumable.gd" id="1_7vdqq"]
+[ext_resource type="Script" uid="uid://6yv6w8ds1ty1" path="res://resources/inventory_item_fruit.gd" id="2_bup40"]
+[ext_resource type="Script" uid="uid://c0eh28ud48bsp" path="res://resources/inventory_item_vegetable.gd" id="3_n8ycq"]
+[ext_resource type="Script" uid="uid://bcg63bvxqumsx" path="res://resources/quest.gd" id="4_wkqev"]
+
+[resource]
+script = ExtResource("4_wkqev")
+name = "Welcome Home!"
+blurb = "Hello!
+
+I am Willow from the village council. We were sad to hear about your great grandmother, but happy to hear a family member was moving into her home!
+
+She had quite the green thumb, and used to fill produce orders for lots of folks here. Don't be surprised if you get requests for produce, too.
+
+As a welcome gift from everyone in the village, please accept this hoe, and some lettuce seeds, so you can get started making your home.
+
+Cheers!"
+note = "Not really a quest; this is more the \"welcome to the game\" than anything.
+
+Possible character names:
+
+Spike
+Willow
+Fern
+Acorn
+Moss
+Thistle
+Bramble
+Pip
+
+"
+metadata/_custom_type_script = "uid://bcg63bvxqumsx"

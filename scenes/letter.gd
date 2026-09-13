@@ -29,8 +29,13 @@ func fill_out_letter_content():
 			'texture': Constants.INDIVIDUAL_PLANT_BY_VEGETABLE_TYPE[vegetable.vegetable],
 		})
 	quest_requirements.set_items_and_counts(requirements)
+	quest_requirements.visible = requirements.size() > 0
 
-	quest_rewards.set_label('Reward')
+	if current_quest.real_name == QuestConstants.Name.Welcome:
+		quest_rewards.set_label('')
+	else:
+		quest_rewards.set_label('Reward')
+
 	var rewards = []
 	if QuestConstants.REWARD[current_quest.real_name].gold > 0:
 		rewards.push_back({
@@ -42,6 +47,11 @@ func fill_out_letter_content():
 			'count': s.count,
 			'texture': Constants.INDIVIDUAL_SEEDS_BY_SEED_TYPE[s.vegetable],
 		})
+	if QuestConstants.REWARD[current_quest.real_name].tool:
+		rewards.push_back({
+			'texture': Constants.INDIVIDUAL_TOOL_BY_TOOL_TYPE[QuestConstants.REWARD[current_quest.real_name].tool],
+		})
+	
 
 	quest_rewards.set_items_and_counts(rewards)
 

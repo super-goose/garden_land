@@ -26,6 +26,8 @@ func set_items_and_counts(items: Array):
 		texture_rect.stretch_mode = TextureRect.STRETCH_SCALE
 		item_container.add_child(texture_rect)
 		
+		if 'count' not in item:
+			continue
 		var item_label = Label.new()
 		item_label.text = "%s" % item['count']
 		item_label.add_theme_color_override('font_color', Color.BLACK)

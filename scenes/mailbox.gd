@@ -6,6 +6,10 @@ var has_mail = false
 
 func _ready():
 	Events.quest_available.connect(_handle_event_quest_available)
+	if State.stats_and_inventory.get_next_quest():
+		$AnimatedSprite2D.play("mail-alert")
+	else:
+		$AnimatedSprite2D.play("idle")
 
 func _handle_event_quest_available():
 	$AnimatedSprite2D.play("mail-alert")

@@ -32,8 +32,8 @@ metadata/_custom_type_script = "uid://c0eh28ud48bsp"
 [resource]
 script = ExtResource("4_m18ik")
 name = "Hearty Stew"
-real_name = 1
-prerequisite = Array[int]([0])
+real_name = 2
+prerequisite = Array[int]([1])
 blurb = "Hi!
 
 Me want stew.

@@ -11,18 +11,23 @@ var DEBUG_MODE = false
 #var world_needs_processing = false
 #var world_data: WorldData
 
+const GAME_DATA_SAVE_PATH := "user://game_data.tres"
+var use_game_data_save_file = true
+var game_data_needs_populated = false
+var game_data: GameData
+
 const LEVEL_SAVE_PATH := "user://garden_data.tres"
-var use_level_save_file = true
+var use_level_save_file = false
 var level_needs_populated = false
 var garden_data: GardenData
 
-const CHARACTER_SAVE_PATH := "user://stats_and_inventory_8-9-2.tres"
-var use_character_save_file = true #true
+const CHARACTER_SAVE_PATH := "user://stats_and_inventory_state.tres"
+var use_character_save_file = false
 var character_needs_populated = false
 var stats_and_inventory: StatsAndInventory
 
 const WILD_GROWTH_SAVE_PATH := "user://wild_growth_state.tres"
-var use_wild_growth_save_file = true
+var use_wild_growth_save_file = false
 var wild_growth_state: WildGrowthState
 
 const MASTER_SAVE_PATH := "user://game_state.tres"
@@ -51,7 +56,6 @@ func update_tree(tree_scene: FruitTree):
 	save_save_file()
 
 func register_garden_plot(garden_plot_scene: GardenPlot):
-	print('garden plot is registering itself now')
 	var key = garden_plot_scene.coordinates
 	if garden_data.plot_states.has(key):
 		garden_plot_scene.state = garden_data.plot_states[key]
@@ -69,13 +73,15 @@ func state_to_dict():
 	return {
 		"stats_and_inventory": stats_and_inventory.to_dict(),
 		"garden_data": garden_data.to_dict(),
-		"wild_growth_state": wild_growth_state.to_dict()
+		"wild_growth_state": wild_growth_state.to_dict(),
+		"game_data": game_data.to_dict(),
 	}
 
 func dict_to_state(dict: Dictionary):
 	stats_and_inventory = StatsAndInventory.from_dict(dict['stats_and_inventory'])
 	garden_data = GardenData.from_dict(dict['garden_data'])
 	wild_growth_state = WildGrowthState.from_dict(dict['wild_growth_state'])
+	game_data = GameData.from_dict(dict['game_data'])
 	
 	reload_game.emit()
 	
@@ -100,6 +106,13 @@ func load_save_file():
 		wild_growth_state = ResourceLoader.load(WILD_GROWTH_SAVE_PATH, "WildGrowthState", ResourceLoader.CACHE_MODE_IGNORE)
 	else:
 		wild_growth_state = WildGrowthState.new()
+
+	if ResourceLoader.exists(GAME_DATA_SAVE_PATH) and use_game_data_save_file:
+		game_data = ResourceLoader.load(GAME_DATA_SAVE_PATH, "GameData", ResourceLoader.CACHE_MODE_IGNORE)
+	else:
+		game_data = GameData.new()
+
+
 	#if ResourceLoader.exists(WORLD_SAVE_PATH) and use_world_save_file:
 		#world_data = ResourceLoader.load(WORLD_SAVE_PATH, "WorldData", ResourceLoader.CACHE_MODE_IGNORE)
 		#world_needs_processing = true
@@ -112,3 +125,4 @@ func save_save_file():
 	ResourceSaver.save(garden_data, LEVEL_SAVE_PATH)
 	ResourceSaver.save(stats_and_inventory, CHARACTER_SAVE_PATH)
 	ResourceSaver.save(wild_growth_state, WILD_GROWTH_SAVE_PATH)
+	ResourceSaver.save(game_data, GAME_DATA_SAVE_PATH)

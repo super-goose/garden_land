@@ -24,8 +24,6 @@ var start_position: Vector2i
 func _ready():
 	if State.character_needs_populated:
 		State.stats_and_inventory.mark_next_quest_available()
-		## debug
-		State.stats_and_inventory.inventory.vegetable[Constants.VEGETABLE_TYPE.Carrot] = 5
 
 	Events.select_garden_plot.connect(_handle_event_select_garden_plot)
 	Events.select_fruit_tree.connect(_handle_event_select_fruit_tree)
