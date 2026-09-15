@@ -3,6 +3,7 @@ extends Area2D
 
 var state: GardenPlotState
 var coordinates: Vector2i
+var this_is_a_test_plot = false
 
 var VegetableScene = load("res://scenes/vegetable.tscn")
 
@@ -13,6 +14,8 @@ func _ready():
 
 	coordinates = Common.convert_to_grid_coordinates(position)
 	State.register_garden_plot(self)
+	if coordinates == Vector2i(7, 69):
+		this_is_a_test_plot = true
 
 	update_visuals()
 
@@ -51,7 +54,11 @@ func get_watered():
 	if state.type == Constants.VEGETABLE_TYPE.None:
 		return
 	state.was_watered = true
-	update_plot()
+
+	if this_is_a_test_plot:
+		override_and_handle_test_plot()
+	else:
+		update_plot()
 
 #func _handle_event_start_new_day():
 func _handle_event_tick(timestamp: int):
@@ -59,11 +66,29 @@ func _handle_event_tick(timestamp: int):
 		return
 	if state.stage_change_timestamp == null:
 		return
+
 	var delta = timestamp - state.stage_change_timestamp
-	if state.was_watered and delta > 10:
+	@warning_ignore("incompatible_ternary")
+	var min_delta = 10 # TODO: this should depend on the plant
+	var time_is_good = delta > min_delta or this_is_a_test_plot
+	
+	var water_is_good = state.was_watered or (this_is_a_test_plot and state.stage > 0)
+	
+	if water_is_good and time_is_good:
 		increase_stage()
 		state.was_watered = false
 	update_plot()
+
+func override_and_handle_test_plot():
+	state.stage_change_timestamp = 1
+	await get_tree().create_timer(1).timeout
+	_handle_event_tick(1)
+	await get_tree().create_timer(1).timeout
+	_handle_event_tick(2)
+	await get_tree().create_timer(1).timeout
+	_handle_event_tick(3)
+	await get_tree().create_timer(1).timeout
+	_handle_event_tick(4)
 
 func _handle_event_stop_raining():
 	get_watered()

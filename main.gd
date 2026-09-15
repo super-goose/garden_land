@@ -9,6 +9,7 @@ func _ready():
 	Events.time_passage_pause.connect(_handle_event_time_passage_pause)
 	Events.time_passage_play.connect(_handle_event_time_passage_unpause)
 	Events.time_passage_fast_forward.connect(_handle_event_time_passage_unpause)
+	Events.character_move_to_testing_grounds.connect(_handle_character_move_to_testing_grounds)
 	State.reload_game.connect(_handle_state_reload_game)
 
 func _handle_state_reload_game():
@@ -40,8 +41,25 @@ func _unhandled_input(event: InputEvent) -> void:
 	if is_paused:
 		return
 	if event is InputEventMouseButton: # mouse click
-		if (event.is_pressed() and event.button_index == MOUSE_BUTTON_LEFT): # left
+		if (event.is_pressed() and event.button_index == MOUSE_BUTTON_LEFT) and not is_in_test_location: # left
 			var destination = get_global_mouse_position()
 			destination = Common.convert_to_grid_coordinates(destination)
 			print('go to: %s' % destination)
 			$Character.go_to_position(destination)
+
+var is_in_test_location = false
+var character_direction
+func _handle_character_move_to_testing_grounds():
+	var offset = Vector2i(8, 8)
+	if is_in_test_location:
+		$Character.position = State.garden_data.start_location * 16
+		is_in_test_location = false
+		$Character.set_direction(character_direction)
+		$WeatherLayer.rain_enabled = false
+	else:
+		character_direction = $Character.direction
+		$Character.set_direction('down')
+		$Character.position = (Vector2i(7, 68) * 16) + offset
+		is_in_test_location = true
+		$WeatherLayer.rain_enabled = true
+		

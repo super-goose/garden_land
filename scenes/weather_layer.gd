@@ -1,5 +1,6 @@
 extends CanvasLayer
 
+var rain_enabled = true
 var is_daytime = true
 var rained_already
 var chance_of_rain
@@ -34,7 +35,7 @@ func increase_hour(hour, am_pm):
 			Events.stop_raining.emit()
 		else:
 			chance_of_stopping += 5
-	else: # not raining
+	elif rain_enabled: # not raining
 		if rained_already or not is_daytime:
 			return
 		var will_it_rain = Dice.roll_d100()

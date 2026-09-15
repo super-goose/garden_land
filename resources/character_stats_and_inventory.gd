@@ -20,6 +20,7 @@ func set_quest_to_active(name: QuestConstants.Name):
 
 	if name == QuestConstants.Name.Welcome:
 		fulfill_current_quest()
+		Events.character_move_to_testing_grounds.emit()
 
 func quest_can_be_completed(name: QuestConstants.Name):
 	for quest in quests:
