@@ -1,6 +1,7 @@
 extends CanvasLayer
 
-@onready var actions_container = $Actions/ColorRect/HBoxContainer
+@onready var actions_container_container = $Actions/VBoxContainer
+@onready var actions_container = $Actions/VBoxContainer/ColorRect/HBoxContainer
 @onready var seeds_container = $Seeds/ColorRect/GridContainer
 
 var seeds_duration = .3
