@@ -17,6 +17,7 @@ func _ready():
 	Events.hide_seed_options.connect(_handle_hide_seed_options)
 	Events.set_water_level.connect(set_water_level)
 	Events.set_water_level_max.connect(set_water_level_max)
+	Events.set_action_tutorial.connect(_handle_set_action_tutorial)
 
 	__populate_actions()
 	__populate_seed_options()
@@ -70,3 +71,15 @@ func __populate_actions():
 
 func _on_button_pressed() -> void:
 	_handle_hide_seed_options()
+
+var popover_dialogue
+func _handle_set_action_tutorial(action_tutorial_type: String):
+	popover_dialogue = PopoverDialogue.create_and_set_text("This is the actions dialogue: %s" % action_tutorial_type)
+	actions_container_container.add_child(popover_dialogue)
+	actions_container_container.move_child(popover_dialogue, 0)
+	print($Actions.position)
+
+func clear_action_tutorial():
+	actions_container_container.remove_child(popover_dialogue)
+	popover_dialogue.queue_free()
+	

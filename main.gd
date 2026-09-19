@@ -55,11 +55,11 @@ func _handle_character_move_to_testing_grounds():
 		$Character.position = State.garden_data.start_location * 16
 		is_in_test_location = false
 		$Character.set_direction(character_direction)
-		$WeatherLayer.rain_enabled = false
+		$WeatherLayer.rain_enabled = true
 	else:
 		character_direction = $Character.direction
 		$Character.set_direction('down')
 		$Character.position = (Vector2i(7, 68) * 16) + offset
 		is_in_test_location = true
-		$WeatherLayer.rain_enabled = true
-		
+		$WeatherLayer.rain_enabled = false
+		Events.set_action_tutorial.emit("hoeing around")

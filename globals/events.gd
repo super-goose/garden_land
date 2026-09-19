@@ -52,6 +52,7 @@ signal start_raining
 signal stop_raining
 
 signal character_move_to_testing_grounds
+signal set_action_tutorial(action_tutorial_type: String)
 
 signal character_moved(coordinates: Vector2i)
 @warning_ignore_restore("unused_signal")
