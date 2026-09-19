@@ -19,6 +19,7 @@ func _ready():
 	Events.set_water_level.connect(set_water_level)
 	Events.set_water_level_max.connect(set_water_level_max)
 	Events.set_action_tutorial.connect(_handle_set_action_tutorial)
+	Events.perform_action.connect(_handle_event_perform_action)
 
 	__populate_actions()
 	__populate_seed_options()
@@ -75,14 +76,21 @@ func __populate_actions():
 func _on_button_pressed() -> void:
 	_handle_hide_seed_options()
 
-var popover_dialogue
+var popover_dialogue = null
+var tutorial_type = null
 func _handle_set_action_tutorial(action_tutorial_type: String):
+	tutorial_type = action_tutorial_type
+
 	popover_dialogue = PopoverDialogue.create_and_set_text("This is the actions dialogue: %s" % action_tutorial_type)
 	actions_container_container.add_child(popover_dialogue)
 	actions_container_container.move_child(popover_dialogue, 0)
-	print($Actions.position)
 
 func clear_action_tutorial():
 	actions_container_container.remove_child(popover_dialogue)
 	popover_dialogue.queue_free()
+	popover_dialogue = null
+	tutorial_type = null
 	
+func _handle_event_perform_action(action):
+	if action == Constants.ACTIONS.Hoe and tutorial_type == "hoeing around":
+		clear_action_tutorial()
