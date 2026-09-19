@@ -1,7 +1,6 @@
 [gd_scene format=3 uid="uid://cualt3fdfjppy"]
 
 [ext_resource type="Script" uid="uid://vdxvjvx3eu36" path="res://scenes/hud.gd" id="1_vkfkb"]
-[ext_resource type="PackedScene" uid="uid://bdmhk41d4qik0" path="res://scenes/ui_components/popover_dialogue.tscn" id="2_047uy"]
 [ext_resource type="PackedScene" uid="uid://dnroisdn74j7y" path="res://scenes/seed_button.tscn" id="2_uo2fv"]
 [ext_resource type="PackedScene" uid="uid://bp7q5ii3fmxeq" path="res://scenes/clock.tscn" id="2_vko8y"]
 [ext_resource type="PackedScene" uid="uid://cdbj207ey8npw" path="res://scenes/actions_menu_button.tscn" id="3_5pdws"]
@@ -31,9 +30,6 @@ size_flags_vertical = 3
 mouse_filter = 0
 
 [node name="VBoxContainer" type="VBoxContainer" parent="Actions" unique_id=1765945122]
-layout_mode = 2
-
-[node name="PopoverDialogue" parent="Actions/VBoxContainer" unique_id=1936475851 instance=ExtResource("2_047uy")]
 layout_mode = 2
 
 [node name="MarginContainer" type="MarginContainer" parent="Actions/VBoxContainer" unique_id=687487724]

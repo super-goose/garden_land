@@ -1,5 +1,5 @@
 class_name PopoverDialogue
-extends Control
+extends MarginContainer
 
 var label_text: String
 
@@ -11,4 +11,4 @@ static func create_and_set_text(text: String) -> PopoverDialogue:
 	return instance
 
 func _ready():
-	$MarginContainer/NinePatchRect/MarginContainer/Label.text = label_text
+	$MarginContainer/Label.text = label_text

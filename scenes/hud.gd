@@ -1,7 +1,7 @@
 extends CanvasLayer
 
 @onready var actions_container_container = $Actions/VBoxContainer
-@onready var actions_container = $Actions/VBoxContainer/ColorRect/HBoxContainer
+@onready var actions_container = $Actions/VBoxContainer/MarginContainer/HBoxContainer
 @onready var seeds_container = $Seeds/ColorRect/GridContainer
 
 var seeds_duration = .3
@@ -63,7 +63,9 @@ func __populate_seed_options():
 		seeds_container.add_child(s)
 
 func __populate_actions():
-	#actions_container.get_children()
+	for child in actions_container.get_children():
+		actions_container.remove_child(child)
+
 	for action in Constants.ACTIONS:
 		var a = ActionsMenuButtonScene.instantiate()
 		a.set_button_type(Constants.ACTIONS[action])
