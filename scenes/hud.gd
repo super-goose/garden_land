@@ -84,10 +84,19 @@ func _on_button_pressed() -> void:
 
 var popover_dialogue = null
 var tutorial_type = null
+
+var tutorial_messages = {
+	"check the mail": "DOES THIS DISPLAY???",
+	"hoeing around": "Tap the hoe icon to dig up a plot for your garden.",
+	"water that plant": "Tap the watering can icon to water your plant. It won't grow without water!",
+	"select a seed to plant": "Tap the seed packet, then select a seed type, in order to plant seeds",
+	"let it grow": "Wait for it to grow (it will take longer than this). Then harvest your crops.",
+}
+
 func _handle_set_action_tutorial(action_tutorial_type: String):
 	tutorial_type = action_tutorial_type
 
-	popover_dialogue = PopoverDialogue.create_and_set_text("This is the actions dialogue: %s" % action_tutorial_type)
+	popover_dialogue = PopoverDialogue.create_and_set_text(tutorial_messages[action_tutorial_type])
 	actions_container_container.add_child(popover_dialogue)
 	actions_container_container.move_child(popover_dialogue, 0)
 
