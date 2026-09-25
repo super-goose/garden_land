@@ -51,6 +51,12 @@ func _handle_hide_seed_options():
 	await t.tween_property($Seeds, 'position', new_position, seeds_duration).finished
 	$Seeds.visible = false
 	$Button.visible = false
+	if tutorial_type == "select a seed to plant":
+		clear_action_tutorial()
+		await get_tree().create_timer(1).timeout
+		Events.set_action_tutorial.emit("water that plant")
+
+
 
 func __populate_seed_options():
 	for child in seeds_container.get_children():
@@ -92,5 +98,20 @@ func clear_action_tutorial():
 	tutorial_type = null
 	
 func _handle_event_perform_action(action):
-	if action == Constants.ACTIONS.Hoe and tutorial_type == "hoeing around":
+	if action == Constants.ACTIONS.CheckMail and tutorial_type == "check the mail":
 		clear_action_tutorial()
+
+	elif action == Constants.ACTIONS.Hoe and tutorial_type == "hoeing around":
+		clear_action_tutorial()
+		await get_tree().create_timer(1).timeout
+		Events.set_action_tutorial.emit("select a seed to plant")
+
+	elif action == Constants.ACTIONS.Water and tutorial_type == "water that plant":
+		clear_action_tutorial()
+		await get_tree().create_timer(1).timeout
+		Events.set_action_tutorial.emit("let it grow")
+
+	elif action == Constants.ACTIONS.Harvest_Lettuce and tutorial_type == "let it grow":
+		clear_action_tutorial()
+		await get_tree().create_timer(1).timeout
+		Events.character_move_to_testing_grounds.emit()

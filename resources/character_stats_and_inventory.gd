@@ -45,7 +45,7 @@ func mark_next_quest_available():
 	
 		quest.available = current_quest_ready
 		if current_quest_ready:
-			Events.quest_available.emit()
+			Events.quest_available.emit(quest.real_name)
 	last_quest_fulfilled_timestamp = -1
 
 func get_current_quests():
