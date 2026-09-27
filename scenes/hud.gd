@@ -87,10 +87,12 @@ var tutorial_type = null
 
 var tutorial_messages = {
 	"check the mail": "DOES THIS DISPLAY???",
+	#make the check the mail one display
 	"hoeing around": "Tap the hoe icon to dig up a plot for your garden.",
 	"water that plant": "Tap the watering can icon to water your plant. It won't grow without water!",
 	"select a seed to plant": "Tap the seed packet, then select a seed type, in order to plant seeds",
 	"let it grow": "Wait for it to grow (it will take longer than this). Then harvest your crops.",
+	#when a watering can is empty, fill it from the well
 }
 
 func _handle_set_action_tutorial(action_tutorial_type: String):

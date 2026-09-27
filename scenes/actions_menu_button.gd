@@ -12,6 +12,7 @@ func _ready():
 		Constants.ACTIONS.CheckMail: load("res://modified-assets/ui/action-button-letter.png"),
 		Constants.ACTIONS.SendMail: load("res://modified-assets/ui/action-button-box.png"),
 		Constants.ACTIONS.Menu: load("res://modified-assets/ui/menu_button.png"),
+		Constants.ACTIONS.Help: load("res://modified-assets/ui/action-button-help.png"),
 		Constants.ACTIONS.Hoe: load("res://modified-assets/tools/tools-hoe.png"),
 		Constants.ACTIONS.Water: load("res://modified-assets/tools/tools-water-can.png"),
 		Constants.ACTIONS.Chop: load("res://modified-assets/tools/tools-axe.png"),

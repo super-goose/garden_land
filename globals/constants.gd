@@ -178,6 +178,7 @@ enum ACTIONS {
 	Harvest_Onion,
 	Harvest_Pepper,
 	Harvest_PurpleCabbage,
+	Help,
 }
 
 var GROW_SPRITES = {

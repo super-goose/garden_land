@@ -270,6 +270,8 @@ func _handle_event_perform_action(action: Constants.ACTIONS):
 		facilitate_sowing()
 	elif action == Constants.ACTIONS.Dev:
 		open_dev_plot_menu()
+	elif action == Constants.ACTIONS.Help:
+		breakpoint
 	else: # probably harvest; future actions (like a quest letter) should be handled before here
 		harvest_plant(action)
 
@@ -392,4 +394,5 @@ func set_actions():
 		elif LevelUtil.is_hoeable(position_to_coords($AoI/FocusCursor.global_position)) and State.stats_and_inventory.has_hoe:
 			actions.push_back(Constants.ACTIONS.Hoe)
 		
+	actions.push_back(Constants.ACTIONS.Help)
 	Events.set_actions.emit(actions)
